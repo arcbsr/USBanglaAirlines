@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E81FC2595B5A100530D14 /* AppDelegate.swift */; };
+		8E7E81FF2595B5A100530D14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E81FE2595B5A100530D14 /* SceneDelegate.swift */; };
+		8E7E82012595B5A100530D14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E82002595B5A100530D14 /* ViewController.swift */; };
+		8E7E82042595B5A100530D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82022595B5A100530D14 /* Main.storyboard */; };
+		8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82052595B5A300530D14 /* Assets.xcassets */; };
+		8E7E82092595B5A300530D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82072595B5A300530D14 /* LaunchScreen.storyboard */; };
+		8E7E82142595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E82132595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift */; };
+		8E7E821F2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E821E2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8E7E82102595B5A400530D14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E7E81F12595B5A100530D14 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E7E81F82595B5A100530D14;
+			remoteInfo = "US-BANGLA AIRLINES";
+		};
+		8E7E821B2595B5A400530D14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E7E81F12595B5A100530D14 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E7E81F82595B5A100530D14;
+			remoteInfo = "US-BANGLA AIRLINES";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8E7E81F92595B5A100530D14 /* US-BANGLA AIRLINES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "US-BANGLA AIRLINES.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E7E81FC2595B5A100530D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8E7E81FE2595B5A100530D14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8E7E82002595B5A100530D14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8E7E82032595B5A100530D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8E7E82052595B5A300530D14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E7E82082595B5A300530D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8E7E820A2595B5A300530D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E7E820F2595B5A400530D14 /* US-BANGLA AIRLINESTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "US-BANGLA AIRLINESTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E7E82132595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = US_BANGLA_AIRLINESTests.swift; sourceTree = "<group>"; };
+		8E7E82152595B5A400530D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E7E821A2595B5A400530D14 /* US-BANGLA AIRLINESUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "US-BANGLA AIRLINESUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E7E821E2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = US_BANGLA_AIRLINESUITests.swift; sourceTree = "<group>"; };
+		8E7E82202595B5A400530D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E7E81F62595B5A100530D14 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E7E820C2595B5A400530D14 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E7E82172595B5A400530D14 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E7E81F02595B5A100530D14 = {
+			isa = PBXGroup;
+			children = (
+				8E7E81FB2595B5A100530D14 /* US-BANGLA AIRLINES */,
+				8E7E82122595B5A400530D14 /* US-BANGLA AIRLINESTests */,
+				8E7E821D2595B5A400530D14 /* US-BANGLA AIRLINESUITests */,
+				8E7E81FA2595B5A100530D14 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8E7E81FA2595B5A100530D14 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E7E81F92595B5A100530D14 /* US-BANGLA AIRLINES.app */,
+				8E7E820F2595B5A400530D14 /* US-BANGLA AIRLINESTests.xctest */,
+				8E7E821A2595B5A400530D14 /* US-BANGLA AIRLINESUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E7E81FB2595B5A100530D14 /* US-BANGLA AIRLINES */ = {
+			isa = PBXGroup;
+			children = (
+				8E7E81FC2595B5A100530D14 /* AppDelegate.swift */,
+				8E7E81FE2595B5A100530D14 /* SceneDelegate.swift */,
+				8E7E82002595B5A100530D14 /* ViewController.swift */,
+				8E7E82022595B5A100530D14 /* Main.storyboard */,
+				8E7E82052595B5A300530D14 /* Assets.xcassets */,
+				8E7E82072595B5A300530D14 /* LaunchScreen.storyboard */,
+				8E7E820A2595B5A300530D14 /* Info.plist */,
+			);
+			path = "US-BANGLA AIRLINES";
+			sourceTree = "<group>";
+		};
+		8E7E82122595B5A400530D14 /* US-BANGLA AIRLINESTests */ = {
+			isa = PBXGroup;
+			children = (
+				8E7E82132595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift */,
+				8E7E82152595B5A400530D14 /* Info.plist */,
+			);
+			path = "US-BANGLA AIRLINESTests";
+			sourceTree = "<group>";
+		};
+		8E7E821D2595B5A400530D14 /* US-BANGLA AIRLINESUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8E7E821E2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift */,
+				8E7E82202595B5A400530D14 /* Info.plist */,
+			);
+			path = "US-BANGLA AIRLINESUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8E7E81F82595B5A100530D14 /* US-BANGLA AIRLINES */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E7E82232595B5A400530D14 /* Build configuration list for PBXNativeTarget "US-BANGLA AIRLINES" */;
+			buildPhases = (
+				8E7E81F52595B5A100530D14 /* Sources */,
+				8E7E81F62595B5A100530D14 /* Frameworks */,
+				8E7E81F72595B5A100530D14 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "US-BANGLA AIRLINES";
+			productName = "US-BANGLA AIRLINES";
+			productReference = 8E7E81F92595B5A100530D14 /* US-BANGLA AIRLINES.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8E7E820E2595B5A400530D14 /* US-BANGLA AIRLINESTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E7E82262595B5A400530D14 /* Build configuration list for PBXNativeTarget "US-BANGLA AIRLINESTests" */;
+			buildPhases = (
+				8E7E820B2595B5A400530D14 /* Sources */,
+				8E7E820C2595B5A400530D14 /* Frameworks */,
+				8E7E820D2595B5A400530D14 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E7E82112595B5A400530D14 /* PBXTargetDependency */,
+			);
+			name = "US-BANGLA AIRLINESTests";
+			productName = "US-BANGLA AIRLINESTests";
+			productReference = 8E7E820F2595B5A400530D14 /* US-BANGLA AIRLINESTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8E7E82192595B5A400530D14 /* US-BANGLA AIRLINESUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E7E82292595B5A400530D14 /* Build configuration list for PBXNativeTarget "US-BANGLA AIRLINESUITests" */;
+			buildPhases = (
+				8E7E82162595B5A400530D14 /* Sources */,
+				8E7E82172595B5A400530D14 /* Frameworks */,
+				8E7E82182595B5A400530D14 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E7E821C2595B5A400530D14 /* PBXTargetDependency */,
+			);
+			name = "US-BANGLA AIRLINESUITests";
+			productName = "US-BANGLA AIRLINESUITests";
+			productReference = 8E7E821A2595B5A400530D14 /* US-BANGLA AIRLINESUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E7E81F12595B5A100530D14 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = usbangla;
+				TargetAttributes = {
+					8E7E81F82595B5A100530D14 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					8E7E820E2595B5A400530D14 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 8E7E81F82595B5A100530D14;
+					};
+					8E7E82192595B5A400530D14 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 8E7E81F82595B5A100530D14;
+					};
+				};
+			};
+			buildConfigurationList = 8E7E81F42595B5A100530D14 /* Build configuration list for PBXProject "US-BANGLA AIRLINES" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8E7E81F02595B5A100530D14;
+			productRefGroup = 8E7E81FA2595B5A100530D14 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E7E81F82595B5A100530D14 /* US-BANGLA AIRLINES */,
+				8E7E820E2595B5A400530D14 /* US-BANGLA AIRLINESTests */,
+				8E7E82192595B5A400530D14 /* US-BANGLA AIRLINESUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8E7E81F72595B5A100530D14 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E7E82092595B5A300530D14 /* LaunchScreen.storyboard in Resources */,
+				8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */,
+				8E7E82042595B5A100530D14 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E7E820D2595B5A400530D14 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E7E82182595B5A400530D14 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E7E81F52595B5A100530D14 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E7E82012595B5A100530D14 /* ViewController.swift in Sources */,
+				8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */,
+				8E7E81FF2595B5A100530D14 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E7E820B2595B5A400530D14 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E7E82142595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E7E82162595B5A400530D14 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E7E821F2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8E7E82112595B5A400530D14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E7E81F82595B5A100530D14 /* US-BANGLA AIRLINES */;
+			targetProxy = 8E7E82102595B5A400530D14 /* PBXContainerItemProxy */;
+		};
+		8E7E821C2595B5A400530D14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E7E81F82595B5A100530D14 /* US-BANGLA AIRLINES */;
+			targetProxy = 8E7E821B2595B5A400530D14 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8E7E82022595B5A100530D14 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E7E82032595B5A100530D14 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8E7E82072595B5A300530D14 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E7E82082595B5A300530D14 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8E7E82212595B5A400530D14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8E7E82222595B5A400530D14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8E7E82242595B5A400530D14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WA34LH76LK;
+				INFOPLIST_FILE = "US-BANGLA AIRLINES/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "usbangla.US-BANGLA-AIRLINES";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8E7E82252595B5A400530D14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WA34LH76LK;
+				INFOPLIST_FILE = "US-BANGLA AIRLINES/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "usbangla.US-BANGLA-AIRLINES";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8E7E82272595B5A400530D14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WA34LH76LK;
+				INFOPLIST_FILE = "US-BANGLA AIRLINESTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "usbangla.US-BANGLA-AIRLINESTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/US-BANGLA AIRLINES.app/US-BANGLA AIRLINES";
+			};
+			name = Debug;
+		};
+		8E7E82282595B5A400530D14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WA34LH76LK;
+				INFOPLIST_FILE = "US-BANGLA AIRLINESTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "usbangla.US-BANGLA-AIRLINESTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/US-BANGLA AIRLINES.app/US-BANGLA AIRLINES";
+			};
+			name = Release;
+		};
+		8E7E822A2595B5A400530D14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WA34LH76LK;
+				INFOPLIST_FILE = "US-BANGLA AIRLINESUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "usbangla.US-BANGLA-AIRLINESUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "US-BANGLA AIRLINES";
+			};
+			name = Debug;
+		};
+		8E7E822B2595B5A400530D14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WA34LH76LK;
+				INFOPLIST_FILE = "US-BANGLA AIRLINESUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "usbangla.US-BANGLA-AIRLINESUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "US-BANGLA AIRLINES";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E7E81F42595B5A100530D14 /* Build configuration list for PBXProject "US-BANGLA AIRLINES" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E7E82212595B5A400530D14 /* Debug */,
+				8E7E82222595B5A400530D14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E7E82232595B5A400530D14 /* Build configuration list for PBXNativeTarget "US-BANGLA AIRLINES" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E7E82242595B5A400530D14 /* Debug */,
+				8E7E82252595B5A400530D14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E7E82262595B5A400530D14 /* Build configuration list for PBXNativeTarget "US-BANGLA AIRLINESTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E7E82272595B5A400530D14 /* Debug */,
+				8E7E82282595B5A400530D14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E7E82292595B5A400530D14 /* Build configuration list for PBXNativeTarget "US-BANGLA AIRLINESUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E7E822A2595B5A400530D14 /* Debug */,
+				8E7E822B2595B5A400530D14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E7E81F12595B5A100530D14 /* Project object */;
+}
