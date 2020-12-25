@@ -9,22 +9,104 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    @IBOutlet weak var notificationImageView: UIImageView!{
+        didSet{
+            menuImageView.isUserInteractionEnabled = true
+            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+        }
+    }
+    @IBOutlet weak var menuImageView: UIImageView!{
+        didSet{
+            menuImageView.isUserInteractionEnabled = true
+            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuTapped)))
+        }
+    }
+    @IBOutlet weak var flightBookingView: UIView!{
+        didSet{
+            menuImageView.isUserInteractionEnabled = true
+            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flightBookingTapped)))
+        }
+    }
+    @IBOutlet weak var skyStarView: UIView!{
+        didSet{
+            menuImageView.isUserInteractionEnabled = true
+            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(skyStarTapped)))
+        }
+    }
+    @IBOutlet weak var hotlineView: UIView!{
+        didSet{
+            menuImageView.isUserInteractionEnabled = true
+            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hotlineTapped)))
+        }
+    }
+    @IBOutlet weak var manageBookingView: UIView!{
+        didSet{
+            menuImageView.isUserInteractionEnabled = true
+            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(manageBookingTapped)))
+        }
+    }
+    @IBOutlet weak var holidayView: UIView!{
+        didSet{
+            menuImageView.isUserInteractionEnabled = true
+            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(holidayTapped)))
+        }
+    }
+    @IBOutlet weak var flightScheduleView: UIView!{
+        didSet{
+            menuImageView.isUserInteractionEnabled = true
+            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flightScheduleTapped)))
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
-    */
-
+    
+    @objc func menuTapped(){
+        
+    }
+    
+    @objc func flightBookingTapped(){
+        
+    }
+    
+    @objc func skyStarTapped(){
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+            vc.currentOption = .skyStar
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @objc func hotlineTapped(){
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+            vc.currentOption = .hotline
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @objc func manageBookingTapped(){
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+            vc.currentOption = .manageBooking
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @objc func holidayTapped(){
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+            vc.currentOption = .holiday
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @objc func flightScheduleTapped(){
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+            vc.currentOption = .flightSchedule
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @objc func notificationTapped(){
+    }
+    
 }
