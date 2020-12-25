@@ -162,20 +162,20 @@ extension UINavigationController{
     func addNavigationBarTitleImage(){
         self.isNavigationBarHidden = false
         let navController = self
-                if let image = UIImage(named: "ic_appLogo"){
-                let imageView = UIImageView(image: image)
-                
-                let bannerWidth = navController.navigationBar.frame.size.width
-                let bannerHeight = navController.navigationBar.frame.size.height
-                
-                let bannerX = bannerWidth / 2 - image.size.width / 2
-                let bannerY = bannerHeight / 2 - image.size.height / 2
-                
-                imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-                imageView.contentMode = .scaleAspectFit
-                
-                navigationItem.titleView = imageView
-             }
+        if let image = UIImage(named: "ic_appLogo"){
+            let imageView = UIImageView(image: image)
+            
+            let bannerWidth = navController.navigationBar.frame.size.width
+            let bannerHeight = navController.navigationBar.frame.size.height
+            
+            let bannerX = bannerWidth / 2 - image.size.width / 2
+            let bannerY = bannerHeight / 2 - image.size.height / 2
+            
+            imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
+            imageView.contentMode = .scaleAspectFit
+            
+            navigationItem.titleView = imageView
+        }
     }
 }
 
@@ -213,18 +213,18 @@ extension UIView{
 }
 
 extension UIViewController{
-    public func showAlert(title: String?, message: String?, callback: ((_ action: UIAlertAction)->Void)?) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "হ্যাঁ", style: .default) { (action) in
-            callback?(action)
-        }
-        alertController.addAction(okAction)
-        alertController.addAction(UIAlertAction(title: "না", style: .destructive, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
+    //    public func showAlert(title: String?, message: String?, callback: ((_ action: UIAlertAction)->Void)?) {
+    //        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    //        let okAction = UIAlertAction(title: "হ্যাঁ", style: .default) { (action) in
+    //            callback?(action)
+    //        }
+    //        alertController.addAction(okAction)
+    //        alertController.addAction(UIAlertAction(title: "না", style: .destructive, handler: nil))
+    //        self.present(alertController, animated: true, completion: nil)
+    //    }
     
     // login with priyo
-    public func showAlertPopup(title: String?, message: String?, callback: ((_ action: UIAlertAction)->Void)?) {
+    public func showAlert(title: String?, message: String?, callback: ((_ action: UIAlertAction)->Void)?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
             callback?(action)

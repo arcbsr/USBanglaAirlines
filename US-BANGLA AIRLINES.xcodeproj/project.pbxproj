@@ -13,6 +13,8 @@
 		8E4B431625960AF400B35133 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431525960AF400B35133 /* Reachability.swift */; };
 		8E4B431825960B0B00B35133 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431725960B0B00B35133 /* Helper.swift */; };
 		8E4B431A25960B1400B35133 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431925960B1400B35133 /* Validator.swift */; };
+		8E4B431F2596691D00B35133 /* SideBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4B431D2596691D00B35133 /* SideBarTableViewCell.xib */; };
+		8E4B43202596691D00B35133 /* SideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431E2596691D00B35133 /* SideBarTableViewCell.swift */; };
 		8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E81FC2595B5A100530D14 /* AppDelegate.swift */; };
 		8E7E82042595B5A100530D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82022595B5A100530D14 /* Main.storyboard */; };
 		8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82052595B5A300530D14 /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		8E4B431525960AF400B35133 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8E4B431725960B0B00B35133 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		8E4B431925960B1400B35133 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		8E4B431D2596691D00B35133 /* SideBarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarTableViewCell.xib; sourceTree = "<group>"; };
+		8E4B431E2596691D00B35133 /* SideBarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewCell.swift; sourceTree = "<group>"; };
 		8E7E81F92595B5A100530D14 /* US-BANGLA AIRLINES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "US-BANGLA AIRLINES.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7E81FC2595B5A100530D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7E82032595B5A100530D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -137,6 +141,22 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		8E4B431B259622F700B35133 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8E4B431C259668B600B35133 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8E4B431E2596691D00B35133 /* SideBarTableViewCell.swift */,
+				8E4B431D2596691D00B35133 /* SideBarTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		8E7E81F02595B5A100530D14 = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +190,8 @@
 				8E7E82072595B5A300530D14 /* LaunchScreen.storyboard */,
 				8E7E820A2595B5A300530D14 /* Info.plist */,
 				8E4B4310259605CE00B35133 /* ViewController */,
+				8E4B431C259668B600B35133 /* Cell */,
+				8E4B431B259622F700B35133 /* Model */,
 				8E4B430F259605BF00B35133 /* Storyboard */,
 			);
 			path = "US-BANGLA AIRLINES";
@@ -304,6 +326,7 @@
 			files = (
 				8E7E82092595B5A300530D14 /* LaunchScreen.storyboard in Resources */,
 				8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */,
+				8E4B431F2596691D00B35133 /* SideBarTableViewCell.xib in Resources */,
 				8E7E82042595B5A100530D14 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +460,7 @@
 				8E4B431825960B0B00B35133 /* Helper.swift in Sources */,
 				8E4B431625960AF400B35133 /* Reachability.swift in Sources */,
 				8E4B431A25960B1400B35133 /* Validator.swift in Sources */,
+				8E4B43202596691D00B35133 /* SideBarTableViewCell.swift in Sources */,
 				8E4B43142596093900B35133 /* CustomWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
