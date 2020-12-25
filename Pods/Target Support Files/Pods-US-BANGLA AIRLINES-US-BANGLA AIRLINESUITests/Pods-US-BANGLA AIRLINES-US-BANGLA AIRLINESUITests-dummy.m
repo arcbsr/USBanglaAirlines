@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests : NSObject
+@end
+@implementation PodsDummy_Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests
+@end

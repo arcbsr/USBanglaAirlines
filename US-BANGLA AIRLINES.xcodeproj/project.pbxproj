@@ -3,17 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		603D9E242E1A83D8166142E2 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD42F0CA14557A84DBEE7641 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework */; };
+		8E4B43122596091700B35133 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B43112596091700B35133 /* HomeViewController.swift */; };
+		8E4B43142596093900B35133 /* CustomWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B43132596093900B35133 /* CustomWebViewController.swift */; };
+		8E4B431625960AF400B35133 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431525960AF400B35133 /* Reachability.swift */; };
+		8E4B431825960B0B00B35133 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431725960B0B00B35133 /* Helper.swift */; };
+		8E4B431A25960B1400B35133 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431925960B1400B35133 /* Validator.swift */; };
 		8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E81FC2595B5A100530D14 /* AppDelegate.swift */; };
-		8E7E82012595B5A100530D14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E82002595B5A100530D14 /* ViewController.swift */; };
 		8E7E82042595B5A100530D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82022595B5A100530D14 /* Main.storyboard */; };
 		8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82052595B5A300530D14 /* Assets.xcassets */; };
 		8E7E82092595B5A300530D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82072595B5A300530D14 /* LaunchScreen.storyboard */; };
 		8E7E82142595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E82132595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift */; };
 		8E7E821F2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E821E2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift */; };
+		CD34A2E2BB02F4EA58EBF87B /* Pods_US_BANGLA_AIRLINES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61675DB7FECFB7AD5DC810E0 /* Pods_US_BANGLA_AIRLINES.framework */; };
+		EAD30A6896FD661F925845DE /* Pods_US_BANGLA_AIRLINESTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40505D258AE89E17E764406C /* Pods_US_BANGLA_AIRLINESTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +41,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07EC9F359B33A85FC80FE066 /* Pods-US-BANGLA AIRLINESTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINESTests.release.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINESTests/Pods-US-BANGLA AIRLINESTests.release.xcconfig"; sourceTree = "<group>"; };
+		30D148B7DA040121FEA407CD /* Pods-US-BANGLA AIRLINES.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES.debug.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES/Pods-US-BANGLA AIRLINES.debug.xcconfig"; sourceTree = "<group>"; };
+		40505D258AE89E17E764406C /* Pods_US_BANGLA_AIRLINESTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_US_BANGLA_AIRLINESTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D1E0AB15898C5E112B4160 /* Pods-US-BANGLA AIRLINESTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINESTests.debug.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINESTests/Pods-US-BANGLA AIRLINESTests.debug.xcconfig"; sourceTree = "<group>"; };
+		61675DB7FECFB7AD5DC810E0 /* Pods_US_BANGLA_AIRLINES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_US_BANGLA_AIRLINES.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F060B4B850D8E77A7E27C3C /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		776259862741068A30210A40 /* Pods-US-BANGLA AIRLINES.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES.release.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES/Pods-US-BANGLA AIRLINES.release.xcconfig"; sourceTree = "<group>"; };
+		8E4B43112596091700B35133 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8E4B43132596093900B35133 /* CustomWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebViewController.swift; sourceTree = "<group>"; };
+		8E4B431525960AF400B35133 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		8E4B431725960B0B00B35133 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		8E4B431925960B1400B35133 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		8E7E81F92595B5A100530D14 /* US-BANGLA AIRLINES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "US-BANGLA AIRLINES.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7E81FC2595B5A100530D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8E7E82002595B5A100530D14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8E7E82032595B5A100530D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8E7E82052595B5A300530D14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E7E82082595B5A300530D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +65,8 @@
 		8E7E821A2595B5A400530D14 /* US-BANGLA AIRLINESUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "US-BANGLA AIRLINESUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7E821E2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = US_BANGLA_AIRLINESUITests.swift; sourceTree = "<group>"; };
 		8E7E82202595B5A400530D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2BED1193631C8C0AB2308B7 /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DD42F0CA14557A84DBEE7641 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD34A2E2BB02F4EA58EBF87B /* Pods_US_BANGLA_AIRLINES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD30A6896FD661F925845DE /* Pods_US_BANGLA_AIRLINESTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +90,53 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				603D9E242E1A83D8166142E2 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7EE4E3A776EB1E02EB002200 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30D148B7DA040121FEA407CD /* Pods-US-BANGLA AIRLINES.debug.xcconfig */,
+				776259862741068A30210A40 /* Pods-US-BANGLA AIRLINES.release.xcconfig */,
+				6F060B4B850D8E77A7E27C3C /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig */,
+				A2BED1193631C8C0AB2308B7 /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig */,
+				56D1E0AB15898C5E112B4160 /* Pods-US-BANGLA AIRLINESTests.debug.xcconfig */,
+				07EC9F359B33A85FC80FE066 /* Pods-US-BANGLA AIRLINESTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8AA5822655703803E5FF5136 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61675DB7FECFB7AD5DC810E0 /* Pods_US_BANGLA_AIRLINES.framework */,
+				DD42F0CA14557A84DBEE7641 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework */,
+				40505D258AE89E17E764406C /* Pods_US_BANGLA_AIRLINESTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E4B430F259605BF00B35133 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8E7E82022595B5A100530D14 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		8E4B4310259605CE00B35133 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8E4B43112596091700B35133 /* HomeViewController.swift */,
+				8E4B43132596093900B35133 /* CustomWebViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		8E7E81F02595B5A100530D14 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +144,8 @@
 				8E7E82122595B5A400530D14 /* US-BANGLA AIRLINESTests */,
 				8E7E821D2595B5A400530D14 /* US-BANGLA AIRLINESUITests */,
 				8E7E81FA2595B5A100530D14 /* Products */,
+				7EE4E3A776EB1E02EB002200 /* Pods */,
+				8AA5822655703803E5FF5136 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,11 +163,14 @@
 			isa = PBXGroup;
 			children = (
 				8E7E81FC2595B5A100530D14 /* AppDelegate.swift */,
-				8E7E82002595B5A100530D14 /* ViewController.swift */,
-				8E7E82022595B5A100530D14 /* Main.storyboard */,
+				8E4B431525960AF400B35133 /* Reachability.swift */,
+				8E4B431725960B0B00B35133 /* Helper.swift */,
+				8E4B431925960B1400B35133 /* Validator.swift */,
 				8E7E82052595B5A300530D14 /* Assets.xcassets */,
 				8E7E82072595B5A300530D14 /* LaunchScreen.storyboard */,
 				8E7E820A2595B5A300530D14 /* Info.plist */,
+				8E4B4310259605CE00B35133 /* ViewController */,
+				8E4B430F259605BF00B35133 /* Storyboard */,
 			);
 			path = "US-BANGLA AIRLINES";
 			sourceTree = "<group>";
@@ -132,9 +200,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E7E82232595B5A400530D14 /* Build configuration list for PBXNativeTarget "US-BANGLA AIRLINES" */;
 			buildPhases = (
+				55FA6F86E9672E628100E875 /* [CP] Check Pods Manifest.lock */,
 				8E7E81F52595B5A100530D14 /* Sources */,
 				8E7E81F62595B5A100530D14 /* Frameworks */,
 				8E7E81F72595B5A100530D14 /* Resources */,
+				3BCAA514D75B622206F863DD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +219,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E7E82262595B5A400530D14 /* Build configuration list for PBXNativeTarget "US-BANGLA AIRLINESTests" */;
 			buildPhases = (
+				B88BD3CC7BCD2A530B23CD40 /* [CP] Check Pods Manifest.lock */,
 				8E7E820B2595B5A400530D14 /* Sources */,
 				8E7E820C2595B5A400530D14 /* Frameworks */,
 				8E7E820D2595B5A400530D14 /* Resources */,
@@ -167,9 +238,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E7E82292595B5A400530D14 /* Build configuration list for PBXNativeTarget "US-BANGLA AIRLINESUITests" */;
 			buildPhases = (
+				0E8149673A225DD3B04A32C3 /* [CP] Check Pods Manifest.lock */,
 				8E7E82162595B5A400530D14 /* Sources */,
 				8E7E82172595B5A400530D14 /* Frameworks */,
 				8E7E82182595B5A400530D14 /* Resources */,
+				A363B22EF6F081E49479E1B3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,13 +324,120 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0E8149673A225DD3B04A32C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3BCAA514D75B622206F863DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-US-BANGLA AIRLINES/Pods-US-BANGLA AIRLINES-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-US-BANGLA AIRLINES/Pods-US-BANGLA AIRLINES-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-US-BANGLA AIRLINES/Pods-US-BANGLA AIRLINES-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55FA6F86E9672E628100E875 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-US-BANGLA AIRLINES-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A363B22EF6F081E49479E1B3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B88BD3CC7BCD2A530B23CD40 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-US-BANGLA AIRLINESTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8E7E81F52595B5A100530D14 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E7E82012595B5A100530D14 /* ViewController.swift in Sources */,
 				8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */,
+				8E4B43122596091700B35133 /* HomeViewController.swift in Sources */,
+				8E4B431825960B0B00B35133 /* Helper.swift in Sources */,
+				8E4B431625960AF400B35133 /* Reachability.swift in Sources */,
+				8E4B431A25960B1400B35133 /* Validator.swift in Sources */,
+				8E4B43142596093900B35133 /* CustomWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +608,7 @@
 		};
 		8E7E82242595B5A400530D14 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30D148B7DA040121FEA407CD /* Pods-US-BANGLA AIRLINES.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -447,6 +628,7 @@
 		};
 		8E7E82252595B5A400530D14 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 776259862741068A30210A40 /* Pods-US-BANGLA AIRLINES.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -466,6 +648,7 @@
 		};
 		8E7E82272595B5A400530D14 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56D1E0AB15898C5E112B4160 /* Pods-US-BANGLA AIRLINESTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +671,7 @@
 		};
 		8E7E82282595B5A400530D14 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07EC9F359B33A85FC80FE066 /* Pods-US-BANGLA AIRLINESTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -510,6 +694,7 @@
 		};
 		8E7E822A2595B5A400530D14 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F060B4B850D8E77A7E27C3C /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -530,6 +715,7 @@
 		};
 		8E7E822B2595B5A400530D14 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2BED1193631C8C0AB2308B7 /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

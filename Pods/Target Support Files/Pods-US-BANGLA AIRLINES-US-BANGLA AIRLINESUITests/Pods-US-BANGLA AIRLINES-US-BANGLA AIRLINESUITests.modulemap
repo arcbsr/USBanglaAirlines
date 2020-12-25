@@ -1,0 +1,6 @@
+framework module Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests {
+  umbrella header "Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
