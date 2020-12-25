@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E81FC2595B5A100530D14 /* AppDelegate.swift */; };
-		8E7E81FF2595B5A100530D14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E81FE2595B5A100530D14 /* SceneDelegate.swift */; };
 		8E7E82012595B5A100530D14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E82002595B5A100530D14 /* ViewController.swift */; };
 		8E7E82042595B5A100530D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82022595B5A100530D14 /* Main.storyboard */; };
 		8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82052595B5A300530D14 /* Assets.xcassets */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		8E7E81F92595B5A100530D14 /* US-BANGLA AIRLINES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "US-BANGLA AIRLINES.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7E81FC2595B5A100530D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8E7E81FE2595B5A100530D14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8E7E82002595B5A100530D14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8E7E82032595B5A100530D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8E7E82052595B5A300530D14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				8E7E81FC2595B5A100530D14 /* AppDelegate.swift */,
-				8E7E81FE2595B5A100530D14 /* SceneDelegate.swift */,
 				8E7E82002595B5A100530D14 /* ViewController.swift */,
 				8E7E82022595B5A100530D14 /* Main.storyboard */,
 				8E7E82052595B5A300530D14 /* Assets.xcassets */,
@@ -261,7 +258,6 @@
 			files = (
 				8E7E82012595B5A100530D14 /* ViewController.swift in Sources */,
 				8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */,
-				8E7E81FF2595B5A100530D14 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WA34LH76LK;
 				INFOPLIST_FILE = "US-BANGLA AIRLINES/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -444,7 +441,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "usbangla.US-BANGLA-AIRLINES";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -455,6 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WA34LH76LK;
 				INFOPLIST_FILE = "US-BANGLA AIRLINES/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -462,7 +460,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "usbangla.US-BANGLA-AIRLINES";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
