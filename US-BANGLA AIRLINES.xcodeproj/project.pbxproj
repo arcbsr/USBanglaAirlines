@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		603D9E242E1A83D8166142E2 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD42F0CA14557A84DBEE7641 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework */; };
+		8E3ADD8B2598D11E00B55C89 /* FlightFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3ADD8A2598D11E00B55C89 /* FlightFilterViewController.swift */; };
+		8E3ADD8D2598D30F00B55C89 /* FlightBooking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E3ADD8C2598D30F00B55C89 /* FlightBooking.storyboard */; };
 		8E4B43122596091700B35133 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B43112596091700B35133 /* HomeViewController.swift */; };
 		8E4B43142596093900B35133 /* CustomWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B43132596093900B35133 /* CustomWebViewController.swift */; };
 		8E4B431625960AF400B35133 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431525960AF400B35133 /* Reachability.swift */; };
@@ -50,6 +52,8 @@
 		61675DB7FECFB7AD5DC810E0 /* Pods_US_BANGLA_AIRLINES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_US_BANGLA_AIRLINES.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F060B4B850D8E77A7E27C3C /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		776259862741068A30210A40 /* Pods-US-BANGLA AIRLINES.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES.release.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES/Pods-US-BANGLA AIRLINES.release.xcconfig"; sourceTree = "<group>"; };
+		8E3ADD8A2598D11E00B55C89 /* FlightFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightFilterViewController.swift; sourceTree = "<group>"; };
+		8E3ADD8C2598D30F00B55C89 /* FlightBooking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FlightBooking.storyboard; sourceTree = "<group>"; };
 		8E4B43112596091700B35133 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8E4B43132596093900B35133 /* CustomWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebViewController.swift; sourceTree = "<group>"; };
 		8E4B431525960AF400B35133 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -124,10 +128,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8E3ADD892598D0E400B55C89 /* Flight Booking */ = {
+			isa = PBXGroup;
+			children = (
+				8E3ADD8A2598D11E00B55C89 /* FlightFilterViewController.swift */,
+			);
+			path = "Flight Booking";
+			sourceTree = "<group>";
+		};
 		8E4B430F259605BF00B35133 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				8E7E82022595B5A100530D14 /* Main.storyboard */,
+				8E3ADD8C2598D30F00B55C89 /* FlightBooking.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -137,6 +150,7 @@
 			children = (
 				8E4B43112596091700B35133 /* HomeViewController.swift */,
 				8E4B43132596093900B35133 /* CustomWebViewController.swift */,
+				8E3ADD892598D0E400B55C89 /* Flight Booking */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -327,6 +341,7 @@
 				8E7E82092595B5A300530D14 /* LaunchScreen.storyboard in Resources */,
 				8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */,
 				8E4B431F2596691D00B35133 /* SideBarTableViewCell.xib in Resources */,
+				8E3ADD8D2598D30F00B55C89 /* FlightBooking.storyboard in Resources */,
 				8E7E82042595B5A100530D14 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,6 +474,7 @@
 				8E4B43122596091700B35133 /* HomeViewController.swift in Sources */,
 				8E4B431825960B0B00B35133 /* Helper.swift in Sources */,
 				8E4B431625960AF400B35133 /* Reachability.swift in Sources */,
+				8E3ADD8B2598D11E00B55C89 /* FlightFilterViewController.swift in Sources */,
 				8E4B431A25960B1400B35133 /* Validator.swift in Sources */,
 				8E4B43202596691D00B35133 /* SideBarTableViewCell.swift in Sources */,
 				8E4B43142596093900B35133 /* CustomWebViewController.swift in Sources */,
