@@ -8,11 +8,15 @@
 
 import UIKit
 import WebKit
-
+import SVProgressHUD
 
 
 class CustomWebViewController: UIViewController {
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var webView: WKWebView!{
+        didSet{
+            webView.navigationDelegate = self
+        }
+    }
     
     enum GivenOption {
         case bookingFlight, skyStar, hotline, manageBooking, holiday, flightSchedule, webCheckIn
@@ -25,6 +29,11 @@ class CustomWebViewController: UIViewController {
     let hotlineUrl = "https://mob-offices.usbair.com"
     let flightScheduleUrl = "https://mob-flightstatus.usbair.com"
     let webCheckInUrl = "https://mob-webcheckin.usbair.com"
+    
+    var redirectURL = "https://google.com"
+    var courseUid = ""
+    var verifyPurchase: ((_ transactionTag: String )->())?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +56,68 @@ class CustomWebViewController: UIViewController {
             break
         }
         
-        if let url = URL(string: urlString){
+        //                if let url = URL(string: urlString){
+        if let url = URL(string: "https://priyoclass.com"){
             let urlRequest = URLRequest(url: url)
             webView.load(urlRequest)
+            SVProgressHUD.show()
+            webView.load(urlRequest)
+        }
+        
+        webView.addObserver(self, forKeyPath: "URL", options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    func getQueryStringParameter(url: String, param: String) -> String? {
+        guard let url = URLComponents(string: url) else { return nil }
+        return url.queryItems?.first(where: { $0.name == param })?.value
+    }
+    
+}
+
+
+
+extension CustomWebViewController: WKNavigationDelegate{
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == #keyPath(WKWebView.url) {
+            if let url = webView.url{
+                print("### URL:", url)
+                let urlString = url.absoluteString
+                if urlString.contains("google.com"){
+                    navigationController?.popViewController(animated: true)
+                    let transactionTag = self.getQueryStringParameter(url: urlString, param: "transaction_tag") ?? ""
+                    verifyPurchase?(transactionTag)
+                    return
+                }
+            }
+            if SVProgressHUD.isVisible(){
+                SVProgressHUD.dismiss()
+            }
+        }
+        
+        if keyPath == #keyPath(WKWebView.estimatedProgress) {
+            // When page load finishes. Should work on each page reload.
+            print("### EP:", webView.estimatedProgress)
+            if (self.webView.estimatedProgress == 1) {
+                print("### EP:", webView.estimatedProgress)
+                if SVProgressHUD.isVisible(){
+                    SVProgressHUD.dismiss()
+                }
+            }
         }
     }
     
