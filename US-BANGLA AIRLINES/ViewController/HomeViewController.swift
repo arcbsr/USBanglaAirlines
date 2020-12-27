@@ -11,8 +11,8 @@ import UIKit
 class HomeViewController: UIViewController {
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
-            menuImageView.isUserInteractionEnabled = true
-            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+            notificationImageView.isUserInteractionEnabled = true
+            notificationImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
         }
     }
     @IBOutlet weak var menuImageView: UIImageView!{
@@ -23,38 +23,38 @@ class HomeViewController: UIViewController {
     }
     @IBOutlet weak var flightBookingView: UIView!{
         didSet{
-            menuImageView.isUserInteractionEnabled = true
-            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flightBookingTapped)))
+            flightBookingView.isUserInteractionEnabled = true
+            flightBookingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flightBookingTapped)))
         }
     }
     @IBOutlet weak var skyStarView: UIView!{
         didSet{
-            menuImageView.isUserInteractionEnabled = true
-            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(skyStarTapped)))
+            skyStarView.isUserInteractionEnabled = true
+            skyStarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(skyStarTapped)))
         }
     }
     @IBOutlet weak var hotlineView: UIView!{
         didSet{
-            menuImageView.isUserInteractionEnabled = true
-            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hotlineTapped)))
+            hotlineView.isUserInteractionEnabled = true
+            hotlineView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hotlineTapped)))
         }
     }
     @IBOutlet weak var manageBookingView: UIView!{
         didSet{
-            menuImageView.isUserInteractionEnabled = true
-            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(manageBookingTapped)))
+            manageBookingView.isUserInteractionEnabled = true
+            manageBookingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(manageBookingTapped)))
         }
     }
     @IBOutlet weak var holidayView: UIView!{
         didSet{
-            menuImageView.isUserInteractionEnabled = true
-            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(holidayTapped)))
+            holidayView.isUserInteractionEnabled = true
+            holidayView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(holidayTapped)))
         }
     }
     @IBOutlet weak var flightScheduleView: UIView!{
         didSet{
-            menuImageView.isUserInteractionEnabled = true
-            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flightScheduleTapped)))
+            flightScheduleView.isUserInteractionEnabled = true
+            flightScheduleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flightScheduleTapped)))
         }
     }
     var visualEffectView: UIVisualEffectView!
@@ -72,6 +72,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.isHidden = true
         
         if UIDevice.current.userInterfaceIdiom == .pad{
             shiftX = -850
@@ -204,7 +206,7 @@ class HomeViewController: UIViewController {
         //        }
         sideBarView = UIView()
         sideBarView.tag = 6
-        sideBarView.backgroundColor = .white
+        sideBarView.backgroundColor = CustomColor.primaryColor
         print(" self.view.frame.width = \( self.view.frame.width)")
         print(" self.view.frame.size.width = \( self.view.frame.size.width)")
         print(" -self.view.frame.size.height = \( self.view.frame.height)")
@@ -223,7 +225,7 @@ class HomeViewController: UIViewController {
         let topView = UIView()
         topView.frame = CGRect(x: 0, y: 0, width: (sideBarView.frame.width), height: height)
         sideBarView.addSubview(topView)
-        topView.backgroundColor = .white
+        //        topView.backgroundColor = .white
         
         // profile image
         let imageWidth: CGFloat = 60
@@ -235,28 +237,30 @@ class HomeViewController: UIViewController {
         logoImgView?.contentMode = .scaleAspectFill
         topView.addSubview(logoImgView!)
         
-        // name
-        cataTopLbl.frame =  CGRect(x: 20*logicalWidth , y: (logoImgView?.frame.origin.y)!+50*logicalWidth, width: 190*logicalWidth, height: (logoImgView?.frame.size.height ?? 0.0 + 20.0)!)
         
-        //        cataTopLbl.font = UIFont.boldSystemFont(ofSize: 19.0)
-        cataTopLbl.font = UIFont.systemFont(ofSize: 19.0, weight: .medium)
-        
-        cataTopLbl.textColor = .black
-        cataTopLbl.numberOfLines = 0
-        //        cataTopLbl.text = "লগইন করুন"
-        topView.addSubview(cataTopLbl)
-        //        topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profileTapped)))
-        
-        let lineView = UIView()
-        lineView.frame = CGRect(x: 0, y: lineY, width: (sideBarView.frame.width), height: 0.5)
-        topView.addSubview(lineView)
-        lineView.backgroundColor =  .lightGray//UIColor(hexFromString: "#00000033")
+        print("lineY = \(lineY)")
+        //        // name
+        //        cataTopLbl.frame =  CGRect(x: 20*logicalWidth , y: (logoImgView?.frame.origin.y)!+50*logicalWidth, width: 190*logicalWidth, height: (logoImgView?.frame.size.height ?? 0.0 + 20.0)!)
+        //
+        //        //        cataTopLbl.font = UIFont.boldSystemFont(ofSize: 19.0)
+        //        cataTopLbl.font = UIFont.systemFont(ofSize: 19.0, weight: .medium)
+        //
+        //        cataTopLbl.textColor = .black
+        //        cataTopLbl.numberOfLines = 0
+        //        //        cataTopLbl.text = "লগইন করুন"
+        //        topView.addSubview(cataTopLbl)
+        //        //        topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profileTapped)))
+        //
+        //        let lineView = UIView()
+        //        lineView.frame = CGRect(x: 0, y: lineY, width: (sideBarView.frame.width), height: 0.5)
+        //        topView.addSubview(lineView)
+        //        lineView.backgroundColor =  .lightGray//UIColor(hexFromString: "#00000033")
         
         sideBarTableView = UITableView()
-        sideBarTableView.backgroundColor = .white
+        sideBarTableView.backgroundColor = .clear
         sideBarTableView.frame = CGRect(x: 0,y: topView.frame.origin.y+topView.frame.size.height+16, width: (sideBarView.frame.width), height: (sideBarView.frame.height)-(topView.frame.origin.y+topView.frame.size.height)+16)
         sideBarView.addSubview(sideBarTableView)
-        sideBarTableView.separatorStyle = .none
+        sideBarTableView.separatorStyle = .singleLine
         sideBarTableView.dataSource = self
         sideBarTableView.delegate = self
         sideBarTableView.showsVerticalScrollIndicator = false
@@ -280,12 +284,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SideBarTableViewCell.self)) as! SideBarTableViewCell
         cell.selectionStyle = .none
-        cell.sideBartitleLbl.text = self.sideMenutitleArray.object(at: indexPath.row) as? String
+        cell.backgroundColor = .clear
+        cell.sideBartitleLabel.text = self.sideMenutitleArray.object(at: indexPath.row) as? String
         cell.sideBarImg.image = self.sideMenuImgArray[indexPath.row]
-        cell.sideBarImg.tintColor = .darkGray
-        if indexPath.row == 0 {
-            cell.backgroundColor = UIColor(hexFromString: "#F07527", alpha: 0.1)
-        }
+        cell.sideBarImg.tintColor = .white
+        //        if indexPath.row == 0 {
+        //            cell.backgroundColor = UIColor(hexFromString: "#F07527", alpha: 0.1)
+        //        }
         return cell
     }
     

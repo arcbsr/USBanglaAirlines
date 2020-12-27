@@ -116,9 +116,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="CZV-99-Mkg">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="rSf-0r-Uiz"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="CZV-99-Mkg"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="flightBookingView" destination="2Bg-Xr-OHa" id="Jfi-hu-Iae"/>
