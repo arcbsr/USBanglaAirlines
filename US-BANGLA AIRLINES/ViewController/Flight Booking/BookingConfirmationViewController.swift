@@ -148,7 +148,7 @@ class BookingConfirmationViewController: UIViewController {
     }
     
     @objc func crossTapped(){
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func menuTapped(){

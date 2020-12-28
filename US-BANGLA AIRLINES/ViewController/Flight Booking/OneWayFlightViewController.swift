@@ -1,8 +1,8 @@
 //
-//  InputPassengerInfoViewController.swift
+//  OneWayFlightViewController.swift
 //  US-BANGLA AIRLINES
 //
-//  Created by Shahed Mamun on 28/12/20.
+//  Created by Shahed Mamun on 29/12/20.
 //  Copyright © 2020 usbangla. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class InputPassengerInfoViewController: UIViewController {
+class OneWayFlightViewController: UIViewController {
     @IBOutlet weak var fromCityView: UIView!{
         didSet{
             fromCityView.isUserInteractionEnabled = true
@@ -281,7 +281,7 @@ class InputPassengerInfoViewController: UIViewController {
 }
 
 
-extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewDataSource {
+extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }

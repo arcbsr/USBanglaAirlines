@@ -1,5 +1,5 @@
 //
-//  SearchResultViewController.swift
+//  ReturnFlightViewController.swift
 //  US-BANGLA AIRLINES
 //
 //  Created by Shahed Mamun on 28/12/20.
@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class SearchResultViewController: UIViewController {
+class ReturnFlightViewController: UIViewController {
     @IBOutlet weak var fromCityView: UIView!{
         didSet{
             fromCityView.isUserInteractionEnabled = true
@@ -148,7 +148,7 @@ class SearchResultViewController: UIViewController {
     }
     
     @objc func crossTapped(){
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func menuTapped(){
@@ -281,7 +281,7 @@ class SearchResultViewController: UIViewController {
 }
 
 
-extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource {
+extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
