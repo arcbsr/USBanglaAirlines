@@ -23,6 +23,10 @@
 		8E7E82092595B5A300530D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82072595B5A300530D14 /* LaunchScreen.storyboard */; };
 		8E7E82142595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E82132595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift */; };
 		8E7E821F2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E821E2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift */; };
+		8EA45ABF259A313E000DA006 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45ABE259A313E000DA006 /* SearchResultViewController.swift */; };
+		8EA45AC1259A3546000DA006 /* FlightSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45AC0259A3546000DA006 /* FlightSummaryViewController.swift */; };
+		8EA45AC3259A3567000DA006 /* InputPassengerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45AC2259A3567000DA006 /* InputPassengerInfoViewController.swift */; };
+		8EA45AC5259A357E000DA006 /* BookingConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45AC4259A357E000DA006 /* BookingConfirmationViewController.swift */; };
 		CD34A2E2BB02F4EA58EBF87B /* Pods_US_BANGLA_AIRLINES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61675DB7FECFB7AD5DC810E0 /* Pods_US_BANGLA_AIRLINES.framework */; };
 		EAD30A6896FD661F925845DE /* Pods_US_BANGLA_AIRLINESTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40505D258AE89E17E764406C /* Pods_US_BANGLA_AIRLINESTests.framework */; };
 /* End PBXBuildFile section */
@@ -73,6 +77,10 @@
 		8E7E821A2595B5A400530D14 /* US-BANGLA AIRLINESUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "US-BANGLA AIRLINESUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7E821E2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = US_BANGLA_AIRLINESUITests.swift; sourceTree = "<group>"; };
 		8E7E82202595B5A400530D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EA45ABE259A313E000DA006 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		8EA45AC0259A3546000DA006 /* FlightSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSummaryViewController.swift; sourceTree = "<group>"; };
+		8EA45AC2259A3567000DA006 /* InputPassengerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPassengerInfoViewController.swift; sourceTree = "<group>"; };
+		8EA45AC4259A357E000DA006 /* BookingConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingConfirmationViewController.swift; sourceTree = "<group>"; };
 		A2BED1193631C8C0AB2308B7 /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DD42F0CA14557A84DBEE7641 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -132,6 +140,10 @@
 			isa = PBXGroup;
 			children = (
 				8E3ADD8A2598D11E00B55C89 /* FlightFilterViewController.swift */,
+				8EA45ABE259A313E000DA006 /* SearchResultViewController.swift */,
+				8EA45AC0259A3546000DA006 /* FlightSummaryViewController.swift */,
+				8EA45AC2259A3567000DA006 /* InputPassengerInfoViewController.swift */,
+				8EA45AC4259A357E000DA006 /* BookingConfirmationViewController.swift */,
 			);
 			path = "Flight Booking";
 			sourceTree = "<group>";
@@ -471,11 +483,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */,
+				8EA45ABF259A313E000DA006 /* SearchResultViewController.swift in Sources */,
 				8E4B43122596091700B35133 /* HomeViewController.swift in Sources */,
+				8EA45AC5259A357E000DA006 /* BookingConfirmationViewController.swift in Sources */,
 				8E4B431825960B0B00B35133 /* Helper.swift in Sources */,
 				8E4B431625960AF400B35133 /* Reachability.swift in Sources */,
 				8E3ADD8B2598D11E00B55C89 /* FlightFilterViewController.swift in Sources */,
+				8EA45AC3259A3567000DA006 /* InputPassengerInfoViewController.swift in Sources */,
 				8E4B431A25960B1400B35133 /* Validator.swift in Sources */,
+				8EA45AC1259A3546000DA006 /* FlightSummaryViewController.swift in Sources */,
 				8E4B43202596691D00B35133 /* SideBarTableViewCell.swift in Sources */,
 				8E4B43142596093900B35133 /* CustomWebViewController.swift in Sources */,
 			);

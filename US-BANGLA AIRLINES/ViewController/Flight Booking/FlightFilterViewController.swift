@@ -8,8 +8,88 @@
 
 
 import UIKit
+import M13Checkbox
+
 
 class FlightFilterViewController: UIViewController {
+    @IBOutlet weak var returnCheckbox: M13Checkbox!{
+        didSet{
+            returnCheckbox.addTarget(self, action: #selector(returnOptionTapped), for: .valueChanged)
+            setupCheckBox(box: returnCheckbox)
+        }
+    }
+    @IBOutlet weak var oneWayCheckbox: M13Checkbox!{
+        didSet{
+            oneWayCheckbox.addTarget(self, action: #selector(oneWayOptionTapped), for: .valueChanged)
+            setupCheckBox(box: oneWayCheckbox)
+        }
+    }
+    @IBOutlet weak var fromCityView: UIView!{
+        didSet{
+            fromCityView.isUserInteractionEnabled = true
+            fromCityView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+        }
+    }
+    @IBOutlet weak var promoCodeTextField: UITextField!
+    @IBOutlet weak var fromCityLabel: UILabel!
+    @IBOutlet weak var toCityLabel: UILabel!
+    @IBOutlet weak var toCityView: UIView!{
+        didSet{
+            toCityView.isUserInteractionEnabled = true
+            toCityView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+        }
+    }
+    @IBOutlet weak var flightDirectionImageView: UIImageView!
+    @IBOutlet weak var adultView: UIView!{
+        didSet{
+            adultView.isUserInteractionEnabled = true
+            adultView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+        }
+    }
+    @IBOutlet weak var childView: UIView!{
+        didSet{
+            childView.isUserInteractionEnabled = true
+            childView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+        }
+    }
+    @IBOutlet weak var adultCountLabel: UILabel!
+    @IBOutlet weak var childCountLabel: UILabel!
+    @IBOutlet weak var infantView: UIView!{
+        didSet{
+            infantView.isUserInteractionEnabled = true
+            infantView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+        }
+    }
+    @IBOutlet weak var infantCountLabel: UILabel!
+    @IBOutlet weak var currencyLabel: UILabel!
+    @IBOutlet weak var currencyView: UIView!{
+        didSet{
+            currencyView.isUserInteractionEnabled = true
+            currencyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+        }
+    }
+    @IBOutlet weak var departureDateView: UIView!{
+        didSet{
+            departureDateView.isUserInteractionEnabled = true
+            departureDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+        }
+    }
+    @IBOutlet weak var returnDateView: UIView!{
+        didSet{
+            returnDateView.isUserInteractionEnabled = true
+            returnDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+        }
+    }
+    @IBOutlet weak var departureDateLabel: UILabel!
+    @IBOutlet weak var returnDateLabel: UILabel!
+    
+    @IBOutlet weak var searchView: UIView!{
+        didSet{
+            searchView.isUserInteractionEnabled = true
+            searchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+        }
+    }
+    
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
             notificationImageView.isUserInteractionEnabled = true
@@ -78,6 +158,54 @@ class FlightFilterViewController: UIViewController {
         sideBarSetup(willChangeState: true)
     }
     
+    func setupCheckBox(box: M13Checkbox){
+        box.markType = .radio
+        box.checkState = .unchecked
+        box.stateChangeAnimation = .expand(.fill)
+        box.boxType = .circle
+        box.tintColor = .darkGray
+        box.backgroundColor = .clear
+    }
+    
+    @objc func returnOptionTapped(){
+        oneWayCheckbox.checkState = .unchecked
+        returnCheckbox.setCheckState(.checked, animated: true)
+    }
+    
+    @objc func oneWayOptionTapped(){
+        returnCheckbox.checkState = .unchecked
+        oneWayCheckbox.setCheckState(.checked, animated: true)
+    }
+    
+    @objc func fromCityTapped(){
+    }
+    
+    @objc func toCityTapped(){
+    }
+    
+    @objc func adultTapped(){
+    }
+    
+    @objc func childTapped(){
+    }
+    
+    @objc func infantTapped(){
+    }
+    
+    @objc func currencyTapped(){
+    }
+    
+    @objc func departureDateTapped(){
+    }
+    
+    @objc func returnDateTapped(){
+    }
+    
+    @objc func searchFlightTapped(){
+    }
+    
+    @objc func notificationTapped(){
+    }
     
     func skyStarTapped(){
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
@@ -112,9 +240,6 @@ class FlightFilterViewController: UIViewController {
             vc.currentOption = .flightSchedule
             self.navigationController?.pushViewController(vc, animated: true)
         }
-    }
-    
-    @objc func notificationTapped(){
     }
     
     @objc func backTapped(){

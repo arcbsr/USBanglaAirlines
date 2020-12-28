@@ -14,6 +14,7 @@ target 'US-BANGLA AIRLINES' do
   pod 'UIScrollView-InfiniteScroll'
   # pod 'Lightbox'
   pod 'Kingfisher'
+  pod 'M13Checkbox'
   
   
   target 'US-BANGLA AIRLINESTests' do
