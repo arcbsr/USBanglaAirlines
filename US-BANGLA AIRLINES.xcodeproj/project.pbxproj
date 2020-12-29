@@ -17,6 +17,7 @@
 		8E4B431A25960B1400B35133 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431925960B1400B35133 /* Validator.swift */; };
 		8E4B431F2596691D00B35133 /* SideBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4B431D2596691D00B35133 /* SideBarTableViewCell.xib */; };
 		8E4B43202596691D00B35133 /* SideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431E2596691D00B35133 /* SideBarTableViewCell.swift */; };
+		8E57919D259B16AE0089C75A /* PassengerInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E57919C259B16AE0089C75A /* PassengerInfo.storyboard */; };
 		8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E81FC2595B5A100530D14 /* AppDelegate.swift */; };
 		8E7E82042595B5A100530D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82022595B5A100530D14 /* Main.storyboard */; };
 		8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82052595B5A300530D14 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		8E4B431925960B1400B35133 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		8E4B431D2596691D00B35133 /* SideBarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarTableViewCell.xib; sourceTree = "<group>"; };
 		8E4B431E2596691D00B35133 /* SideBarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewCell.swift; sourceTree = "<group>"; };
+		8E57919C259B16AE0089C75A /* PassengerInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PassengerInfo.storyboard; sourceTree = "<group>"; };
 		8E7E81F92595B5A100530D14 /* US-BANGLA AIRLINES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "US-BANGLA AIRLINES.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7E81FC2595B5A100530D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7E82032595B5A100530D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				8E7E82022595B5A100530D14 /* Main.storyboard */,
 				8E3ADD8C2598D30F00B55C89 /* FlightBooking.storyboard */,
 				8EC85DCD259A716900DD1EFC /* FlightBookingPart2.storyboard */,
+				8E57919C259B16AE0089C75A /* PassengerInfo.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EC85DCE259A716900DD1EFC /* FlightBookingPart2.storyboard in Resources */,
+				8E57919D259B16AE0089C75A /* PassengerInfo.storyboard in Resources */,
 				8E7E82092595B5A300530D14 /* LaunchScreen.storyboard in Resources */,
 				8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */,
 				8E4B431F2596691D00B35133 /* SideBarTableViewCell.xib in Resources */,
