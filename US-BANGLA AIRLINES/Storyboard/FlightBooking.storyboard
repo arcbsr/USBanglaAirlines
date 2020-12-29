@@ -729,7 +729,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="255" id="eJg-Q6-7IA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReturnFlightExpandedCell" rowHeight="255" id="eJg-Q6-7IA" customClass="ReturnFlightExpandedCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="414" height="255"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eJg-Q6-7IA" id="766-dE-mFM">
@@ -937,7 +937,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="129" id="21y-ZP-vM0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReturnFlightCell" rowHeight="129" id="21y-ZP-vM0" customClass="ReturnFlightCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="347" width="414" height="129"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="21y-ZP-vM0" id="p3h-P2-9ZW">
@@ -1065,8 +1065,13 @@
                     <connections>
                         <outlet property="backImageView" destination="iZS-c5-xbm" id="GQU-wl-uJP"/>
                         <outlet property="crossImageView" destination="H2c-UR-eGd" id="qdT-Qe-ruE"/>
+                        <outlet property="directionImageView" destination="Elk-e6-Jix" id="emt-K2-jnX"/>
+                        <outlet property="fromCityLabel" destination="2Zm-DN-njF" id="WvZ-Xe-9Qq"/>
+                        <outlet property="fromDateLabel" destination="UVa-el-biJ" id="M6I-Ip-biC"/>
                         <outlet property="menuImageView" destination="on3-KE-PgU" id="XJV-po-9E2"/>
                         <outlet property="notificationImageView" destination="uB3-WA-2Uj" id="XWh-ws-gQg"/>
+                        <outlet property="toCityLabel" destination="sst-Ul-z4o" id="MsY-6K-XKk"/>
+                        <outlet property="toDateLabel" destination="cON-Qe-qJo" id="FdD-1x-L4d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSY-Tc-s9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1171,7 +1176,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="124" id="atT-b7-Fzf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OneWayFlightCell" rowHeight="124" id="atT-b7-Fzf" customClass="OneWayFlightCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="84" width="414" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="atT-b7-Fzf" id="ZUY-8V-Xmo">
@@ -1298,6 +1303,8 @@
                     <connections>
                         <outlet property="backImageView" destination="Rz3-Vv-Xge" id="6ns-kF-18g"/>
                         <outlet property="crossImageView" destination="8AG-m1-4tH" id="1FW-pq-Fg8"/>
+                        <outlet property="dateLabel" destination="iNM-33-t7v" id="Kzx-xX-aed"/>
+                        <outlet property="fromToCityLabel" destination="96O-xm-icB" id="DHe-wY-QYp"/>
                         <outlet property="menuImageView" destination="pfA-mp-at6" id="Z1U-7L-m9m"/>
                         <outlet property="notificationImageView" destination="3nG-hr-IRr" id="Hos-O9-hHC"/>
                     </connections>

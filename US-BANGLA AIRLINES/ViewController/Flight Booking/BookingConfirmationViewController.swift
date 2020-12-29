@@ -11,31 +11,27 @@ import UIKit
 
 
 class BookingConfirmationViewController: UIViewController {
-    @IBOutlet weak var fromCityView: UIView!{
-        didSet{
-            fromCityView.isUserInteractionEnabled = true
-            fromCityView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
-        }
-    }
-    @IBOutlet weak var fromCityLabel: UILabel!
-    @IBOutlet weak var toCityLabel: UILabel!
-    @IBOutlet weak var toCityView: UIView!
-    @IBOutlet weak var flightDirectionImageView: UIImageView!
-    @IBOutlet weak var adultView: UIView!
-    @IBOutlet weak var childView: UIView!
-    @IBOutlet weak var adultCountLabel: UILabel!
-    @IBOutlet weak var childCountLabel: UILabel!
-    @IBOutlet weak var infantView: UIView!
-    @IBOutlet weak var infantCountLabel: UILabel!
-    @IBOutlet weak var currencyLabel: UILabel!
-    @IBOutlet weak var currencyView: UIView!
-    @IBOutlet weak var departureDateView: UIView!
-    @IBOutlet weak var returnDateView: UIView!
-    @IBOutlet weak var departureDateLabel: UILabel!
-    @IBOutlet weak var returnDateLabel: UILabel!
-    @IBOutlet weak var promoCodeTextField: UITextField!
-    @IBOutlet weak var searchView: UIView!
-    
+    @IBOutlet weak var pnrLabel: UILabel!
+    @IBOutlet weak var flightIdLabel: UILabel!
+    @IBOutlet weak var flightNameLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var toDateLabel: UILabel!
+    @IBOutlet weak var fromDateLabel: UILabel!
+    @IBOutlet weak var toTimeLabel: UILabel!
+    @IBOutlet weak var fromTimeLabel: UILabel!
+    @IBOutlet weak var cabinClassLabel: UILabel!
+    @IBOutlet weak var adultLabel: UILabel!
+    @IBOutlet weak var adultFareLabel: UILabel!
+    @IBOutlet weak var childrenLabel: UILabel!
+    @IBOutlet weak var childrenFareLabel: UILabel!
+    @IBOutlet weak var infantLabel: UILabel!
+    @IBOutlet weak var infantFareLabel: UILabel!
+    @IBOutlet weak var baseAmountLabel: UILabel!
+    @IBOutlet weak var taxAmountLabel: UILabel!
+    @IBOutlet weak var totalFareLabel: UILabel!
+    @IBOutlet weak var discountLabel: UILabel!
+    @IBOutlet weak var amountPayableLabel: UILabel!
+    @IBOutlet weak var proceedButton: UIButton!
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
             notificationImageView.isUserInteractionEnabled = true
@@ -104,6 +100,9 @@ class BookingConfirmationViewController: UIViewController {
         sideBarSetup(willChangeState: true)
     }
     
+    @IBAction func makePaymentButtonTapped(_ sender: UIButton) {
+        
+    }
     
     func skyStarTapped(){
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{

@@ -11,31 +11,8 @@ import UIKit
 
 
 class OneWayFlightViewController: UIViewController {
-    @IBOutlet weak var fromCityView: UIView!{
-        didSet{
-            fromCityView.isUserInteractionEnabled = true
-            fromCityView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
-        }
-    }
-    @IBOutlet weak var fromCityLabel: UILabel!
-    @IBOutlet weak var toCityLabel: UILabel!
-    @IBOutlet weak var toCityView: UIView!
-    @IBOutlet weak var flightDirectionImageView: UIImageView!
-    @IBOutlet weak var adultView: UIView!
-    @IBOutlet weak var childView: UIView!
-    @IBOutlet weak var adultCountLabel: UILabel!
-    @IBOutlet weak var childCountLabel: UILabel!
-    @IBOutlet weak var infantView: UIView!
-    @IBOutlet weak var infantCountLabel: UILabel!
-    @IBOutlet weak var currencyLabel: UILabel!
-    @IBOutlet weak var currencyView: UIView!
-    @IBOutlet weak var departureDateView: UIView!
-    @IBOutlet weak var returnDateView: UIView!
-    @IBOutlet weak var departureDateLabel: UILabel!
-    @IBOutlet weak var returnDateLabel: UILabel!
-    @IBOutlet weak var promoCodeTextField: UITextField!
-    @IBOutlet weak var searchView: UIView!
-    
+    @IBOutlet weak var fromToCityLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
             notificationImageView.isUserInteractionEnabled = true
