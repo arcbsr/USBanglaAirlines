@@ -77,7 +77,7 @@
                                 <rect key="frame" x="0.0" y="98" width="414" height="1108"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="544" id="XWG-KW-jJU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeadPassengerCell" rowHeight="544" id="XWG-KW-jJU" customClass="LeadPassengerCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="544"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XWG-KW-jJU" id="Iud-UX-1xu">
@@ -450,8 +450,24 @@
                                                 <constraint firstItem="2YW-9c-Yq9" firstAttribute="leading" secondItem="Iud-UX-1xu" secondAttribute="leading" constant="8" id="zBz-oR-1mT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="countryLabel" destination="vDL-uT-ofr" id="XsD-z3-m0k"/>
+                                            <outlet property="countrySelectionView" destination="nql-af-9Tz" id="LMc-Pi-KQ4"/>
+                                            <outlet property="dobDateButton" destination="y8h-YM-H6F" id="6u9-rn-YbP"/>
+                                            <outlet property="dobMonthButton" destination="Qyb-Um-6Bl" id="snM-1s-Rn5"/>
+                                            <outlet property="dobYearButton" destination="rAc-F3-bNt" id="ccy-68-w6Y"/>
+                                            <outlet property="emailAddressTextField" destination="Ycj-Sd-EUV" id="uJV-Dj-NJS"/>
+                                            <outlet property="ffpNumberTextField" destination="2YW-9c-Yq9" id="VIK-94-wog"/>
+                                            <outlet property="firstNameTextField" destination="XUU-mb-ezj" id="Sxd-oe-Oka"/>
+                                            <outlet property="lastNameTextField" destination="eLZ-uI-5lb" id="KBB-LV-8Qc"/>
+                                            <outlet property="passengerTypeLabel" destination="Zjo-Ao-pMA" id="0i4-16-vrG"/>
+                                            <outlet property="phoneCodeLabel" destination="woE-oV-Pma" id="Rut-Gt-S0d"/>
+                                            <outlet property="phoneNumberTextField" destination="4rL-BP-fNK" id="Njp-vv-N6L"/>
+                                            <outlet property="titleLabel" destination="CUQ-32-Kil" id="6UH-Gm-6be"/>
+                                            <outlet property="titleSelectionView" destination="0Eq-7h-oO6" id="5Ts-um-Yx3"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="296" id="Xgd-fk-rSo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OtherPassengerCell" rowHeight="296" id="Xgd-fk-rSo" customClass="OtherPassengerCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="572" width="414" height="296"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xgd-fk-rSo" id="SsP-In-ei4">
@@ -662,6 +678,17 @@
                                                 <constraint firstAttribute="trailing" secondItem="nkV-3Z-CMz" secondAttribute="trailing" constant="8" id="zAX-6Y-bvw"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dobDateButton" destination="RXG-fF-Ril" id="f1c-UW-s4G"/>
+                                            <outlet property="dobMonthButton" destination="heu-qm-joB" id="ZVy-f8-7gj"/>
+                                            <outlet property="dobYearButton" destination="ZRm-IC-jde" id="8EC-kg-Ua7"/>
+                                            <outlet property="ffpNumberTextField" destination="Tqr-j3-hzn" id="cco-24-tpR"/>
+                                            <outlet property="firstNameTextField" destination="gCd-GI-r8u" id="Igq-9q-CxZ"/>
+                                            <outlet property="lastNameTextField" destination="24d-uG-6xI" id="h5j-K3-SHn"/>
+                                            <outlet property="passengerTypeLabel" destination="XAu-WI-qr6" id="0SE-RJ-aAy"/>
+                                            <outlet property="titleLabel" destination="osW-LP-Q9t" id="DhO-kq-aFP"/>
+                                            <outlet property="titleSelectionView" destination="mRV-qk-ZgT" id="K9F-He-eMZ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -684,6 +711,7 @@
                         <outlet property="crossImageView" destination="wHH-GV-M1b" id="ZkY-XS-yGr"/>
                         <outlet property="menuImageView" destination="r5o-9e-zM9" id="5cD-tq-oWN"/>
                         <outlet property="notificationImageView" destination="GRz-FY-gfa" id="aJe-d9-WCz"/>
+                        <outlet property="tableView" destination="o4u-mI-u1d" id="eX6-Gm-L6b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0e-TN-EtT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -9,16 +9,23 @@
 import UIKit
 
 class ReturnFlightCell: UITableViewCell {
-
+    @IBOutlet weak var expandImageView: UIImageView!
+    @IBOutlet weak var rankingLabel: UILabel!
+    @IBOutlet weak var forwardfromLocationLabel: UILabel!
+    @IBOutlet weak var forwardfromTimeLabel: UILabel!
+    @IBOutlet weak var forwardtoLocationLabel: UILabel!
+    @IBOutlet weak var forwardtoTimeLabel: UILabel!
+//    @IBOutlet weak var forwardDurationLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

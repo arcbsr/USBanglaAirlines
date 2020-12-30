@@ -849,8 +849,8 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CGP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WtM-97-ES6">
-                                                    <rect key="frame" x="192.5" y="34" width="29" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 HR 20 MIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WtM-97-ES6">
+                                                    <rect key="frame" x="167" y="34" width="80" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -868,8 +868,8 @@
                                                         <constraint firstAttribute="width" constant="110" id="KwS-Yt-rxA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CGP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2DY-gP-cys">
-                                                    <rect key="frame" x="192.5" y="168" width="29" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 HR 20 MIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2DY-gP-cys">
+                                                    <rect key="frame" x="167" y="168" width="80" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -936,12 +936,30 @@
                                                 <constraint firstItem="qIB-gZ-bMm" firstAttribute="top" secondItem="chW-Bu-2Ai" secondAttribute="bottom" constant="8" id="z1w-j9-tLc"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="backwardDurationLabel" destination="2DY-gP-cys" id="aW4-x6-pPf"/>
+                                            <outlet property="backwardFlightDetailsLabel" destination="Te9-2t-eJG" id="At6-da-DJn"/>
+                                            <outlet property="backwardfromLocationLabel" destination="wHF-yD-OMK" id="o7F-ZC-XSD"/>
+                                            <outlet property="backwardfromTimeLabel" destination="PcB-tf-dtz" id="2Ys-sX-Rs8"/>
+                                            <outlet property="backwardtoLocationLabel" destination="HaC-ai-P5n" id="ZRh-js-unN"/>
+                                            <outlet property="backwardtoTimeLabel" destination="b1n-OA-ndo" id="Ndw-sR-js8"/>
+                                            <outlet property="expandImageView" destination="UXV-dd-91B" id="TFu-bB-kq0"/>
+                                            <outlet property="forwardDurationLabel" destination="WtM-97-ES6" id="Uqw-uR-StM"/>
+                                            <outlet property="forwardFlightDetailsLabel" destination="zbL-rB-DeE" id="QPv-kH-hTi"/>
+                                            <outlet property="forwardfromLocationLabel" destination="oYZ-Ei-TIJ" id="Xkg-PL-mVN"/>
+                                            <outlet property="forwardfromTimeLabel" destination="oQs-1y-ebJ" id="vaT-zT-ust"/>
+                                            <outlet property="forwardtoLocationLabel" destination="QqT-g2-XYO" id="yzH-1L-e6b"/>
+                                            <outlet property="forwardtoTimeLabel" destination="sZq-MC-Mzo" id="XeO-hg-afj"/>
+                                            <outlet property="priceLabel" destination="wt9-tp-aGx" id="0hm-51-QwS"/>
+                                            <outlet property="rankingLabel" destination="Tyg-BL-YN3" id="Pgc-lS-vEu"/>
+                                            <outlet property="selectButton" destination="I33-ko-NPZ" id="PwL-Oy-KvL"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReturnFlightCell" rowHeight="129" id="21y-ZP-vM0" customClass="ReturnFlightCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="347" width="414" height="129"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReturnFlightCell" rowHeight="124" id="21y-ZP-vM0" customClass="ReturnFlightCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="347" width="414" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="21y-ZP-vM0" id="p3h-P2-9ZW">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="129"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kXK-kb-PnW">
@@ -1009,14 +1027,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dax-dY-gLz">
-                                                    <rect key="frame" x="8" y="94.5" width="71" height="26"/>
-                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
-                                                    <state key="normal" title="SELECT">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FROM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BF6-gh-uKp">
                                                     <rect key="frame" x="222" y="99" width="40" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1032,20 +1042,27 @@
                                                 <constraint firstItem="BF6-gh-uKp" firstAttribute="trailing" secondItem="rNL-5O-96i" secondAttribute="trailing" id="BJq-EQ-heU"/>
                                                 <constraint firstItem="ash-ef-Taa" firstAttribute="top" secondItem="p3h-P2-9ZW" secondAttribute="top" constant="8" id="EvB-Bz-xOr"/>
                                                 <constraint firstItem="saf-UO-9nW" firstAttribute="top" secondItem="kXK-kb-PnW" secondAttribute="bottom" constant="16" id="I2y-x0-qcs"/>
-                                                <constraint firstItem="Dax-dY-gLz" firstAttribute="leading" secondItem="SfB-Hz-XZe" secondAttribute="leading" id="OxO-Ko-1s6"/>
                                                 <constraint firstItem="kXK-kb-PnW" firstAttribute="top" secondItem="p3h-P2-9ZW" secondAttribute="top" constant="8" id="S01-ab-9A9"/>
-                                                <constraint firstAttribute="bottom" secondItem="Dax-dY-gLz" secondAttribute="bottom" constant="8.5" id="SmQ-HA-t40"/>
                                                 <constraint firstAttribute="trailing" secondItem="aia-Lx-6O4" secondAttribute="trailing" constant="71" id="Tfr-A1-GhP"/>
                                                 <constraint firstItem="ash-ef-Taa" firstAttribute="leading" secondItem="p3h-P2-9ZW" secondAttribute="leading" constant="8" id="YP7-z9-34U"/>
                                                 <constraint firstItem="eHs-VL-1iL" firstAttribute="top" secondItem="rNL-5O-96i" secondAttribute="bottom" constant="2" id="c0n-eX-dVn"/>
+                                                <constraint firstAttribute="bottom" secondItem="aia-Lx-6O4" secondAttribute="bottom" constant="8" id="eA1-vd-9A0"/>
                                                 <constraint firstItem="eHs-VL-1iL" firstAttribute="centerX" secondItem="rNL-5O-96i" secondAttribute="centerX" id="fNq-Im-K2T"/>
-                                                <constraint firstItem="Dax-dY-gLz" firstAttribute="centerY" secondItem="BF6-gh-uKp" secondAttribute="centerY" id="fPy-ee-0Nf"/>
                                                 <constraint firstItem="BF6-gh-uKp" firstAttribute="centerY" secondItem="aia-Lx-6O4" secondAttribute="centerY" id="gET-gm-7iy"/>
                                                 <constraint firstItem="saf-UO-9nW" firstAttribute="centerY" secondItem="rNL-5O-96i" secondAttribute="centerY" id="qw1-z8-grD"/>
                                                 <constraint firstItem="iYY-sA-HxQ" firstAttribute="centerY" secondItem="rNL-5O-96i" secondAttribute="centerY" id="sbY-1N-eoH"/>
                                                 <constraint firstAttribute="trailing" secondItem="kXK-kb-PnW" secondAttribute="trailing" constant="8" id="tOS-qN-h9z"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="expandImageView" destination="kXK-kb-PnW" id="9o3-fB-OIt"/>
+                                            <outlet property="forwardfromLocationLabel" destination="Vyw-6H-zya" id="GCp-0F-9Me"/>
+                                            <outlet property="forwardfromTimeLabel" destination="SfB-Hz-XZe" id="LgD-n7-MEZ"/>
+                                            <outlet property="forwardtoLocationLabel" destination="Mv6-4E-YbC" id="kAg-qO-rXQ"/>
+                                            <outlet property="forwardtoTimeLabel" destination="FAz-nZ-GgB" id="SLl-ci-3uL"/>
+                                            <outlet property="priceLabel" destination="aia-Lx-6O4" id="vBM-8f-Mzh"/>
+                                            <outlet property="rankingLabel" destination="ash-ef-Taa" id="M1k-3c-H3V"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1070,6 +1087,7 @@
                         <outlet property="fromDateLabel" destination="UVa-el-biJ" id="M6I-Ip-biC"/>
                         <outlet property="menuImageView" destination="on3-KE-PgU" id="XJV-po-9E2"/>
                         <outlet property="notificationImageView" destination="uB3-WA-2Uj" id="XWh-ws-gQg"/>
+                        <outlet property="tableView" destination="1iQ-Tb-JHD" id="r2J-jO-Z5N"/>
                         <outlet property="toCityLabel" destination="sst-Ul-z4o" id="MsY-6K-XKk"/>
                         <outlet property="toDateLabel" destination="cON-Qe-qJo" id="FdD-1x-L4d"/>
                     </connections>
@@ -1247,8 +1265,8 @@
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NON STOP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tu0-hm-Mm7">
-                                                    <rect key="frame" x="189.5" y="42" width="71.5" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 HR 20 MIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tu0-hm-Mm7">
+                                                    <rect key="frame" x="185" y="42" width="80" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1284,6 +1302,16 @@
                                                 <constraint firstItem="WVo-Kr-Bdx" firstAttribute="trailing" secondItem="R7J-KQ-9mf" secondAttribute="trailing" id="yqO-Et-1RM"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="durationLabel" destination="tu0-hm-Mm7" id="nHn-rt-VGu"/>
+                                            <outlet property="flightDetailsLabel" destination="o7s-gQ-CWA" id="oNC-26-zaR"/>
+                                            <outlet property="fromLocationLabel" destination="zRp-ag-THi" id="FFe-yk-11Y"/>
+                                            <outlet property="fromTimeLabel" destination="Bqk-oG-csb" id="Xkg-Th-o8n"/>
+                                            <outlet property="priceLabel" destination="AXL-NY-SGd" id="H1D-RJ-hX9"/>
+                                            <outlet property="rankingLabel" destination="ymX-gG-UKv" id="AmF-K5-3S8"/>
+                                            <outlet property="toLocationLabel" destination="PKp-N2-uQs" id="5dO-EL-Noc"/>
+                                            <outlet property="toTimeLabel" destination="933-sE-6Nx" id="I2N-qd-Wwe"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1307,6 +1335,7 @@
                         <outlet property="fromToCityLabel" destination="96O-xm-icB" id="DHe-wY-QYp"/>
                         <outlet property="menuImageView" destination="pfA-mp-at6" id="Z1U-7L-m9m"/>
                         <outlet property="notificationImageView" destination="3nG-hr-IRr" id="Hos-O9-hHC"/>
+                        <outlet property="tableView" destination="sVt-eY-QJd" id="3pl-6r-hzQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Id1-kT-zHm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

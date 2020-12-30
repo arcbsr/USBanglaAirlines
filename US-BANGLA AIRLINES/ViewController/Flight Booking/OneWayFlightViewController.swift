@@ -11,6 +11,19 @@ import UIKit
 
 
 class OneWayFlightViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!{
+        didSet{
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.separatorStyle = .none
+            tableView.estimatedRowHeight = 200
+            tableView.rowHeight = UITableView.automaticDimension
+            let footerView = UIView()
+            footerView.frame.size.height = 16
+            footerView.backgroundColor = .clear
+            tableView.tableFooterView = footerView
+        }
+    }
     @IBOutlet weak var fromToCityLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var notificationImageView: UIImageView!{

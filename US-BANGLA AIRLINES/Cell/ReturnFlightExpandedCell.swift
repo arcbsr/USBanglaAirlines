@@ -9,7 +9,28 @@
 import UIKit
 
 class ReturnFlightExpandedCell: UITableViewCell {
-
+    @IBOutlet weak var expandImageView: UIImageView!
+    @IBOutlet weak var forwardFlightDetailsLabel: UILabel!
+    @IBOutlet weak var backwardFlightDetailsLabel: UILabel!
+    @IBOutlet weak var rankingLabel: UILabel!
+    @IBOutlet weak var forwardfromLocationLabel: UILabel!
+    @IBOutlet weak var forwardfromTimeLabel: UILabel!
+    @IBOutlet weak var forwardtoLocationLabel: UILabel!
+    @IBOutlet weak var forwardtoTimeLabel: UILabel!
+    @IBOutlet weak var backwardfromLocationLabel: UILabel!
+    @IBOutlet weak var backwardfromTimeLabel: UILabel!
+    @IBOutlet weak var backwardtoLocationLabel: UILabel!
+    @IBOutlet weak var backwardtoTimeLabel: UILabel!
+    @IBOutlet weak var forwardDurationLabel: UILabel!
+    @IBOutlet weak var backwardDurationLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var selectButton: UIButton!{
+        didSet{
+            selectButton.layer.cornerRadius = selectButton.frame.size.height/2
+            selectButton.clipsToBounds = true
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

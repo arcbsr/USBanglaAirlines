@@ -11,8 +11,19 @@ import UIKit
 
 
 class InputPassengerInfoViewController: UIViewController {
- 
-    
+ @IBOutlet weak var tableView: UITableView!{
+        didSet{
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.separatorStyle = .none
+            tableView.estimatedRowHeight = 200
+            tableView.rowHeight = UITableView.automaticDimension
+            let footerView = UIView()
+            footerView.frame.size.height = 16
+            footerView.backgroundColor = .clear
+            tableView.tableFooterView = footerView
+        }
+    }
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
             notificationImageView.isUserInteractionEnabled = true
