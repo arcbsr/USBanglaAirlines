@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Alamofire
+import SVProgressHUD
+import AlamofireObjectMapper
+
 
 class HomeViewController: UIViewController {
     @IBOutlet weak var notificationImageView: UIImageView!{
@@ -98,6 +102,12 @@ class HomeViewController: UIViewController {
         }
         hideMenu()
         sideBarSetup(willChangeState: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchAirports()
     }
     
     @objc func flightBookingTapped(){
@@ -316,4 +326,50 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+}
+
+
+// MARK: API CALL
+extension HomeViewController{
+    func fetchAirports() {
+        
+        //            let headers: HTTPHeaders = [
+        //                "Authorization": "token \(UserInfo.token)"
+        //            ]
+        
+        
+        let requestInfo: Parameters = [
+            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "CultureName": "en-GB"
+        ]
+        
+        let request: Parameters = [
+            "RequestInfo": requestInfo,
+            "ValueCodeName": "Airport"
+        ]
+        
+        let params: Parameters = [
+            "request": request
+        ]
+        
+        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
+            return
+        }
+        
+        print("send user Activity url:\(url) params \(params)")
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+            print("=== response = \(response)")
+            guard let statusCode = response.response?.statusCode else{
+                return
+            }
+            print("statusCode = \(statusCode)")
+            switch response.result {
+            case .success:
+                print("sucess")
+            case .failure(let error):
+                print("error = \(error)")
+            }
+        }
+    }
 }
