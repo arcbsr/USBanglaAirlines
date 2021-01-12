@@ -9,6 +9,7 @@
 
 import UIKit
 import M13Checkbox
+import DropDown
 
 
 class FlightFilterViewController: UIViewController {
@@ -27,7 +28,7 @@ class FlightFilterViewController: UIViewController {
     @IBOutlet weak var fromCityView: UIView!{
         didSet{
             fromCityView.isUserInteractionEnabled = true
-            fromCityView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+            fromCityView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fromCityTapped)))
         }
     }
     @IBOutlet weak var promoCodeTextField: UITextField!
@@ -36,20 +37,20 @@ class FlightFilterViewController: UIViewController {
     @IBOutlet weak var toCityView: UIView!{
         didSet{
             toCityView.isUserInteractionEnabled = true
-            toCityView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+            toCityView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toCityTapped)))
         }
     }
     @IBOutlet weak var flightDirectionImageView: UIImageView!
     @IBOutlet weak var adultView: UIView!{
         didSet{
             adultView.isUserInteractionEnabled = true
-            adultView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+            adultView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(adultTapped)))
         }
     }
     @IBOutlet weak var childView: UIView!{
         didSet{
             childView.isUserInteractionEnabled = true
-            childView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+            childView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(childTapped)))
         }
     }
     @IBOutlet weak var adultCountLabel: UILabel!
@@ -57,7 +58,7 @@ class FlightFilterViewController: UIViewController {
     @IBOutlet weak var infantView: UIView!{
         didSet{
             infantView.isUserInteractionEnabled = true
-            infantView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+            infantView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(infantTapped)))
         }
     }
     @IBOutlet weak var infantCountLabel: UILabel!
@@ -65,19 +66,19 @@ class FlightFilterViewController: UIViewController {
     @IBOutlet weak var currencyView: UIView!{
         didSet{
             currencyView.isUserInteractionEnabled = true
-            currencyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+            currencyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(currencyTapped)))
         }
     }
     @IBOutlet weak var departureDateView: UIView!{
         didSet{
             departureDateView.isUserInteractionEnabled = true
-            departureDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+            departureDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(departureDateTapped)))
         }
     }
     @IBOutlet weak var returnDateView: UIView!{
         didSet{
             returnDateView.isUserInteractionEnabled = true
-            returnDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+            returnDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnDateTapped)))
         }
     }
     @IBOutlet weak var departureDateLabel: UILabel!
@@ -86,7 +87,7 @@ class FlightFilterViewController: UIViewController {
     @IBOutlet weak var searchView: UIView!{
         didSet{
             searchView.isUserInteractionEnabled = true
-            searchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
+            searchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchFlightTapped)))
         }
     }
     
@@ -126,7 +127,13 @@ class FlightFilterViewController: UIViewController {
     var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
     
-    
+    var fromCities = [String]()
+    var toCities = [String]()
+    var currencyArray = [String]()
+    var adultCount = 0
+    var childCount = 0
+    var infantCount = 0
+    var passengers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -178,21 +185,63 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func fromCityTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = fromCityView
+        dropDown.dataSource = fromCities
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.fromCityLabel.text = item
+        }
+        dropDown.show()
     }
     
     @objc func toCityTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = toCityView
+        dropDown.dataSource = toCities
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.toCityLabel.text = item
+        }
+        dropDown.show()
     }
     
     @objc func adultTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = adultView
+        dropDown.dataSource = passengers
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.adultCountLabel.text = item
+        }
+        dropDown.show()
     }
     
     @objc func childTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = childView
+        dropDown.dataSource = passengers
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.childCountLabel.text = item
+        }
+        dropDown.show()
     }
     
     @objc func infantTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = infantView
+        dropDown.dataSource = passengers
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.infantCountLabel.text = item
+        }
+        dropDown.show()
     }
     
     @objc func currencyTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = currencyView
+        dropDown.dataSource = currencyArray
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.currencyLabel.text = item
+        }
+        dropDown.show()
     }
     
     @objc func departureDateTapped(){
