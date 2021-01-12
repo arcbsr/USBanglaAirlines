@@ -88,7 +88,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-SS-a1u">
                                                                 <rect key="frame" x="0.0" y="0.0" width="195" height="60"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m22-LU-Yen" customClass="M13Checkbox" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m22-LU-Yen" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                         <rect key="frame" x="8" y="20" width="20" height="20"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                         <constraints>
@@ -116,7 +116,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfb-zX-sfa">
                                                                 <rect key="frame" x="203" y="0.0" width="195" height="60"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5U-Jr-eEK" customClass="M13Checkbox" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5U-Jr-eEK" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                         <rect key="frame" x="8" y="20" width="20" height="20"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                         <constraints>
@@ -587,9 +587,9 @@
                         <outlet property="infantView" destination="Qec-ff-Wsu" id="2tl-Zo-Sxa"/>
                         <outlet property="menuImageView" destination="342-M1-G5o" id="cOv-Um-8c0"/>
                         <outlet property="notificationImageView" destination="wQc-mh-weJ" id="O9Z-nR-6xe"/>
-                        <outlet property="oneWayCheckbox" destination="w5U-Jr-eEK" id="Tt7-Ud-5Bo"/>
+                        <outlet property="oneWayCheckbox" destination="w5U-Jr-eEK" id="2n2-cf-TKw"/>
                         <outlet property="promoCodeTextField" destination="Nhc-70-0G9" id="YEC-jz-NBC"/>
-                        <outlet property="returnCheckbox" destination="m22-LU-Yen" id="o7j-35-TPM"/>
+                        <outlet property="returnCheckbox" destination="m22-LU-Yen" id="RDU-1n-Hvp"/>
                         <outlet property="returnDateLabel" destination="zPy-z4-2Cm" id="shP-wq-hcr"/>
                         <outlet property="returnDateView" destination="lKz-Tl-SyZ" id="1AT-Td-C4l"/>
                         <outlet property="searchView" destination="px5-ga-7py" id="UmK-os-MiY"/>

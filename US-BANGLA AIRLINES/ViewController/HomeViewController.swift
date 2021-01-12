@@ -112,6 +112,9 @@ class HomeViewController: UIViewController {
     
     @objc func flightBookingTapped(){
         print("flightBookingTapped")
+        if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "FlightFilterViewController") as? FlightFilterViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func skyStarTapped(){
@@ -308,18 +311,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         hideMenu()
         switch indexPath.row {
         case 0:
-            break
-        case 1:
             flightBookingTapped()
-        case 2:
+        case 1:
             manageBookingTapped()
-        case 3:
+        case 2:
             holidayTapped()
-        case 4:
+        case 3:
             flightScheduleTapped()
-        case 5:
+        case 4:
             skyStarTapped()
-        case 6:
+        case 5:
             hotlineTapped()
         default:
             break
