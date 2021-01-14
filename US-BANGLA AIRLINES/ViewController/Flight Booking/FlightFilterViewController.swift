@@ -10,6 +10,10 @@
 import UIKit
 import M13Checkbox
 import DropDown
+import Alamofire
+import SVProgressHUD
+import AlamofireObjectMapper
+
 
 
 class FlightFilterViewController: UIViewController {
@@ -134,6 +138,12 @@ class FlightFilterViewController: UIViewController {
     var childCount = 0
     var infantCount = 0
     var passengers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    var businessClassCodes = [String()] //["C", "D", "J", ...]
+    var ecomomyClassCodes = [String()]
+    var airportModel: ValueCodeModel?
+    var cityPairModel: CityPairModel?
+    var currencyModel: ValueCodeModel?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -189,7 +199,23 @@ class FlightFilterViewController: UIViewController {
         dropDown.anchorView = fromCityView
         dropDown.dataSource = fromCities
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            guard let _self = self else{
+                return
+            }
             self?.fromCityLabel.text = item
+            guard let airportCodes = _self.cityPairModel?.codes, let cityPairCodes = _self.cityPairModel?.codes else{
+                return
+            }
+            
+            if index < airportCodes.count{
+                _self.toCities.removeAll()
+                let selectedCode = airportCodes[index].code
+                for code in cityPairCodes{
+                    if code.start == selectedCode{
+                        _self.toCities.append(code.end)
+                    }
+                }
+            }
         }
         dropDown.show()
     }
@@ -471,6 +497,187 @@ extension FlightFilterViewController: UITableViewDelegate, UITableViewDataSource
         default:
             break
         }
+    }
+    
+}
+
+// MARK: API CALL
+extension FlightFilterViewController{
+    
+    func fetchAirports() {
+        
+        //            let headers: HTTPHeaders = [
+        //                "Authorization": "token \(UserInfo.token)"
+        //            ]
+        
+        
+        let requestInfo: Parameters = [
+            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "CultureName": "en-GB"
+        ]
+        
+        let request: Parameters = [
+            "RequestInfo": requestInfo,
+            "ValueCodeName": "Airport"
+        ]
+        
+        let params: Parameters = [
+            "request": request
+        ]
+        
+        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
+            return
+        }
+        
+        print("send user Activity url:\(url) params \(params)")
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
+            print("=== response = \(response)")
+            guard let statusCode = response.response?.statusCode else{
+                return
+            }
+            print("statusCode = \(statusCode)")
+            switch response.result {
+            case .success:
+                self.airportModel = response.result.value
+                guard let codes = self.airportModel?.codes else{
+                    return
+                }
+                for airport in codes{
+                    self.fromCities.append(airport.label ?? "")
+                }
+                self.toCities = self.fromCities // initial case
+            case .failure(let error):
+                print("error = \(error)")
+            }
+        })
+    }
+    
+    func fetchCityPair() {
+        
+        //            let headers: HTTPHeaders = [
+        //                "Authorization": "token \(UserInfo.token)"
+        //            ]
+        
+        
+        let requestInfo: Parameters = [
+            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "CultureName": "en-GB"
+        ]
+        
+        let request: Parameters = [
+            "RequestInfo": requestInfo,
+            "ValueCodeName": "CityPair"
+        ]
+        
+        let params: Parameters = [
+            "request": request
+        ]
+        
+        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
+            return
+        }
+        
+        print("send user Activity url:\(url) params \(params)")
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<CityPairModel>) in
+            print("=== response = \(response)")
+            guard let statusCode = response.response?.statusCode else{
+                return
+            }
+            print("statusCode = \(statusCode)")
+            switch response.result {
+            case .success:
+                self.cityPairModel = response.result.value
+            case .failure(let error):
+                print("error = \(error)")
+            }
+        })
+    }
+    
+    func fetchBookingClass() {
+        
+        //            let headers: HTTPHeaders = [
+        //                "Authorization": "token \(UserInfo.token)"
+        //            ]
+        
+        
+        let requestInfo: Parameters = [
+            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "CultureName": "en-GB"
+        ]
+        
+        let request: Parameters = [
+            "RequestInfo": requestInfo,
+            "ValueCodeName": "BookingClass"
+        ]
+        
+        let params: Parameters = [
+            "request": request
+        ]
+        
+        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
+            return
+        }
+        
+        print("send user Activity url:\(url) params \(params)")
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
+            print("=== response = \(response)")
+            guard let statusCode = response.response?.statusCode else{
+                return
+            }
+            print("statusCode = \(statusCode)")
+            switch response.result {
+            case .success:
+                print("")
+            case .failure(let error):
+                print("error = \(error)")
+            }
+        })
+    }
+    
+    func fetchCurrency() {
+        
+        //            let headers: HTTPHeaders = [
+        //                "Authorization": "token \(UserInfo.token)"
+        //            ]
+        
+        
+        let requestInfo: Parameters = [
+            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "CultureName": "en-GB"
+        ]
+        
+        let request: Parameters = [
+            "RequestInfo": requestInfo,
+            "ValueCodeName": "Currency"
+        ]
+        
+        let params: Parameters = [
+            "request": request
+        ]
+        
+        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
+            return
+        }
+        
+        print("send user Activity url:\(url) params \(params)")
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
+            print("=== response = \(response)")
+            guard let statusCode = response.response?.statusCode else{
+                return
+            }
+            print("statusCode = \(statusCode)")
+            switch response.result {
+            case .success:
+                print("sucess")
+                
+            case .failure(let error):
+                print("error = \(error)")
+            }
+        })
     }
     
 }
