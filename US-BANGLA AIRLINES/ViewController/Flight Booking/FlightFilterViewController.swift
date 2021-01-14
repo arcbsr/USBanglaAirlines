@@ -134,6 +134,7 @@ class FlightFilterViewController: UIViewController {
     var adultCount = 0
     var childCount = 0
     var infantCount = 0
+    var selectedCurrencyCode = ""
     var passengers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var businessClassCodes = [String()] //["C", "D", "J", ...]
     var ecomomyClassCodes = [String()]
@@ -160,6 +161,11 @@ class FlightFilterViewController: UIViewController {
             }
         }
         sideBarSetup()
+        
+        fetchCityPair()
+        fetchAirports()
+        fetchCurrency()
+        fetchBookingClass()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -561,7 +567,6 @@ extension FlightFilterViewController{
         //                "Authorization": "token \(UserInfo.token)"
         //            ]
         
-        
         let requestInfo: Parameters = [
             "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
             "CultureName": "en-GB"
@@ -582,8 +587,16 @@ extension FlightFilterViewController{
         
         print("send user Activity url:\(url) params \(params)")
         
+        SVProgressHUD.show()
+        
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<CityPairModel>) in
             print("=== response = \(response)")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                if SVProgressHUD.isVisible(){
+                    SVProgressHUD.dismiss()
+                }
+            }
             guard let statusCode = response.response?.statusCode else{
                 return
             }
@@ -651,6 +664,7 @@ extension FlightFilterViewController{
         })
     }
     
+    
     func fetchCurrency() {
         
         //            let headers: HTTPHeaders = [
@@ -680,6 +694,222 @@ extension FlightFilterViewController{
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
             print("=== response = \(response)")
+            guard let statusCode = response.response?.statusCode else{
+                return
+            }
+            print("statusCode = \(statusCode)")
+            switch response.result {
+            case .success:
+                self.currencyModel = response.result.value
+                guard let codes = self.currencyModel?.codes else{
+                    return
+                }
+                self.currencyArray.removeAll()
+                for code in codes{
+                    self.currencyArray.append(code.code ?? "")
+                }
+            case .failure(let error):
+                print("error = \(error)")
+            }
+        })
+    }
+    
+    func searchOneWayFlight() {
+        
+        //            let headers: HTTPHeaders = [
+        //                "Authorization": "token \(UserInfo.token)"
+        //            ]
+        
+        var passengers = [Parameters]()
+        var child: Parameters?
+        var adult: Parameters?
+        var infant: Parameters?
+        adult = [
+            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
+            "PassengerQuantity": 2,
+            "PassengerTypeCode": "AD"
+        ]
+        if let value = adult{
+            passengers.append(value)
+        }
+        child = [
+            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
+            "PassengerQuantity": 2,
+            "PassengerTypeCode": "CHD"
+        ]
+        if let value = child{
+            passengers.append(value)
+        }
+        infant = [
+            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
+            "PassengerQuantity": 2,
+            "PassengerTypeCode": "INF"
+        ]
+        if let value = infant{
+            passengers.append(value)
+        }
+        
+        var originDestinations = [Parameters]()
+        let forwardFlight: Parameters = [
+            "TargetDate": "2021-01-27T00:00:00",
+            "OriginCode": "DAC",
+            "DestinationCode": "CGP"
+        ]
+        originDestinations.append(forwardFlight)
+        
+        let fareDisplaySettings: Parameters = [
+            "SaleCurrencyCode": selectedCurrencyCode,
+            "FarebasisCodes": [],
+            "WebClassesCodes": [],
+            "ShowWebClasses": true
+        ]
+        
+        let availabilitySettings: Parameters = [
+            "MaxConnectionCount": "8",
+        ]
+        
+        let requestInfo: Parameters = [
+            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "CultureName": "en-GB"
+        ]
+        
+        let request: Parameters = [
+            "Passengers": passengers,
+            "OriginDestinations": originDestinations,
+            "FareDisplaySettings": fareDisplaySettings,
+            "AvailabilitySettings": availabilitySettings,
+            "RequestInfo": requestInfo,
+            "Extensions": []
+        ]
+        
+        let params: Parameters = [
+            "request": request
+        ]
+        
+        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights") else{
+            return
+        }
+        
+        print("send user Activity url:\(url) params \(params)")
+        
+        SVProgressHUD.show()
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
+            print("=== response = \(response)")
+            if SVProgressHUD.isVisible(){
+                SVProgressHUD.dismiss()
+            }
+            guard let statusCode = response.response?.statusCode else{
+                return
+            }
+            print("statusCode = \(statusCode)")
+            switch response.result {
+            case .success:
+                self.currencyModel = response.result.value
+                guard let codes = self.currencyModel?.codes else{
+                    return
+                }
+                self.currencyArray.removeAll()
+                for code in codes{
+                    self.currencyArray.append(code.code ?? "")
+                }
+            case .failure(let error):
+                print("error = \(error)")
+            }
+        })
+    }
+    
+    func searchReturnFlight() {
+        
+        //            let headers: HTTPHeaders = [
+        //                "Authorization": "token \(UserInfo.token)"
+        //            ]
+        
+        var passengers = [Parameters]()
+        var child: Parameters?
+        var adult: Parameters?
+        var infant: Parameters?
+        adult = [
+            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
+            "PassengerQuantity": 2,
+            "PassengerTypeCode": "AD"
+        ]
+        if let value = adult{
+            passengers.append(value)
+        }
+        child = [
+            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
+            "PassengerQuantity": 2,
+            "PassengerTypeCode": "CHD"
+        ]
+        if let value = child{
+            passengers.append(value)
+        }
+        infant = [
+            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
+            "PassengerQuantity": 2,
+            "PassengerTypeCode": "INF"
+        ]
+        if let value = infant{
+            passengers.append(value)
+        }
+        
+        var originDestinations = [Parameters]()
+        let frowardFlight: Parameters = [
+            "TargetDate": "2021-01-27T00:00:00",
+            "OriginCode": "DAC",
+            "DestinationCode": "CGP"
+        ]
+        let backwardFlight: Parameters = [
+            "TargetDate": "2021-01-27T00:00:00",
+            "OriginCode": "DAC",
+            "DestinationCode": "CGP"
+        ]
+        originDestinations.append(frowardFlight)
+        originDestinations.append(backwardFlight)
+        
+        let fareDisplaySettings: Parameters = [
+            "SaleCurrencyCode": selectedCurrencyCode,
+            "FarebasisCodes": [],
+            "WebClassesCodes": [],
+            "ShowWebClasses": true
+        ]
+        
+        let availabilitySettings: Parameters = [
+            "MaxConnectionCount": "8",
+        ]
+        
+        let requestInfo: Parameters = [
+            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "CultureName": "en-GB"
+        ]
+        
+        let request: Parameters = [
+            "Passengers": passengers,
+            "OriginDestinations": originDestinations,
+            "FareDisplaySettings": fareDisplaySettings,
+            "AvailabilitySettings": availabilitySettings,
+            "RequestInfo": requestInfo,
+            "Extensions": []
+        ]
+        
+        let params: Parameters = [
+            "request": request
+        ]
+        
+        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights") else{
+            return
+        }
+        
+        print("send user Activity url:\(url) params \(params)")
+        
+        SVProgressHUD.show()
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
+            print("=== response = \(response)")
+            if SVProgressHUD.isVisible(){
+                SVProgressHUD.dismiss()
+            }
             guard let statusCode = response.response?.statusCode else{
                 return
             }
