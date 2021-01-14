@@ -131,19 +131,20 @@ class FlightFilterViewController: UIViewController {
     var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
     
-    var fromCities = [String]()
-    var toCities = [String]()
-    var currencyArray = [String]()
     var adultCount = 0
     var childCount = 0
     var infantCount = 0
     var passengers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var businessClassCodes = [String()] //["C", "D", "J", ...]
     var ecomomyClassCodes = [String()]
+    var fromCities = [String]()
+    var toCities = [String]()
+    var currencyArray = [String]()
     var airportModel: ValueCodeModel?
     var cityPairModel: CityPairModel?
     var currencyModel: ValueCodeModel?
-
+    var bookingClassModel: ValueCodeModel?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -543,6 +544,7 @@ extension FlightFilterViewController{
                 guard let codes = self.airportModel?.codes else{
                     return
                 }
+                self.fromCities.removeAll()
                 for airport in codes{
                     self.fromCities.append(airport.label ?? "")
                 }
@@ -630,7 +632,19 @@ extension FlightFilterViewController{
             print("statusCode = \(statusCode)")
             switch response.result {
             case .success:
-                print("")
+                self.bookingClassModel = response.result.value
+                guard let codes = self.bookingClassModel?.codes else{
+                    return
+                }
+                self.businessClassCodes.removeAll()
+                self.ecomomyClassCodes.removeAll()
+                for code in codes{
+                    if (code.label?.contains("Business") ?? false){
+                        self.businessClassCodes.append(code.code ?? "")
+                    }else{
+                        self.ecomomyClassCodes.append(code.code ?? "")
+                    }
+                }
             case .failure(let error):
                 print("error = \(error)")
             }
@@ -672,8 +686,14 @@ extension FlightFilterViewController{
             print("statusCode = \(statusCode)")
             switch response.result {
             case .success:
-                print("sucess")
-                
+                self.currencyModel = response.result.value
+                guard let codes = self.currencyModel?.codes else{
+                    return
+                }
+                self.currencyArray.removeAll()
+                for code in codes{
+                    self.currencyArray.append(code.code ?? "")
+                }
             case .failure(let error):
                 print("error = \(error)")
             }
