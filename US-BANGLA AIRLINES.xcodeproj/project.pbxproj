@@ -25,6 +25,7 @@
 		8E57919D259B16AE0089C75A /* PassengerInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E57919C259B16AE0089C75A /* PassengerInfo.storyboard */; };
 		8E7DF23225B092EA00283A71 /* ValueCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7DF23125B092EA00283A71 /* ValueCodeModel.swift */; };
 		8E7DF23625B09A9000283A71 /* CityPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7DF23525B09A9000283A71 /* CityPairModel.swift */; };
+		8E7DF23825B0D03300283A71 /* FlightSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7DF23725B0D03300283A71 /* FlightSearchModel.swift */; };
 		8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E81FC2595B5A100530D14 /* AppDelegate.swift */; };
 		8E7E82042595B5A100530D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82022595B5A100530D14 /* Main.storyboard */; };
 		8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82052595B5A300530D14 /* Assets.xcassets */; };
@@ -85,6 +86,7 @@
 		8E57919C259B16AE0089C75A /* PassengerInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PassengerInfo.storyboard; sourceTree = "<group>"; };
 		8E7DF23125B092EA00283A71 /* ValueCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueCodeModel.swift; sourceTree = "<group>"; };
 		8E7DF23525B09A9000283A71 /* CityPairModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPairModel.swift; sourceTree = "<group>"; };
+		8E7DF23725B0D03300283A71 /* FlightSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchModel.swift; sourceTree = "<group>"; };
 		8E7E81F92595B5A100530D14 /* US-BANGLA AIRLINES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "US-BANGLA AIRLINES.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7E81FC2595B5A100530D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7E82032595B5A100530D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			children = (
 				8E7DF23125B092EA00283A71 /* ValueCodeModel.swift */,
 				8E7DF23525B09A9000283A71 /* CityPairModel.swift */,
+				8E7DF23725B0D03300283A71 /* FlightSearchModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				8E3ADD8B2598D11E00B55C89 /* FlightFilterViewController.swift in Sources */,
 				8EA45AC3259A3567000DA006 /* InputPassengerInfoViewController.swift in Sources */,
 				8E4B431A25960B1400B35133 /* Validator.swift in Sources */,
+				8E7DF23825B0D03300283A71 /* FlightSearchModel.swift in Sources */,
 				8E7DF23225B092EA00283A71 /* ValueCodeModel.swift in Sources */,
 				8EA45AC1259A3546000DA006 /* FlightSummaryViewController.swift in Sources */,
 				8E47073A259BB04600BFF8A2 /* SelectCabinClassViewController.swift in Sources */,
