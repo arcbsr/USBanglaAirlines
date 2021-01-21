@@ -181,11 +181,14 @@ class FlightFilterViewController: UIViewController {
     var toCities = [String]()
     var currencyArray = [String]()
     var aiportDictionary = [String: String]()
+    var aiportReverseDictionary = [String: String]()
     var airportModel: ValueCodeModel?
     var cityPairModel: CityPairModel?
     var currencyModel: ValueCodeModel?
     var bookingClassModel: ValueCodeModel?
     let datePicker = UIDatePicker()
+    var departureDate = ""
+    var returnDate = ""
     
     
     override func viewDidLoad() {
@@ -314,6 +317,7 @@ class FlightFilterViewController: UIViewController {
         dropDown.dataSource = currencyArray
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.currencyLabel.text = item
+            self?.selectedCurrencyCode = item
         }
         dropDown.show()
     }
@@ -339,10 +343,9 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func departureDateTapped() {
-        //        var dateString = ""
         let formatter = DateFormatter()
-        //        formatter.dateFormat = "yyyy-MM-dd"
-        //        dateString = formatter.string(from: datePicker.date)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        departureDate = formatter.string(from: datePicker.date)
         formatter.dateFormat = "EEE, dd MMM, YYYY"
         self.departureDateTextField.text = ""
         self.departureDateTextField.text = formatter.string(from: datePicker.date)
@@ -350,10 +353,9 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func returnDateTapped() {
-        //        var dateString = ""
         let formatter = DateFormatter()
-        //        formatter.dateFormat = "yyyy-MM-dd"
-        //        dateString = formatter.string(from: datePicker.date)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        returnDate = formatter.string(from: datePicker.date)
         formatter.dateFormat = "EEE, dd MMM, YYYY"
         self.returnDateTextField.text = ""
         self.returnDateTextField.text = formatter.string(from: datePicker.date)
@@ -361,6 +363,11 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func searchFlightTapped(){
+        if oneWayCheckbox.isSelected{
+            searchOneWayFlight()
+        }else{
+            searchReturnFlight()
+        }
     }
     
     @objc func notificationTapped(){
@@ -613,7 +620,7 @@ extension FlightFilterViewController{
             return
         }
         
-        print("send user Activity url:\(url) params \(params)")
+        print("url: \(url) params \(params)")
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
             print("=== response = \(response)")
@@ -633,6 +640,7 @@ extension FlightFilterViewController{
                     self.fromCities.append(airport.label ?? "")
                     if let key = airport.code, let val = airport.label{
                         self.aiportDictionary[key] = val
+                        self.aiportReverseDictionary[val] = key
                     }
                 }
                 self.toCities = self.fromCities // initial case
@@ -666,7 +674,7 @@ extension FlightFilterViewController{
             return
         }
         
-        print("send user Activity url:\(url) params \(params)")
+        print("url: \(url) params \(params)")
         
         SVProgressHUD.show()
         
@@ -716,7 +724,7 @@ extension FlightFilterViewController{
             return
         }
         
-        print("send user Activity url:\(url) params \(params)")
+        print("url: \(url) params \(params)")
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
             print("=== response = \(response)")
@@ -771,7 +779,7 @@ extension FlightFilterViewController{
             return
         }
         
-        print("send user Activity url:\(url) params \(params)")
+        print("url: \(url) params \(params)")
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
             print("=== response = \(response)")
@@ -805,36 +813,48 @@ extension FlightFilterViewController{
         var child: Parameters?
         var adult: Parameters?
         var infant: Parameters?
-        adult = [
-            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
-            "PassengerQuantity": 2,
-            "PassengerTypeCode": "AD"
-        ]
+        
+        var count = Int(adultCountLabel.text ?? "0") ?? 0
+        if count != 0 {
+            adult = [
+                "Ref": UUID().uuidString,
+                "PassengerQuantity": adultCount,
+                "PassengerTypeCode": "AD"
+            ]
+        }
         if let value = adult{
             passengers.append(value)
         }
-        child = [
-            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
-            "PassengerQuantity": 2,
-            "PassengerTypeCode": "CHD"
-        ]
+        
+        count = Int(childCountLabel.text ?? "0") ?? 0
+        if count != 0 {
+            child = [
+                "Ref": UUID().uuidString,
+                "PassengerQuantity": count,
+                "PassengerTypeCode": "CHD"
+            ]
+        }
         if let value = child{
             passengers.append(value)
         }
-        infant = [
-            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
-            "PassengerQuantity": 2,
-            "PassengerTypeCode": "INF"
-        ]
+        
+        count = Int(infantCountLabel.text ?? "0") ?? 0
+        if count != 0 {
+            infant = [
+                "Ref": UUID().uuidString,
+                "PassengerQuantity": count,
+                "PassengerTypeCode": "INF"
+            ]
+        }
         if let value = infant{
             passengers.append(value)
         }
         
         var originDestinations = [Parameters]()
         let forwardFlight: Parameters = [
-            "TargetDate": "2021-01-27T00:00:00",
-            "OriginCode": "DAC",
-            "DestinationCode": "CGP"
+            "TargetDate": departureDate,
+            "OriginCode": aiportReverseDictionary[fromCityLabel.text ?? ""] ?? "",
+            "DestinationCode": aiportReverseDictionary[toCityLabel.text ?? ""] ?? ""
         ]
         originDestinations.append(forwardFlight)
         
@@ -871,7 +891,7 @@ extension FlightFilterViewController{
             return
         }
         
-        print("send user Activity url:\(url) params \(params)")
+        print("url: \(url) params \(params)")
         
         SVProgressHUD.show()
         
@@ -910,41 +930,53 @@ extension FlightFilterViewController{
         var child: Parameters?
         var adult: Parameters?
         var infant: Parameters?
-        adult = [
-            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
-            "PassengerQuantity": 2,
-            "PassengerTypeCode": "AD"
-        ]
+        
+        var count = Int(adultCountLabel.text ?? "0") ?? 0
+        if count != 0 {
+            adult = [
+                "Ref": UUID().uuidString,
+                "PassengerQuantity": adultCount,
+                "PassengerTypeCode": "AD"
+            ]
+        }
         if let value = adult{
             passengers.append(value)
         }
-        child = [
-            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
-            "PassengerQuantity": 2,
-            "PassengerTypeCode": "CHD"
-        ]
+        
+        count = Int(childCountLabel.text ?? "0") ?? 0
+        if count != 0 {
+            child = [
+                "Ref": UUID().uuidString,
+                "PassengerQuantity": count,
+                "PassengerTypeCode": "CHD"
+            ]
+        }
         if let value = child{
             passengers.append(value)
         }
-        infant = [
-            "Ref": "fe63532e-56f5-4dfc-8729-e4e800e1c5ab",
-            "PassengerQuantity": 2,
-            "PassengerTypeCode": "INF"
-        ]
+        
+        count = Int(infantCountLabel.text ?? "0") ?? 0
+        if count != 0 {
+            infant = [
+                "Ref": UUID().uuidString,
+                "PassengerQuantity": count,
+                "PassengerTypeCode": "INF"
+            ]
+        }
         if let value = infant{
             passengers.append(value)
         }
         
         var originDestinations = [Parameters]()
         let frowardFlight: Parameters = [
-            "TargetDate": "2021-01-27T00:00:00",
-            "OriginCode": "DAC",
-            "DestinationCode": "CGP"
+            "TargetDate": departureDate,
+            "OriginCode": aiportReverseDictionary[fromCityLabel.text ?? ""] ?? "",
+            "DestinationCode": aiportReverseDictionary[toCityLabel.text ?? ""] ?? ""
         ]
         let backwardFlight: Parameters = [
-            "TargetDate": "2021-01-27T00:00:00",
-            "OriginCode": "DAC",
-            "DestinationCode": "CGP"
+            "TargetDate": returnDate,
+            "OriginCode": aiportReverseDictionary[toCityLabel.text ?? ""] ?? "",
+            "DestinationCode": aiportReverseDictionary[fromCityLabel.text ?? ""] ?? ""
         ]
         originDestinations.append(frowardFlight)
         originDestinations.append(backwardFlight)
@@ -982,7 +1014,7 @@ extension FlightFilterViewController{
             return
         }
         
-        print("send user Activity url:\(url) params \(params)")
+        print("url: \(url) params \(params)")
         
         SVProgressHUD.show()
         
