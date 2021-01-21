@@ -180,6 +180,7 @@ class FlightFilterViewController: UIViewController {
     var fromCities = [String]()
     var toCities = [String]()
     var currencyArray = [String]()
+    var aiportDictionary = [String: String]()
     var airportModel: ValueCodeModel?
     var cityPairModel: CityPairModel?
     var currencyModel: ValueCodeModel?
@@ -250,7 +251,7 @@ class FlightFilterViewController: UIViewController {
                 return
             }
             self?.fromCityLabel.text = item
-            guard let airportCodes = _self.cityPairModel?.codes, let cityPairCodes = _self.cityPairModel?.codes else{
+            guard let airportCodes = _self.airportModel?.codes, let cityPairCodes = _self.cityPairModel?.codes else{
                 return
             }
             
@@ -259,7 +260,7 @@ class FlightFilterViewController: UIViewController {
                 let selectedCode = airportCodes[index].code
                 for code in cityPairCodes{
                     if code.start == selectedCode{
-                        _self.toCities.append(code.end)
+                        _self.toCities.append(_self.aiportDictionary[code.end] ?? "")
                     }
                 }
             }
@@ -338,10 +339,10 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func departureDateTapped() {
-        var dateString = ""
+        //        var dateString = ""
         let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd"
-//        dateString = formatter.string(from: datePicker.date)
+        //        formatter.dateFormat = "yyyy-MM-dd"
+        //        dateString = formatter.string(from: datePicker.date)
         formatter.dateFormat = "EEE, dd MMM, YYYY"
         self.departureDateTextField.text = ""
         self.departureDateTextField.text = formatter.string(from: datePicker.date)
@@ -349,10 +350,10 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func returnDateTapped() {
-        var dateString = ""
+        //        var dateString = ""
         let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd"
-//        dateString = formatter.string(from: datePicker.date)
+        //        formatter.dateFormat = "yyyy-MM-dd"
+        //        dateString = formatter.string(from: datePicker.date)
         formatter.dateFormat = "EEE, dd MMM, YYYY"
         self.returnDateTextField.text = ""
         self.returnDateTextField.text = formatter.string(from: datePicker.date)
@@ -627,8 +628,12 @@ extension FlightFilterViewController{
                     return
                 }
                 self.fromCities.removeAll()
+                self.aiportDictionary.removeAll()
                 for airport in codes{
                     self.fromCities.append(airport.label ?? "")
+                    if let key = airport.code, let val = airport.label{
+                        self.aiportDictionary[key] = val
+                    }
                 }
                 self.toCities = self.fromCities // initial case
             case .failure(let error):
