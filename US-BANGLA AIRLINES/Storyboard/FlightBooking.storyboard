@@ -405,12 +405,15 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ph6-dL-mqw">
                                                                 <rect key="frame" x="0.0" y="0.0" width="195" height="60"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEPARTURE DATE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ncE-xz-4JD">
-                                                                        <rect key="frame" x="8" y="21.5" width="151" height="17"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="DEPARTURE DATE" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LpS-gZ-l09">
+                                                                        <rect key="frame" x="8" y="14" width="183" height="32"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="32" id="W9s-Dw-dxW"/>
+                                                                        </constraints>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Q0V-xx-325">
                                                                         <rect key="frame" x="167" y="25" width="20" height="10.5"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -423,11 +426,11 @@
                                                                 <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="1Wu-mU-pEu"/>
+                                                                    <constraint firstItem="LpS-gZ-l09" firstAttribute="leading" secondItem="Ph6-dL-mqw" secondAttribute="leading" constant="8" id="30w-kk-a0Y"/>
+                                                                    <constraint firstItem="LpS-gZ-l09" firstAttribute="centerY" secondItem="Ph6-dL-mqw" secondAttribute="centerY" id="AjL-fd-XOC"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Q0V-xx-325" secondAttribute="trailing" constant="8" id="Fw7-zl-snx"/>
-                                                                    <constraint firstItem="ncE-xz-4JD" firstAttribute="leading" secondItem="Ph6-dL-mqw" secondAttribute="leading" constant="8" id="Odk-Ch-XgJ"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="LpS-gZ-l09" secondAttribute="trailing" constant="4" id="Im9-X6-8tM"/>
                                                                     <constraint firstItem="Q0V-xx-325" firstAttribute="centerY" secondItem="Ph6-dL-mqw" secondAttribute="centerY" id="b0L-Dy-x6D"/>
-                                                                    <constraint firstItem="Q0V-xx-325" firstAttribute="leading" secondItem="ncE-xz-4JD" secondAttribute="trailing" constant="8" id="cI5-UR-BzS"/>
-                                                                    <constraint firstItem="ncE-xz-4JD" firstAttribute="centerY" secondItem="Ph6-dL-mqw" secondAttribute="centerY" id="n5q-g6-FRX"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKz-Tl-SyZ">
@@ -466,12 +469,15 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a23-aT-zB2">
                                                                 <rect key="frame" x="0.0" y="0.0" width="195" height="60"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RETURN DATE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dSc-gS-dmW">
-                                                                        <rect key="frame" x="8" y="21.5" width="151" height="17"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="RETURN DATE" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ElL-AC-lEk">
+                                                                        <rect key="frame" x="8" y="14" width="183" height="32"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="32" id="pXI-Vm-d02"/>
+                                                                        </constraints>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xUD-8K-iZZ">
                                                                         <rect key="frame" x="167" y="25" width="20" height="10.5"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -483,11 +489,11 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="dSc-gS-dmW" firstAttribute="leading" secondItem="a23-aT-zB2" secondAttribute="leading" constant="8" id="5T5-pH-VPm"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ElL-AC-lEk" secondAttribute="trailing" constant="4" id="2iH-1d-5Fw"/>
+                                                                    <constraint firstItem="ElL-AC-lEk" firstAttribute="centerY" secondItem="a23-aT-zB2" secondAttribute="centerY" id="5US-nH-S7L"/>
                                                                     <constraint firstItem="xUD-8K-iZZ" firstAttribute="centerY" secondItem="a23-aT-zB2" secondAttribute="centerY" id="S5D-PY-bbU"/>
-                                                                    <constraint firstItem="xUD-8K-iZZ" firstAttribute="leading" secondItem="dSc-gS-dmW" secondAttribute="trailing" constant="8" id="ZxR-IY-So3"/>
+                                                                    <constraint firstItem="ElL-AC-lEk" firstAttribute="leading" secondItem="a23-aT-zB2" secondAttribute="leading" constant="8" id="XY4-OX-8NR"/>
                                                                     <constraint firstAttribute="height" constant="60" id="dsL-kf-38x"/>
-                                                                    <constraint firstItem="dSc-gS-dmW" firstAttribute="centerY" secondItem="a23-aT-zB2" secondAttribute="centerY" id="igg-7h-GkQ"/>
                                                                     <constraint firstAttribute="trailing" secondItem="xUD-8K-iZZ" secondAttribute="trailing" constant="8" id="zda-ZP-Gew"/>
                                                                 </constraints>
                                                             </view>
@@ -626,7 +632,9 @@
                         <outlet property="crossImageView" destination="r9v-R2-Mb8" id="fcu-ft-axo"/>
                         <outlet property="currencyLabel" destination="zcZ-IY-rn4" id="mGg-zc-npe"/>
                         <outlet property="currencyView" destination="Jl6-Il-J4k" id="OaI-3O-Rh9"/>
-                        <outlet property="departureDateLabel" destination="ncE-xz-4JD" id="TGD-fs-jAk"/>
+                        <outlet property="departureCabinClassLabel" destination="me1-lN-VVO" id="6x0-QU-rQS"/>
+                        <outlet property="departureCabinClassView" destination="lKz-Tl-SyZ" id="bEs-sh-10G"/>
+                        <outlet property="departureDateTextField" destination="LpS-gZ-l09" id="9rd-f4-CtW"/>
                         <outlet property="departureDateView" destination="Ph6-dL-mqw" id="j2H-Bi-wO5"/>
                         <outlet property="flightDirectionImageView" destination="Rny-Ev-VSQ" id="tjT-OO-7q1"/>
                         <outlet property="fromCityLabel" destination="Wsi-Zc-JHg" id="QFW-Rp-66B"/>
@@ -637,8 +645,10 @@
                         <outlet property="notificationImageView" destination="wQc-mh-weJ" id="O9Z-nR-6xe"/>
                         <outlet property="oneWayCheckbox" destination="m22-LU-Yen" id="26P-Jo-l4O"/>
                         <outlet property="promoCodeTextField" destination="Nhc-70-0G9" id="YEC-jz-NBC"/>
+                        <outlet property="returnCabinClassLabel" destination="DBg-fz-ePQ" id="0Iu-tJ-lB3"/>
+                        <outlet property="returnCabinClassView" destination="l3v-5K-VtG" id="3KX-qi-OW3"/>
                         <outlet property="returnCheckbox" destination="w5U-Jr-eEK" id="ywx-fO-83d"/>
-                        <outlet property="returnDateLabel" destination="dSc-gS-dmW" id="ohc-cu-fBK"/>
+                        <outlet property="returnDateTextField" destination="ElL-AC-lEk" id="Mni-4f-Rh5"/>
                         <outlet property="returnDateView" destination="a23-aT-zB2" id="O4n-fm-EcC"/>
                         <outlet property="searchView" destination="px5-ga-7py" id="UmK-os-MiY"/>
                         <outlet property="toCityLabel" destination="kVR-Ol-2J9" id="pRZ-5X-m2D"/>
@@ -1142,7 +1152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSY-Tc-s9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974" y="788"/>
+            <point key="canvasLocation" x="1965" y="794"/>
         </scene>
         <!--One Way Flight View Controller-->
         <scene sceneID="9LM-Ce-2Sk">

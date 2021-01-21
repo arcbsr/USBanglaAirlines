@@ -75,19 +75,55 @@ class FlightFilterViewController: UIViewController {
     }
     @IBOutlet weak var departureDateView: UIView!{
         didSet{
-            departureDateView.isUserInteractionEnabled = true
-            departureDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(departureDateTapped)))
+            //            departureDateView.isUserInteractionEnabled = true
+            //            departureDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(departureDateTapped)))
         }
     }
     @IBOutlet weak var returnDateView: UIView!{
         didSet{
-            returnDateView.isUserInteractionEnabled = true
-            returnDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnDateTapped)))
+            //            returnDateView.isUserInteractionEnabled = true
+            //            returnDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnDateTapped)))
         }
     }
-    @IBOutlet weak var departureDateLabel: UILabel!
-    @IBOutlet weak var returnDateLabel: UILabel!
-    
+    @IBOutlet weak var departureDateTextField: UITextField!{
+        didSet{
+            departureDateTextField.attributedPlaceholder = NSAttributedString(string: "DEPARTURE DATE",
+                                                                              attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            datePicker.datePickerMode = .date
+            departureDateTextField.inputView = datePicker
+            departureDateTextField.addToolbarButton(with: self,
+                                                    selector: #selector(departureDateTapped),
+                                                    title: "Done",
+                                                    tintColor: .systemBlue)
+            
+        }
+    }
+    @IBOutlet weak var returnDateTextField: UITextField!{
+        didSet{
+            returnDateTextField.attributedPlaceholder = NSAttributedString(string: "RETURN DATE",
+                                                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            datePicker.datePickerMode = .date
+            returnDateTextField.inputView = datePicker
+            returnDateTextField.addToolbarButton(with: self,
+                                                    selector: #selector(returnDateTapped),
+                                                    title: "Done",
+                                                    tintColor: .systemBlue)
+        }
+    }
+    @IBOutlet weak var departureCabinClassLabel: UILabel!
+    @IBOutlet weak var returnCabinClassLabel: UILabel!
+    @IBOutlet weak var departureCabinClassView: UIView!{
+        didSet{
+            returnDateView.isUserInteractionEnabled = true
+            returnDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(departureCabinClassTapped)))
+        }
+    }
+    @IBOutlet weak var returnCabinClassView: UIView!{
+        didSet{
+            returnDateView.isUserInteractionEnabled = true
+            returnDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnCabinClassTapped)))
+        }
+    }
     @IBOutlet weak var searchView: UIView!{
         didSet{
             searchView.isUserInteractionEnabled = true
@@ -136,6 +172,7 @@ class FlightFilterViewController: UIViewController {
     var infantCount = 0
     var selectedCurrencyCode = ""
     var passengers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    var cabinClasses = ["ECOMOMY", "BUSINESS"]
     var businessClassCodes = [String()] //["C", "D", "J", ...]
     var ecomomyClassCodes = [String()]
     var fromCities = [String]()
@@ -145,6 +182,7 @@ class FlightFilterViewController: UIViewController {
     var cityPairModel: CityPairModel?
     var currencyModel: ValueCodeModel?
     var bookingClassModel: ValueCodeModel?
+    let datePicker = UIDatePicker()
     
     
     override func viewDidLoad() {
@@ -277,10 +315,46 @@ class FlightFilterViewController: UIViewController {
         dropDown.show()
     }
     
-    @objc func departureDateTapped(){
+    @objc func departureCabinClassTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = departureCabinClassView
+        dropDown.dataSource = cabinClasses
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.departureCabinClassLabel.text = item
+        }
+        dropDown.show()
     }
     
-    @objc func returnDateTapped(){
+    @objc func returnCabinClassTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = returnCabinClassView
+        dropDown.dataSource = cabinClasses
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.returnCabinClassLabel.text = item
+        }
+        dropDown.show()
+    }
+    
+    @objc func departureDateTapped() {
+        var dateString = ""
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        dateString = formatter.string(from: datePicker.date)
+        formatter.dateFormat = "EEE, dd MMM, YYYY"
+        self.departureDateTextField.text = ""
+        self.returnDateTextField.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+    }
+    
+    @objc func returnDateTapped() {
+        var dateString = ""
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        dateString = formatter.string(from: datePicker.date)
+        formatter.dateFormat = "EEE, dd MMM, YYYY"
+        self.returnDateTextField.text = ""
+        self.returnDateTextField.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
     }
     
     @objc func searchFlightTapped(){
