@@ -15,7 +15,7 @@ class OneWayFlightViewController: UIViewController {
         didSet{
             tableView.dataSource = self
             tableView.delegate = self
-            tableView.separatorStyle = .none
+//            tableView.separatorStyle = .none
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableView.automaticDimension
             let footerView = UIView()

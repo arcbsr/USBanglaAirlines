@@ -15,7 +15,7 @@ class ReturnFlightViewController: UIViewController {
         didSet{
             tableView.dataSource = self
             tableView.delegate = self
-            tableView.separatorStyle = .none
+//            tableView.separatorStyle = .none
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableView.automaticDimension
             let footerView = UIView()
@@ -277,45 +277,65 @@ class ReturnFlightViewController: UIViewController {
 
 extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        if tableView == sideBarTableView{
+            return 55
+        }else{
+            return 124
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sideMenutitleArray.count
+        if tableView == sideBarTableView{
+            return sideMenutitleArray.count
+        }else{
+            return 10
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SideBarTableViewCell.self)) as! SideBarTableViewCell
-        cell.selectionStyle = .none
-        cell.backgroundColor = .clear
-        cell.sideBartitleLabel.text = self.sideMenutitleArray.object(at: indexPath.row) as? String
-        cell.sideBarImg.image = self.sideMenuImgArray[indexPath.row]
-        cell.sideBarImg.tintColor = .white
-        //        if indexPath.row == 0 {
-        //            cell.backgroundColor = UIColor(hexFromString: "#F07527", alpha: 0.1)
-        //        }
-        return cell
+        if tableView == sideBarTableView{
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SideBarTableViewCell.self)) as! SideBarTableViewCell
+            cell.selectionStyle = .none
+            cell.backgroundColor = .clear
+            cell.sideBartitleLabel.text = self.sideMenutitleArray.object(at: indexPath.row) as? String
+            cell.sideBarImg.image = self.sideMenuImgArray[indexPath.row]
+            cell.sideBarImg.tintColor = .white
+            //        if indexPath.row == 0 {
+            //            cell.backgroundColor = UIColor(hexFromString: "#F07527", alpha: 0.1)
+            //        }
+            return cell
+            
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReturnFlightCell.self)) as! ReturnFlightCell
+            
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        hideMenu()
-        switch indexPath.row {
-        case 0:
-            break
-        case 1:
-            print("no change, casuse this is the BOOK A FLIGHT page")
-        case 2:
-            manageBookingTapped()
-        case 3:
-            holidayTapped()
-        case 4:
-            flightScheduleTapped()
-        case 5:
-            skyStarTapped()
-        case 6:
-            hotlineTapped()
-        default:
-            break
+        if tableView == sideBarTableView{
+            hideMenu()
+            switch indexPath.row {
+            case 0:
+                break
+            case 1:
+                print("no change, casuse this is the BOOK A FLIGHT page")
+            case 2:
+                manageBookingTapped()
+            case 3:
+                holidayTapped()
+            case 4:
+                flightScheduleTapped()
+            case 5:
+                skyStarTapped()
+            case 6:
+                hotlineTapped()
+            default:
+                break
+            }
+            
+        }else{
+            
         }
     }
     
