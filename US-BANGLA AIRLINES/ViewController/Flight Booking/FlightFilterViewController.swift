@@ -903,10 +903,18 @@ extension FlightFilterViewController{
             switch response.result {
             case .success:
                 self.searchData = response.result.value
+                if self.searchData != nil{
+                    if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "OneWayFlightViewController") as? OneWayFlightViewController{
+                        vc.searchData = self.searchData
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }else{
+                    self.showAlert(title: "No data found", message: nil, callback: nil)
+                }
             case .failure(let error):
                 print("error = \(error)")
             }
-            })
+        })
     }
     
     func searchReturnFlight() {
@@ -1019,10 +1027,17 @@ extension FlightFilterViewController{
             switch response.result {
             case .success:
                 self.searchData = response.result.value
+                if self.searchData != nil{
+                    if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
+                        vc.searchData = self.searchData
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }else{
+                    self.showAlert(title: "No data found", message: nil, callback: nil)
+                }
             case .failure(let error):
                 print("error = \(error)")
             }
         })
     }
-    
 }

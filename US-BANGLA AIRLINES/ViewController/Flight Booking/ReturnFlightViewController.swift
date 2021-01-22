@@ -65,7 +65,7 @@ class ReturnFlightViewController: UIViewController {
     
     var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
-    
+    var searchData: FlightSearchModel?
     
     
     override func viewDidLoad() {
