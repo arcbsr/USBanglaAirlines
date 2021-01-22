@@ -27,6 +27,7 @@ class FlightFilterViewController: UIViewController {
         didSet{
             oneWayCheckbox.addTarget(self, action: #selector(oneWayOptionTapped), for: .valueChanged)
             setupCheckBox(box: oneWayCheckbox)
+            oneWayCheckbox.setCheckState(.checked, animated: false)
         }
     }
     @IBOutlet weak var fromCityView: UIView!{

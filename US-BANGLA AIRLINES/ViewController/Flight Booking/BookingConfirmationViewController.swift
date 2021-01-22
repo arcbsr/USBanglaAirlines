@@ -46,14 +46,14 @@ class BookingConfirmationViewController: UIViewController {
     }
     @IBOutlet weak var backImageView: UIImageView!{
         didSet{
-            menuImageView.isUserInteractionEnabled = true
-            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backTapped)))
+            backImageView.isUserInteractionEnabled = true
+            backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backTapped)))
         }
     }
     @IBOutlet weak var crossImageView: UIImageView!{
         didSet{
-            menuImageView.isUserInteractionEnabled = true
-            menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(crossTapped)))
+            crossImageView.isUserInteractionEnabled = true
+            crossImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(crossTapped)))
         }
     }
     
