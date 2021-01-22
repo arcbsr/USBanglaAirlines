@@ -169,10 +169,6 @@ class FlightFilterViewController: UIViewController {
     var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
     
-    var adultCount = 0
-    var childCount = 0
-    var infantCount = 0
-    var selectedCurrencyCode = ""
     var passengers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var cabinClasses = ["ECOMOMY", "BUSINESS"]
     var businessClassCodes = [String()] //["C", "D", "J", ...]
@@ -186,6 +182,7 @@ class FlightFilterViewController: UIViewController {
     var cityPairModel: CityPairModel?
     var currencyModel: ValueCodeModel?
     var bookingClassModel: ValueCodeModel?
+    var searchData: FlightSearchModel?
     let datePicker = UIDatePicker()
     var departureDate = ""
     var returnDate = ""
@@ -317,7 +314,6 @@ class FlightFilterViewController: UIViewController {
         dropDown.dataSource = currencyArray
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.currencyLabel.text = item
-            self?.selectedCurrencyCode = item
         }
         dropDown.show()
     }
@@ -363,7 +359,7 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func searchFlightTapped(){
-        if oneWayCheckbox.isSelected{
+        if oneWayCheckbox.checkState == .checked{
             searchOneWayFlight()
         }else{
             searchReturnFlight()
@@ -818,7 +814,7 @@ extension FlightFilterViewController{
         if count != 0 {
             adult = [
                 "Ref": UUID().uuidString,
-                "PassengerQuantity": adultCount,
+                "PassengerQuantity": count,
                 "PassengerTypeCode": "AD"
             ]
         }
@@ -859,7 +855,7 @@ extension FlightFilterViewController{
         originDestinations.append(forwardFlight)
         
         let fareDisplaySettings: Parameters = [
-            "SaleCurrencyCode": selectedCurrencyCode,
+            "SaleCurrencyCode": currencyLabel.text ?? "",
             "FarebasisCodes": [],
             "WebClassesCodes": [],
             "ShowWebClasses": true
@@ -895,7 +891,7 @@ extension FlightFilterViewController{
         
         SVProgressHUD.show()
         
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
             print("=== response = \(response)")
             if SVProgressHUD.isVisible(){
                 SVProgressHUD.dismiss()
@@ -906,18 +902,11 @@ extension FlightFilterViewController{
             print("statusCode = \(statusCode)")
             switch response.result {
             case .success:
-                self.currencyModel = response.result.value
-                guard let codes = self.currencyModel?.codes else{
-                    return
-                }
-                self.currencyArray.removeAll()
-                for code in codes{
-                    self.currencyArray.append(code.code ?? "")
-                }
+                self.searchData = response.result.value
             case .failure(let error):
                 print("error = \(error)")
             }
-        })
+            })
     }
     
     func searchReturnFlight() {
@@ -935,7 +924,7 @@ extension FlightFilterViewController{
         if count != 0 {
             adult = [
                 "Ref": UUID().uuidString,
-                "PassengerQuantity": adultCount,
+                "PassengerQuantity": count,
                 "PassengerTypeCode": "AD"
             ]
         }
@@ -982,7 +971,7 @@ extension FlightFilterViewController{
         originDestinations.append(backwardFlight)
         
         let fareDisplaySettings: Parameters = [
-            "SaleCurrencyCode": selectedCurrencyCode,
+            "SaleCurrencyCode": currencyLabel.text ?? "",
             "FarebasisCodes": [],
             "WebClassesCodes": [],
             "ShowWebClasses": true
@@ -1018,7 +1007,7 @@ extension FlightFilterViewController{
         
         SVProgressHUD.show()
         
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
             print("=== response = \(response)")
             if SVProgressHUD.isVisible(){
                 SVProgressHUD.dismiss()
@@ -1029,14 +1018,7 @@ extension FlightFilterViewController{
             print("statusCode = \(statusCode)")
             switch response.result {
             case .success:
-                self.currencyModel = response.result.value
-                guard let codes = self.currencyModel?.codes else{
-                    return
-                }
-                self.currencyArray.removeAll()
-                for code in codes{
-                    self.currencyArray.append(code.code ?? "")
-                }
+                self.searchData = response.result.value
             case .failure(let error):
                 print("error = \(error)")
             }
