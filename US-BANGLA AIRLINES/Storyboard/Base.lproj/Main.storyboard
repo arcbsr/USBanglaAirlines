@@ -49,22 +49,52 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Bg-Xr-OHa">
                                                 <rect key="frame" x="0.0" y="0.0" width="203" height="70"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BOOK A FLIGHT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIJ-f4-UgA">
+                                                        <rect key="frame" x="42.5" y="25.5" width="118" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstItem="DIJ-f4-UgA" firstAttribute="centerX" secondItem="2Bg-Xr-OHa" secondAttribute="centerX" id="G52-HC-BF0"/>
+                                                    <constraint firstItem="DIJ-f4-UgA" firstAttribute="centerY" secondItem="2Bg-Xr-OHa" secondAttribute="centerY" id="iYQ-Li-Cco"/>
                                                     <constraint firstAttribute="height" constant="70" id="rta-s9-JZA"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oge-3w-3bR">
                                                 <rect key="frame" x="0.0" y="78" width="203" height="60"/>
-                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SKY STAR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsx-iN-zF0">
+                                                        <rect key="frame" x="65" y="20.5" width="73.5" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="vsx-iN-zF0" firstAttribute="centerY" secondItem="Oge-3w-3bR" secondAttribute="centerY" id="ANw-NS-TVe"/>
+                                                    <constraint firstItem="vsx-iN-zF0" firstAttribute="centerX" secondItem="Oge-3w-3bR" secondAttribute="centerX" id="QlL-dE-eWe"/>
                                                     <constraint firstAttribute="height" constant="60" id="b0B-qv-XIL"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nj8-EE-VsR">
                                                 <rect key="frame" x="0.0" y="146" width="203" height="60"/>
-                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOTLINE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZG9-Lf-nGH">
+                                                        <rect key="frame" x="68.5" y="20.5" width="66.5" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="ZG9-Lf-nGH" firstAttribute="centerY" secondItem="nj8-EE-VsR" secondAttribute="centerY" id="FWM-66-w8v"/>
+                                                    <constraint firstItem="ZG9-Lf-nGH" firstAttribute="centerX" secondItem="nj8-EE-VsR" secondAttribute="centerX" id="gm1-mL-CwL"/>
                                                     <constraint firstAttribute="height" constant="60" id="xFm-vD-EmT"/>
                                                 </constraints>
                                             </view>
@@ -75,23 +105,53 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNj-h6-NXS">
                                                 <rect key="frame" x="0.0" y="0.0" width="203" height="60"/>
-                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MANAGE BOOKING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqj-rH-mKJ">
+                                                        <rect key="frame" x="30.5" y="20.5" width="142.5" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="kqj-rH-mKJ" firstAttribute="centerY" secondItem="MNj-h6-NXS" secondAttribute="centerY" id="2I5-dO-hkz"/>
                                                     <constraint firstAttribute="height" constant="60" id="DIA-V6-i7p"/>
+                                                    <constraint firstItem="kqj-rH-mKJ" firstAttribute="centerX" secondItem="MNj-h6-NXS" secondAttribute="centerX" id="k2S-Kq-PeP"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b5A-aT-gEb">
                                                 <rect key="frame" x="0.0" y="68" width="203" height="70"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOLIDAYS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qp6-dh-F0T">
+                                                        <rect key="frame" x="63.5" y="25.5" width="76.5" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="qp6-dh-F0T" firstAttribute="centerY" secondItem="b5A-aT-gEb" secondAttribute="centerY" id="Raq-VN-ki5"/>
                                                     <constraint firstAttribute="height" constant="70" id="hBU-PM-qvd"/>
+                                                    <constraint firstItem="qp6-dh-F0T" firstAttribute="centerX" secondItem="b5A-aT-gEb" secondAttribute="centerX" id="uai-yd-dx3"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="22E-yJ-Kgv">
                                                 <rect key="frame" x="0.0" y="146" width="203" height="60"/>
-                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FLIGHT SCHEDULE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XD-bs-Rwo">
+                                                        <rect key="frame" x="31" y="20.5" width="141.5" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="1bg-eO-Dyr"/>
+                                                    <constraint firstItem="6XD-bs-Rwo" firstAttribute="centerX" secondItem="22E-yJ-Kgv" secondAttribute="centerX" id="LIc-l3-ySZ"/>
+                                                    <constraint firstItem="6XD-bs-Rwo" firstAttribute="centerY" secondItem="22E-yJ-Kgv" secondAttribute="centerY" id="qIT-qI-yBq"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
