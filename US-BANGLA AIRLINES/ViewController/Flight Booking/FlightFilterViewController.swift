@@ -913,6 +913,7 @@ extension FlightFilterViewController{
                     self.showAlert(title: "No data found", message: nil, callback: nil)
                 }
             case .failure(let error):
+                self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
                 print("error = \(error)")
             }
         })
@@ -1037,6 +1038,7 @@ extension FlightFilterViewController{
                     self.showAlert(title: "No data found", message: nil, callback: nil)
                 }
             case .failure(let error):
+                self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
                 print("error = \(error)")
             }
         })
