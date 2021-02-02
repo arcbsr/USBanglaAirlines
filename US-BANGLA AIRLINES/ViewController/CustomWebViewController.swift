@@ -34,7 +34,6 @@ class CustomWebViewController: UIViewController {
     var courseUid = ""
     var verifyPurchase: ((_ transactionTag: String )->())?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,7 +72,6 @@ class CustomWebViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         
         if currentOption == .payment{
             navigationController?.navigationBar.isHidden = false

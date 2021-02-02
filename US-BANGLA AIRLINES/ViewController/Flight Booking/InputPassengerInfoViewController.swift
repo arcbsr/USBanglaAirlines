@@ -293,7 +293,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
         if tableView == sideBarTableView{
             return sideMenutitleArray.count
         }else{
-            return 2
+            return 1
         }
     }
     
