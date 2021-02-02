@@ -15,7 +15,8 @@ target 'US-BANGLA AIRLINES' do
   # pod 'Lightbox'
   pod 'Kingfisher'
   pod 'M13Checkbox'
-  
+  pod 'SwifterSwift'
+
   
   target 'US-BANGLA AIRLINESTests' do
     inherit! :search_paths

@@ -191,6 +191,7 @@ class FlightFilterViewController: UIViewController {
     var economyFlights = [FlightInfo]()
     var economyDictionary = [String: FlightInfo]()
     var businessDictionary = [String: FlightInfo]()
+    var selectedCurrency = "USD"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -331,6 +332,7 @@ class FlightFilterViewController: UIViewController {
         dropDown.dataSource = currencyArray
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.currencyLabel.text = item
+            self?.selectedCurrency = item
         }
         dropDown.show()
     }
@@ -381,6 +383,10 @@ class FlightFilterViewController: UIViewController {
         }else{
             searchReturnFlight()
         }
+        
+        //        if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "OneWayFlightViewController") as? OneWayFlightViewController{
+        //            self.navigationController?.pushViewController(vc, animated: true)
+        //        }
     }
     
     @objc func notificationTapped(){
@@ -939,10 +945,11 @@ extension FlightFilterViewController{
                                 guard let info = segment.flightInfo else {
                                     return
                                 }
-                                
                                 info.saleCurrencyAmount = itinerary.saleCurrencyAmount
                                 info.segmentRef = ref
                                 info.itinerarysRef = itinerary.ref ?? ""
+                                info.originCode = segment.originCode ?? ""
+                                info.destinationCode = segment.destinationCode ?? ""
                                 let bookingClassCode = itinerary.airOriginDestinations?.first?.airCoupons?.first?.bookingClassCode ?? ""
                                 
                                 if type == "BUSINESS"{
@@ -1017,6 +1024,11 @@ extension FlightFilterViewController{
                             //                            self.economyFlights = Array(self.economyDictionary.values)
                             vc.flights = Array(self.economyDictionary.values)
                         }
+                        vc.selectedCurrency = self.selectedCurrency
+                        vc.fromCity = self.fromCityLabel.text ?? ""
+                        vc.toCity = self.toCityLabel.text ?? ""
+                        vc.departureDate = self.departureDateTextField.text ?? ""
+                        vc.returnDate = self.returnDateTextField.text ?? ""
                         //                        vc.searchData = self.searchData
                         self.navigationController?.pushViewController(vc, animated: true)
                     }

@@ -77,7 +77,9 @@ class CustomWebViewController: UIViewController {
             navigationController?.navigationBar.isHidden = false
             navigationItem.title = "Payment"
         }else{
-            navigationController?.navigationBar.isHidden = true
+            navigationController?.navigationBar.isHidden = false
+            navigationItem.title = "WKWebView"
+            //            navigationController?.navigationBar.isHidden = true
         }
     }
     

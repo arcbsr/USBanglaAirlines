@@ -65,6 +65,8 @@ class FlightInfo: Mappable {
     var segmentRef = ""
     var itinerarysRef = ""
     var saleCurrencyAmount: SaleCurrencyAmount?
+    var originCode = ""
+    var destinationCode = ""
     var arrivalDate: String?
     var codeShareAgreementTypeCode: String?
     var departureDate: String?
