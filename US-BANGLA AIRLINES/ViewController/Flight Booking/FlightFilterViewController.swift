@@ -197,6 +197,12 @@ class FlightFilterViewController: UIViewController {
         returnCabinClassView.isHidden = true
         returnDateView.isHidden = true
         
+        if #available(iOS 14.0, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
+        
         if UIDevice.current.userInterfaceIdiom == .pad{
             shiftX = -850
             if UIWindow.isLandscape{
