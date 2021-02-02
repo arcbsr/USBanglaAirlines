@@ -331,7 +331,10 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
             }
             
         }else{
-            
+            if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
+//                vc.searchData = self.searchData
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     

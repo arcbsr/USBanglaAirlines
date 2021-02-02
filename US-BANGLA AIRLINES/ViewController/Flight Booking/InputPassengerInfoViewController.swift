@@ -9,8 +9,9 @@
 import UIKit
 
 
-
 class InputPassengerInfoViewController: UIViewController {
+    @IBOutlet weak var makePaymentButton: UIButton!
+    @IBOutlet weak var holdBookingButton: UIButton!
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.dataSource = self
@@ -92,6 +93,16 @@ class InputPassengerInfoViewController: UIViewController {
         sideBarSetup(willChangeState: true)
     }
     
+    @IBAction func makePaymentTapped(_ sender: Any) {
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+            vc.currentOption = .payment
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @IBAction func holdBookingTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
     
     func skyStarTapped(){
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
@@ -282,7 +293,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
         if tableView == sideBarTableView{
             return sideMenutitleArray.count
         }else{
-            return 10
+            return 2
         }
     }
     

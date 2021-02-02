@@ -194,6 +194,9 @@ class FlightFilterViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = true
         
+        returnCabinClassView.isHidden = true
+        returnDateView.isHidden = true
+        
         if UIDevice.current.userInterfaceIdiom == .pad{
             shiftX = -850
             if UIWindow.isLandscape{
@@ -236,11 +239,15 @@ class FlightFilterViewController: UIViewController {
     @objc func returnOptionTapped(){
         oneWayCheckbox.checkState = .unchecked
         returnCheckbox.setCheckState(.checked, animated: true)
+        returnCabinClassView.isHidden = false
+        returnDateView.isHidden = false
     }
     
     @objc func oneWayOptionTapped(){
         returnCheckbox.checkState = .unchecked
         oneWayCheckbox.setCheckState(.checked, animated: true)
+        returnCabinClassView.isHidden = true
+        returnDateView.isHidden = true
     }
     
     @objc func fromCityTapped(){

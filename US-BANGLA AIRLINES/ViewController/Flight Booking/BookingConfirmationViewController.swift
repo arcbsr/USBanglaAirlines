@@ -11,6 +11,16 @@ import UIKit
 
 
 class BookingConfirmationViewController: UIViewController {
+    @IBOutlet weak var customTitleLabel: UILabel!{
+        didSet{
+            customTitleLabel.text = "FLIGHT SUMMARY"
+        }
+    }
+    @IBOutlet weak var fareAndBaggaeRulesView: UIView!{
+        didSet{
+            fareAndBaggaeRulesView.isHidden = true
+        }
+    }
     @IBOutlet weak var pnrLabel: UILabel!
     @IBOutlet weak var flightIdLabel: UILabel!
     @IBOutlet weak var flightNameLabel: UILabel!
@@ -31,7 +41,11 @@ class BookingConfirmationViewController: UIViewController {
     @IBOutlet weak var totalFareLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var amountPayableLabel: UILabel!
-    @IBOutlet weak var proceedButton: UIButton!
+    @IBOutlet weak var proceedButton: UIButton!{
+        didSet{
+            proceedButton.setTitle("PROCEED", for: .normal)
+        }
+    }
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
             notificationImageView.isUserInteractionEnabled = true
@@ -101,7 +115,11 @@ class BookingConfirmationViewController: UIViewController {
     }
     
     @IBAction func makePaymentButtonTapped(_ sender: UIButton) {
-        
+        // PROCEED tapped
+        if let vc = UIStoryboard(name: "PassengerInfo", bundle: nil).instantiateViewController(withIdentifier: "InputPassengerInfoViewController") as? InputPassengerInfoViewController{
+//                vc.searchData = self.searchData
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func skyStarTapped(){

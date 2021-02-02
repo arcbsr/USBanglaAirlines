@@ -19,7 +19,7 @@ class CustomWebViewController: UIViewController {
     }
     
     enum GivenOption {
-        case bookingFlight, skyStar, hotline, manageBooking, holiday, flightSchedule, webCheckIn
+        case payment, bookingFlight, skyStar, hotline, manageBooking, holiday, flightSchedule, webCheckIn
     }
     var currentOption: GivenOption = .skyStar
     
@@ -40,6 +40,8 @@ class CustomWebViewController: UIViewController {
         
         var urlString = ""
         switch currentOption {
+        case .payment:
+            print("payment")
         case .skyStar:
             urlString = skyStarUrl
         case .holiday:
@@ -56,8 +58,8 @@ class CustomWebViewController: UIViewController {
             break
         }
         
-        //                if let url = URL(string: urlString){
-        if let url = URL(string: "https://priyoclass.com"){
+        if let url = URL(string: urlString){
+            //        if let url = URL(string: "https://priyoclass.com"){
             let urlRequest = URLRequest(url: url)
             webView.load(urlRequest)
             SVProgressHUD.show()
@@ -72,7 +74,13 @@ class CustomWebViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.isHidden = false
+        
+        if currentOption == .payment{
+            navigationController?.navigationBar.isHidden = false
+            navigationItem.title = "Payment"
+        }else{
+            navigationController?.navigationBar.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

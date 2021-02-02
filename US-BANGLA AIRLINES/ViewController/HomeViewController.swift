@@ -107,7 +107,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchAirports()
+//        fetchAirports()
     }
     
     @objc func flightBookingTapped(){
