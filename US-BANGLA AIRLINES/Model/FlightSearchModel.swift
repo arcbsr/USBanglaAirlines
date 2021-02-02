@@ -62,6 +62,9 @@ class Segment: Mappable {
 
 class FlightInfo: Mappable {
     
+    var segmentRef = ""
+    var itinerarysRef = ""
+    var saleCurrencyAmount: SaleCurrencyAmount?
     var arrivalDate: String?
     var codeShareAgreementTypeCode: String?
     var departureDate: String?
@@ -195,7 +198,7 @@ class FareInfo: Mappable {
 
 class Itinerary: Mappable {
     
-//    var airOriginDestinations: [AirOriginDestination]?
+    var airOriginDestinations: [AirOriginDestination]?
     var extensions: String?
     var ref: String?
     var saleCurrencyAmount: SaleCurrencyAmount?
@@ -206,7 +209,7 @@ class Itinerary: Mappable {
     }
     
     func mapping(map: Map) {
-//        airOriginDestinations <- map["AirOriginDestinations"]
+        airOriginDestinations <- map["AirOriginDestinations"]
         extensions <- map["Extensions"]
         ref <- map["Ref"]
         saleCurrencyAmount <- map["SaleCurrencyAmount"]

@@ -15,7 +15,7 @@ class OneWayFlightViewController: UIViewController {
         didSet{
             tableView.dataSource = self
             tableView.delegate = self
-//            tableView.separatorStyle = .none
+            //            tableView.separatorStyle = .none
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableView.automaticDimension
             let footerView = UIView()
@@ -62,6 +62,7 @@ class OneWayFlightViewController: UIViewController {
     var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
     var searchData: FlightSearchModel?
+    var flights = [FlightInfo]()
     
     
     override func viewDidLoad() {
@@ -284,7 +285,7 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
         if tableView == sideBarTableView{
             return sideMenutitleArray.count
         }else{
-            return 10
+            return flights.count
         }
     }
     
@@ -332,7 +333,7 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
             
         }else{
             if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
-//                vc.searchData = self.searchData
+                //                vc.searchData = self.searchData
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
