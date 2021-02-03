@@ -235,14 +235,14 @@ class InputPassengerInfoViewController: UIViewController {
         sideBarView.addSubview(topView)
         //        topView.backgroundColor = .white
         
-        // profile image
-        let imageWidth: CGFloat = 60
-        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
-        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
-        logoImgView?.clipsToBounds = true
-        logoImgView?.image=UIImage.init(named: "user (1).png")
-        //        logoImgView?.backgroundColor = .red
-        logoImgView?.contentMode = .scaleAspectFill
+        // upper image
+        logoImgView = UIImageView(frame: CGRect(x: 20*logicalWidth, y: 30, width:250, height: 200))
+//        let imageWidth: CGFloat = 60
+//        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
+//        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
+//        logoImgView?.clipsToBounds = true
+        logoImgView?.image = UIImage(named: "bs_logo_wrgb")
+        logoImgView?.contentMode = .scaleAspectFit
         topView.addSubview(logoImgView!)
         
         
@@ -269,6 +269,11 @@ class InputPassengerInfoViewController: UIViewController {
         sideBarTableView.frame = CGRect(x: 0,y: topView.frame.origin.y+topView.frame.size.height+16, width: (sideBarView.frame.width), height: (sideBarView.frame.height)-(topView.frame.origin.y+topView.frame.size.height)+16)
         sideBarView.addSubview(sideBarTableView)
         sideBarTableView.separatorStyle = .singleLine
+        sideBarTableView.separatorColor = .white
+        let footerView = UIView()
+        footerView.frame.size.height = 16
+        footerView.backgroundColor = .clear
+        sideBarTableView.tableFooterView = footerView
         sideBarTableView.dataSource = self
         sideBarTableView.delegate = self
         sideBarTableView.showsVerticalScrollIndicator = false

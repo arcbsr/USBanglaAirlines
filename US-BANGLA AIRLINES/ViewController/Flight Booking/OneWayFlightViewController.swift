@@ -87,8 +87,8 @@ class OneWayFlightViewController: UIViewController {
         }
         sideBarSetup()
         
-        dateLabel.text = departureDate
-        fromToCityLabel.text = "\(fromCity) - \(toCity)"
+//        dateLabel.text = departureDate
+//        fromToCityLabel.text = "\(fromCity) - \(toCity)"
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -237,14 +237,14 @@ class OneWayFlightViewController: UIViewController {
         sideBarView.addSubview(topView)
         //        topView.backgroundColor = .white
         
-        // profile image
-        let imageWidth: CGFloat = 60
-        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
-        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
-        logoImgView?.clipsToBounds = true
-        logoImgView?.image=UIImage.init(named: "user (1).png")
-        //        logoImgView?.backgroundColor = .red
-        logoImgView?.contentMode = .scaleAspectFill
+        // upper image
+        logoImgView = UIImageView(frame: CGRect(x: 20*logicalWidth, y: 30, width:250, height: 200))
+//        let imageWidth: CGFloat = 60
+//        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
+//        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
+//        logoImgView?.clipsToBounds = true
+        logoImgView?.image = UIImage(named: "bs_logo_wrgb")
+        logoImgView?.contentMode = .scaleAspectFit
         topView.addSubview(logoImgView!)
         
         
@@ -271,6 +271,11 @@ class OneWayFlightViewController: UIViewController {
         sideBarTableView.frame = CGRect(x: 0,y: topView.frame.origin.y+topView.frame.size.height+16, width: (sideBarView.frame.width), height: (sideBarView.frame.height)-(topView.frame.origin.y+topView.frame.size.height)+16)
         sideBarView.addSubview(sideBarTableView)
         sideBarTableView.separatorStyle = .singleLine
+        sideBarTableView.separatorColor = .white
+        let footerView = UIView()
+        footerView.frame.size.height = 16
+        footerView.backgroundColor = .clear
+        sideBarTableView.tableFooterView = footerView
         sideBarTableView.dataSource = self
         sideBarTableView.delegate = self
         sideBarTableView.showsVerticalScrollIndicator = false
@@ -295,8 +300,8 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
         if tableView == sideBarTableView{
             return sideMenutitleArray.count
         }else{
-            return flights.count
-//            return 5
+//            return flights.count
+            return 5
         }
     }
     
@@ -315,35 +320,38 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
             
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OneWayFlightCell.self)) as! OneWayFlightCell
-            cell.durationLabel.text = "\(flights[indexPath.row].durationMinutes ?? 0) MIN"
-            cell.rankingLabel.text = "\(indexPath.row + 1)"
-            cell.priceLabel.text = " \(selectedCurrency) \(flights[indexPath.row].saleCurrencyAmount?.totalAmount ?? 0) "
-            cell.fromLocationLabel.text = flights[indexPath.row].originCode
-            cell.toLocationLabel.text = flights[indexPath.row].destinationCode
-            cell.flightDetailsLabel.text = "FLIGHT: \(flights[indexPath.row].operatingAirlineDesignator ?? "") \(flights[indexPath.row].operatingFlightNumber ?? "")\n\(flights[indexPath.row].equipmentText ?? "")"
-            
-            var startDate = flights[indexPath.row].departureDate ?? ""
-            startDate = startDate.replacingOccurrences(of: "/Date(", with: "")
-            startDate = startDate.replacingOccurrences(of: ")/", with: "")
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            if let date = dateFormatter.date(from: startDate) {
-//                dateFormatter.dateStyle = .medium
-//                dateFormatter.timeStyle = .medium
-//                let str = dateFormatter.string(from: date)
-                cell.fromTimeLabel.text = "\(date.hour):\(date.minute)"
-            }
-            
-            var endDate = flights[indexPath.row].arrivalDate ?? ""
-            endDate = endDate.replacingOccurrences(of: "/Date(", with: "")
-            endDate = endDate.replacingOccurrences(of: ")/", with: "")
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            if let date = dateFormatter.date(from: endDate) {
-//                dateFormatter.dateStyle = .medium
-//                dateFormatter.timeStyle = .medium
-//                let str = dateFormatter.string(from: date)
-                cell.toTimeLabel.text = "\(date.hour):\(date.minute)"
-            }
+//            cell.durationLabel.text = "\(flights[indexPath.row].durationMinutes ?? 0) MIN"
+//            cell.rankingLabel.text = "\(indexPath.row + 1)"
+//            cell.priceLabel.text = " \(selectedCurrency) \(flights[indexPath.row].saleCurrencyAmount?.totalAmount ?? 0) "
+//            cell.fromLocationLabel.text = flights[indexPath.row].originCode
+//            cell.toLocationLabel.text = flights[indexPath.row].destinationCode
+//            cell.flightDetailsLabel.text = "FLIGHT: \(flights[indexPath.row].operatingAirlineDesignator ?? "") \(flights[indexPath.row].operatingFlightNumber ?? "")\n\(flights[indexPath.row].equipmentText ?? "")"
+//
+//            var startDate = flights[indexPath.row].departureDate ?? ""
+//            startDate = startDate.replacingOccurrences(of: "/Date(", with: "")
+//            startDate = startDate.replacingOccurrences(of: ")/", with: "")
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+//            if let date = dateFormatter.date(from: startDate) {
+////                dateFormatter.dateStyle = .medium
+////                dateFormatter.timeStyle = .medium
+////                let str = dateFormatter.string(from: date)
+//                cell.fromTimeLabel.text = "\(date.hour):\(date.minute)"
+//            }
+//
+//            var endDate = flights[indexPath.row].arrivalDate ?? ""
+//            endDate = endDate.replacingOccurrences(of: "/Date(", with: "")
+//            endDate = endDate.replacingOccurrences(of: ")/", with: "")
+//            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+//            if let date = dateFormatter.date(from: endDate) {
+////                dateFormatter.dateStyle = .medium
+////                dateFormatter.timeStyle = .medium
+////                let str = dateFormatter.string(from: date)
+//                cell.toTimeLabel.text = "\(date.hour):\(date.minute)"
+//            }
+//
+////            cell.fromTimeLabel.text = "\(startDate)"
+////            cell.toTimeLabel.text = "\(endDate)"
             
             return cell
         }

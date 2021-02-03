@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "warning.png",
+      "filename" : "ic_luggage.png",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "template"
   }
 }

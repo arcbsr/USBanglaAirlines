@@ -57,8 +57,8 @@ class CustomWebViewController: UIViewController {
             break
         }
         
-        if let url = URL(string: urlString){
-            //        if let url = URL(string: "https://priyoclass.com"){
+//        if let url = URL(string: urlString){
+                    if let url = URL(string: "https://usbair.com/get_help/contact_us"){
             let urlRequest = URLRequest(url: url)
             webView.load(urlRequest)
             SVProgressHUD.show()
@@ -78,7 +78,7 @@ class CustomWebViewController: UIViewController {
             navigationItem.title = "Payment"
         }else{
             navigationController?.navigationBar.isHidden = false
-            navigationItem.title = "WKWebView"
+            navigationItem.title = "US-Bangla Airlines"
             //            navigationController?.navigationBar.isHidden = true
         }
     }
