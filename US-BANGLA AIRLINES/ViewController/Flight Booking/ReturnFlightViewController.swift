@@ -15,7 +15,7 @@ class ReturnFlightViewController: UIViewController {
         didSet{
             tableView.dataSource = self
             tableView.delegate = self
-//            tableView.separatorStyle = .none
+            //            tableView.separatorStyle = .none
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableView.automaticDimension
             let footerView = UIView()
@@ -66,7 +66,7 @@ class ReturnFlightViewController: UIViewController {
     var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
     var searchData: FlightSearchModel?
-    
+    var isExpand = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -232,10 +232,10 @@ class ReturnFlightViewController: UIViewController {
         
         // upper image
         logoImgView = UIImageView(frame: CGRect(x: 20*logicalWidth, y: 30, width:250, height: 200))
-//        let imageWidth: CGFloat = 60
-//        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
-//        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
-//        logoImgView?.clipsToBounds = true
+        //        let imageWidth: CGFloat = 60
+        //        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
+        //        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
+        //        logoImgView?.clipsToBounds = true
         logoImgView?.image = UIImage(named: "bs_logo_wrgb")
         logoImgView?.contentMode = .scaleAspectFit
         topView.addSubview(logoImgView!)
@@ -311,7 +311,21 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             return cell
             
         }else{
+            if isExpand{
+                // expanded cell
+                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReturnFlightExpandedCell.self)) as! ReturnFlightExpandedCell
+                cell.upArrowTapped = {
+                    // set false in ietme related to datasource row and reload current row
+                }
+                
+                return cell
+            }
+            
+            // not expanded cell
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReturnFlightCell.self)) as! ReturnFlightCell
+            cell.downArrowTapped = {
+                // set true in ietme related to datasource row and relaod current row
+            }
             
             return cell
         }

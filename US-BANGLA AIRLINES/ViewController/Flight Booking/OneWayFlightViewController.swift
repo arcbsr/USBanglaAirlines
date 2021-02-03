@@ -301,7 +301,7 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
             return sideMenutitleArray.count
         }else{
 //            return flights.count
-            return 5
+            return 8
         }
     }
     

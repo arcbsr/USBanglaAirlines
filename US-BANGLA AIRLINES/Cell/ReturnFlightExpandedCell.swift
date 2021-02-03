@@ -9,7 +9,7 @@
 import UIKit
 
 class ReturnFlightExpandedCell: UITableViewCell {
-    @IBOutlet weak var expandImageView: UIImageView!
+    @IBOutlet weak var upArrowButton: UIButton!
     @IBOutlet weak var forwardFlightDetailsLabel: UILabel!
     @IBOutlet weak var backwardFlightDetailsLabel: UILabel!
     @IBOutlet weak var rankingLabel: UILabel!
@@ -31,6 +31,8 @@ class ReturnFlightExpandedCell: UITableViewCell {
         }
     }
     
+    var upArrowTapped: (()->())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -42,4 +44,8 @@ class ReturnFlightExpandedCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func upArrowButtonTapped(_ sender: Any) {
+        upArrowTapped?()
+    }
+    
 }

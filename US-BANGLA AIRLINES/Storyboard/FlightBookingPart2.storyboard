@@ -457,7 +457,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVB-XQ-ByL">
                                                 <rect key="frame" x="207" y="489" width="207" height="36"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VcY-5o-TY3">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_luggage" translatesAutoresizingMaskIntoConstraints="NO" id="VcY-5o-TY3">
                                                         <rect key="frame" x="2" y="0.0" width="24" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="24" id="SOG-f9-v82"/>
@@ -1025,7 +1025,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSj-kt-wwd">
                                                 <rect key="frame" x="207" y="535.5" width="207" height="36"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bCV-fx-TRs">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_luggage" translatesAutoresizingMaskIntoConstraints="NO" id="bCV-fx-TRs">
                                                         <rect key="frame" x="2" y="0.0" width="24" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="24" id="zLH-g1-wnc"/>
@@ -1145,6 +1145,7 @@
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="bell" catalog="system" width="128" height="124"/>
+        <image name="ic_luggage" width="96" height="96"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
         <systemColor name="darkTextColor">

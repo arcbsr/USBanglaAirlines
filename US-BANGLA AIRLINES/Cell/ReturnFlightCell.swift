@@ -9,7 +9,7 @@
 import UIKit
 
 class ReturnFlightCell: UITableViewCell {
-    @IBOutlet weak var expandImageView: UIImageView!
+    @IBOutlet weak var downArrowButton: UIButton!
     @IBOutlet weak var rankingLabel: UILabel!
     @IBOutlet weak var forwardfromLocationLabel: UILabel!
     @IBOutlet weak var forwardfromTimeLabel: UILabel!
@@ -17,6 +17,9 @@ class ReturnFlightCell: UITableViewCell {
     @IBOutlet weak var forwardtoTimeLabel: UILabel!
 //    @IBOutlet weak var forwardDurationLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    
+    var downArrowTapped: (()->())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,4 +31,7 @@ class ReturnFlightCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func downArrowButtonTapped(_ sender: Any) {
+        downArrowTapped?()
+    }
 }
