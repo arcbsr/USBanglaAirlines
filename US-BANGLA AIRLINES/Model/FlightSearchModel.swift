@@ -35,13 +35,31 @@ class FlightSearchModel: Mappable {
 
 class Segment: Mappable {
     
+    var infoDictionary = [String: FlightInfo]()
     var airlineDesignator: String?
     var bookingClasses: [BookingClass]?
     var destinationCode: String?
     var extensions: String?
     var flightInfo: FlightInfo?
+    //    {
+    //        didSet{
+    //            print("ref = \(String(describing: ref))")
+    //            print("info.equipmentText = \(String(describing: flightInfo?.equipmentText))")
+    //            print("")
+    //        }
+    //    }
     var originCode: String?
-    var ref: String?
+    var ref: String?{
+        didSet{
+            if let key = ref, let val = flightInfo{
+                GlobalItems.segmentRefInfoDictinary[key] = val
+            }
+            //            print("ref = \(String(describing: ref))")
+            //            print("info.equipmentText = \(String(describing: flightInfo?.equipmentText))")
+            //            print("dictionary = \(GlobalItems.segmentRefInfoDictinary)")
+            //            print("")
+        }
+    }
     
     required convenience init?(map: Map) {
         self.init()
@@ -63,7 +81,7 @@ class Segment: Mappable {
 class FlightInfo: Mappable {
     
     var segmentRef = ""
-    var itinerarysRef = ""
+    var itineraryRef = ""
     var saleCurrencyAmount: SaleCurrencyAmount?
     var originCode = ""
     var destinationCode = ""
@@ -177,9 +195,9 @@ class Offer: Mappable {
 
 class FareInfo: Mappable {
     
-//    var eTTicketFares: [ETTicketFare]?
+    //    var eTTicketFares: [ETTicketFare]?
     var extensions: String?
-//    var fareRules: [FareRule]?
+    //    var fareRules: [FareRule]?
     var itineraries: [Itinerary]?
     var saleCurrencyCode: String?
     
@@ -188,9 +206,9 @@ class FareInfo: Mappable {
     }
     
     func mapping(map: Map) {
-//        eTTicketFares <- map["ETTicketFares"]
+        //        eTTicketFares <- map["ETTicketFares"]
         extensions <- map["Extensions"]
-//        fareRules <- map["FareRules"]
+        //        fareRules <- map["FareRules"]
         itineraries <- map["Itineraries"]
         saleCurrencyCode <- map["SaleCurrencyCode"]
     }
@@ -223,6 +241,14 @@ class Itinerary: Mappable {
 
 class SaleCurrencyAmount: Mappable {
     
+    var forwardSegmentRef = ""
+    var backwardSegmentRef = ""
+    var itineraryRef = ""
+    var forwardflightInfo: FlightInfo?
+    var backwardflightInfo: FlightInfo?
+//    var originCode = ""
+//    var destinationCode = ""
+    var isBusiness = false
     var baseAmount: Int?
     var discountAmount: Int?
     var extensions: String?
@@ -269,7 +295,22 @@ class AirOriginDestination: Mappable {
 
 class AirCoupon: Mappable {
     
-    var bookingClassCode: String?
+    var isBusiness = false
+    var businessType = "" // ECONOMY/BUSINESS
+    var bookingClassCode: String?{
+        didSet{
+            if let code = bookingClassCode{
+                if GlobalItems.businessClassCodes.contains(code){
+                    isBusiness = true
+                    businessType = "BUSINESS"
+                    print("\(isBusiness)")
+                    print("")
+                }else{
+                    businessType = "ECONOMY"
+                }
+            }
+        }
+    }
     var couponOrder: Int?
     var extensions: String?
     var refSegment: String?

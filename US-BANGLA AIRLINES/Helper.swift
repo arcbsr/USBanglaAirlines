@@ -16,6 +16,11 @@ struct CustomColor{
     static let primaryColor = UIColor(red: 81/255, green: 76/255, blue: 152/255, alpha: 1.0)
 }
 
+struct GlobalItems{
+    static var segmentRefInfoDictinary = [String: FlightInfo]()
+    static var businessClassCodes = [String()] //["C", "D", "J", ...]
+}
+
 struct Platform {
     
     static var isSimulator: Bool {

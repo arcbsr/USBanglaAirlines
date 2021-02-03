@@ -172,7 +172,6 @@ class FlightFilterViewController: UIViewController {
     
     var passengers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var cabinClasses = ["ECOMOMY", "BUSINESS"]
-    var businessClassCodes = [String()] //["C", "D", "J", ...]
     var ecomomyClassCodes = [String()]
     var fromCities = [String]()
     var toCities = [String]()
@@ -187,10 +186,13 @@ class FlightFilterViewController: UIViewController {
     let datePicker = UIDatePicker()
     var departureDate = ""
     var returnDate = ""
+    var returnFlights = [SaleCurrencyAmount]()
     var businessFlights = [FlightInfo]()
     var economyFlights = [FlightInfo]()
-    var economyDictionary = [String: FlightInfo]()
-    var businessDictionary = [String: FlightInfo]()
+    var economyDictionary = [String: FlightInfo]() // one way
+    var businessDictionary = [String: FlightInfo]() // one way
+    var returnEconomyDictionary = [String: SaleCurrencyAmount]() // return
+    var returnBusinessDictionary = [String: SaleCurrencyAmount]() // return
     var selectedCurrency = "USD"
     
     override func viewDidLoad() {
@@ -378,15 +380,15 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func searchFlightTapped(){
-//        if oneWayCheckbox.checkState == .checked{
-//            searchOneWayFlight()
-//        }else{
-//            searchReturnFlight()
-//        }
+        if oneWayCheckbox.checkState == .checked{
+            searchOneWayFlight()
+        }else{
+            searchReturnFlight()
+        }
         
-                if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "OneWayFlightViewController") as? OneWayFlightViewController{
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+        //                if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "OneWayFlightViewController") as? OneWayFlightViewController{
+        //                    self.navigationController?.pushViewController(vc, animated: true)
+        //                }
     }
     
     @objc func notificationTapped(){
@@ -522,10 +524,10 @@ class FlightFilterViewController: UIViewController {
         
         // upper image
         logoImgView = UIImageView(frame: CGRect(x: 20*logicalWidth, y: 30, width:250, height: 200))
-//        let imageWidth: CGFloat = 60
-//        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
-//        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
-//        logoImgView?.clipsToBounds = true
+        //        let imageWidth: CGFloat = 60
+        //        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
+        //        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
+        //        logoImgView?.clipsToBounds = true
         logoImgView?.image = UIImage(named: "bs_logo_wrgb")
         logoImgView?.contentMode = .scaleAspectFit
         topView.addSubview(logoImgView!)
@@ -762,11 +764,11 @@ extension FlightFilterViewController{
                 guard let codes = self.bookingClassModel?.codes else{
                     return
                 }
-                self.businessClassCodes.removeAll()
+                GlobalItems.businessClassCodes.removeAll()
                 self.ecomomyClassCodes.removeAll()
                 for code in codes{
                     if (code.label?.contains("Business") ?? false){
-                        self.businessClassCodes.append(code.code ?? "")
+                        GlobalItems.businessClassCodes.append(code.code ?? "")
                     }else{
                         self.ecomomyClassCodes.append(code.code ?? "")
                     }
@@ -916,6 +918,8 @@ extension FlightFilterViewController{
         }
         
         print("url: \(url) params \(params)")
+        //MARK: Reset
+        GlobalItems.segmentRefInfoDictinary.removeAll()
         
         SVProgressHUD.show()
         
@@ -925,6 +929,9 @@ extension FlightFilterViewController{
             //                SVProgressHUD.dismiss()
             //            }
             guard let statusCode = response.response?.statusCode else{
+                if SVProgressHUD.isVisible(){
+                    SVProgressHUD.dismiss()
+                }
                 return
             }
             print("statusCode = \(statusCode)")
@@ -947,72 +954,44 @@ extension FlightFilterViewController{
                         for itinerary in itineraries{
                             let ref = itinerary.airOriginDestinations?.first?.airCoupons?.first?.refSegment ?? ""
                             if segment.ref == ref{
-                                guard let info = segment.flightInfo else {
-                                    return
-                                }
-                                info.saleCurrencyAmount = itinerary.saleCurrencyAmount
-                                info.segmentRef = ref
-                                info.itinerarysRef = itinerary.ref ?? ""
-                                info.originCode = segment.originCode ?? ""
-                                info.destinationCode = segment.destinationCode ?? ""
-                                let bookingClassCode = itinerary.airOriginDestinations?.first?.airCoupons?.first?.bookingClassCode ?? ""
-                                
-                                if type == "BUSINESS"{
-                                    if self.businessClassCodes.contains(bookingClassCode){
-                                        //                                        self.businessFlights.append(info)
-                                        if  self.businessDictionary.keys.contains(ref){
-                                            let val = self.businessDictionary[ref]
-                                            if ((info.saleCurrencyAmount?.totalAmount ?? 0) < (val?.saleCurrencyAmount?.totalAmount ?? 0)){
+                                if let info = segment.flightInfo{
+                                    info.saleCurrencyAmount = itinerary.saleCurrencyAmount
+                                    info.segmentRef = ref
+                                    info.itineraryRef = itinerary.ref ?? ""
+                                    info.originCode = segment.originCode ?? ""
+                                    info.destinationCode = segment.destinationCode ?? ""
+                                    let isBusiness = itinerary.airOriginDestinations?.first?.airCoupons?.first?.isBusiness ?? false
+                                    
+                                    if type == "BUSINESS"{
+                                        if isBusiness{
+                                            //                                        self.businessFlights.append(info)
+                                            if  self.businessDictionary.keys.contains(ref){
+                                                let val = self.businessDictionary[ref]
+                                                if ((info.saleCurrencyAmount?.totalAmount ?? 0) < (val?.saleCurrencyAmount?.totalAmount ?? 0)){
+                                                    self.businessDictionary[ref] = info
+                                                }else{
+                                                    print("greater, no need to add")
+                                                }
+                                            }else{
                                                 self.businessDictionary[ref] = info
-                                            }else{
-                                                print("greater, no need to add")
                                             }
-                                        }else{
-                                            self.businessDictionary[ref] = info
-                                        }
-                                    }
-                                }else{
-                                    if self.businessClassCodes.contains(bookingClassCode) == false{
-                                        //                                        self.economyFlights.append(info)
-                                        if  self.economyDictionary.keys.contains(ref){
-                                            let val = self.economyDictionary[ref]
-                                            if ((info.saleCurrencyAmount?.totalAmount ?? 0) < (val?.saleCurrencyAmount?.totalAmount ?? 0)){
+                                        }// no else. no need to add economy, only business
+                                    }else{
+                                        if isBusiness == false{
+                                            //                                        self.economyFlights.append(info)
+                                            if  self.economyDictionary.keys.contains(ref){
+                                                let val = self.economyDictionary[ref]
+                                                if ((info.saleCurrencyAmount?.totalAmount ?? 0) < (val?.saleCurrencyAmount?.totalAmount ?? 0)){
+                                                    self.economyDictionary[ref] = info
+                                                }else{
+                                                    print("greater, no need to add")
+                                                }
+                                            }else{
                                                 self.economyDictionary[ref] = info
-                                            }else{
-                                                print("greater, no need to add")
                                             }
-                                        }else{
-                                            self.economyDictionary[ref] = info
-                                        }
+                                        }// no else. no need to add business, only economy
                                     }
                                 }
-                                
-                                //                                if self.businessClassCodes.contains(bookingClassCode){
-                                //                                    //                                        self.businessFlights.append(info)
-                                //                                    if  self.businessDictionary.keys.contains(ref){
-                                //                                        let val = self.businessDictionary[ref]
-                                //                                        if ((info.saleCurrencyAmount?.totalAmount ?? 0) < (val?.saleCurrencyAmount?.totalAmount ?? 0)){
-                                //                                            self.businessDictionary[ref] = info
-                                //                                        }else{
-                                //                                            print("greater, no need to add")
-                                //                                        }
-                                //                                    }else{
-                                //                                        self.businessDictionary[ref] = info
-                                //                                    }
-                                //                                }else{
-                                //                                    //                                        self.economyFlights.append(info)
-                                //                                    if  self.economyDictionary.keys.contains(ref){
-                                //                                        let val = self.economyDictionary[ref]
-                                //                                        if ((info.saleCurrencyAmount?.totalAmount ?? 0) < (val?.saleCurrencyAmount?.totalAmount ?? 0)){
-                                //                                            self.economyDictionary[ref] = info
-                                //                                        }else{
-                                //                                            print("greater, no need to add")
-                                //                                        }
-                                //                                    }else{
-                                //                                        self.economyDictionary[ref] = info
-                                //                                    }
-                                //                                }
-                                
                             }
                         }
                     }
@@ -1148,15 +1127,20 @@ extension FlightFilterViewController{
         }
         
         print("url: \(url) params \(params)")
+        //MARK: Reset
+        GlobalItems.segmentRefInfoDictinary.removeAll()
         
         SVProgressHUD.show()
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
             print("=== response = \(response)")
-            if SVProgressHUD.isVisible(){
-                SVProgressHUD.dismiss()
-            }
+            //            if SVProgressHUD.isVisible(){
+            //                SVProgressHUD.dismiss()
+            //            }
             guard let statusCode = response.response?.statusCode else{
+                if SVProgressHUD.isVisible(){
+                    SVProgressHUD.dismiss()
+                }
                 return
             }
             print("statusCode = \(statusCode)")
@@ -1164,14 +1148,79 @@ extension FlightFilterViewController{
             case .success:
                 self.searchData = response.result.value
                 if self.searchData != nil{
+                    self.returnFlights = [SaleCurrencyAmount]()
+                    //                    self.economyDictionary = [String: FlightInfo]()
+                    //                    self.businessDictionary = [String: FlightInfo]()
+                    let forwardType = self.departureCabinClassLabel.text ?? ""
+                    let backwardType = self.returnCabinClassLabel.text ?? ""
+                    
+                    
+                    //processing
+                    guard /*let segments = self.searchData?.segments, */let itineraries = self.searchData?.fareInfo?.itineraries else {
+                        return
+                    }
+                    
+                    for itinerary in itineraries{
+                        let forwardSegRef = itinerary.airOriginDestinations?.first?.airCoupons?.first?.refSegment ?? ""
+                        let backwardSegRef = itinerary.airOriginDestinations?.first?.airCoupons?.last?.refSegment ?? ""
+                        
+                        if let forwardFlightInfo = GlobalItems.segmentRefInfoDictinary[forwardSegRef], let backwardFlightInfo = GlobalItems.segmentRefInfoDictinary[backwardSegRef], let saleCurrencyAmount = itinerary.saleCurrencyAmount {
+                            
+                            saleCurrencyAmount.forwardflightInfo = forwardFlightInfo
+                            saleCurrencyAmount.backwardflightInfo = backwardFlightInfo
+                            saleCurrencyAmount.forwardSegmentRef = forwardSegRef
+                            saleCurrencyAmount.backwardSegmentRef = backwardSegRef
+                            saleCurrencyAmount.itineraryRef = itinerary.ref ?? ""
+                            
+                            let forwardIsBusiness = itinerary.airOriginDestinations?.first?.airCoupons?.first?.isBusiness ?? false
+                            let backwardIsBusiness = itinerary.airOriginDestinations?.first?.airCoupons?.last?.isBusiness ?? false
+                            
+                            if forwardType == "BUSINESS" && backwardType == "BUSINESS"{
+                                if forwardIsBusiness && backwardIsBusiness{
+                                    self.returnFlights.append(saleCurrencyAmount)
+                                }
+                            }else if forwardType == "BUSINESS" && backwardType == "ECOMOMY"{
+                                if forwardIsBusiness && backwardIsBusiness == false{
+                                    self.returnFlights.append(saleCurrencyAmount)
+                                }
+                            }else if forwardType == "ECOMOMY" && backwardType == "BUSINESS"{
+                                if forwardIsBusiness == false && backwardIsBusiness{
+                                    self.returnFlights.append(saleCurrencyAmount)
+                                }
+                            }else if forwardType == "ECOMOMY" && backwardType == "ECOMOMY"{
+                                if forwardIsBusiness == false && backwardIsBusiness == false{
+                                    self.returnFlights.append(saleCurrencyAmount)
+                                }
+                            }
+                        }
+                        
+                    }
+                    
+                    if SVProgressHUD.isVisible(){
+                        SVProgressHUD.dismiss()
+                    }
+                    
                     if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
-                        vc.searchData = self.searchData
+                        vc.returnFlights = self.returnFlights
+//                        vc.forwardCityCode =
+//                            vc.backwardCityCode =
+                        //                        vc.selectedCurrency = self.selectedCurrency
+                        //                        vc.fromCity = self.fromCityLabel.text ?? ""
+                        //                        vc.toCity = self.toCityLabel.text ?? ""
+                        //                        vc.departureDate = self.departureDateTextField.text ?? ""
+                        //                        vc.returnDate = self.returnDateTextField.text ?? ""
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }else{
+                    if SVProgressHUD.isVisible(){
+                        SVProgressHUD.dismiss()
+                    }
                     self.showAlert(title: "No data found", message: nil, callback: nil)
                 }
             case .failure(let error):
+                if SVProgressHUD.isVisible(){
+                    SVProgressHUD.dismiss()
+                }
                 self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
                 print("error = \(error)")
             }

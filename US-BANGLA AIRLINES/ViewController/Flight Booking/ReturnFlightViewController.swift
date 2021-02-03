@@ -67,6 +67,14 @@ class ReturnFlightViewController: UIViewController {
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
     var searchData: FlightSearchModel?
     var isExpand = false
+    var forwardCityCode = ""
+    var backwardCityCode = ""
+    var returnFlights = [SaleCurrencyAmount]()
+    var selectedCurrency = ""
+    var fromCity = ""
+    var toCity = ""
+    var departureDate = ""
+    var returnDate = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
