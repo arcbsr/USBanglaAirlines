@@ -244,7 +244,12 @@ class FlightFilterViewController: UIViewController {
         box.checkState = .unchecked
         box.stateChangeAnimation = .expand(.fill)
         box.boxType = .circle
-        box.tintColor = .darkGray
+        if #available(iOS 13.0, *) {
+            box.tintColor = .systemIndigo
+        } else {
+            // Fallback on earlier versions
+            box.tintColor = .systemBlue
+        }
         box.backgroundColor = .clear
     }
     
@@ -1202,8 +1207,8 @@ extension FlightFilterViewController{
                     
                     if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
                         vc.returnFlights = self.returnFlights
-//                        vc.forwardCityCode =
-//                            vc.backwardCityCode =
+                        //                        vc.forwardCityCode =
+                        //                            vc.backwardCityCode =
                         //                        vc.selectedCurrency = self.selectedCurrency
                         //                        vc.fromCity = self.fromCityLabel.text ?? ""
                         //                        vc.toCity = self.toCityLabel.text ?? ""
