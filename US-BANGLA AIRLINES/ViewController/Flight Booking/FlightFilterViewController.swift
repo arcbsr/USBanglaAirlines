@@ -196,7 +196,7 @@ class FlightFilterViewController: UIViewController {
     var selectedCurrency = "USD"
     var offerPlaceOriginCode = ""
     var offerPlaceDestinationCode = ""
-    
+    var fromOffer = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -254,6 +254,25 @@ class FlightFilterViewController: UIViewController {
             box.tintColor = .systemBlue
         }
         box.backgroundColor = .clear
+    }
+    
+    func laodOffer(){
+        if fromOffer{
+            fromCityLabel.text = aiportDictionary[offerPlaceOriginCode]
+            toCityLabel.text = aiportDictionary[offerPlaceDestinationCode]
+            returnOptionTapped()
+            let forwardDate = Date().tomorrow
+            let backwardDate = forwardDate.tomorrow
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            departureDate = formatter.string(from: forwardDate)
+            returnDate = formatter.string(from: backwardDate)
+            formatter.dateFormat = "EEE, dd MMM, YYYY"
+            self.departureDateTextField.text = ""
+            self.departureDateTextField.text = formatter.string(from: forwardDate)
+            self.returnDateTextField.text = ""
+            self.returnDateTextField.text = formatter.string(from: backwardDate)
+        }
     }
     
     @objc func returnOptionTapped(){
@@ -678,6 +697,7 @@ extension FlightFilterViewController{
                     }
                 }
                 self.toCities = self.fromCities // initial case
+                self.laodOffer()
             case .failure(let error):
                 print("error = \(error)")
             }
@@ -1161,7 +1181,6 @@ extension FlightFilterViewController{
                     //                    self.businessDictionary = [String: FlightInfo]()
                     let forwardType = self.departureCabinClassLabel.text ?? ""
                     let backwardType = self.returnCabinClassLabel.text ?? ""
-                    
                     
                     //processing
                     guard /*let segments = self.searchData?.segments, */let itineraries = self.searchData?.fareInfo?.itineraries else {

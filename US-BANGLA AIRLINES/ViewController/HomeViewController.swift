@@ -127,7 +127,7 @@ class HomeViewController: UIViewController {
         offerCollectionView.showsHorizontalScrollIndicator = false
         offerCollectionView.showsVerticalScrollIndicator = false
         offerCollectionView.isScrollEnabled = true
-        offerCollectionView.isPagingEnabled = true
+        offerCollectionView.isPagingEnabled = false
     }
     
     @objc func flightBookingTapped(){
@@ -368,6 +368,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.offerImageView.image = placeholderImage
         }
         
+        
         cell.crossTapped = {
             self.offerCollectionView.isHidden = true
         }
@@ -395,6 +396,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "FlightFilterViewController") as? FlightFilterViewController{
             vc.offerPlaceOriginCode = offerplaces[indexPath.row].originCode ?? ""
             vc.offerPlaceDestinationCode = offerplaces[indexPath.row].destinationCode ?? ""
+            vc.fromOffer = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -441,9 +443,13 @@ extension HomeViewController{
             return
         }
         
-        print("send user Activity url:\(url)")
+        print("offer url:\(url)")
+        SVProgressHUD.show()
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<OfferPlaceModel>) in
+            if SVProgressHUD.isVisible(){
+                SVProgressHUD.dismiss()
+            }
             print("=== response = \(response)")
             guard let statusCode = response.response?.statusCode else{
                 return
