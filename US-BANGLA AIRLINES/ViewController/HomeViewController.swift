@@ -10,9 +10,15 @@ import UIKit
 import Alamofire
 import SVProgressHUD
 import AlamofireObjectMapper
-
+import Kingfisher
 
 class HomeViewController: UIViewController {
+    @IBOutlet weak var offerCollectionView: UICollectionView!{
+        didSet{
+            offerCollectionView.dataSource = self
+            offerCollectionView.delegate = self
+        }
+    }
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
             notificationImageView.isUserInteractionEnabled = true
@@ -72,6 +78,7 @@ class HomeViewController: UIViewController {
     var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
     
+    var offerplaces = [Offerplace]()
     
     
     override func viewDidLoad() {
@@ -87,6 +94,7 @@ class HomeViewController: UIViewController {
                 shiftX = -850
             }
         }
+        setUpCollectionView()
         sideBarSetup()
     }
     
@@ -107,11 +115,22 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        fetchAirports()
+        fetchOfferPlaces()
+    }
+    
+    func setUpCollectionView(){
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
+        offerCollectionView.collectionViewLayout = layout
+        layout.scrollDirection = .horizontal
+        offerCollectionView.showsHorizontalScrollIndicator = false
+        offerCollectionView.showsVerticalScrollIndicator = false
+        offerCollectionView.isScrollEnabled = true
+        offerCollectionView.isPagingEnabled = true
     }
     
     @objc func flightBookingTapped(){
-        print("flightBookingTapped")
         if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "FlightFilterViewController") as? FlightFilterViewController{
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -242,10 +261,10 @@ class HomeViewController: UIViewController {
         
         // upper image
         logoImgView = UIImageView(frame: CGRect(x: 20*logicalWidth, y: 30, width:250, height: 200))
-//        let imageWidth: CGFloat = 60
-//        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
-//        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
-//        logoImgView?.clipsToBounds = true
+        //        let imageWidth: CGFloat = 60
+        //        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
+        //        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
+        //        logoImgView?.clipsToBounds = true
         logoImgView?.image = UIImage(named: "bs_logo_wrgb")
         logoImgView?.contentMode = .scaleAspectFit
         topView.addSubview(logoImgView!)
@@ -334,37 +353,97 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return offerplaces.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OfferPlaceCollectionViewCell", for: indexPath) as! OfferPlaceCollectionViewCell
+        
+        let placeholderImage = UIImage(named: "placeholder")
+        if let urlStr = offerplaces[indexPath.row].image{
+            cell.offerImageView.kf.setImage(with: URL(string: urlStr), placeholder: placeholderImage)
+        }else{
+            cell.offerImageView.image = placeholderImage
+        }
+        
+        cell.crossTapped = {
+            self.offerCollectionView.isHidden = true
+        }
+        
+        cell.leftTapped = {
+            if indexPath.row == 0{
+                return
+            }
+            let prevRow = indexPath.row - 1
+            collectionView.scrollToItem(at: IndexPath(row: prevRow, section: 0), at: .centeredHorizontally, animated: true)
+        }
+        
+        cell.rightTapped = {
+            if indexPath.row == self.offerplaces.count - 1{
+                return
+            }
+            let nextRow = indexPath.row + 1
+            collectionView.scrollToItem(at: IndexPath(row: nextRow, section: 0), at: .centeredHorizontally, animated: true)
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "FlightFilterViewController") as? FlightFilterViewController{
+            vc.offerPlaceOriginCode = offerplaces[indexPath.row].originCode ?? ""
+            vc.offerPlaceDestinationCode = offerplaces[indexPath.row].destinationCode ?? ""
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width: CGFloat = collectionView.bounds.width
+        let height: CGFloat = collectionView.bounds.height
+        
+        return CGSize(width: width  , height: height)
+    }
+    
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    //       return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    //    }
+    
+}
+
 
 // MARK: API CALL
 extension HomeViewController{
-    func fetchAirports() {
+    
+    func fetchOfferPlaces() {
         
         //            let headers: HTTPHeaders = [
         //                "Authorization": "token \(UserInfo.token)"
         //            ]
         
+        //        let requestInfo: Parameters = [
+        //            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+        //            "CultureName": "en-GB"
+        //        ]
+        //
+        //        let request: Parameters = [
+        //            "RequestInfo": requestInfo,
+        //            "ValueCodeName": "Airport"
+        //        ]
+        //
+        //        let params: Parameters = [
+        //            "request": request
+        //        ]
         
-        let requestInfo: Parameters = [
-            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
-            "CultureName": "en-GB"
-        ]
-        
-        let request: Parameters = [
-            "RequestInfo": requestInfo,
-            "ValueCodeName": "Airport"
-        ]
-        
-        let params: Parameters = [
-            "request": request
-        ]
-        
-        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
+        guard let url = URL(string: "https://usbair.com/app2/LoadHomePageSpecialOfferImage.json") else{
             return
         }
         
-        print("send user Activity url:\(url) params \(params)")
+        print("send user Activity url:\(url)")
         
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<OfferPlaceModel>) in
             print("=== response = \(response)")
             guard let statusCode = response.response?.statusCode else{
                 return
@@ -372,10 +451,12 @@ extension HomeViewController{
             print("statusCode = \(statusCode)")
             switch response.result {
             case .success:
-                print("sucess")
+                self.offerplaces = response.result.value?.offerplace ?? [Offerplace]()
+                self.offerCollectionView.reloadData()
             case .failure(let error):
                 print("error = \(error)")
             }
-        }
+        })
     }
+    
 }

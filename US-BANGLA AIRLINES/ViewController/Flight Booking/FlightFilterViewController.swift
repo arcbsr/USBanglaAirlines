@@ -194,6 +194,9 @@ class FlightFilterViewController: UIViewController {
     var returnEconomyDictionary = [String: SaleCurrencyAmount]() // return
     var returnBusinessDictionary = [String: SaleCurrencyAmount]() // return
     var selectedCurrency = "USD"
+    var offerPlaceOriginCode = ""
+    var offerPlaceDestinationCode = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -21,6 +21,8 @@
 		8E4B431F2596691D00B35133 /* SideBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4B431D2596691D00B35133 /* SideBarTableViewCell.xib */; };
 		8E4B43202596691D00B35133 /* SideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4B431E2596691D00B35133 /* SideBarTableViewCell.swift */; };
 		8E57919D259B16AE0089C75A /* PassengerInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E57919C259B16AE0089C75A /* PassengerInfo.storyboard */; };
+		8E644EA625CD6A9800EF61D8 /* OfferPlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E644EA525CD6A9800EF61D8 /* OfferPlaceModel.swift */; };
+		8E6C61E525CD7CC400000437 /* OfferPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6C61E425CD7CC400000437 /* OfferPlaceCollectionViewCell.swift */; };
 		8E7DF23225B092EA00283A71 /* ValueCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7DF23125B092EA00283A71 /* ValueCodeModel.swift */; };
 		8E7DF23625B09A9000283A71 /* CityPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7DF23525B09A9000283A71 /* CityPairModel.swift */; };
 		8E7DF23825B0D03300283A71 /* FlightSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7DF23725B0D03300283A71 /* FlightSearchModel.swift */; };
@@ -80,6 +82,8 @@
 		8E4B431D2596691D00B35133 /* SideBarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarTableViewCell.xib; sourceTree = "<group>"; };
 		8E4B431E2596691D00B35133 /* SideBarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewCell.swift; sourceTree = "<group>"; };
 		8E57919C259B16AE0089C75A /* PassengerInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PassengerInfo.storyboard; sourceTree = "<group>"; };
+		8E644EA525CD6A9800EF61D8 /* OfferPlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferPlaceModel.swift; sourceTree = "<group>"; };
+		8E6C61E425CD7CC400000437 /* OfferPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E7DF23125B092EA00283A71 /* ValueCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueCodeModel.swift; sourceTree = "<group>"; };
 		8E7DF23525B09A9000283A71 /* CityPairModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPairModel.swift; sourceTree = "<group>"; };
 		8E7DF23725B0D03300283A71 /* FlightSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchModel.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				8E7DF23125B092EA00283A71 /* ValueCodeModel.swift */,
 				8E7DF23525B09A9000283A71 /* CityPairModel.swift */,
 				8E7DF23725B0D03300283A71 /* FlightSearchModel.swift */,
+				8E644EA525CD6A9800EF61D8 /* OfferPlaceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				8E4B431E2596691D00B35133 /* SideBarTableViewCell.swift */,
+				8E6C61E425CD7CC400000437 /* OfferPlaceCollectionViewCell.swift */,
 				8E4B431D2596691D00B35133 /* SideBarTableViewCell.xib */,
 				8E47073D259BB0A100BFF8A2 /* OneWayFlightCell.swift */,
 				8E470741259BB18000BFF8A2 /* ReturnFlightExpandedCell.swift */,
@@ -517,7 +523,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E644EA625CD6A9800EF61D8 /* OfferPlaceModel.swift in Sources */,
 				8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */,
+				8E6C61E525CD7CC400000437 /* OfferPlaceCollectionViewCell.swift in Sources */,
 				8EA45ABF259A313E000DA006 /* ReturnFlightViewController.swift in Sources */,
 				8E4B43122596091700B35133 /* HomeViewController.swift in Sources */,
 				8EA45AC5259A357E000DA006 /* BookingConfirmationViewController.swift in Sources */,
