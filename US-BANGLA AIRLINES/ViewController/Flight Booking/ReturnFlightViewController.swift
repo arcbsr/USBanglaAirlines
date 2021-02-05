@@ -66,7 +66,7 @@ class ReturnFlightViewController: UIViewController {
     var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
     var searchData: FlightSearchModel?
-    var isExpand = false
+    var isExpand = true
     var forwardCityCode = ""
     var backwardCityCode = ""
     var returnFlights = [SaleCurrencyAmount]()
@@ -106,6 +106,12 @@ class ReturnFlightViewController: UIViewController {
         sideBarSetup(willChangeState: true)
     }
     
+    func moveToNextVC(){
+        if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
+            //                vc.searchData = self.searchData
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     func skyStarTapped(){
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
@@ -293,7 +299,7 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
         if tableView == sideBarTableView{
             return 55
         }else{
-            return 124
+            return UITableView.automaticDimension
         }
     }
     
@@ -301,8 +307,8 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
         if tableView == sideBarTableView{
             return sideMenutitleArray.count
         }else{
-            return returnFlights.count
-//            return 10
+            //            return returnFlights.count
+            return 6
         }
     }
     
@@ -323,8 +329,13 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             if isExpand{
                 // expanded cell
                 let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReturnFlightExpandedCell.self)) as! ReturnFlightExpandedCell
+                cell.selectionStyle = .none
                 cell.upArrowTapped = {
                     // set false in ietme related to datasource row and reload current row
+                }
+                
+                cell.selectTapped = {
+                    self.moveToNextVC()
                 }
                 
                 return cell
@@ -332,6 +343,7 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             
             // not expanded cell
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReturnFlightCell.self)) as! ReturnFlightCell
+            cell.selectionStyle = .none
             cell.downArrowTapped = {
                 // set true in ietme related to datasource row and relaod current row
             }
@@ -363,7 +375,7 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             }
             
         }else{
-            
+            moveToNextVC()
         }
     }
     

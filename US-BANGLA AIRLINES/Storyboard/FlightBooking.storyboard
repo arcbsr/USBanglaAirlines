@@ -964,6 +964,9 @@
                                                     <state key="normal" title="SELECT">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="selectButtonTapped:" destination="eJg-Q6-7IA" eventType="touchUpInside" id="09k-GD-SKy"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FROM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aoY-CF-yd3">
                                                     <rect key="frame" x="225" y="233" width="40" height="17"/>

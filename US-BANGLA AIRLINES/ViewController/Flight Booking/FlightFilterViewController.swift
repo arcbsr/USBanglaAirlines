@@ -408,14 +408,16 @@ class FlightFilterViewController: UIViewController {
     
     @objc func searchFlightTapped(){
         if oneWayCheckbox.checkState == .checked{
-            searchOneWayFlight()
+            //            searchOneWayFlight()
+            if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "OneWayFlightViewController") as? OneWayFlightViewController{
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }else{
-            searchReturnFlight()
+            //            searchReturnFlight()
+            if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
-        
-        //                if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "OneWayFlightViewController") as? OneWayFlightViewController{
-        //                    self.navigationController?.pushViewController(vc, animated: true)
-        //                }
     }
     
     @objc func notificationTapped(){

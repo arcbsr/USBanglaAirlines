@@ -317,7 +317,8 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
             
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadPassengerCell.self)) as! LeadPassengerCell
-            
+            cell.selectionStyle = .none
+
             return cell
         }
     }
