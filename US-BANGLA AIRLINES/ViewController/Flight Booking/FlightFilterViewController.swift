@@ -187,12 +187,11 @@ class FlightFilterViewController: UIViewController {
     var departureDate = ""
     var returnDate = ""
     var returnFlights = [SaleCurrencyAmount]()
+    var returnFlightDictionary = [String: SaleCurrencyAmount]()
     var businessFlights = [FlightInfo]()
     var economyFlights = [FlightInfo]()
     var economyDictionary = [String: FlightInfo]() // one way
     var businessDictionary = [String: FlightInfo]() // one way
-    var returnEconomyDictionary = [String: SaleCurrencyAmount]() // return
-    var returnBusinessDictionary = [String: SaleCurrencyAmount]() // return
     var selectedCurrency = "USD"
     var offerPlaceOriginCode = ""
     var offerPlaceDestinationCode = ""
@@ -408,15 +407,15 @@ class FlightFilterViewController: UIViewController {
     
     @objc func searchFlightTapped(){
         if oneWayCheckbox.checkState == .checked{
-            //            searchOneWayFlight()
-            if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "OneWayFlightViewController") as? OneWayFlightViewController{
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+            searchOneWayFlight()
+            //            if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "OneWayFlightViewController") as? OneWayFlightViewController{
+            //                self.navigationController?.pushViewController(vc, animated: true)
+            //            }
         }else{
-            //            searchReturnFlight()
-            if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+            searchReturnFlight()
+            //            if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
+            //                self.navigationController?.pushViewController(vc, animated: true)
+            //            }
         }
     }
     
@@ -943,7 +942,7 @@ extension FlightFilterViewController{
             "request": request
         ]
         
-        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights") else{
+        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights?DateFormatHandling=IsoDateFormat") else{
             return
         }
         
@@ -962,6 +961,7 @@ extension FlightFilterViewController{
                 if SVProgressHUD.isVisible(){
                     SVProgressHUD.dismiss()
                 }
+                self.showAlert(title: "No data found", message: nil, callback: nil)
                 return
             }
             print("statusCode = \(statusCode)")
@@ -977,6 +977,10 @@ extension FlightFilterViewController{
                     
                     //processing
                     guard let segments = self.searchData?.segments, let itineraries = self.searchData?.fareInfo?.itineraries else {
+                        if SVProgressHUD.isVisible(){
+                            SVProgressHUD.dismiss()
+                        }
+                        self.showAlert(title: "No data found", message: nil, callback: nil)
                         return
                     }
                     
@@ -1152,7 +1156,7 @@ extension FlightFilterViewController{
             "request": request
         ]
         
-        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights") else{
+        guard let url = URL(string: "http://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights?DateFormatHandling=IsoDateFormat") else{
             return
         }
         
@@ -1171,6 +1175,7 @@ extension FlightFilterViewController{
                 if SVProgressHUD.isVisible(){
                     SVProgressHUD.dismiss()
                 }
+                self.showAlert(title: "No data found", message: nil, callback: nil)
                 return
             }
             print("statusCode = \(statusCode)")
@@ -1186,6 +1191,10 @@ extension FlightFilterViewController{
                     
                     //processing
                     guard /*let segments = self.searchData?.segments, */let itineraries = self.searchData?.fareInfo?.itineraries else {
+                        if SVProgressHUD.isVisible(){
+                            SVProgressHUD.dismiss()
+                        }
+                        self.showAlert(title: "No data found", message: nil, callback: nil)
                         return
                     }
                     
@@ -1222,7 +1231,20 @@ extension FlightFilterViewController{
                                 }
                             }
                         }
-                        
+                    }
+                    
+                    for item in self.returnFlights{
+                        let ref = "\(item.forwardSegmentRef)\(item.backwardSegmentRef)"
+                        if  self.returnFlightDictionary.keys.contains(ref){
+                            let val = self.returnFlightDictionary[ref]
+                            if ((item.totalAmount ?? 0) < (val?.totalAmount ?? 0)){
+                                self.returnFlightDictionary[ref] = item
+                            }else{
+                                print("greater, no need to add")
+                            }
+                        }else{
+                            self.returnFlightDictionary[ref] = item
+                        }
                     }
                     
                     if SVProgressHUD.isVisible(){
@@ -1230,7 +1252,7 @@ extension FlightFilterViewController{
                     }
                     
                     if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
-                        vc.returnFlights = self.returnFlights
+                        vc.returnFlights = Array(self.returnFlightDictionary.values)
                         //                        vc.forwardCityCode =
                         //                            vc.backwardCityCode =
                         //                        vc.selectedCurrency = self.selectedCurrency

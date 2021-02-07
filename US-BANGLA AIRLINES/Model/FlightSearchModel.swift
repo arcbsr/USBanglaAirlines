@@ -241,6 +241,7 @@ class Itinerary: Mappable {
 
 class SaleCurrencyAmount: Mappable {
     
+    var isExpand = false
     var forwardSegmentRef = ""
     var backwardSegmentRef = ""
     var itineraryRef = ""

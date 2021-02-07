@@ -66,7 +66,6 @@ class ReturnFlightViewController: UIViewController {
     var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
     var searchData: FlightSearchModel?
-    var isExpand = true
     var forwardCityCode = ""
     var backwardCityCode = ""
     var returnFlights = [SaleCurrencyAmount]()
@@ -90,6 +89,9 @@ class ReturnFlightViewController: UIViewController {
             }
         }
         sideBarSetup()
+        
+        //        dateLabel.text = departureDate
+        //        fromToCityLabel.text = "\(fromCity) - \(toCity)"
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -307,8 +309,8 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
         if tableView == sideBarTableView{
             return sideMenutitleArray.count
         }else{
-            //            return returnFlights.count
-            return 6
+            return returnFlights.count
+            //            return 6
         }
     }
     
@@ -326,12 +328,33 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             return cell
             
         }else{
-            if isExpand{
+            if returnFlights[indexPath.row].isExpand{
                 // expanded cell
                 let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReturnFlightExpandedCell.self)) as! ReturnFlightExpandedCell
                 cell.selectionStyle = .none
+                
+                cell.durationLabel.text = "\(flights[indexPath.row].durationMinutes ?? 0) MIN"
+                cell.rankingLabel.text = "\(indexPath.row + 1)"
+                cell.priceLabel.text = " \(selectedCurrency) \(flights[indexPath.row].saleCurrencyAmount?.totalAmount ?? 0) "
+                cell.fromLocationLabel.text = flights[indexPath.row].originCode
+                cell.toLocationLabel.text = flights[indexPath.row].destinationCode
+                cell.flightDetailsLabel.text = "FLIGHT: \(flights[indexPath.row].operatingAirlineDesignator ?? "") \(flights[indexPath.row].operatingFlightNumber ?? "")\n\(flights[indexPath.row].equipmentText ?? "")"
+                
+                let startDate = flights[indexPath.row].departureDate ?? ""
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+                if let date = dateFormatter.date(from: startDate) {
+                    cell.fromTimeLabel.text = "\(date.hour):\(date.minute)"
+                }
+                
+                let endDate = flights[indexPath.row].arrivalDate ?? ""
+                if let date = dateFormatter.date(from: endDate) {
+                    cell.toTimeLabel.text = "\(date.hour):\(date.minute)"
+                }
+                
                 cell.upArrowTapped = {
-                    // set false in ietme related to datasource row and reload current row
+                    // set false in ietm related to datasource row and reload current row
+                    self.returnFlights[indexPath.row].isExpand = false
                 }
                 
                 cell.selectTapped = {
@@ -344,8 +367,29 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             // not expanded cell
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReturnFlightCell.self)) as! ReturnFlightCell
             cell.selectionStyle = .none
+            
+            cell.durationLabel.text = "\(flights[indexPath.row].durationMinutes ?? 0) MIN"
+            cell.rankingLabel.text = "\(indexPath.row + 1)"
+            cell.priceLabel.text = " \(selectedCurrency) \(flights[indexPath.row].saleCurrencyAmount?.totalAmount ?? 0) "
+            cell.fromLocationLabel.text = flights[indexPath.row].originCode
+            cell.toLocationLabel.text = flights[indexPath.row].destinationCode
+            cell.flightDetailsLabel.text = "FLIGHT: \(flights[indexPath.row].operatingAirlineDesignator ?? "") \(flights[indexPath.row].operatingFlightNumber ?? "")\n\(flights[indexPath.row].equipmentText ?? "")"
+            
+            let startDate = flights[indexPath.row].departureDate ?? ""
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+            if let date = dateFormatter.date(from: startDate) {
+                cell.fromTimeLabel.text = "\(date.hour):\(date.minute)"
+            }
+            
+            let endDate = flights[indexPath.row].arrivalDate ?? ""
+            if let date = dateFormatter.date(from: endDate) {
+                cell.toTimeLabel.text = "\(date.hour):\(date.minute)"
+            }
+            
             cell.downArrowTapped = {
-                // set true in ietme related to datasource row and relaod current row
+                // set true in ietm related to datasource row and relaod current row
+                self.returnFlights[indexPath.row].isExpand = true
             }
             
             return cell
