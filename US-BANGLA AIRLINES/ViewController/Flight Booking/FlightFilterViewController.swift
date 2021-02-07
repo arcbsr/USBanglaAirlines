@@ -1255,11 +1255,11 @@ extension FlightFilterViewController{
                         vc.returnFlights = Array(self.returnFlightDictionary.values)
                         //                        vc.forwardCityCode =
                         //                            vc.backwardCityCode =
-                        //                        vc.selectedCurrency = self.selectedCurrency
-                        //                        vc.fromCity = self.fromCityLabel.text ?? ""
-                        //                        vc.toCity = self.toCityLabel.text ?? ""
-                        //                        vc.departureDate = self.departureDateTextField.text ?? ""
-                        //                        vc.returnDate = self.returnDateTextField.text ?? ""
+                        vc.selectedCurrency = self.selectedCurrency
+                        vc.fromCity = self.fromCityLabel.text ?? ""
+                        vc.toCity = self.toCityLabel.text ?? ""
+                        vc.departureDate = self.departureDateTextField.text ?? ""
+                        vc.returnDate = self.returnDateTextField.text ?? ""
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }else{

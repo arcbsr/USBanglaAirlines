@@ -90,8 +90,10 @@ class ReturnFlightViewController: UIViewController {
         }
         sideBarSetup()
         
-        //        dateLabel.text = departureDate
-        //        fromToCityLabel.text = "\(fromCity) - \(toCity)"
+        fromCityLabel.text = fromCity
+        toCityLabel.text = toCity
+        fromDateLabel.text = departureDate
+        toDateLabel.text = returnDate
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -333,23 +335,36 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
                 let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReturnFlightExpandedCell.self)) as! ReturnFlightExpandedCell
                 cell.selectionStyle = .none
                 
-                cell.durationLabel.text = "\(flights[indexPath.row].durationMinutes ?? 0) MIN"
+                cell.forwardDurationLabel.text = "\(returnFlights[indexPath.row].forwardflightInfo?.durationMinutes ?? 0) MIN"
+                cell.backwardDurationLabel.text = "\(returnFlights[indexPath.row].backwardflightInfo?.durationMinutes ?? 0) MIN"
                 cell.rankingLabel.text = "\(indexPath.row + 1)"
-                cell.priceLabel.text = " \(selectedCurrency) \(flights[indexPath.row].saleCurrencyAmount?.totalAmount ?? 0) "
-                cell.fromLocationLabel.text = flights[indexPath.row].originCode
-                cell.toLocationLabel.text = flights[indexPath.row].destinationCode
-                cell.flightDetailsLabel.text = "FLIGHT: \(flights[indexPath.row].operatingAirlineDesignator ?? "") \(flights[indexPath.row].operatingFlightNumber ?? "")\n\(flights[indexPath.row].equipmentText ?? "")"
+                cell.priceLabel.text = " \(selectedCurrency) \(returnFlights[indexPath.row].totalAmount ?? 0) "
+                cell.forwardfromLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
+                cell.forwardtoLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
+                cell.backwardfromLocationLabel.text = returnFlights[indexPath.row].backwardflightInfo?.originCode ?? ""
+                cell.backwardtoLocationLabel.text = returnFlights[indexPath.row].backwardflightInfo?.destinationCode ?? ""
+                cell.forwardFlightDetailsLabel.text = "FLIGHT: \(returnFlights[indexPath.row].forwardflightInfo?.operatingAirlineDesignator ?? "") \(returnFlights[indexPath.row].forwardflightInfo?.operatingFlightNumber ?? "")\n\(returnFlights[indexPath.row].forwardflightInfo?.equipmentText ?? "")"
+                cell.backwardFlightDetailsLabel.text = "FLIGHT: \(returnFlights[indexPath.row].backwardflightInfo?.operatingAirlineDesignator ?? "") \(returnFlights[indexPath.row].backwardflightInfo?.operatingFlightNumber ?? "")\n\(returnFlights[indexPath.row].backwardflightInfo?.equipmentText ?? "")"
                 
-                let startDate = flights[indexPath.row].departureDate ?? ""
+                let startDate = returnFlights[indexPath.row].forwardflightInfo?.departureDate ?? ""
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
                 if let date = dateFormatter.date(from: startDate) {
-                    cell.fromTimeLabel.text = "\(date.hour):\(date.minute)"
+                    cell.forwardfromTimeLabel.text = "\(date.hour):\(date.minute)"
                 }
                 
-                let endDate = flights[indexPath.row].arrivalDate ?? ""
+                let endDate =  returnFlights[indexPath.row].forwardflightInfo?.arrivalDate ?? ""
                 if let date = dateFormatter.date(from: endDate) {
-                    cell.toTimeLabel.text = "\(date.hour):\(date.minute)"
+                    cell.forwardtoTimeLabel.text = "\(date.hour):\(date.minute)"
+                }
+                
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+                if let date = dateFormatter.date(from: returnFlights[indexPath.row].backwardflightInfo?.departureDate ?? "") {
+                    cell.backwardfromTimeLabel.text = "\(date.hour):\(date.minute)"
+                }
+                
+                if let date = dateFormatter.date(from: returnFlights[indexPath.row].backwardflightInfo?.arrivalDate ?? "") {
+                    cell.backwardtoTimeLabel.text = "\(date.hour):\(date.minute)"
                 }
                 
                 cell.upArrowTapped = {
@@ -368,23 +383,21 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReturnFlightCell.self)) as! ReturnFlightCell
             cell.selectionStyle = .none
             
-            cell.durationLabel.text = "\(flights[indexPath.row].durationMinutes ?? 0) MIN"
             cell.rankingLabel.text = "\(indexPath.row + 1)"
-            cell.priceLabel.text = " \(selectedCurrency) \(flights[indexPath.row].saleCurrencyAmount?.totalAmount ?? 0) "
-            cell.fromLocationLabel.text = flights[indexPath.row].originCode
-            cell.toLocationLabel.text = flights[indexPath.row].destinationCode
-            cell.flightDetailsLabel.text = "FLIGHT: \(flights[indexPath.row].operatingAirlineDesignator ?? "") \(flights[indexPath.row].operatingFlightNumber ?? "")\n\(flights[indexPath.row].equipmentText ?? "")"
+            cell.priceLabel.text = " \(selectedCurrency) \(returnFlights[indexPath.row].totalAmount ?? 0) "
+            cell.forwardfromLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
+            cell.forwardtoLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
             
-            let startDate = flights[indexPath.row].departureDate ?? ""
+            let startDate = returnFlights[indexPath.row].forwardflightInfo?.departureDate ?? ""
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
             if let date = dateFormatter.date(from: startDate) {
-                cell.fromTimeLabel.text = "\(date.hour):\(date.minute)"
+                cell.forwardfromTimeLabel.text = "\(date.hour):\(date.minute)"
             }
             
-            let endDate = flights[indexPath.row].arrivalDate ?? ""
+            let endDate =  returnFlights[indexPath.row].forwardflightInfo?.arrivalDate ?? ""
             if let date = dateFormatter.date(from: endDate) {
-                cell.toTimeLabel.text = "\(date.hour):\(date.minute)"
+                cell.forwardtoTimeLabel.text = "\(date.hour):\(date.minute)"
             }
             
             cell.downArrowTapped = {
