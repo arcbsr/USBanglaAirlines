@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import SVProgressHUD
+import AlamofireObjectMapper
 
 
 class FlightSummaryViewController: UIViewController {
@@ -65,8 +68,11 @@ class FlightSummaryViewController: UIViewController {
     
     var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
-    
-    
+    var eTTicketFares = [ETTicketFare]()
+    var passengers = [Passenger]()
+    var oneWayflight: FlightInfo?
+    var returnFlight: SaleCurrencyAmount?
+    var selectedItiRef = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +88,9 @@ class FlightSummaryViewController: UIViewController {
             }
         }
         sideBarSetup()
+        
+        SVProgressHUD.show()
+        extractTicketInfo()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -100,6 +109,27 @@ class FlightSummaryViewController: UIViewController {
     
     @IBAction func proceedButtonTapped(_ sender: UIButton) {
         
+    }
+    
+    func extractTicketInfo(){
+        if oneWayflight == nil{
+            selectedItiRef = returnFlight?.itineraryRef ?? ""
+        }else{
+            selectedItiRef = oneWayflight?.itineraryRef ?? ""
+        }
+        print("selectedItiRef = \(selectedItiRef)")
+        for ticketFare in eTTicketFares{
+            if selectedItiRef == ticketFare.refItinerary{
+                for passenger in passengers{
+                    if passenger.ref == ticketFare.refPassenger{
+                        passenger.eTTicketFare = ticketFare
+                    }
+                }
+            }
+        }
+        if SVProgressHUD.isVisible(){
+            SVProgressHUD.dismiss()
+        }
     }
     
     func skyStarTapped(){
@@ -235,10 +265,10 @@ class FlightSummaryViewController: UIViewController {
         
         // upper image
         logoImgView = UIImageView(frame: CGRect(x: 20*logicalWidth, y: 30, width:250, height: 200))
-//        let imageWidth: CGFloat = 60
-//        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
-//        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
-//        logoImgView?.clipsToBounds = true
+        //        let imageWidth: CGFloat = 60
+        //        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
+        //        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
+        //        logoImgView?.clipsToBounds = true
         logoImgView?.image = UIImage(named: "bs_logo_wrgb")
         logoImgView?.contentMode = .scaleAspectFit
         topView.addSubview(logoImgView!)

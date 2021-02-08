@@ -74,6 +74,9 @@ class ReturnFlightViewController: UIViewController {
     var toCity = ""
     var departureDate = ""
     var returnDate = ""
+    var eTTicketFares = [ETTicketFare]()
+    var passengers = [Passenger]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,9 +113,10 @@ class ReturnFlightViewController: UIViewController {
         sideBarSetup(willChangeState: true)
     }
     
-    func moveToNextVC(){
-        if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
+    func moveToNextVC(row: Int){
+        if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "FlightSummaryViewController") as? FlightSummaryViewController{
             //                vc.searchData = self.searchData
+            vc.returnFlight = returnFlights[row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -373,7 +377,7 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
                 }
                 
                 cell.selectTapped = {
-                    self.moveToNextVC()
+                    self.moveToNextVC(row: indexPath.row)
                 }
                 
                 return cell
@@ -432,7 +436,7 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             }
             
         }else{
-            moveToNextVC()
+            moveToNextVC(row: indexPath.row)
         }
     }
     

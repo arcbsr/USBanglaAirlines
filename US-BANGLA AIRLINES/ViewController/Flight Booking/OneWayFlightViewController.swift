@@ -70,6 +70,8 @@ class OneWayFlightViewController: UIViewController {
     //    var toCityCode = ""
     var departureDate = ""
     var returnDate = ""
+    var eTTicketFares = [ETTicketFare]()
+    var passengers = [Passenger]()
     
     
     override func viewDidLoad() {
@@ -104,7 +106,6 @@ class OneWayFlightViewController: UIViewController {
         hideMenu()
         sideBarSetup(willChangeState: true)
     }
-    
     
     func skyStarTapped(){
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
@@ -367,8 +368,9 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
             }
             
         }else{
-            if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
+            if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "FlightSummaryViewController") as? FlightSummaryViewController{
                 //                vc.searchData = self.searchData
+                vc.oneWayflight = flights[indexPath.row]
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

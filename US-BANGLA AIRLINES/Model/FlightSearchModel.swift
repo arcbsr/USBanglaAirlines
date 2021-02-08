@@ -11,11 +11,11 @@ import ObjectMapper
 
 class FlightSearchModel: Mappable {
     
-    var extensions: String?
+    //    var extensions: String?
     var fareInfo: FareInfo?
-    var offer: Offer?
+    //    var offer: Offer?
     var passengers: [Passenger]?
-    var responseInfo: ResponseInfo?
+    //    var responseInfo: ResponseInfo?
     var segments: [Segment]?
     
     required convenience init?(map: Map) {
@@ -23,11 +23,11 @@ class FlightSearchModel: Mappable {
     }
     
     func mapping(map: Map) {
-        extensions <- map["Extensions"]
+        //        extensions <- map["Extensions"]
         fareInfo <- map["FareInfo"]
-        offer <- map["Offer"]
+        //        offer <- map["Offer"]
         passengers <- map["Passengers"]
-        responseInfo <- map["ResponseInfo"]
+        //        responseInfo <- map["ResponseInfo"]
         segments <- map["Segments"]
     }
     
@@ -151,6 +151,7 @@ class BookingClass: Mappable {
 
 class Passenger: Mappable {
     
+    var eTTicketFare: ETTicketFare?
     var extensions: String?
     var nameElement: String?
     var passengerQuantity: Int?
@@ -195,7 +196,7 @@ class Offer: Mappable {
 
 class FareInfo: Mappable {
     
-    //    var eTTicketFares: [ETTicketFare]?
+    var eTTicketFares: [ETTicketFare]?
     var extensions: String?
     //    var fareRules: [FareRule]?
     var itineraries: [Itinerary]?
@@ -219,10 +220,10 @@ class FareInfo: Mappable {
 class Itinerary: Mappable {
     
     var airOriginDestinations: [AirOriginDestination]?
-    var extensions: String?
+    //    var extensions: String?
     var ref: String?
     var saleCurrencyAmount: SaleCurrencyAmount?
-    var validatingAirlineDesignator: String?
+    //    var validatingAirlineDesignator: String?
     
     required convenience init?(map: Map) {
         self.init()
@@ -230,10 +231,10 @@ class Itinerary: Mappable {
     
     func mapping(map: Map) {
         airOriginDestinations <- map["AirOriginDestinations"]
-        extensions <- map["Extensions"]
+        //        extensions <- map["Extensions"]
         ref <- map["Ref"]
         saleCurrencyAmount <- map["SaleCurrencyAmount"]
-        validatingAirlineDesignator <- map["ValidatingAirlineDesignator"]
+        //        validatingAirlineDesignator <- map["ValidatingAirlineDesignator"]
     }
     
 }
@@ -247,8 +248,8 @@ class SaleCurrencyAmount: Mappable {
     var itineraryRef = ""
     var forwardflightInfo: FlightInfo?
     var backwardflightInfo: FlightInfo?
-//    var originCode = ""
-//    var destinationCode = ""
+    //    var originCode = ""
+    //    var destinationCode = ""
     var isBusiness = false
     var baseAmount: Int?
     var discountAmount: Int?
@@ -357,30 +358,30 @@ class FareRule: Mappable {
 
 class ETTicketFare: Mappable {
     
-    var amountDetails: String?
-    var createdDateGMT: String?
-    var extensions: String?
-    var originDestinationFares: [OriginDestinationFare]?
+    //    var amountDetails: String?
+    //    var createdDateGMT: String?
+    //    var extensions: String?
+    //    var originDestinationFares: [OriginDestinationFare]?
     var ref: String?
     var refItinerary: String?
     var refPassenger: String?
     var saleCurrencyAmount: SaleCurrencyAmount?
-    var taxes: [Tax]?
+    //    var taxes: [Tax]?
     
     required convenience init?(map: Map) {
         self.init()
     }
     
     func mapping(map: Map) {
-        amountDetails <- map["AmountDetails"]
-        createdDateGMT <- map["CreatedDateGMT"]
-        extensions <- map["Extensions"]
-        originDestinationFares <- map["OriginDestinationFares"]
+        //        amountDetails <- map["AmountDetails"]
+        //        createdDateGMT <- map["CreatedDateGMT"]
+        //        extensions <- map["Extensions"]
+        //        originDestinationFares <- map["OriginDestinationFares"]
         ref <- map["Ref"]
         refItinerary <- map["RefItinerary"]
         refPassenger <- map["RefPassenger"]
         saleCurrencyAmount <- map["SaleCurrencyAmount"]
-        taxes <- map["Taxes"]
+        //        taxes <- map["Taxes"]
     }
     
 }
