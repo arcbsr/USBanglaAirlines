@@ -29,6 +29,10 @@ struct Platform {
     
 }
 
+public enum GivenOption {
+    case payment, bookingFlight, skyStarSignUp, skyStarLogin, hotline, manageBooking, holiday, flightSchedule, webCheckIn, liveFlightSearch, myBooking, salesOffice
+}
+
 var navController: UINavigationController!
 var factX = UIScreen.main.bounds.size.width/375
 var factY = UIScreen.main.bounds.size.height/667

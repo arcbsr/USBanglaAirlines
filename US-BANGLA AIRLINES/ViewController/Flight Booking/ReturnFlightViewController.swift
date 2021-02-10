@@ -63,8 +63,17 @@ class ReturnFlightViewController: UIViewController {
     // for iPhone
     var shiftX: CGFloat = -400
     
-    var sideMenutitleArray:NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "CONTACT US"]
-    var sideMenuImgArray = [UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning"), UIImage(named: "warning")!, UIImage(named: "warning")!, UIImage(named: "warning")!]
+    var sideMenutitleArray: NSArray = ["BOOK A FLIGHT", "MY BOOKING" ,"WEB CHECK-IN" ,"MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "SALES OFFICE", "CONTACT US"]
+    var sideMenuImgArray = [UIImage(named: "Flight")!, UIImage(named: "Manage-Booking")!, UIImage(named: "Manage-Booking")!,  UIImage(named: "Manage-Booking")!, UIImage(named: "Holiday_Tree")!, UIImage(named: "clock")!, UIImage(named: "Sky-Star")!, UIImage(named: "Sales-Office")!, UIImage(named: "Contact")!]
+    let BOOK_FLIGHT_SECTION = 0
+    let MY_BOOKING_SECTION = 1
+    let WEB_CHECK_IN_SECTION = 2
+    let MANAGE_BOOKING_SECTION = 3
+    let HOLIDAYS_SECTION = 4
+    let FLIGHT_SCHEDULE_SECTION = 5
+    let SKY_STAR_SECTION = 6
+    let SALES_OFFICE_SECTION = 7
+    let CONTACT_US_SECTION = 8
     var searchData: FlightSearchModel?
     var forwardCityCode = ""
     var backwardCityCode = ""
@@ -121,39 +130,31 @@ class ReturnFlightViewController: UIViewController {
         }
     }
     
-    func skyStarTapped(){
+    func toWebView(type: GivenOption){
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
-            vc.currentOption = .skyStar
+            vc.currentOption = type
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
-    func hotlineTapped(){
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
-            vc.currentOption = .hotline
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+    @objc func skyStarTapped(){
+        toWebView(type: .skyStarSignUp)
     }
     
-    func manageBookingTapped(){
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
-            vc.currentOption = .manageBooking
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+    @objc func hotlineTapped(){
+        toWebView(type: .hotline)
     }
     
-    func holidayTapped(){
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
-            vc.currentOption = .holiday
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+    @objc func manageBookingTapped(){
+        toWebView(type: .manageBooking)
     }
     
-    func flightScheduleTapped(){
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
-            vc.currentOption = .flightSchedule
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+    @objc func holidayTapped(){
+        toWebView(type: .holiday)
+    }
+    
+    @objc func flightScheduleTapped(){
+        toWebView(type: .flightSchedule)
     }
     
     @objc func notificationTapped(){
@@ -258,7 +259,7 @@ class ReturnFlightViewController: UIViewController {
         //        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
         //        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
         //        logoImgView?.clipsToBounds = true
-        logoImgView?.image = UIImage(named: "bs_logo_wrgb")
+        logoImgView?.image = UIImage(named: "USBA-Logo-White")
         logoImgView?.contentMode = .scaleAspectFit
         topView.addSubview(logoImgView!)
         
@@ -417,20 +418,24 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
         if tableView == sideBarTableView{
             hideMenu()
             switch indexPath.row {
-            case 0:
-                break
-            case 1:
-                print("no change, casuse this is the BOOK A FLIGHT page")
-            case 2:
-                manageBookingTapped()
-            case 3:
-                holidayTapped()
-            case 4:
-                flightScheduleTapped()
-            case 5:
-                skyStarTapped()
-            case 6:
-                hotlineTapped()
+            case BOOK_FLIGHT_SECTION:
+            // same page; do nothing
+            case MY_BOOKING_SECTION:
+                toWebView(type: .myBooking)
+            case WEB_CHECK_IN_SECTION:
+                toWebView(type: .webCheckIn)
+            case MANAGE_BOOKING_SECTION:
+                toWebView(type: .manageBooking)
+            case HOLIDAYS_SECTION:
+                toWebView(type: .holiday)
+            case FLIGHT_SCHEDULE_SECTION:
+                toWebView(type: .flightSchedule)
+            case SKY_STAR_SECTION:
+                toWebView(type: .skyStarSignUp)
+            case SALES_OFFICE_SECTION:
+                toWebView(type: .salesOffice)
+            case CONTACT_US_SECTION:
+                toWebView(type: .hotline)
             default:
                 break
             }

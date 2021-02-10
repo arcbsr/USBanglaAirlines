@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Sales-Office.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

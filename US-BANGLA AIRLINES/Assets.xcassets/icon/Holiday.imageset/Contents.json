@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Holiday.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
