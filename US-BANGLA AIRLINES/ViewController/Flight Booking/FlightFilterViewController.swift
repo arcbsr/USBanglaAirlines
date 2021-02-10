@@ -422,9 +422,9 @@ class FlightFilterViewController: UIViewController {
             //            }
         }else{
             searchReturnFlight()
-            //            if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
-            //                self.navigationController?.pushViewController(vc, animated: true)
-            //            }
+            //                        if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
+            //                            self.navigationController?.pushViewController(vc, animated: true)
+            //                        }
         }
     }
     
@@ -439,7 +439,10 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func skyStarTapped(){
-        toWebView(type: .skyStarSignUp)
+        //        toWebView(type: .skyStarSignUp)
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SkyStarViewController") as? SkyStarViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func hotlineTapped(){
@@ -447,7 +450,10 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func manageBookingTapped(){
-        toWebView(type: .manageBooking)
+        //        toWebView(type: .manageBooking)
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ManageBookingViewController") as? ManageBookingViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func holidayTapped(){
@@ -627,19 +633,21 @@ extension FlightFilterViewController: UITableViewDelegate, UITableViewDataSource
         hideMenu()
         switch indexPath.row {
         case BOOK_FLIGHT_SECTION:
-           // same page; do nothing
+            print("same page; do nothing")
         case MY_BOOKING_SECTION:
             toWebView(type: .myBooking)
         case WEB_CHECK_IN_SECTION:
             toWebView(type: .webCheckIn)
         case MANAGE_BOOKING_SECTION:
-            toWebView(type: .manageBooking)
+            //            toWebView(type: .manageBooking)
+            manageBookingTapped()
         case HOLIDAYS_SECTION:
             toWebView(type: .holiday)
         case FLIGHT_SCHEDULE_SECTION:
             toWebView(type: .flightSchedule)
         case SKY_STAR_SECTION:
-            toWebView(type: .skyStarSignUp)
+            //            toWebView(type: .skyStarSignUp)
+            skyStarTapped()
         case SALES_OFFICE_SECTION:
             toWebView(type: .salesOffice)
         case CONTACT_US_SECTION:

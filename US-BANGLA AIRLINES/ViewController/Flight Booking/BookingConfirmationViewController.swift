@@ -125,7 +125,7 @@ class BookingConfirmationViewController: UIViewController {
     @IBAction func makePaymentButtonTapped(_ sender: UIButton) {
         // PROCEED tapped
         if let vc = UIStoryboard(name: "PassengerInfo", bundle: nil).instantiateViewController(withIdentifier: "InputPassengerInfoViewController") as? InputPassengerInfoViewController{
-//                vc.searchData = self.searchData
+            //                vc.searchData = self.searchData
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -138,7 +138,10 @@ class BookingConfirmationViewController: UIViewController {
     }
     
     @objc func skyStarTapped(){
-        toWebView(type: .skyStarSignUp)
+        //        toWebView(type: .skyStarSignUp)
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SkyStarViewController") as? SkyStarViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func hotlineTapped(){
@@ -146,7 +149,10 @@ class BookingConfirmationViewController: UIViewController {
     }
     
     @objc func manageBookingTapped(){
-        toWebView(type: .manageBooking)
+        //        toWebView(type: .manageBooking)
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ManageBookingViewController") as? ManageBookingViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func holidayTapped(){
@@ -255,10 +261,10 @@ class BookingConfirmationViewController: UIViewController {
         
         // upper image
         logoImgView = UIImageView(frame: CGRect(x: 20*logicalWidth, y: 30, width:250, height: 200))
-//        let imageWidth: CGFloat = 60
-//        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
-//        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
-//        logoImgView?.clipsToBounds = true
+        //        let imageWidth: CGFloat = 60
+        //        logoImgView=UIImageView(frame: CGRect(x:20*logicalWidth,y:60*logicalWidth,width:imageWidth*logicalWidth,height:imageWidth*logicalWidth))
+        //        logoImgView?.layer.cornerRadius = (imageWidth/2)*logicalWidth
+        //        logoImgView?.clipsToBounds = true
         logoImgView?.image = UIImage(named: "USBA-Logo-White")
         logoImgView?.contentMode = .scaleAspectFit
         topView.addSubview(logoImgView!)
@@ -329,19 +335,21 @@ extension BookingConfirmationViewController: UITableViewDelegate, UITableViewDat
         hideMenu()
         switch indexPath.row {
         case BOOK_FLIGHT_SECTION:
-        // same page; do nothing
+            print("same page; do nothing")
         case MY_BOOKING_SECTION:
             toWebView(type: .myBooking)
         case WEB_CHECK_IN_SECTION:
             toWebView(type: .webCheckIn)
         case MANAGE_BOOKING_SECTION:
-            toWebView(type: .manageBooking)
+            //            toWebView(type: .manageBooking)
+            manageBookingTapped()
         case HOLIDAYS_SECTION:
             toWebView(type: .holiday)
         case FLIGHT_SCHEDULE_SECTION:
             toWebView(type: .flightSchedule)
         case SKY_STAR_SECTION:
-            toWebView(type: .skyStarSignUp)
+            //            toWebView(type: .skyStarSignUp)
+            skyStarTapped()
         case SALES_OFFICE_SECTION:
             toWebView(type: .salesOffice)
         case CONTACT_US_SECTION:
