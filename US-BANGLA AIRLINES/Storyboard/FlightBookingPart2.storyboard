@@ -542,12 +542,14 @@
                     <connections>
                         <outlet property="adultFareLabel" destination="uwh-L6-D9u" id="cUJ-uQ-etD"/>
                         <outlet property="adultLabel" destination="nYz-qg-cDA" id="pEj-Ok-KIX"/>
+                        <outlet property="adultSeparatorView" destination="HxK-m0-HBv" id="i7Z-Cy-Hrm"/>
                         <outlet property="amountPayableLabel" destination="q60-mN-yYv" id="YHa-5q-lEa"/>
                         <outlet property="backImageView" destination="dyu-Hg-teo" id="C8L-7N-gAX"/>
                         <outlet property="baseAmountLabel" destination="60L-jf-TfO" id="c2R-4Z-YOm"/>
                         <outlet property="cabinClassLabel" destination="NMJ-HP-vND" id="T2R-QN-dTr"/>
                         <outlet property="childrenFareLabel" destination="cT5-DH-b13" id="ke5-ZZ-Ggi"/>
                         <outlet property="childrenLabel" destination="YPr-qe-IZw" id="wX3-wD-o8E"/>
+                        <outlet property="childrenSeparatorView" destination="i02-0F-5JP" id="Dp6-TV-Nfh"/>
                         <outlet property="crossImageView" destination="Rs5-2s-32B" id="3nC-87-V7C"/>
                         <outlet property="discountLabel" destination="BxW-FP-o4w" id="Xy9-n1-8Bt"/>
                         <outlet property="durationLabel" destination="Q6F-K1-IN9" id="Kjd-Um-b41"/>
@@ -557,6 +559,7 @@
                         <outlet property="fromTimeLabel" destination="9SM-9m-zi8" id="q7T-gV-mw7"/>
                         <outlet property="infantFareLabel" destination="6Ro-Jw-OHl" id="4Lv-7F-t5b"/>
                         <outlet property="infantLabel" destination="Bcv-3z-bAx" id="yew-en-EwV"/>
+                        <outlet property="infantSeparatorView" destination="MCe-rT-1IP" id="gB5-6E-5h5"/>
                         <outlet property="menuImageView" destination="Lnl-Wr-mdG" id="QEC-89-IE0"/>
                         <outlet property="notificationImageView" destination="DeQ-3w-oqA" id="xC4-BW-87w"/>
                         <outlet property="proceedButton" destination="2BY-B4-0IN" id="4bM-ej-D05"/>
@@ -1110,12 +1113,14 @@
                     <connections>
                         <outlet property="adultFareLabel" destination="WK7-8W-38s" id="3cf-mO-y8m"/>
                         <outlet property="adultLabel" destination="epo-cw-KeP" id="Q2Q-SI-USH"/>
+                        <outlet property="adultSeparatorView" destination="hbJ-sv-Zhh" id="Usy-9P-MNN"/>
                         <outlet property="amountPayableLabel" destination="q3b-z8-ba5" id="eJ3-xC-Ld9"/>
                         <outlet property="backImageView" destination="bMO-si-Con" id="yTf-mp-jru"/>
                         <outlet property="baseAmountLabel" destination="31x-0b-0Uu" id="RYL-EO-q5t"/>
                         <outlet property="cabinClassLabel" destination="4Z1-rO-8bO" id="eHl-Kj-DxM"/>
                         <outlet property="childrenFareLabel" destination="hf4-n0-EVD" id="vaZ-qH-CJX"/>
                         <outlet property="childrenLabel" destination="fu8-Bz-aaI" id="uhv-OK-WIk"/>
+                        <outlet property="childrenSeparatorView" destination="iqo-Ad-q4j" id="42S-uf-TBT"/>
                         <outlet property="crossImageView" destination="cya-rX-qzz" id="qs8-7A-yp0"/>
                         <outlet property="customTitleLabel" destination="pEj-4l-ho3" id="Fjl-vn-3h8"/>
                         <outlet property="discountLabel" destination="A2b-L5-KES" id="ANN-wx-UaU"/>
@@ -1127,6 +1132,7 @@
                         <outlet property="fromTimeLabel" destination="UHz-zC-kyx" id="58g-2a-SrP"/>
                         <outlet property="infantFareLabel" destination="KDF-Nv-cYe" id="DO8-6W-XBP"/>
                         <outlet property="infantLabel" destination="mQj-va-5aB" id="3z4-9M-1OS"/>
+                        <outlet property="infantSeparatorView" destination="fY6-qS-d7s" id="yNr-Zj-PMD"/>
                         <outlet property="menuImageView" destination="edQ-py-Z4E" id="gx7-Bu-Wpy"/>
                         <outlet property="notificationImageView" destination="ZnX-iP-Pyl" id="Rkm-Cx-oWs"/>
                         <outlet property="pnrLabel" destination="AyU-9I-c7e" id="yDv-G3-Tuz"/>

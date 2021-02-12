@@ -207,7 +207,7 @@ class FareInfo: Mappable {
     }
     
     func mapping(map: Map) {
-        //        eTTicketFares <- map["ETTicketFares"]
+        eTTicketFares <- map["ETTicketFares"]
         extensions <- map["Extensions"]
         //        fareRules <- map["FareRules"]
         itineraries <- map["Itineraries"]

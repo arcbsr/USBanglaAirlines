@@ -123,14 +123,16 @@ class ReturnFlightViewController: UIViewController {
     }
     
     func moveToNextVC(row: Int){
-        //        if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "FlightSummaryViewController") as? FlightSummaryViewController{
-        //            //                vc.searchData = self.searchData
-        //            vc.returnFlight = returnFlights[row]
-        //            self.navigationController?.pushViewController(vc, animated: true)
-        //        }
-        if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
+        if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "FlightSummaryViewController") as? FlightSummaryViewController{
+            //                vc.searchData = self.searchData
+            vc.returnFlight = returnFlights[row]
+            vc.eTTicketFares = self.eTTicketFares
+            vc.passengers = self.passengers
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        //        if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
+        //            self.navigationController?.pushViewController(vc, animated: true)
+        //        }
     }
     
     func toWebView(type: GivenOption){

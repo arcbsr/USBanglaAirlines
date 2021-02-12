@@ -21,12 +21,19 @@ class FlightSummaryViewController: UIViewController {
     @IBOutlet weak var toTimeLabel: UILabel!
     @IBOutlet weak var fromTimeLabel: UILabel!
     @IBOutlet weak var cabinClassLabel: UILabel!
+    
     @IBOutlet weak var adultLabel: UILabel!
     @IBOutlet weak var adultFareLabel: UILabel!
+    @IBOutlet weak var adultSeparatorView: UIView!
+    
     @IBOutlet weak var childrenLabel: UILabel!
     @IBOutlet weak var childrenFareLabel: UILabel!
+    @IBOutlet weak var childrenSeparatorView: UIView!
+    
     @IBOutlet weak var infantLabel: UILabel!
     @IBOutlet weak var infantFareLabel: UILabel!
+    @IBOutlet weak var infantSeparatorView: UIView!
+    
     @IBOutlet weak var baseAmountLabel: UILabel!
     @IBOutlet weak var taxAmountLabel: UILabel!
     @IBOutlet weak var totalFareLabel: UILabel!
@@ -98,8 +105,8 @@ class FlightSummaryViewController: UIViewController {
         }
         sideBarSetup()
         
-        //        SVProgressHUD.show()
-        //        extractTicketInfo()
+        SVProgressHUD.show()
+        extractTicketInfo()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -136,9 +143,10 @@ class FlightSummaryViewController: UIViewController {
                 }
             }
         }
-        if SVProgressHUD.isVisible(){
-            SVProgressHUD.dismiss()
-        }
+        
+        
+        
+        SVProgressHUD.dismiss()
     }
     
     func toWebView(type: GivenOption){
