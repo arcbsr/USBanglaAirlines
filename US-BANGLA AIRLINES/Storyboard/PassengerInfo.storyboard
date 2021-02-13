@@ -78,7 +78,7 @@
                                 <rect key="frame" x="0.0" y="98" width="414" height="1808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeadPassengerCell" rowHeight="447" id="p8H-y8-kI1" customClass="LeadPassengerCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="447" id="p8H-y8-kI1">
                                         <rect key="frame" x="0.0" y="28" width="414" height="447"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p8H-y8-kI1" id="ZRj-zP-86p">
@@ -368,7 +368,7 @@
                                             <outlet property="titleSelectionView" destination="tNt-jW-cc6" id="bdU-bM-dg0"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OtherPassengerCell" rowHeight="226" id="SeO-YI-lM3" customClass="OtherPassengerCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="226" id="SeO-YI-lM3">
                                         <rect key="frame" x="0.0" y="475" width="414" height="226"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SeO-YI-lM3" id="mKx-PI-d11">
@@ -378,7 +378,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ghU-yp-TZA">
                                                     <rect key="frame" x="8" y="8" width="398" height="24.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSENGER 1-ADULT (LEAD)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZv-fX-fhC">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSENGER 2-ADULT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZv-fX-fhC">
                                                             <rect key="frame" x="0.0" y="0.0" width="398" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -491,7 +491,7 @@
                                             <outlet property="titleSelectionView" destination="JwT-Bo-iQz" id="ks5-1a-jeX"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="544" id="XWG-KW-jJU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeadPassengerCell" rowHeight="544" id="XWG-KW-jJU" customClass="LeadPassengerCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="701" width="414" height="544"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XWG-KW-jJU" id="Iud-UX-1xu">
@@ -625,9 +625,12 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="44" id="41c-pR-bv3"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="12">
+                                                                    <state key="normal" title="DAY">
                                                                         <color key="titleColor" systemColor="labelColor"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="dayButtonTapped:" destination="XWG-KW-jJU" eventType="touchUpInside" id="VeF-Rc-Deg"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -643,9 +646,12 @@
                                                                 </view>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qyb-Um-6Bl">
                                                                     <rect key="frame" x="1" y="0.0" width="92" height="44"/>
-                                                                    <state key="normal" title="JAN">
+                                                                    <state key="normal" title="MONTH">
                                                                         <color key="titleColor" systemColor="labelColor"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="monthButtonTapped:" destination="XWG-KW-jJU" eventType="touchUpInside" id="vkQ-j1-BmJ"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -661,9 +667,12 @@
                                                                 </view>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAc-F3-bNt">
                                                                     <rect key="frame" x="1" y="0.0" width="91.5" height="44"/>
-                                                                    <state key="normal" title="Button">
+                                                                    <state key="normal" title="YEAR">
                                                                         <color key="titleColor" systemColor="labelColor"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="yearButtonTapped:" destination="XWG-KW-jJU" eventType="touchUpInside" id="5bS-h5-Ltb"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -881,7 +890,7 @@
                                             <outlet property="titleSelectionView" destination="0Eq-7h-oO6" id="5Ts-um-Yx3"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="296" id="Xgd-fk-rSo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OtherPassengerCell" rowHeight="296" id="Xgd-fk-rSo" customClass="OtherPassengerCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1245" width="414" height="296"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xgd-fk-rSo" id="SsP-In-ei4">
@@ -891,7 +900,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="nkV-3Z-CMz">
                                                     <rect key="frame" x="8" y="8" width="398" height="24.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSENGER 1-ADULT (LEAD)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAu-WI-qr6">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSENGER 2-ADULT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAu-WI-qr6">
                                                             <rect key="frame" x="0.0" y="0.0" width="398" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -1015,9 +1024,12 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="44" id="grH-yI-U3q"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="12">
+                                                                    <state key="normal" title="DAY">
                                                                         <color key="titleColor" systemColor="labelColor"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="dayButtonTapped:" destination="Xgd-fk-rSo" eventType="touchUpInside" id="X0X-fm-ika"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -1033,9 +1045,12 @@
                                                                 </view>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heu-qm-joB">
                                                                     <rect key="frame" x="1" y="0.0" width="92" height="44"/>
-                                                                    <state key="normal" title="JAN">
+                                                                    <state key="normal" title="MONTH">
                                                                         <color key="titleColor" systemColor="labelColor"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="monthButtonTapped:" destination="Xgd-fk-rSo" eventType="touchUpInside" id="57F-HZ-VgB"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -1051,9 +1066,12 @@
                                                                 </view>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRm-IC-jde">
                                                                     <rect key="frame" x="1" y="0.0" width="91.5" height="44"/>
-                                                                    <state key="normal" title="Button">
+                                                                    <state key="normal" title="YEAR">
                                                                         <color key="titleColor" systemColor="labelColor"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="yearButtonTapped:" destination="Xgd-fk-rSo" eventType="touchUpInside" id="SEW-2v-khx"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>

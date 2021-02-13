@@ -69,6 +69,7 @@ class InputPassengerInfoViewController: UIViewController {
     let SKY_STAR_SECTION = 6
     let SALES_OFFICE_SECTION = 7
     let CONTACT_US_SECTION = 8
+    var passengers = [Passenger]()
     
     
     override func viewDidLoad() {
@@ -304,7 +305,11 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
         if tableView == sideBarTableView{
             return sideMenutitleArray.count
         }else{
-            return 1
+            var count = 0
+            for passenger in passengers{
+                count += (passenger.passengerQuantity ?? 0)
+            }
+            return count
         }
     }
     
@@ -322,10 +327,28 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
             return cell
             
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadPassengerCell.self)) as! LeadPassengerCell
-            cell.selectionStyle = .none
-            
-            return cell
+            if indexPath.row == 0{
+                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadPassengerCell.self)) as! LeadPassengerCell
+                cell.selectionStyle = .none
+                cell.passengerTypeLabel.text = "PASSENGER 1-ADULT (LEAD)"
+                
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OtherPassengerCell.self)) as! OtherPassengerCell
+                cell.selectionStyle = .none
+                
+                let passenger = passengers[indexPath.row]
+                
+                if passenger.passengerTypeCode == "AD"{
+                    cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-ADULT"
+                }else if passenger.passengerTypeCode == "CHD"{
+                    cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-CHILD"
+                }else{
+                    cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-INFANT"
+                }
+                
+                return cell
+            }
         }
     }
     
