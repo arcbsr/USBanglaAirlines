@@ -95,6 +95,9 @@ class FlightSummaryViewController: UIViewController {
     var toCityCode = ""
     var fromCity = ""
     var toCity = ""
+    var forwardFlightClass = ""
+    var backwardFlightClass = ""
+    var flightClass = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +154,7 @@ class FlightSummaryViewController: UIViewController {
                 }
             }
         }
-        
+                
         SVProgressHUD.dismiss()
     }
     
@@ -178,6 +181,7 @@ class FlightSummaryViewController: UIViewController {
         
         fromTimeLabel.text = "\(fromTime) \(fromCityCode)"
         toTimeLabel.text = "\(toTime) \(toCityCode)"
+        cabinClassLabel.text = forwardFlightClass
     }
     
     func loadOneWayData(){
@@ -202,6 +206,7 @@ class FlightSummaryViewController: UIViewController {
         }
         fromTimeLabel.text = "\(fromTime) \(fromCityCode)"
         toTimeLabel.text = "\(toTime) \(toCityCode)"
+        cabinClassLabel.text = flightClass
     }
     
     func toWebView(type: GivenOption){

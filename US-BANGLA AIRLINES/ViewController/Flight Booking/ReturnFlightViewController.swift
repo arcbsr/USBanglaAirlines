@@ -85,6 +85,8 @@ class ReturnFlightViewController: UIViewController {
     var returnDate = ""
     var eTTicketFares = [ETTicketFare]()
     var passengers = [Passenger]()
+    var forwardFlightClass = ""
+    var backwardFlightClass = ""
     
     
     override func viewDidLoad() {
@@ -132,6 +134,8 @@ class ReturnFlightViewController: UIViewController {
             vc.toCity = toCityLabel.text ?? ""
             //            vc.fromCityCode =
             //            vc.toCityCode =
+            vc.forwardFlightClass = forwardFlightClass
+            vc.backwardFlightClass = backwardFlightClass 
             self.navigationController?.pushViewController(vc, animated: true)
         }
         //        if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{

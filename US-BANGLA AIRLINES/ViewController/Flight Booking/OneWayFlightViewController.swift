@@ -81,6 +81,7 @@ class OneWayFlightViewController: UIViewController {
     var returnDate = ""
     var eTTicketFares = [ETTicketFare]()
     var passengers = [Passenger]()
+    var flightClass = ""
     
     
     override func viewDidLoad() {
@@ -393,7 +394,7 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
                     vc.fromCity = cell.fromLocationLabel.text ?? ""
                     vc.toCity = cell.toLocationLabel.text ?? ""
                 }
-                
+                vc.flightClass = flightClass
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             //            if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{

@@ -180,7 +180,7 @@ class FlightFilterViewController: UIViewController {
     let CONTACT_US_SECTION = 8
     
     var passengers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    var cabinClasses = ["ECOMOMY", "BUSINESS"]
+    var cabinClasses = ["ECONOMY", "BUSINESS"]
     var ecomomyClassCodes = [String()]
     var fromCities = [String]()
     var toCities = [String]()
@@ -1062,6 +1062,7 @@ extension FlightFilterViewController{
                         vc.toCity = self.toCityLabel.text ?? ""
                         vc.departureDate = self.departureDateTextField.text ?? ""
                         vc.returnDate = self.returnDateTextField.text ?? ""
+                        vc.flightClass = self.departureCabinClassLabel.text ?? ""
                         //                        vc.searchData = self.searchData
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
@@ -1277,6 +1278,8 @@ extension FlightFilterViewController{
                         vc.toCity = self.toCityLabel.text ?? ""
                         vc.departureDate = self.departureDateTextField.text ?? ""
                         vc.returnDate = self.returnDateTextField.text ?? ""
+                        vc.forwardFlightClass = self.departureCabinClassLabel.text ?? ""
+                        vc.backwardFlightClass = self.returnCabinClassLabel.text ?? ""
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }else{
