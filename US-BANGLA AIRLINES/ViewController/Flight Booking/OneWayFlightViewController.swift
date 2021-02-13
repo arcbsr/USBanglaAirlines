@@ -395,6 +395,7 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
                     vc.toCity = cell.toLocationLabel.text ?? ""
                 }
                 vc.flightClass = flightClass
+                vc.selectedCurrency = selectedCurrency
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             //            if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{

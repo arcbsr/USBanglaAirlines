@@ -25,14 +25,17 @@ class FlightSummaryViewController: UIViewController {
     @IBOutlet weak var adultLabel: UILabel!
     @IBOutlet weak var adultFareLabel: UILabel!
     @IBOutlet weak var adultSeparatorView: UIView!
+    @IBOutlet weak var adultTaxLabel: UILabel!
     
     @IBOutlet weak var childrenLabel: UILabel!
     @IBOutlet weak var childrenFareLabel: UILabel!
     @IBOutlet weak var childrenSeparatorView: UIView!
+    @IBOutlet weak var childrenTaxLabel: UILabel!
     
     @IBOutlet weak var infantLabel: UILabel!
     @IBOutlet weak var infantFareLabel: UILabel!
     @IBOutlet weak var infantSeparatorView: UIView!
+    @IBOutlet weak var infantTaxLabel: UILabel!
     
     @IBOutlet weak var baseAmountLabel: UILabel!
     @IBOutlet weak var taxAmountLabel: UILabel!
@@ -98,6 +101,7 @@ class FlightSummaryViewController: UIViewController {
     var forwardFlightClass = ""
     var backwardFlightClass = ""
     var flightClass = ""
+    var selectedCurrency = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,11 +154,37 @@ class FlightSummaryViewController: UIViewController {
                 for passenger in passengers{
                     if passenger.ref == ticketFare.refPassenger{
                         passenger.eTTicketFare = ticketFare
+                        break
                     }
                 }
             }
         }
-                
+        
+        for passenger in passengers{
+            if passenger.passengerTypeCode == "AD"{
+                let count = passenger.passengerQuantity ?? 0
+                adultLabel.text = "ADULT X \(count)"
+                let totalFare = (passenger.eTTicketFare?.saleCurrencyAmount?.baseAmount ?? 0.0) * Double(count)
+                adultFareLabel.text = "\(selectedCurrency) \(totalFare)"
+                let totalTax = (passenger.eTTicketFare?.saleCurrencyAmount?.taxAmount ?? 0.0) * Double(count)
+                adultTaxLabel.text = "\(selectedCurrency) \(totalTax)"
+            }else if passenger.passengerTypeCode == "CHD"{
+                let count = passenger.passengerQuantity ?? 0
+                childrenLabel.text = "CHILD X \(count)"
+                let totalFare = (passenger.eTTicketFare?.saleCurrencyAmount?.baseAmount ?? 0.0) * Double(count)
+                childrenFareLabel.text = "\(selectedCurrency) \(totalFare)"
+                let totalTax = (passenger.eTTicketFare?.saleCurrencyAmount?.taxAmount ?? 0.0) * Double(count)
+                childrenTaxLabel.text = "\(selectedCurrency) \(totalTax)"
+            }else{
+                let count = passenger.passengerQuantity ?? 0
+                infantLabel.text = "INFANT X \(count)"
+                let totalFare = (passenger.eTTicketFare?.saleCurrencyAmount?.baseAmount ?? 0.0) * Double(count)
+                infantFareLabel.text = "\(selectedCurrency) \(totalFare)"
+                let totalTax = (passenger.eTTicketFare?.saleCurrencyAmount?.taxAmount ?? 0.0) * Double(count)
+                infantTaxLabel.text = "\(selectedCurrency) \(totalTax)"
+            }
+        }
+        
         SVProgressHUD.dismiss()
     }
     
@@ -182,6 +212,7 @@ class FlightSummaryViewController: UIViewController {
         fromTimeLabel.text = "\(fromTime) \(fromCityCode)"
         toTimeLabel.text = "\(toTime) \(toCityCode)"
         cabinClassLabel.text = forwardFlightClass
+        totalFareLabel.text = "\(selectedCurrency) \(returnFlight?.totalAmount ?? 0)"
     }
     
     func loadOneWayData(){
@@ -207,6 +238,7 @@ class FlightSummaryViewController: UIViewController {
         fromTimeLabel.text = "\(fromTime) \(fromCityCode)"
         toTimeLabel.text = "\(toTime) \(toCityCode)"
         cabinClassLabel.text = flightClass
+        totalFareLabel.text = "\(selectedCurrency) \(oneWayflight?.saleCurrencyAmount?.totalAmount ?? 0)"
     }
     
     func toWebView(type: GivenOption){

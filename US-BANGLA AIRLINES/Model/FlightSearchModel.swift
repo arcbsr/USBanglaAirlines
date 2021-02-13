@@ -251,12 +251,12 @@ class SaleCurrencyAmount: Mappable {
     //    var originCode = ""
     //    var destinationCode = ""
     var isBusiness = false
-    var baseAmount: Int?
-    var discountAmount: Int?
+    var baseAmount: Double?
+    var discountAmount: Double?
     var extensions: String?
-    var milesAmount: Int?
-    var taxAmount: Int?
-    var totalAmount: Int?
+    var milesAmount: Double?
+    var taxAmount: Double?
+    var totalAmount: Double?
     
     required convenience init?(map: Map) {
         self.init()
@@ -392,7 +392,7 @@ class Tax: Mappable {
     var code: String?
     var countryCode: String?
     var extensions: String?
-    var saleCurrencyAmount: Int?
+    var saleCurrencyAmount: Double?
     
     required convenience init?(map: Map) {
         self.init()

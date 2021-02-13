@@ -135,7 +135,8 @@ class ReturnFlightViewController: UIViewController {
             //            vc.fromCityCode =
             //            vc.toCityCode =
             vc.forwardFlightClass = forwardFlightClass
-            vc.backwardFlightClass = backwardFlightClass 
+            vc.backwardFlightClass = backwardFlightClass
+            vc.selectedCurrency = selectedCurrency
             self.navigationController?.pushViewController(vc, animated: true)
         }
         //        if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
