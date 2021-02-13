@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		603D9E242E1A83D8166142E2 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD42F0CA14557A84DBEE7641 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework */; };
+		8E2BB8D325D8447E0023A425 /* Countries.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8E2BB8C425D8447E0023A425 /* Countries.bundle */; };
+		8E2BB8D425D8447E0023A425 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8C525D8447E0023A425 /* UIImage+Extensions.swift */; };
+		8E2BB8D525D8447E0023A425 /* LocaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8C725D8447E0023A425 /* LocaleStore.swift */; };
+		8E2BB8D625D8447E0023A425 /* LocaleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8C925D8447E0023A425 /* LocaleInfo.swift */; };
+		8E2BB8D725D8447E0023A425 /* LocalePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8CA25D8447E0023A425 /* LocalePickerViewController.swift */; };
+		8E2BB8D825D8447E0023A425 /* PhoneCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8CC25D8447E0023A425 /* PhoneCodeCell.swift */; };
+		8E2BB8D925D8447E0023A425 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8CD25D8447E0023A425 /* CurrencyCell.swift */; };
+		8E2BB8DA25D8447E0023A425 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8CE25D8447E0023A425 /* CountryCell.swift */; };
+		8E2BB8DB25D8447E0023A425 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8CF25D8447E0023A425 /* UIView+Extensions.swift */; };
+		8E2BB8DC25D8447E0023A425 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8D025D8447E0023A425 /* UIApplication+Extensions.swift */; };
+		8E2BB8DD25D8447E0023A425 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8D125D8447E0023A425 /* UIAlertController+Extensions.swift */; };
+		8E2BB8DE25D8447E0023A425 /* Locale+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8D225D8447E0023A425 /* Locale+Extensions.swift */; };
+		8E2BB8E625D86AFA0023A425 /* LeadGlobalPassengerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8E525D86AFA0023A425 /* LeadGlobalPassengerCell.swift */; };
+		8E2BB8EB25D86B0A0023A425 /* OtherGlobalPassengerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8EA25D86B0A0023A425 /* OtherGlobalPassengerTableViewCell.swift */; };
 		8E3ADD8B2598D11E00B55C89 /* FlightFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3ADD8A2598D11E00B55C89 /* FlightFilterViewController.swift */; };
 		8E3ADD8D2598D30F00B55C89 /* FlightBooking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E3ADD8C2598D30F00B55C89 /* FlightBooking.storyboard */; };
 		8E3CD0A125D4556B00BAA3B2 /* ManageBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CD0A025D4556B00BAA3B2 /* ManageBookingViewController.swift */; };
@@ -71,6 +85,20 @@
 		61675DB7FECFB7AD5DC810E0 /* Pods_US_BANGLA_AIRLINES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_US_BANGLA_AIRLINES.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F060B4B850D8E77A7E27C3C /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		776259862741068A30210A40 /* Pods-US-BANGLA AIRLINES.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES.release.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES/Pods-US-BANGLA AIRLINES.release.xcconfig"; sourceTree = "<group>"; };
+		8E2BB8C425D8447E0023A425 /* Countries.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Countries.bundle; sourceTree = "<group>"; };
+		8E2BB8C525D8447E0023A425 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		8E2BB8C725D8447E0023A425 /* LocaleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleStore.swift; sourceTree = "<group>"; };
+		8E2BB8C925D8447E0023A425 /* LocaleInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleInfo.swift; sourceTree = "<group>"; };
+		8E2BB8CA25D8447E0023A425 /* LocalePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalePickerViewController.swift; sourceTree = "<group>"; };
+		8E2BB8CC25D8447E0023A425 /* PhoneCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCodeCell.swift; sourceTree = "<group>"; };
+		8E2BB8CD25D8447E0023A425 /* CurrencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		8E2BB8CE25D8447E0023A425 /* CountryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
+		8E2BB8CF25D8447E0023A425 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		8E2BB8D025D8447E0023A425 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		8E2BB8D125D8447E0023A425 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
+		8E2BB8D225D8447E0023A425 /* Locale+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Locale+Extensions.swift"; sourceTree = "<group>"; };
+		8E2BB8E525D86AFA0023A425 /* LeadGlobalPassengerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadGlobalPassengerCell.swift; sourceTree = "<group>"; };
+		8E2BB8EA25D86B0A0023A425 /* OtherGlobalPassengerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGlobalPassengerTableViewCell.swift; sourceTree = "<group>"; };
 		8E3ADD8A2598D11E00B55C89 /* FlightFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightFilterViewController.swift; sourceTree = "<group>"; };
 		8E3ADD8C2598D30F00B55C89 /* FlightBooking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FlightBooking.storyboard; sourceTree = "<group>"; };
 		8E3CD0A025D4556B00BAA3B2 /* ManageBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageBookingViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +194,57 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8E2BB8C225D8447E0023A425 /* PhoneCodePicker */ = {
+			isa = PBXGroup;
+			children = (
+				8E2BB8C325D8447E0023A425 /* Locale */,
+				8E2BB8CF25D8447E0023A425 /* UIView+Extensions.swift */,
+				8E2BB8D025D8447E0023A425 /* UIApplication+Extensions.swift */,
+				8E2BB8D125D8447E0023A425 /* UIAlertController+Extensions.swift */,
+				8E2BB8D225D8447E0023A425 /* Locale+Extensions.swift */,
+			);
+			path = PhoneCodePicker;
+			sourceTree = "<group>";
+		};
+		8E2BB8C325D8447E0023A425 /* Locale */ = {
+			isa = PBXGroup;
+			children = (
+				8E2BB8C425D8447E0023A425 /* Countries.bundle */,
+				8E2BB8C525D8447E0023A425 /* UIImage+Extensions.swift */,
+				8E2BB8C625D8447E0023A425 /* Managers */,
+				8E2BB8C825D8447E0023A425 /* Models */,
+				8E2BB8CA25D8447E0023A425 /* LocalePickerViewController.swift */,
+				8E2BB8CB25D8447E0023A425 /* Views */,
+			);
+			path = Locale;
+			sourceTree = "<group>";
+		};
+		8E2BB8C625D8447E0023A425 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8E2BB8C725D8447E0023A425 /* LocaleStore.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		8E2BB8C825D8447E0023A425 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E2BB8C925D8447E0023A425 /* LocaleInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8E2BB8CB25D8447E0023A425 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E2BB8CC25D8447E0023A425 /* PhoneCodeCell.swift */,
+				8E2BB8CD25D8447E0023A425 /* CurrencyCell.swift */,
+				8E2BB8CE25D8447E0023A425 /* CountryCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8E3ADD892598D0E400B55C89 /* Flight Booking */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +303,8 @@
 				8E47073F259BB0B900BFF8A2 /* ReturnFlightCell.swift */,
 				8EB9C776259CA3B20080125B /* OtherPassengerCell.swift */,
 				8EB9C778259CA3C60080125B /* LeadPassengerCell.swift */,
+				8E2BB8EA25D86B0A0023A425 /* OtherGlobalPassengerTableViewCell.swift */,
+				8E2BB8E525D86AFA0023A425 /* LeadGlobalPassengerCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -255,6 +336,7 @@
 			children = (
 				8E7E81FC2595B5A100530D14 /* AppDelegate.swift */,
 				8E4B431525960AF400B35133 /* Reachability.swift */,
+				8E2BB8C225D8447E0023A425 /* PhoneCodePicker */,
 				8E4B431725960B0B00B35133 /* Helper.swift */,
 				8E4B431925960B1400B35133 /* Validator.swift */,
 				8E7E82052595B5A300530D14 /* Assets.xcassets */,
@@ -399,6 +481,7 @@
 				8E57919D259B16AE0089C75A /* PassengerInfo.storyboard in Resources */,
 				8E7E82092595B5A300530D14 /* LaunchScreen.storyboard in Resources */,
 				8E7E82062595B5A300530D14 /* Assets.xcassets in Resources */,
+				8E2BB8D325D8447E0023A425 /* Countries.bundle in Resources */,
 				8E4B431F2596691D00B35133 /* SideBarTableViewCell.xib in Resources */,
 				8E3ADD8D2598D30F00B55C89 /* FlightBooking.storyboard in Resources */,
 				8E7E82042595B5A100530D14 /* Main.storyboard in Resources */,
@@ -529,30 +612,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E2BB8DC25D8447E0023A425 /* UIApplication+Extensions.swift in Sources */,
 				8E644EA625CD6A9800EF61D8 /* OfferPlaceModel.swift in Sources */,
+				8E2BB8D925D8447E0023A425 /* CurrencyCell.swift in Sources */,
 				8E7E81FD2595B5A100530D14 /* AppDelegate.swift in Sources */,
 				8E6C61E525CD7CC400000437 /* OfferPlaceCollectionViewCell.swift in Sources */,
+				8E2BB8D725D8447E0023A425 /* LocalePickerViewController.swift in Sources */,
 				8EA45ABF259A313E000DA006 /* ReturnFlightViewController.swift in Sources */,
+				8E2BB8D825D8447E0023A425 /* PhoneCodeCell.swift in Sources */,
 				8E4B43122596091700B35133 /* HomeViewController.swift in Sources */,
 				8EA45AC5259A357E000DA006 /* BookingConfirmationViewController.swift in Sources */,
 				8E4B431825960B0B00B35133 /* Helper.swift in Sources */,
+				8E2BB8DE25D8447E0023A425 /* Locale+Extensions.swift in Sources */,
 				8E470740259BB0B900BFF8A2 /* ReturnFlightCell.swift in Sources */,
+				8E2BB8D525D8447E0023A425 /* LocaleStore.swift in Sources */,
 				8E470742259BB18000BFF8A2 /* ReturnFlightExpandedCell.swift in Sources */,
 				8EB9C777259CA3B20080125B /* OtherPassengerCell.swift in Sources */,
+				8E2BB8DA25D8447E0023A425 /* CountryCell.swift in Sources */,
 				8E7DF23625B09A9000283A71 /* CityPairModel.swift in Sources */,
 				8E4B431625960AF400B35133 /* Reachability.swift in Sources */,
 				8EC85DCC259A6BD200DD1EFC /* OneWayFlightViewController.swift in Sources */,
+				8E2BB8EB25D86B0A0023A425 /* OtherGlobalPassengerTableViewCell.swift in Sources */,
 				8E3ADD8B2598D11E00B55C89 /* FlightFilterViewController.swift in Sources */,
 				8EA45AC3259A3567000DA006 /* InputPassengerInfoViewController.swift in Sources */,
 				8E4B431A25960B1400B35133 /* Validator.swift in Sources */,
+				8E2BB8D425D8447E0023A425 /* UIImage+Extensions.swift in Sources */,
+				8E2BB8DD25D8447E0023A425 /* UIAlertController+Extensions.swift in Sources */,
 				8E7DF23825B0D03300283A71 /* FlightSearchModel.swift in Sources */,
 				8E7DF23225B092EA00283A71 /* ValueCodeModel.swift in Sources */,
+				8E2BB8DB25D8447E0023A425 /* UIView+Extensions.swift in Sources */,
 				8EA45AC1259A3546000DA006 /* FlightSummaryViewController.swift in Sources */,
 				8EB9C779259CA3C60080125B /* LeadPassengerCell.swift in Sources */,
 				8E4B43202596691D00B35133 /* SideBarTableViewCell.swift in Sources */,
 				8E47073E259BB0A100BFF8A2 /* OneWayFlightCell.swift in Sources */,
 				8E3CD0A625D4557B00BAA3B2 /* SkyStarViewController.swift in Sources */,
+				8E2BB8D625D8447E0023A425 /* LocaleInfo.swift in Sources */,
 				8E4B43142596093900B35133 /* CustomWebViewController.swift in Sources */,
+				8E2BB8E625D86AFA0023A425 /* LeadGlobalPassengerCell.swift in Sources */,
 				8E3CD0A125D4556B00BAA3B2 /* ManageBookingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

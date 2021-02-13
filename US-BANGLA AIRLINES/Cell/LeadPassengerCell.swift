@@ -26,17 +26,28 @@ class LeadPassengerCell: UITableViewCell {
     @IBOutlet weak var dobYearButton: UIButton!
     @IBOutlet weak var ffpNumberTextField: UITextField!
     
+    @IBOutlet weak var phoneCodeView: UIView!{
+        didSet{
+            phoneCodeView.isUserInteractionEnabled = true
+            phoneCodeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(phoneCodeViewTapped)))
+        }
+    }
     @IBOutlet weak var phoneCodeLabel: UILabel!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var countryLabel: UILabel!
-    @IBOutlet weak var countrySelectionView: UIView!
+    @IBOutlet weak var countrySelectionView: UIView!{
+        didSet{
+            countrySelectionView.isUserInteractionEnabled = true
+            countrySelectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(countrySelectionViewTapped)))
+        }
+    }
     
     var tiltleArray = ["MR", "MRS", "MISS", "MS", "MSTR"]
     var days = [String]()
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
     var years = [String]()
-
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,10 +62,10 @@ class LeadPassengerCell: UITableViewCell {
             years.append("\(i)")
         }
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -97,5 +108,26 @@ class LeadPassengerCell: UITableViewCell {
         }
         dropDown.show()
     }
-
+    
+    @objc func phoneCodeViewTapped(){
+        let alert = UIAlertController(style: .actionSheet, title: "Phone Codes")
+        alert.addLocalePicker(type: .phoneCode) { info in
+            self.phoneCodeLabel.text = info?.phoneCode ?? ""
+        }
+        alert.addAction(title: "Cancel", style: .cancel)
+        let topVC = UIApplication.topViewController()
+        topVC?.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func countrySelectionViewTapped(){
+        let alert = UIAlertController(style: .actionSheet, title: "Country")
+        alert.addLocalePicker(type: .country) { info in
+            self.countryLabel.text = info?.country ?? ""
+        }
+        alert.addAction(title: "Cancel", style: .cancel)
+        let topVC = UIApplication.topViewController()
+        topVC?.present(alert, animated: true, completion: nil)
+    }
+    
 }
+
