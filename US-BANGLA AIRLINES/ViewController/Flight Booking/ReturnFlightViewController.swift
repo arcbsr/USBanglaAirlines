@@ -122,12 +122,16 @@ class ReturnFlightViewController: UIViewController {
         sideBarSetup(willChangeState: true)
     }
     
-    func moveToNextVC(row: Int){
+    func moveToNextVC(row: Int, fromTime: String, toTime: String){
         if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "FlightSummaryViewController") as? FlightSummaryViewController{
             //                vc.searchData = self.searchData
             vc.returnFlight = returnFlights[row]
-            vc.eTTicketFares = self.eTTicketFares
-            vc.passengers = self.passengers
+            vc.eTTicketFares = eTTicketFares
+            vc.passengers = passengers
+            vc.fromCity = fromCityLabel.text ?? ""
+            vc.toCity = toCityLabel.text ?? ""
+            //            vc.fromCityCode =
+            //            vc.toCityCode =
             self.navigationController?.pushViewController(vc, animated: true)
         }
         //        if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
@@ -390,7 +394,7 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
                 }
                 
                 cell.selectTapped = {
-                    self.moveToNextVC(row: indexPath.row)
+                    self.moveToNextVC(row: indexPath.row, fromTime: cell.forwardtoTimeLabel.text ?? "", toTime: cell.backwardtoTimeLabel.text ?? "")
                 }
                 
                 return cell
@@ -456,7 +460,11 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             }
             
         }else{
-            moveToNextVC(row: indexPath.row)
+            if let cell = tableView.cellForRow(at: indexPath) as? ReturnFlightCell{
+                moveToNextVC(row: indexPath.row, fromTime: cell.forwardtoTimeLabel.text ?? "", toTime: cell.forwardtoTimeLabel.text ?? "")
+            }else if let cell = tableView.cellForRow(at: indexPath) as? ReturnFlightExpandedCell{
+                moveToNextVC(row: indexPath.row, fromTime: cell.forwardtoTimeLabel.text ?? "", toTime: cell.forwardtoTimeLabel.text ?? "")
+            }
         }
     }
     

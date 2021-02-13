@@ -89,6 +89,12 @@ class FlightSummaryViewController: UIViewController {
     var oneWayflight: FlightInfo?
     var returnFlight: SaleCurrencyAmount?
     var selectedItiRef = ""
+    var fromTime = ""
+    var toTime = ""
+    var fromCityCode = ""
+    var toCityCode = ""
+    var fromCity = ""
+    var toCity = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,8 +136,10 @@ class FlightSummaryViewController: UIViewController {
     func extractTicketInfo(){
         if oneWayflight == nil{
             selectedItiRef = returnFlight?.itineraryRef ?? ""
+            loadReturnData()
         }else{
             selectedItiRef = oneWayflight?.itineraryRef ?? ""
+            loadOneWayData()
         }
         print("selectedItiRef = \(selectedItiRef)")
         for ticketFare in eTTicketFares{
@@ -144,9 +152,56 @@ class FlightSummaryViewController: UIViewController {
             }
         }
         
-        
-        
         SVProgressHUD.dismiss()
+    }
+    
+    func loadReturnData(){
+        flightIdLabel.text = "FLIGHT: \(returnFlight?.forwardflightInfo?.operatingAirlineDesignator ?? "") \(returnFlight?.forwardflightInfo?.operatingFlightNumber ?? ""))"
+        flightNameLabel.text = returnFlight?.forwardflightInfo?.equipmentText ?? ""
+        let duration = ((returnFlight?.forwardflightInfo?.durationMinutes ?? 0) + (returnFlight?.backwardflightInfo?.durationMinutes ?? 0))
+        durationLabel.text = "\(duration) MIN"
+        
+        let startDate = returnFlight?.forwardflightInfo?.departureDate ?? ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+        if let date = dateFormatter.date(from: startDate) {
+            dateFormatter.dateFormat = "EEE, dd MMM, YYYY"
+            fromDateLabel.text = dateFormatter.string(from: date)
+        }
+        
+        let endDate = returnFlight?.forwardflightInfo?.arrivalDate ?? ""
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+        if let date = dateFormatter.date(from: endDate) {
+            dateFormatter.dateFormat = "EEE, dd MMM, YYYY"
+            toDateLabel.text = dateFormatter.string(from: date)
+        }
+        
+        fromTimeLabel.text = "\(fromTime) \(fromCityCode)"
+        toTimeLabel.text = "\(toTime) \(toCityCode)"
+    }
+    
+    func loadOneWayData(){
+        flightIdLabel.text = "FLIGHT: \(oneWayflight?.operatingAirlineDesignator ?? "") \(oneWayflight?.operatingFlightNumber ?? "")"
+        flightNameLabel.text = oneWayflight?.equipmentText ?? ""
+        let duration = ((oneWayflight?.durationMinutes ?? 0) + (oneWayflight?.durationMinutes ?? 0))
+        durationLabel.text = "\(duration) MIN"
+        
+        let startDate = oneWayflight?.departureDate ?? ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+        if let date = dateFormatter.date(from: startDate) {
+            dateFormatter.dateFormat = "EEE, dd MMM, YYYY"
+            fromDateLabel.text = dateFormatter.string(from: date)
+        }
+        
+        let endDate = oneWayflight?.arrivalDate ?? ""
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+        if let date = dateFormatter.date(from: endDate) {
+            dateFormatter.dateFormat = "EEE, dd MMM, YYYY"
+            toDateLabel.text = dateFormatter.string(from: date)
+        }
+        fromTimeLabel.text = "\(fromTime) \(fromCityCode)"
+        toTimeLabel.text = "\(toTime) \(toCityCode)"
     }
     
     func toWebView(type: GivenOption){

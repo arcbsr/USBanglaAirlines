@@ -386,6 +386,14 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
                 vc.oneWayflight = flights[indexPath.row]
                 vc.eTTicketFares = self.eTTicketFares
                 vc.passengers = self.passengers
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? OneWayFlightCell{
+                    vc.fromTime = cell.fromTimeLabel.text ?? ""
+                    vc.toTime = cell.toTimeLabel.text ?? ""
+                    vc.fromCity = cell.fromLocationLabel.text ?? ""
+                    vc.toCity = cell.toLocationLabel.text ?? ""
+                }
+                
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             //            if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
