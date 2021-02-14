@@ -137,7 +137,7 @@ class FlightSummaryViewController: UIViewController {
     }
     
     @IBAction func proceedButtonTapped(_ sender: UIButton) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InputPassengerInfoViewController") as? InputPassengerInfoViewController{
+        if let vc = UIStoryboard(name: "PassengerInfo", bundle: nil).instantiateViewController(withIdentifier: "InputPassengerInfoViewController") as? InputPassengerInfoViewController{
             vc.passengers = passengers
             self.navigationController?.pushViewController(vc, animated: true)
         }

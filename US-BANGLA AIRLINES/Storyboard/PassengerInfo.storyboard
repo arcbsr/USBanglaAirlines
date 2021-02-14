@@ -77,6 +77,33 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o4u-mI-u1d">
                                 <rect key="frame" x="0.0" y="98" width="414" height="2868"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="lew-3J-8G1">
+                                    <rect key="frame" x="0.0" y="2631" width="414" height="58"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Li0-9I-nS6">
+                                            <rect key="frame" x="248" y="13" width="166" height="32"/>
+                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="32" id="fET-oV-NMu"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="36" maxY="0.0"/>
+                                            <state key="normal" title="CREATE BOOKING">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="createBookingButtonTapped:" destination="nDy-6p-5xZ" eventType="touchUpInside" id="cOb-HV-8sq"/>
+                                                <action selector="makePaymentTapped:" destination="nDy-6p-5xZ" eventType="touchUpInside" id="tHK-ED-k4S"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="Li0-9I-nS6" firstAttribute="centerY" secondItem="lew-3J-8G1" secondAttribute="centerY" id="OI4-3N-nru"/>
+                                        <constraint firstAttribute="trailing" secondItem="Li0-9I-nS6" secondAttribute="trailing" id="QWQ-mg-GzL"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="447" id="p8H-y8-kI1">
                                         <rect key="frame" x="0.0" y="28" width="414" height="447"/>
@@ -2017,6 +2044,7 @@
                     <size key="freeformSize" width="414" height="3000"/>
                     <connections>
                         <outlet property="backImageView" destination="PIt-cL-EPl" id="hOk-sd-ByL"/>
+                        <outlet property="createBookingButton" destination="Li0-9I-nS6" id="1jx-GN-Lex"/>
                         <outlet property="crossImageView" destination="wHH-GV-M1b" id="ZkY-XS-yGr"/>
                         <outlet property="holdBookingButton" destination="3Ad-o9-Cdy" id="Qd3-TA-41w"/>
                         <outlet property="makePaymentButton" destination="7jH-8t-jXS" id="J8E-xM-zpF"/>

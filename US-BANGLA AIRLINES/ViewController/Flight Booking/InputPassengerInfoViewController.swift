@@ -10,8 +10,17 @@ import UIKit
 
 
 class InputPassengerInfoViewController: UIViewController {
-    @IBOutlet weak var makePaymentButton: UIButton!
-    @IBOutlet weak var holdBookingButton: UIButton!
+    @IBOutlet weak var createBookingButton: UIButton!
+    @IBOutlet weak var makePaymentButton: UIButton!{
+        didSet{
+            makePaymentButton.isHidden = true
+        }
+    }
+    @IBOutlet weak var holdBookingButton: UIButton!{
+        didSet{
+            holdBookingButton.isHidden = true
+        }
+    }
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             tableView.dataSource = self
@@ -19,10 +28,10 @@ class InputPassengerInfoViewController: UIViewController {
             tableView.separatorStyle = .none
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableView.automaticDimension
-            let footerView = UIView()
-            footerView.frame.size.height = 16
-            footerView.backgroundColor = .clear
-            tableView.tableFooterView = footerView
+//            let footerView = UIView()
+//            footerView.frame.size.height = 16
+//            footerView.backgroundColor = .clear
+//            tableView.tableFooterView = footerView
         }
     }
     @IBOutlet weak var notificationImageView: UIImageView!{
@@ -70,7 +79,7 @@ class InputPassengerInfoViewController: UIViewController {
     let SALES_OFFICE_SECTION = 7
     let CONTACT_US_SECTION = 8
     var passengers = [Passenger]()
-    
+    var computedPassengers = [Passenger]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +95,7 @@ class InputPassengerInfoViewController: UIViewController {
             }
         }
         sideBarSetup()
+        constructPassengers()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -102,6 +112,10 @@ class InputPassengerInfoViewController: UIViewController {
         sideBarSetup(willChangeState: true)
     }
     
+    @IBAction func createBookingButtonTapped(_ sender: Any) {
+        
+    }
+    
     @IBAction func makePaymentTapped(_ sender: Any) {
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
             vc.currentOption = .payment
@@ -111,6 +125,17 @@ class InputPassengerInfoViewController: UIViewController {
     
     @IBAction func holdBookingTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func constructPassengers(){
+        computedPassengers = [Passenger]()
+        for passenger in passengers{
+            let count = passenger.passengerQuantity ?? 0
+            for _ in 0 ..< count{
+                computedPassengers.append(passenger)
+            }
+        }
+        tableView.reloadData()
     }
     
     func toWebView(type: GivenOption){
@@ -305,11 +330,12 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
         if tableView == sideBarTableView{
             return sideMenutitleArray.count
         }else{
-            var count = 0
-            for passenger in passengers{
-                count += (passenger.passengerQuantity ?? 0)
-            }
-            return count
+            //            var count = 0
+            //            for passenger in passengers{
+            //                count += (passenger.passengerQuantity ?? 0)
+            //            }
+            //            return count
+            return computedPassengers.count
         }
     }
     
@@ -337,7 +363,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                 let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OtherPassengerCell.self)) as! OtherPassengerCell
                 cell.selectionStyle = .none
                 
-                let passenger = passengers[indexPath.row]
+                let passenger = computedPassengers[indexPath.row]
                 
                 if passenger.passengerTypeCode == "AD"{
                     cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-ADULT"
