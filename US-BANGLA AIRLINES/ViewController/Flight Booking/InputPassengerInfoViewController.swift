@@ -360,11 +360,135 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.selectionStyle = .none
                     cell.passengerTypeLabel.text = "PASSENGER 1-ADULT (LEAD)"
                     
+                    cell.titleLabel.text = computedPassengers[indexPath.row].title
+                    cell.dobDateButton.setTitle(computedPassengers[indexPath.row].dobDay, for: .normal)
+                    cell.dobMonthButton.setTitle(computedPassengers[indexPath.row].dobMonth, for: .normal)
+                    cell.dobYearButton.setTitle(computedPassengers[indexPath.row].dobYear, for: .normal)
+                    //                    cell.expireDateButton.setTitle(computedPassengers[indexPath.row].expireDay, for: .normal)
+                    //                    cell.expireMonthButton.setTitle(computedPassengers[indexPath.row].expireMonth, for: .normal)
+                    //                    cell.expireYearButton.setTitle(computedPassengers[indexPath.row].expireYear, for: .normal)
+                    //                    cell.passportNumberTextField.text = computedPassengers[indexPath.row].passportNumber
+                    cell.countryLabel.text = computedPassengers[indexPath.row].country
+                    cell.phoneCodeLabel.text = computedPassengers[indexPath.row].countryCode
+                    cell.phoneNumberTextField.text = computedPassengers[indexPath.row].phoneNumberWithoutCountryCode
+                    cell.emailAddressTextField.text = computedPassengers[indexPath.row].emailAddress
+                    cell.ffpNumberTextField.text = computedPassengers[indexPath.row].ffpNumber
+                    cell.firstNameTextField.text = computedPassengers[indexPath.row].firstName
+                    cell.lastNameTextField.text = computedPassengers[indexPath.row].lastName
+                    
+                    cell.selectedTitle = { item in
+                        self.computedPassengers[indexPath.row].title = item
+                    }
+                    cell.selectedDobDay = { item in
+                        self.computedPassengers[indexPath.row].dobDay = item
+                    }
+                    cell.selectedDobMonth = { item in
+                        self.computedPassengers[indexPath.row].dobMonth = item
+                    }
+                    cell.selectedDobYear = { item in
+                        self.computedPassengers[indexPath.row].dobYear = item
+                    }
+                    //                    cell.selectedExpireDay = { item in
+                    //                        self.computedPassengers[indexPath.row].expireDay = item
+                    //                    }
+                    //                    cell.selectedExpireMonth = { item in
+                    //                        self.computedPassengers[indexPath.row].expireMonth = item
+                    //                    }
+                    //                    cell.selectedExpireYear = { item in
+                    //                        self.computedPassengers[indexPath.row].expireYear = item
+                    //                    }
+                    //                    cell.selectedPassportNumer = { item in
+                    //                        self.computedPassengers[indexPath.row].passportNumber = item
+                    //                    }
+                    cell.selectedCountryCode = { item in
+                        self.computedPassengers[indexPath.row].countryCode = item
+                    }
+                    cell.selectedPhoneNumber = { item in
+                        self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
+                    }
+                    cell.selectedCountry = { item in
+                        self.computedPassengers[indexPath.row].country = item
+                    }
+                    cell.selectedFirstName = { item in
+                        self.computedPassengers[indexPath.row].firstName = item
+                    }
+                    cell.selectedLastName = { item in
+                        self.computedPassengers[indexPath.row].lastName = item
+                    }
+                    cell.selectedFFPNumber = { item in
+                        self.computedPassengers[indexPath.row].ffpNumber = item
+                    }
+                    cell.selectedEmailAdress = { item in
+                        self.computedPassengers[indexPath.row].emailAddress = item
+                    }
+                    
                     return cell
                 }else{
                     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadGlobalPassengerCell.self)) as! LeadGlobalPassengerCell
                     cell.selectionStyle = .none
                     cell.passengerTypeLabel.text = "PASSENGER 1-ADULT (LEAD)"
+                    
+                    cell.titleLabel.text = computedPassengers[indexPath.row].title
+                    cell.dobDateButton.setTitle(computedPassengers[indexPath.row].dobDay, for: .normal)
+                    cell.dobMonthButton.setTitle(computedPassengers[indexPath.row].dobMonth, for: .normal)
+                    cell.dobYearButton.setTitle(computedPassengers[indexPath.row].dobYear, for: .normal)
+                    cell.expireDateButton.setTitle(computedPassengers[indexPath.row].expireDay, for: .normal)
+                    cell.expireMonthButton.setTitle(computedPassengers[indexPath.row].expireMonth, for: .normal)
+                    cell.expireYearButton.setTitle(computedPassengers[indexPath.row].expireYear, for: .normal)
+                    cell.passportNumberTextField.text = computedPassengers[indexPath.row].passportNumber
+                    cell.countryLabel.text = computedPassengers[indexPath.row].country
+                    cell.phoneCodeLabel.text = computedPassengers[indexPath.row].countryCode
+                    cell.phoneNumberTextField.text = computedPassengers[indexPath.row].phoneNumberWithoutCountryCode
+                    cell.emailAddressTextField.text = computedPassengers[indexPath.row].emailAddress
+                    cell.ffpNumberTextField.text = computedPassengers[indexPath.row].ffpNumber
+                    cell.firstNameTextField.text = computedPassengers[indexPath.row].firstName
+                    cell.lastNameTextField.text = computedPassengers[indexPath.row].lastName
+                    
+                    cell.selectedTitle = { item in
+                        self.computedPassengers[indexPath.row].title = item
+                    }
+                    cell.selectedDobDay = { item in
+                        self.computedPassengers[indexPath.row].dobDay = item
+                    }
+                    cell.selectedDobMonth = { item in
+                        self.computedPassengers[indexPath.row].dobMonth = item
+                    }
+                    cell.selectedDobYear = { item in
+                        self.computedPassengers[indexPath.row].dobYear = item
+                    }
+                    cell.selectedExpireDay = { item in
+                        self.computedPassengers[indexPath.row].expireDay = item
+                    }
+                    cell.selectedExpireMonth = { item in
+                        self.computedPassengers[indexPath.row].expireMonth = item
+                    }
+                    cell.selectedExpireYear = { item in
+                        self.computedPassengers[indexPath.row].expireYear = item
+                    }
+                    cell.selectedPassportNumer = { item in
+                        self.computedPassengers[indexPath.row].passportNumber = item
+                    }
+                    cell.selectedCountryCode = { item in
+                        self.computedPassengers[indexPath.row].countryCode = item
+                    }
+                    cell.selectedPhoneNumber = { item in
+                        self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
+                    }
+                    cell.selectedCountry = { item in
+                        self.computedPassengers[indexPath.row].country = item
+                    }
+                    cell.selectedFirstName = { item in
+                        self.computedPassengers[indexPath.row].firstName = item
+                    }
+                    cell.selectedLastName = { item in
+                        self.computedPassengers[indexPath.row].lastName = item
+                    }
+                    cell.selectedFFPNumber = { item in
+                        self.computedPassengers[indexPath.row].ffpNumber = item
+                    }
+                    cell.selectedEmailAdress = { item in
+                        self.computedPassengers[indexPath.row].emailAddress = item
+                    }
                     
                     return cell
                 }
@@ -383,6 +507,68 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                         cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-INFANT"
                     }
                     
+                    cell.titleLabel.text = computedPassengers[indexPath.row].title
+                    cell.dobDateButton.setTitle(computedPassengers[indexPath.row].dobDay, for: .normal)
+                    cell.dobMonthButton.setTitle(computedPassengers[indexPath.row].dobMonth, for: .normal)
+                    cell.dobYearButton.setTitle(computedPassengers[indexPath.row].dobYear, for: .normal)
+                    cell.expireDateButton.setTitle(computedPassengers[indexPath.row].expireDay, for: .normal)
+                    cell.expireMonthButton.setTitle(computedPassengers[indexPath.row].expireMonth, for: .normal)
+                    cell.expireYearButton.setTitle(computedPassengers[indexPath.row].expireYear, for: .normal)
+                    cell.passportNumberTextField.text = computedPassengers[indexPath.row].passportNumber
+                    //                    cell.countryLabel.text = computedPassengers[indexPath.row].country
+                    //                    cell.phoneCodeLabel.text = computedPassengers[indexPath.row].countryCode
+                    //                    cell.phoneNumberTextField.text = computedPassengers[indexPath.row].phoneNumberWithoutCountryCode
+                    //                    cell.emailAddressTextField.text = computedPassengers[indexPath.row].emailAddress
+                    cell.ffpNumberTextField.text = computedPassengers[indexPath.row].ffpNumber
+                    cell.firstNameTextField.text = computedPassengers[indexPath.row].firstName
+                    cell.lastNameTextField.text = computedPassengers[indexPath.row].lastName
+                    
+                    cell.selectedTitle = { item in
+                        self.computedPassengers[indexPath.row].title = item
+                    }
+                    cell.selectedDobDay = { item in
+                        self.computedPassengers[indexPath.row].dobDay = item
+                    }
+                    cell.selectedDobMonth = { item in
+                        self.computedPassengers[indexPath.row].dobMonth = item
+                    }
+                    cell.selectedDobYear = { item in
+                        self.computedPassengers[indexPath.row].dobYear = item
+                    }
+//                    cell.selectedExpireDay = { item in
+//                        self.computedPassengers[indexPath.row].expireDay = item
+//                    }
+//                    cell.selectedExpireMonth = { item in
+//                        self.computedPassengers[indexPath.row].expireMonth = item
+//                    }
+//                    cell.selectedExpireYear = { item in
+//                        self.computedPassengers[indexPath.row].expireYear = item
+//                    }
+//                    cell.selectedPassportNumer = { item in
+//                        self.computedPassengers[indexPath.row].passportNumber = item
+//                    }
+                    cell.selectedCountryCode = { item in
+                        self.computedPassengers[indexPath.row].countryCode = item
+                    }
+                    cell.selectedPhoneNumber = { item in
+                        self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
+                    }
+                    cell.selectedCountry = { item in
+                        self.computedPassengers[indexPath.row].country = item
+                    }
+                    cell.selectedFirstName = { item in
+                        self.computedPassengers[indexPath.row].firstName = item
+                    }
+                    cell.selectedLastName = { item in
+                        self.computedPassengers[indexPath.row].lastName = item
+                    }
+                    cell.selectedFFPNumber = { item in
+                        self.computedPassengers[indexPath.row].ffpNumber = item
+                    }
+                    cell.selectedEmailAdress = { item in
+                        self.computedPassengers[indexPath.row].emailAddress = item
+                    }
+                    
                     return cell
                 }else{
                     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OtherGlobalPassengerTableViewCell.self)) as! OtherGlobalPassengerTableViewCell
@@ -396,6 +582,68 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                         cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-CHILD"
                     }else{
                         cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-INFANT"
+                    }
+                    
+                    cell.titleLabel.text = computedPassengers[indexPath.row].title
+                    cell.dobDateButton.setTitle(computedPassengers[indexPath.row].dobDay, for: .normal)
+                    cell.dobMonthButton.setTitle(computedPassengers[indexPath.row].dobMonth, for: .normal)
+                    cell.dobYearButton.setTitle(computedPassengers[indexPath.row].dobYear, for: .normal)
+                    cell.expireDateButton.setTitle(computedPassengers[indexPath.row].expireDay, for: .normal)
+                    cell.expireMonthButton.setTitle(computedPassengers[indexPath.row].expireMonth, for: .normal)
+                    cell.expireYearButton.setTitle(computedPassengers[indexPath.row].expireYear, for: .normal)
+                    cell.passportNumberTextField.text = computedPassengers[indexPath.row].passportNumber
+                    //                    cell.countryLabel.text = computedPassengers[indexPath.row].country
+                    //                    cell.phoneCodeLabel.text = computedPassengers[indexPath.row].countryCode
+                    //                    cell.phoneNumberTextField.text = computedPassengers[indexPath.row].phoneNumberWithoutCountryCode
+                    //                    cell.emailAddressTextField.text = computedPassengers[indexPath.row].emailAddress
+                    cell.ffpNumberTextField.text = computedPassengers[indexPath.row].ffpNumber
+                    cell.firstNameTextField.text = computedPassengers[indexPath.row].firstName
+                    cell.lastNameTextField.text = computedPassengers[indexPath.row].lastName
+                    
+                    cell.selectedTitle = { item in
+                        self.computedPassengers[indexPath.row].title = item
+                    }
+                    cell.selectedDobDay = { item in
+                        self.computedPassengers[indexPath.row].dobDay = item
+                    }
+                    cell.selectedDobMonth = { item in
+                        self.computedPassengers[indexPath.row].dobMonth = item
+                    }
+                    cell.selectedDobYear = { item in
+                        self.computedPassengers[indexPath.row].dobYear = item
+                    }
+                    cell.selectedExpireDay = { item in
+                        self.computedPassengers[indexPath.row].expireDay = item
+                    }
+                    cell.selectedExpireMonth = { item in
+                        self.computedPassengers[indexPath.row].expireMonth = item
+                    }
+                    cell.selectedExpireYear = { item in
+                        self.computedPassengers[indexPath.row].expireYear = item
+                    }
+                    cell.selectedPassportNumer = { item in
+                        self.computedPassengers[indexPath.row].passportNumber = item
+                    }
+                    cell.selectedCountryCode = { item in
+                        self.computedPassengers[indexPath.row].countryCode = item
+                    }
+                    cell.selectedPhoneNumber = { item in
+                        self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
+                    }
+                    cell.selectedCountry = { item in
+                        self.computedPassengers[indexPath.row].country = item
+                    }
+                    cell.selectedFirstName = { item in
+                        self.computedPassengers[indexPath.row].firstName = item
+                    }
+                    cell.selectedLastName = { item in
+                        self.computedPassengers[indexPath.row].lastName = item
+                    }
+                    cell.selectedFFPNumber = { item in
+                        self.computedPassengers[indexPath.row].ffpNumber = item
+                    }
+                    cell.selectedEmailAdress = { item in
+                        self.computedPassengers[indexPath.row].emailAddress = item
                     }
                     
                     return cell

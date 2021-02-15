@@ -151,6 +151,24 @@ class BookingClass: Mappable {
 
 class Passenger: Mappable {
     
+    var title = ""
+    var firstName = ""
+    var lastName = ""
+    var dobDay = ""
+    var dob = ""
+    var dobMonth = ""
+    var dobYear = ""
+    var passportNumber = ""
+    var expireDate = ""
+    var expireDay = ""
+    var expireMonth = ""
+    var expireYear = ""
+    var ffpNumber = ""
+    var countryCode = ""
+    var phoneNumberWithoutCountryCode = ""
+    var phoneNumber = ""
+    var emailAddress = ""
+    var country = ""
     var eTTicketFare: ETTicketFare?
     var extensions: String?
     var nameElement: String?
