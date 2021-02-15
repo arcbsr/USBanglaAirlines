@@ -53,7 +53,7 @@ class LeadPassengerCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        for i in 0 ..< 32{
+        for i in 1 ..< 32{
             days.append("\(i)")
         }
         

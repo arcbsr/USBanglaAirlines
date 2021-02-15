@@ -28,10 +28,10 @@ class InputPassengerInfoViewController: UIViewController {
             tableView.separatorStyle = .none
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableView.automaticDimension
-//            let footerView = UIView()
-//            footerView.frame.size.height = 16
-//            footerView.backgroundColor = .clear
-//            tableView.tableFooterView = footerView
+            //            let footerView = UIView()
+            //            footerView.frame.size.height = 16
+            //            footerView.backgroundColor = .clear
+            //            tableView.tableFooterView = footerView
         }
     }
     @IBOutlet weak var notificationImageView: UIImageView!{
@@ -80,6 +80,7 @@ class InputPassengerInfoViewController: UIViewController {
     let CONTACT_US_SECTION = 8
     var passengers = [Passenger]()
     var computedPassengers = [Passenger]()
+    var isLocal = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -354,26 +355,51 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
             
         }else{
             if indexPath.row == 0{
-                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadPassengerCell.self)) as! LeadPassengerCell
-                cell.selectionStyle = .none
-                cell.passengerTypeLabel.text = "PASSENGER 1-ADULT (LEAD)"
-                
-                return cell
-            }else{
-                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OtherPassengerCell.self)) as! OtherPassengerCell
-                cell.selectionStyle = .none
-                
-                let passenger = computedPassengers[indexPath.row]
-                
-                if passenger.passengerTypeCode == "AD"{
-                    cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-ADULT"
-                }else if passenger.passengerTypeCode == "CHD"{
-                    cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-CHILD"
+                if isLocal{
+                    let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadPassengerCell.self)) as! LeadPassengerCell
+                    cell.selectionStyle = .none
+                    cell.passengerTypeLabel.text = "PASSENGER 1-ADULT (LEAD)"
+                    
+                    return cell
                 }else{
-                    cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-INFANT"
+                    let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadGlobalPassengerCell.self)) as! LeadGlobalPassengerCell
+                    cell.selectionStyle = .none
+                    cell.passengerTypeLabel.text = "PASSENGER 1-ADULT (LEAD)"
+                    
+                    return cell
                 }
-                
-                return cell
+            }else{
+                if isLocal{
+                    let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OtherPassengerCell.self)) as! OtherPassengerCell
+                    cell.selectionStyle = .none
+                    
+                    let passenger = computedPassengers[indexPath.row]
+                    
+                    if passenger.passengerTypeCode == "AD"{
+                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-ADULT"
+                    }else if passenger.passengerTypeCode == "CHD"{
+                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-CHILD"
+                    }else{
+                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-INFANT"
+                    }
+                    
+                    return cell
+                }else{
+                    let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OtherGlobalPassengerTableViewCell.self)) as! OtherGlobalPassengerTableViewCell
+                    cell.selectionStyle = .none
+                    
+                    let passenger = computedPassengers[indexPath.row]
+                    
+                    if passenger.passengerTypeCode == "AD"{
+                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-ADULT"
+                    }else if passenger.passengerTypeCode == "CHD"{
+                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-CHILD"
+                    }else{
+                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-INFANT"
+                    }
+                    
+                    return cell
+                }
             }
         }
     }
