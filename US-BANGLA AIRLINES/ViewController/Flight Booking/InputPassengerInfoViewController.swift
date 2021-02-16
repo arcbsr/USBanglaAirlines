@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import SVProgressHUD
+import AlamofireObjectMapper
 
 
 class InputPassengerInfoViewController: UIViewController {
@@ -114,7 +117,8 @@ class InputPassengerInfoViewController: UIViewController {
     }
     
     @IBAction func createBookingButtonTapped(_ sender: Any) {
-        
+        // check and validate inputs then call api
+        createBooking()
     }
     
     @IBAction func makePaymentTapped(_ sender: Any) {
@@ -535,18 +539,18 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.selectedDobYear = { item in
                         self.computedPassengers[indexPath.row].dobYear = item
                     }
-//                    cell.selectedExpireDay = { item in
-//                        self.computedPassengers[indexPath.row].expireDay = item
-//                    }
-//                    cell.selectedExpireMonth = { item in
-//                        self.computedPassengers[indexPath.row].expireMonth = item
-//                    }
-//                    cell.selectedExpireYear = { item in
-//                        self.computedPassengers[indexPath.row].expireYear = item
-//                    }
-//                    cell.selectedPassportNumer = { item in
-//                        self.computedPassengers[indexPath.row].passportNumber = item
-//                    }
+                    //                    cell.selectedExpireDay = { item in
+                    //                        self.computedPassengers[indexPath.row].expireDay = item
+                    //                    }
+                    //                    cell.selectedExpireMonth = { item in
+                    //                        self.computedPassengers[indexPath.row].expireMonth = item
+                    //                    }
+                    //                    cell.selectedExpireYear = { item in
+                    //                        self.computedPassengers[indexPath.row].expireYear = item
+                    //                    }
+                    //                    cell.selectedPassportNumer = { item in
+                    //                        self.computedPassengers[indexPath.row].passportNumber = item
+                    //                    }
                     cell.selectedCountryCode = { item in
                         self.computedPassengers[indexPath.row].countryCode = item
                     }
@@ -683,7 +687,126 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
         }else{
             
         }
-    }
+    }    
+}
+
+
+// MARK: API CALL
+extension InputPassengerInfoViewController{
     
+    func createBooking() {
+        var passengers = [Parameters]()
+        var child: Parameters?
+        var adult: Parameters?
+        var infant: Parameters?
+        
+        var count = Int(adultCountLabel.text ?? "0") ?? 0
+        if count != 0 {
+            adult = [
+                "Ref": UUID().uuidString,
+                "PassengerQuantity": count,
+                "PassengerTypeCode": "AD"
+            ]
+        }
+        if let value = adult{
+            passengers.append(value)
+        }
+        
+        count = Int(childCountLabel.text ?? "0") ?? 0
+        if count != 0 {
+            child = [
+                "Ref": UUID().uuidString,
+                "PassengerQuantity": count,
+                "PassengerTypeCode": "CHD"
+            ]
+        }
+        if let value = child{
+            passengers.append(value)
+        }
+        
+        count = Int(infantCountLabel.text ?? "0") ?? 0
+        if count != 0 {
+            infant = [
+                "Ref": UUID().uuidString,
+                "PassengerQuantity": count,
+                "PassengerTypeCode": "INF"
+            ]
+        }
+        if let value = infant{
+            passengers.append(value)
+        }
+        
+        var originDestinations = [Parameters]()
+        let forwardFlight: Parameters = [
+            "TargetDate": departureDate,
+            "OriginCode": aiportReverseDictionary[fromCityLabel.text ?? ""] ?? "",
+            "DestinationCode": aiportReverseDictionary[toCityLabel.text ?? ""] ?? ""
+        ]
+        originDestinations.append(forwardFlight)
+        
+        let fareDisplaySettings: Parameters = [
+            "SaleCurrencyCode": currencyLabel.text ?? "",
+            "FarebasisCodes": [],
+            "WebClassesCodes": [],
+            "ShowWebClasses": true
+        ]
+        
+        let availabilitySettings: Parameters = [
+            "MaxConnectionCount": "8",
+        ]
+        
+        let requestInfo: Parameters = [
+            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "CultureName": "en-GB"
+        ]
+        
+        let request: Parameters = [
+            "Passengers": passengers,
+            "OriginDestinations": originDestinations,
+            "FareDisplaySettings": fareDisplaySettings,
+            "AvailabilitySettings": availabilitySettings,
+            "RequestInfo": requestInfo,
+            "Extensions": []
+        ]
+        
+        let params: Parameters = [
+            "request": request
+        ]
+        
+        guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights?DateFormatHandling=IsoDateFormat") else{
+            return
+        }
+        
+        print("url: \(url) params \(params)")
+        //MARK: Reset
+        GlobalItems.segmentRefInfoDictinary.removeAll()
+        
+        SVProgressHUD.show()
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
+            print("=== response = \(response)")
+            //            if SVProgressHUD.isVisible(){
+            //                SVProgressHUD.dismiss()
+            //            }
+            guard let statusCode = response.response?.statusCode else{
+                if SVProgressHUD.isVisible(){
+                    SVProgressHUD.dismiss()
+                }
+                self.showAlert(title: "No data found", message: nil, callback: nil)
+                return
+            }
+            print("statusCode = \(statusCode)")
+            switch response.result {
+            case .success:
+                print("")
+            case .failure(let error):
+                if SVProgressHUD.isVisible(){
+                    SVProgressHUD.dismiss()
+                }
+                self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
+                print("error = \(error)")
+            }
+        })
+    }
     
 }
