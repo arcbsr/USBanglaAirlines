@@ -151,24 +151,24 @@ class BookingClass: Mappable {
 
 class Passenger: Mappable {
     
-    var title = ""
+    var title = "MR"
     var firstName = ""
     var lastName = ""
-    var dobDay = ""
+    var dobDay = "DATE"
+    var dobMonth = "MONTH"
+    var dobYear = "YEAR"
     var dob = ""
-    var dobMonth = ""
-    var dobYear = ""
-    var passportNumber = ""
     var expireDate = ""
-    var expireDay = ""
-    var expireMonth = ""
-    var expireYear = ""
+    var expireDay = "DATE"
+    var expireMonth = "MONTH"
+    var expireYear = "YEAR"
     var ffpNumber = ""
-    var countryCode = ""
+    var countryCode = "+880"
     var phoneNumberWithoutCountryCode = ""
+    var passportNumber = ""
     var phoneNumber = ""
     var emailAddress = ""
-    var country = ""
+    var country = "BANGLADESH"
     var eTTicketFare: ETTicketFare?
     var extensions: String?
     var nameElement: String?

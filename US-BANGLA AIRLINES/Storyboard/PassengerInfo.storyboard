@@ -1647,6 +1647,9 @@
                                             <outlet property="dobMonthButton" destination="r0o-SS-Awx" id="J4J-gt-S6G"/>
                                             <outlet property="dobYearButton" destination="7Pa-wc-umD" id="1aa-us-UQC"/>
                                             <outlet property="emailAddressTextField" destination="3Sx-WB-ogm" id="uTW-JT-MBg"/>
+                                            <outlet property="expireDateButton" destination="bvG-ge-JiB" id="0rP-Eg-RqR"/>
+                                            <outlet property="expireMonthButton" destination="q5i-3w-UTT" id="pYp-sk-9pg"/>
+                                            <outlet property="expireYearButton" destination="g2F-JA-e7h" id="Tc7-gN-n5S"/>
                                             <outlet property="ffpNumberTextField" destination="s9H-vv-Uft" id="cJ9-2A-mSu"/>
                                             <outlet property="firstNameTextField" destination="Rg6-iM-Cp3" id="2Kn-hi-Ov7"/>
                                             <outlet property="lastNameTextField" destination="0Om-en-JP7" id="LwT-XM-4in"/>
