@@ -698,55 +698,31 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
 extension InputPassengerInfoViewController{
     
     func createBooking() {
-        var selectedItiRef = ""
+        var passengersParam = [Parameters]()
         
+        for passenger in computedPassengers{
+            let nameElement: Parameters = [
+                "CivilityCode": passenger.title,
+                "Firstname": passenger.firstName,
+                "Surname": passenger.lastName
+            ]
+            let item: Parameters = [
+                "Ref": passenger.ref ?? "",
+                "RefClient": passenger.refClient ?? "",
+                "PassengerQuantity": 1,
+                "PassengerTypeCode": passenger.passengerTypeCode ?? "",
+                "NameElement": nameElement,
+                "Extensions": []
+            ]
+            passengersParam.append(item)
+        }
+        
+        var selectedItiRef = ""
         if oneWayflight == nil{
             selectedItiRef = returnFlight?.itineraryRef ?? ""
         }else{
             selectedItiRef = oneWayflight?.itineraryRef ?? ""
         }
-        
-        var passengers = [Parameters]()
-        var child: Parameters?
-        var adult: Parameters?
-        var infant: Parameters?
-        
-        var count = Int(adultCountLabel.text ?? "0") ?? 0
-        if count != 0 {
-            adult = [
-                "Ref": UUID().uuidString,
-                "PassengerQuantity": count,
-                "PassengerTypeCode": "AD"
-            ]
-        }
-        if let value = adult{
-            passengers.append(value)
-        }
-        
-        count = Int(childCountLabel.text ?? "0") ?? 0
-        if count != 0 {
-            child = [
-                "Ref": UUID().uuidString,
-                "PassengerQuantity": count,
-                "PassengerTypeCode": "CHD"
-            ]
-        }
-        if let value = child{
-            passengers.append(value)
-        }
-        
-        count = Int(infantCountLabel.text ?? "0") ?? 0
-        if count != 0 {
-            infant = [
-                "Ref": UUID().uuidString,
-                "PassengerQuantity": count,
-                "PassengerTypeCode": "INF"
-            ]
-        }
-        if let value = infant{
-            passengers.append(value)
-        }
-        
         let offerParam: Parameters = [
             "RefItinerary": selectedItiRef,
             "Ref": offer?.ref ?? ""
