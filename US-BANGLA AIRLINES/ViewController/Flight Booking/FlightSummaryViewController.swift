@@ -89,6 +89,7 @@ class FlightSummaryViewController: UIViewController {
     let CONTACT_US_SECTION = 8
     var eTTicketFares = [ETTicketFare]()
     var passengers = [Passenger]()
+    var offer: Offer?
     var oneWayflight: FlightInfo?
     var returnFlight: SaleCurrencyAmount?
     var selectedItiRef = ""
@@ -139,6 +140,7 @@ class FlightSummaryViewController: UIViewController {
     @IBAction func proceedButtonTapped(_ sender: UIButton) {
         if let vc = UIStoryboard(name: "PassengerInfo", bundle: nil).instantiateViewController(withIdentifier: "InputPassengerInfoViewController") as? InputPassengerInfoViewController{
             vc.passengers = passengers
+            vc.offer = self.offer
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

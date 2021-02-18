@@ -77,14 +77,15 @@ class ReturnFlightViewController: UIViewController {
     var searchData: FlightSearchModel?
     var forwardCityCode = ""
     var backwardCityCode = ""
-    var returnFlights = [SaleCurrencyAmount]()
     var selectedCurrency = ""
     var fromCity = ""
     var toCity = ""
     var departureDate = ""
     var returnDate = ""
+    var returnFlights = [SaleCurrencyAmount]()
     var eTTicketFares = [ETTicketFare]()
     var passengers = [Passenger]()
+    var offer: Offer?
     var forwardFlightClass = ""
     var backwardFlightClass = ""
     
@@ -130,6 +131,7 @@ class ReturnFlightViewController: UIViewController {
             vc.returnFlight = returnFlights[row]
             vc.eTTicketFares = eTTicketFares
             vc.passengers = passengers
+            vc.offer = self.offer
             vc.fromCity = fromCityLabel.text ?? ""
             vc.toCity = toCityLabel.text ?? ""
             //            vc.fromCityCode =

@@ -81,6 +81,7 @@ class OneWayFlightViewController: UIViewController {
     var returnDate = ""
     var eTTicketFares = [ETTicketFare]()
     var passengers = [Passenger]()
+    var offer: Offer?
     var flightClass = ""
     
     
@@ -387,6 +388,7 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
                 vc.oneWayflight = flights[indexPath.row]
                 vc.eTTicketFares = self.eTTicketFares
                 vc.passengers = self.passengers
+                vc.offer = self.offer
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? OneWayFlightCell{
                     vc.fromTime = cell.fromTimeLabel.text ?? ""

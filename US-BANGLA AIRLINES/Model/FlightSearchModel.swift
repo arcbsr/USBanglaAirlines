@@ -13,7 +13,7 @@ class FlightSearchModel: Mappable {
     
     //    var extensions: String?
     var fareInfo: FareInfo?
-    //    var offer: Offer?
+    var offer: Offer?
     var passengers: [Passenger]?
     //    var responseInfo: ResponseInfo?
     var segments: [Segment]?
@@ -25,7 +25,7 @@ class FlightSearchModel: Mappable {
     func mapping(map: Map) {
         //        extensions <- map["Extensions"]
         fareInfo <- map["FareInfo"]
-        //        offer <- map["Offer"]
+        offer <- map["Offer"]
         passengers <- map["Passengers"]
         //        responseInfo <- map["ResponseInfo"]
         segments <- map["Segments"]

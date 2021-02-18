@@ -1055,6 +1055,7 @@ extension FlightFilterViewController{
                             //                            self.economyFlights = Array(self.economyDictionary.values)
                             vc.flights = Array(self.economyDictionary.values)
                         }
+                        vc.offer = self.searchData?.offer
                         vc.passengers = self.searchData?.passengers ?? [Passenger]()
                         vc.eTTicketFares = self.searchData?.fareInfo?.eTTicketFares ?? [ETTicketFare]()
                         vc.selectedCurrency = self.selectedCurrency
@@ -1268,6 +1269,7 @@ extension FlightFilterViewController{
                     }
                     
                     if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
+                        vc.offer = self.searchData?.offer
                         vc.passengers = self.searchData?.passengers ?? [Passenger]()
                         vc.eTTicketFares = self.searchData?.fareInfo?.eTTicketFares ?? [ETTicketFare]()
                         vc.returnFlights = Array(self.returnFlightDictionary.values)

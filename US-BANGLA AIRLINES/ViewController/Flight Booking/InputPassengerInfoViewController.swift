@@ -83,6 +83,9 @@ class InputPassengerInfoViewController: UIViewController {
     let CONTACT_US_SECTION = 8
     var passengers = [Passenger]()
     var computedPassengers = [Passenger]()
+    var oneWayflight: FlightInfo?
+    var returnFlight: SaleCurrencyAmount?
+    var offer: Offer?
     var isLocal = false
     
     override func viewDidLoad() {
@@ -695,6 +698,14 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
 extension InputPassengerInfoViewController{
     
     func createBooking() {
+        var selectedItiRef = ""
+        
+        if oneWayflight == nil{
+            selectedItiRef = returnFlight?.itineraryRef ?? ""
+        }else{
+            selectedItiRef = oneWayflight?.itineraryRef ?? ""
+        }
+        
         var passengers = [Parameters]()
         var child: Parameters?
         var adult: Parameters?
@@ -736,23 +747,13 @@ extension InputPassengerInfoViewController{
             passengers.append(value)
         }
         
-        var originDestinations = [Parameters]()
-        let forwardFlight: Parameters = [
-            "TargetDate": departureDate,
-            "OriginCode": aiportReverseDictionary[fromCityLabel.text ?? ""] ?? "",
-            "DestinationCode": aiportReverseDictionary[toCityLabel.text ?? ""] ?? ""
-        ]
-        originDestinations.append(forwardFlight)
-        
-        let fareDisplaySettings: Parameters = [
-            "SaleCurrencyCode": currencyLabel.text ?? "",
-            "FarebasisCodes": [],
-            "WebClassesCodes": [],
-            "ShowWebClasses": true
+        let offerParam: Parameters = [
+            "RefItinerary": selectedItiRef,
+            "Ref": offer?.ref ?? ""
         ]
         
-        let availabilitySettings: Parameters = [
-            "MaxConnectionCount": "8",
+        let emdTicketFares: Parameters = [
+            "EMDTicketFares": []
         ]
         
         let requestInfo: Parameters = [
@@ -760,17 +761,12 @@ extension InputPassengerInfoViewController{
             "CultureName": "en-GB"
         ]
         
-        let request: Parameters = [
+        let params: Parameters = [
             "Passengers": passengers,
-            "OriginDestinations": originDestinations,
-            "FareDisplaySettings": fareDisplaySettings,
-            "AvailabilitySettings": availabilitySettings,
+            "FareInfo": emdTicketFares,
+            "Offer": offerParam,
             "RequestInfo": requestInfo,
             "Extensions": []
-        ]
-        
-        let params: Parameters = [
-            "request": request
         ]
         
         guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights?DateFormatHandling=IsoDateFormat") else{
