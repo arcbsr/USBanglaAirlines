@@ -87,7 +87,8 @@ class InputPassengerInfoViewController: UIViewController {
     var returnFlight: SaleCurrencyAmount?
     var offer: Offer?
     var isLocal = false
-    
+    var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -698,7 +699,8 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
 extension InputPassengerInfoViewController{
     
     func createBooking() {
-        var passengersParam = [Parameters]()
+        var passengersParams = [Parameters]()
+        var specialServicesParams = [Parameters]()
         
         for passenger in computedPassengers{
             let nameElement: Parameters = [
@@ -714,7 +716,69 @@ extension InputPassengerInfoViewController{
                 "NameElement": nameElement,
                 "Extensions": []
             ]
-            passengersParam.append(item)
+            passengersParams.append(item)
+            
+            let dobMonth = months.firstIndex(of: passenger.dobMonth) ?? 1
+            let expireMonth = months.firstIndex(of: passenger.expireMonth) ?? 1
+            let dob = "\(passenger.dobYear)-\(dobMonth)-\(passenger.dobDay)'T'00:00:00"
+            let expireDate = "\(passenger.expireYear)-\(expireMonth)-\(passenger.expireDay)'T'00:00:00"
+            var currentCode = ""
+            if passenger.passengerTypeCode == "AD"{
+                currentCode = "EXT-ADOB"
+            }else if passenger.passengerTypeCode == "CHD"{
+                currentCode = "CHLD"
+            }else{
+                currentCode = "INFT"
+            }
+            let adofParam: Parameters = [
+                "DateOfBirth": dob
+            ]
+            let dobData: Parameters = [
+                "Adof": adofParam
+            ]
+            
+            let dobParams: Parameters = [
+                "Data": dobData,
+                "RefPassenger": passenger.ref ?? "",
+                "Code": currentCode
+            ]
+            specialServicesParams.append(dobParams)
+            
+            let passportParams: Parameters = [
+                "Text": "\(passenger.countryCode)\(passenger.phoneNumber)",
+                "RefPassenger": passenger.ref ?? "",
+                "Code": "CTCH"
+            ]
+            specialServicesParams.append(passportParams)
+            
+            var gender = "F"
+            if passenger.title == "MR"{
+                gender = "M"
+            }
+            let documentsParams: Parameters = [
+                "IssueCountryCode": passenger.countryCode,
+                "NationalityCountryCode": passenger.countryCode,
+                "DateOfBirth": passenger.dob,
+                "Gender": gender,
+                "DocumentExpiryDate": expireDate,
+                "DocumentIssuanceDate": "", // not available
+                "Firstname": passenger.firstName,
+                "Surname": passenger.lastName,
+                "DocumentTypeCode": "PP",
+                "DocumentNumber": passenger.passportNumber
+            ]
+            let docParam: Parameters = [
+                "Documents": documentsParams
+            ]
+            let docDataParam: Parameters = [
+                "Docs": docParam
+            ]
+            let docMainParams: Parameters = [
+                "Data": docDataParam,
+                "RefPassenger": passenger.ref ?? "",
+                "Code": "DOCS"
+            ]
+            specialServicesParams.append(docMainParams)
         }
         
         var selectedItiRef = ""
@@ -723,7 +787,7 @@ extension InputPassengerInfoViewController{
         }else{
             selectedItiRef = oneWayflight?.itineraryRef ?? ""
         }
-        let offerParam: Parameters = [
+        let offerParams: Parameters = [
             "RefItinerary": selectedItiRef,
             "Ref": offer?.ref ?? ""
         ]
@@ -738,20 +802,19 @@ extension InputPassengerInfoViewController{
         ]
         
         let params: Parameters = [
-            "Passengers": passengers,
+            "SpecialServices": specialServicesParams,
+            "Passengers": passengersParams,
             "FareInfo": emdTicketFares,
-            "Offer": offerParam,
+            "Offer": offerParams,
             "RequestInfo": requestInfo,
             "Extensions": []
         ]
         
-        guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights?DateFormatHandling=IsoDateFormat") else{
+        guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/CreateBooking?DateFormatHandling=IsoDateFormat") else{
             return
         }
         
         print("url: \(url) params \(params)")
-        //MARK: Reset
-        GlobalItems.segmentRefInfoDictinary.removeAll()
         
         SVProgressHUD.show()
         
@@ -778,7 +841,9 @@ extension InputPassengerInfoViewController{
                 self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
                 print("error = \(error)")
             }
-        })
+        }).responseJSON { (json) in
+            print("json = \(json)")
+        }
     }
     
 }

@@ -94,7 +94,6 @@
                                             </state>
                                             <connections>
                                                 <action selector="createBookingButtonTapped:" destination="nDy-6p-5xZ" eventType="touchUpInside" id="cOb-HV-8sq"/>
-                                                <action selector="makePaymentTapped:" destination="nDy-6p-5xZ" eventType="touchUpInside" id="tHK-ED-k4S"/>
                                             </connections>
                                         </button>
                                     </subviews>
