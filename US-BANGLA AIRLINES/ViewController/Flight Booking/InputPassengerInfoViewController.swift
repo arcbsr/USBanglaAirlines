@@ -87,8 +87,8 @@ class InputPassengerInfoViewController: UIViewController {
     var returnFlight: SaleCurrencyAmount?
     var offer: Offer?
     var isLocal = false
-    var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-
+    var monthDictionary = ["JAN": "01", "FEB": "02", "MAR": "03", "APR": "04", "MAY": "05", "JUN": "06", "JUL": "07", "AUG": "08", "SEP": "09", "OCT": "10", "NOV": "11", "DEC": "12"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -718,8 +718,8 @@ extension InputPassengerInfoViewController{
             ]
             passengersParams.append(item)
             
-            let dobMonth = months.firstIndex(of: passenger.dobMonth) ?? 1
-            let expireMonth = months.firstIndex(of: passenger.expireMonth) ?? 1
+            let dobMonth = monthDictionary[passenger.dobMonth] ?? ""
+            let expireMonth = monthDictionary[passenger.expireMonth] ?? ""
             let dob = "\(passenger.dobYear)-\(dobMonth)-\(passenger.dobDay)'T'00:00:00"
             let expireDate = "\(passenger.expireYear)-\(expireMonth)-\(passenger.expireDay)'T'00:00:00"
             var currentCode = ""
@@ -745,7 +745,7 @@ extension InputPassengerInfoViewController{
             specialServicesParams.append(dobParams)
             
             let passportParams: Parameters = [
-                "Text": "\(passenger.countryCode)\(passenger.phoneNumber)",
+                "Text": "\(passenger.countryCode)\(passenger.phoneNumberWithoutCountryCode)",
                 "RefPassenger": passenger.ref ?? "",
                 "Code": "CTCH"
             ]
@@ -758,7 +758,7 @@ extension InputPassengerInfoViewController{
             let documentsParams: Parameters = [
                 "IssueCountryCode": passenger.countryCode,
                 "NationalityCountryCode": passenger.countryCode,
-                "DateOfBirth": passenger.dob,
+                "DateOfBirth": dob,
                 "Gender": gender,
                 "DocumentExpiryDate": expireDate,
                 "DocumentIssuanceDate": "", // not available
@@ -806,27 +806,26 @@ extension InputPassengerInfoViewController{
             "Passengers": passengersParams,
             "FareInfo": emdTicketFares,
             "Offer": offerParams,
-            "RequestInfo": requestInfo,
-            "Extensions": []
+            "RequestInfo": requestInfo
         ]
         
         guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/CreateBooking?DateFormatHandling=IsoDateFormat") else{
             return
         }
         
-        print("url: \(url) params \(params)")
+        print("url: \(url) params = \(params) \n\n\(params.jsonString(prettify: true))")
         
         SVProgressHUD.show()
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
             print("=== response = \(response)")
-            //            if SVProgressHUD.isVisible(){
-            //                SVProgressHUD.dismiss()
-            //            }
+            if SVProgressHUD.isVisible(){
+                SVProgressHUD.dismiss()
+            }
             guard let statusCode = response.response?.statusCode else{
-                if SVProgressHUD.isVisible(){
-                    SVProgressHUD.dismiss()
-                }
+                //                if SVProgressHUD.isVisible(){
+                //                    SVProgressHUD.dismiss()
+                //                }
                 self.showAlert(title: "No data found", message: nil, callback: nil)
                 return
             }
@@ -835,9 +834,9 @@ extension InputPassengerInfoViewController{
             case .success:
                 print("")
             case .failure(let error):
-                if SVProgressHUD.isVisible(){
-                    SVProgressHUD.dismiss()
-                }
+                //                if SVProgressHUD.isVisible(){
+                //                    SVProgressHUD.dismiss()
+                //                }
                 self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
                 print("error = \(error)")
             }

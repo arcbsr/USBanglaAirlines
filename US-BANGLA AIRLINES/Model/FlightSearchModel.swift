@@ -165,10 +165,10 @@ class Passenger: Mappable {
     var ffpNumber = ""
     var countryCode = "+880"
     var phoneNumberWithoutCountryCode = ""
+//    var phoneNumber = ""
     var passportNumber = ""
-    var phoneNumber = ""
     var emailAddress = ""
-    var country = "BANGLADESH"
+    var country = "Bangladesh"
     var eTTicketFare: ETTicketFare?
     var extensions: String?
     var nameElement: String?
