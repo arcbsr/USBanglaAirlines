@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 import SVProgressHUD
-//import SSLCommerzSDK
+
 
 class CustomWebViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!{
@@ -42,7 +42,6 @@ class CustomWebViewController: UIViewController {
         switch currentOption {
         case .payment:
             print("payment")
-            navigationItem.title = "Payment"
         case .skyStarSignUp:
             urlString = skyStarSignupUrl
             navigationItem.title = "SKY STARS"
@@ -91,18 +90,18 @@ class CustomWebViewController: UIViewController {
         
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        if currentOption == .payment{
-//            navigationController?.navigationBar.isHidden = false
-//            navigationItem.title = "Payment"
-//        }else{
-//            navigationController?.navigationBar.isHidden = false
-////            navigationItem.title = "US-Bangla Airlines"
-//            //            navigationController?.navigationBar.isHidden = true
-//        }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if currentOption == .payment{
+            navigationController?.navigationBar.isHidden = false
+            navigationItem.title = "Payment"
+        }else{
+            navigationController?.navigationBar.isHidden = false
+//            navigationItem.title = "US-Bangla Airlines"
+            //            navigationController?.navigationBar.isHidden = true
+        }
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
