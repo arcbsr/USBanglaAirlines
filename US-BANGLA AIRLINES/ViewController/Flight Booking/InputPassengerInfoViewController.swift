@@ -384,7 +384,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     //                    cell.expireYearButton.setTitle(computedPassengers[indexPath.row].expireYear, for: .normal)
                     //                    cell.passportNumberTextField.text = computedPassengers[indexPath.row].passportNumber
                     cell.countryLabel.text = computedPassengers[indexPath.row].country
-                    cell.phoneCodeLabel.text = computedPassengers[indexPath.row].countryCode
+                    cell.phoneCodeLabel.text = computedPassengers[indexPath.row].phoneCode
                     cell.phoneNumberTextField.text = computedPassengers[indexPath.row].phoneNumberWithoutCountryCode
                     cell.emailAddressTextField.text = computedPassengers[indexPath.row].emailAddress
                     cell.ffpNumberTextField.text = computedPassengers[indexPath.row].ffpNumber
@@ -415,14 +415,15 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     //                    cell.selectedPassportNumer = { item in
                     //                        self.computedPassengers[indexPath.row].passportNumber = item
                     //                    }
-                    cell.selectedCountryCode = { item in
-                        self.computedPassengers[indexPath.row].countryCode = item
+                    cell.selectedPhoneCode = { item in
+                        self.computedPassengers[indexPath.row].phoneCode = item
                     }
                     cell.selectedPhoneNumber = { item in
                         self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
                     }
-                    cell.selectedCountry = { item in
+                    cell.selectedCountry = { item, code in
                         self.computedPassengers[indexPath.row].country = item
+                        self.computedPassengers[indexPath.row].countryCode = code
                     }
                     cell.selectedFirstName = { item in
                         self.computedPassengers[indexPath.row].firstName = item
@@ -452,7 +453,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.expireYearButton.setTitle(computedPassengers[indexPath.row].expireYear, for: .normal)
                     cell.passportNumberTextField.text = computedPassengers[indexPath.row].passportNumber
                     cell.countryLabel.text = computedPassengers[indexPath.row].country
-                    cell.phoneCodeLabel.text = computedPassengers[indexPath.row].countryCode
+                    cell.phoneCodeLabel.text = computedPassengers[indexPath.row].phoneCode
                     cell.phoneNumberTextField.text = computedPassengers[indexPath.row].phoneNumberWithoutCountryCode
                     cell.emailAddressTextField.text = computedPassengers[indexPath.row].emailAddress
                     cell.ffpNumberTextField.text = computedPassengers[indexPath.row].ffpNumber
@@ -483,14 +484,15 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.selectedPassportNumer = { item in
                         self.computedPassengers[indexPath.row].passportNumber = item
                     }
-                    cell.selectedCountryCode = { item in
-                        self.computedPassengers[indexPath.row].countryCode = item
+                    cell.selectedPhoneCode = { item in
+                        self.computedPassengers[indexPath.row].phoneCode = item
                     }
                     cell.selectedPhoneNumber = { item in
                         self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
                     }
-                    cell.selectedCountry = { item in
+                    cell.selectedCountry = { item, code in
                         self.computedPassengers[indexPath.row].country = item
+                        self.computedPassengers[indexPath.row].countryCode = code
                     }
                     cell.selectedFirstName = { item in
                         self.computedPassengers[indexPath.row].firstName = item
@@ -562,14 +564,15 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     //                    cell.selectedPassportNumer = { item in
                     //                        self.computedPassengers[indexPath.row].passportNumber = item
                     //                    }
-                    cell.selectedCountryCode = { item in
-                        self.computedPassengers[indexPath.row].countryCode = item
+                    cell.selectedPhoneCode = { item in
+                        self.computedPassengers[indexPath.row].phoneCode = item
                     }
                     cell.selectedPhoneNumber = { item in
                         self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
                     }
-                    cell.selectedCountry = { item in
+                    cell.selectedCountry = { item, code in
                         self.computedPassengers[indexPath.row].country = item
+                        self.computedPassengers[indexPath.row].countryCode = code
                     }
                     cell.selectedFirstName = { item in
                         self.computedPassengers[indexPath.row].firstName = item
@@ -639,14 +642,15 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.selectedPassportNumer = { item in
                         self.computedPassengers[indexPath.row].passportNumber = item
                     }
-                    cell.selectedCountryCode = { item in
-                        self.computedPassengers[indexPath.row].countryCode = item
+                    cell.selectedPhoneCode = { item in
+                        self.computedPassengers[indexPath.row].phoneCode = item
                     }
                     cell.selectedPhoneNumber = { item in
                         self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
                     }
-                    cell.selectedCountry = { item in
+                    cell.selectedCountry = { item, code in
                         self.computedPassengers[indexPath.row].country = item
+                        self.computedPassengers[indexPath.row].countryCode = code
                     }
                     cell.selectedFirstName = { item in
                         self.computedPassengers[indexPath.row].firstName = item
@@ -752,7 +756,7 @@ extension InputPassengerInfoViewController{
             specialServicesParams.append(dobParams)
             
             let passportParams: Parameters = [
-                "Text": "\(passenger.countryCode)\(passenger.phoneNumberWithoutCountryCode)",
+                "Text": "\(passenger.phoneCode)\(passenger.phoneNumberWithoutCountryCode)",
                 "RefPassenger": passenger.ref ?? "",
                 "Code": "CTCH"
             ]
@@ -768,7 +772,7 @@ extension InputPassengerInfoViewController{
                 "DateOfBirth": dob,
                 "Gender": gender,
                 "DocumentExpiryDate": expireDate,
-                "DocumentIssuanceDate": "", // not available
+                "DocumentIssuanceDate": expireDate, // not available
                 "Firstname": passenger.firstName,
                 "Surname": passenger.lastName,
                 "DocumentTypeCode": "PP",
@@ -808,7 +812,7 @@ extension InputPassengerInfoViewController{
             "CultureName": "en-GB"
         ]
         
-        let params: Parameters = [
+        let requestParams: Parameters = [
             "SpecialServices": specialServicesParams,
             "Passengers": passengersParams,
             "FareInfo": emdTicketFares,
@@ -816,11 +820,15 @@ extension InputPassengerInfoViewController{
             "RequestInfo": requestInfo
         ]
         
+        let params: Parameters = [
+            "request": requestParams
+        ]
+        
         guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/CreateBooking?DateFormatHandling=IsoDateFormat") else{
             return
         }
         
-        print("url: \(url) params = \(params) \n\n\(params.jsonString(prettify: true))")
+        print("url: \(url) params = \(params) \n\n\(params.jsonString(prettify: true) ?? "")")
         
         SVProgressHUD.show()
         

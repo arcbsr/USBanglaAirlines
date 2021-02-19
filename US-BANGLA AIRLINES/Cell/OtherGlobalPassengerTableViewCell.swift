@@ -60,12 +60,12 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
     var selectedExpireMonth: ((_ item: String)->())?
     var selectedExpireYear:((_ item: String)->())?
     var selectedTitle: ((_ item: String)->())?
-    var selectedCountryCode: ((_ item: String)->())?
+    var selectedPhoneCode: ((_ item: String)->())?
     var selectedPhoneNumber: ((_ item: String)->())?
     var selectedPassportNumer: ((_ item: String)->())?
     var selectedFirstName: ((_ item: String)->())?
     var selectedLastName: ((_ item: String)->())?
-    var selectedCountry: ((_ item: String)->())?
+    var selectedCountry: ((_ name: String, _ code: String)->())?
     var selectedFFPNumber: ((_ item: String)->())?
     var selectedEmailAdress: ((_ item: String)->())?
     

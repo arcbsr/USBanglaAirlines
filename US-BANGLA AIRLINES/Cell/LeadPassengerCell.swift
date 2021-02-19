@@ -85,12 +85,12 @@ class LeadPassengerCell: UITableViewCell {
     var selectedExpireMonth: ((_ item: String)->())?
     var selectedExpireYear:((_ item: String)->())?
     var selectedTitle: ((_ item: String)->())?
-    var selectedCountryCode: ((_ item: String)->())?
+    var selectedPhoneCode: ((_ item: String)->())?
     var selectedPhoneNumber: ((_ item: String)->())?
     var selectedPassportNumer: ((_ item: String)->())?
     var selectedFirstName: ((_ item: String)->())?
     var selectedLastName: ((_ item: String)->())?
-    var selectedCountry: ((_ item: String)->())?
+    var selectedCountry: ((_ name: String, _ code: String)->())?
     var selectedFFPNumber: ((_ item: String)->())?
     var selectedEmailAdress: ((_ item: String)->())?
     
@@ -191,12 +191,11 @@ class LeadPassengerCell: UITableViewCell {
         }
         dropDown.show()
     }
-    
     @objc func phoneCodeViewTapped(){
         let alert = UIAlertController(style: .actionSheet, title: "Phone Codes")
         alert.addLocalePicker(type: .phoneCode) { info in
             self.phoneCodeLabel.text = info?.phoneCode ?? ""
-            self.selectedCountryCode?(info?.phoneCode ?? "")
+            self.selectedPhoneCode?(info?.phoneCode ?? "")
         }
         alert.addAction(title: "Cancel", style: .cancel)
         let topVC = UIApplication.topViewController()
@@ -207,7 +206,7 @@ class LeadPassengerCell: UITableViewCell {
         let alert = UIAlertController(style: .actionSheet, title: "Country")
         alert.addLocalePicker(type: .country) { info in
             self.countryLabel.text = info?.country ?? ""
-            self.selectedCountry?(info?.country ?? "")
+            self.selectedCountry?(info?.country ?? "", info?.code ?? "")
         }
         alert.addAction(title: "Cancel", style: .cancel)
         let topVC = UIApplication.topViewController()
