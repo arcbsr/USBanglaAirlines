@@ -86,7 +86,9 @@ class InputPassengerInfoViewController: UIViewController {
     var oneWayflight: FlightInfo?
     var returnFlight: SaleCurrencyAmount?
     var offer: Offer?
-    var isLocal = false
+    var fromCityCode = ""
+    var toCityCode = ""
+    var isLocalFlight = false
     var monthDictionary = ["JAN": "01", "FEB": "02", "MAR": "03", "APR": "04", "MAY": "05", "JUN": "06", "JUL": "07", "AUG": "08", "SEP": "09", "OCT": "10", "NOV": "11", "DEC": "12"]
     
     override func viewDidLoad() {
@@ -104,6 +106,11 @@ class InputPassengerInfoViewController: UIViewController {
         }
         sideBarSetup()
         constructPassengers()
+        if GlobalItems.bdAirportCodes.contains(fromCityCode) && GlobalItems.bdAirportCodes.contains(toCityCode){
+            isLocalFlight = true
+        }else{
+            isLocalFlight = false
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -363,7 +370,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
             
         }else{
             if indexPath.row == 0{
-                if isLocal{
+                if isLocalFlight{
                     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadPassengerCell.self)) as! LeadPassengerCell
                     cell.selectionStyle = .none
                     cell.passengerTypeLabel.text = "PASSENGER 1-ADULT (LEAD)"
@@ -501,7 +508,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     return cell
                 }
             }else{
-                if isLocal{
+                if isLocalFlight{
                     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OtherPassengerCell.self)) as! OtherPassengerCell
                     cell.selectionStyle = .none
                     

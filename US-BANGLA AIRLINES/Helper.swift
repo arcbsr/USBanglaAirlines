@@ -19,6 +19,7 @@ struct CustomColor{
 struct GlobalItems{
     static var segmentRefInfoDictinary = [String: FlightInfo]()
     static var businessClassCodes = [String()] //["C", "D", "J", ...]
+    static var bdAirportCodes = [String]()
 }
 
 struct Platform {

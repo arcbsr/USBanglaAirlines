@@ -204,7 +204,10 @@ class FlightFilterViewController: UIViewController {
     var selectedCurrency = "USD"
     var offerPlaceOriginCode = ""
     var offerPlaceDestinationCode = ""
+    var fromCityCode = ""
+    var toCityCode = ""
     var fromOffer = false
+    var isLocalFlight = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -268,6 +271,8 @@ class FlightFilterViewController: UIViewController {
         if fromOffer{
             fromCityLabel.text = aiportDictionary[offerPlaceOriginCode]
             toCityLabel.text = aiportDictionary[offerPlaceDestinationCode]
+            fromCityCode = offerPlaceOriginCode
+            toCityCode = offerPlaceDestinationCode
             returnOptionTapped()
             let forwardDate = Date().tomorrow
             let backwardDate = forwardDate.tomorrow
@@ -306,6 +311,7 @@ class FlightFilterViewController: UIViewController {
                 return
             }
             self?.fromCityLabel.text = item
+            self?.fromCityCode = self?.aiportReverseDictionary[item] ?? ""
             guard let airportCodes = _self.airportModel?.codes, let cityPairCodes = _self.cityPairModel?.codes else{
                 return
             }
@@ -329,6 +335,7 @@ class FlightFilterViewController: UIViewController {
         dropDown.dataSource = toCities
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.toCityLabel.text = item
+            self?.toCityCode = self?.aiportReverseDictionary[item] ?? ""
         }
         dropDown.show()
     }
@@ -703,11 +710,16 @@ extension FlightFilterViewController{
                 }
                 self.fromCities.removeAll()
                 self.aiportDictionary.removeAll()
+                GlobalItems.bdAirportCodes.removeAll()
                 for airport in codes{
                     self.fromCities.append(airport.label ?? "")
                     if let key = airport.code, let val = airport.label{
                         self.aiportDictionary[key] = val
                         self.aiportReverseDictionary[val] = key
+                    }
+                    let countryCode = airport.valueCodeProperties?.last?.stringValue ?? ""
+                    if countryCode == "BD"{
+                        GlobalItems.bdAirportCodes.append(airport.code ?? "")
                     }
                 }
                 self.toCities = self.fromCities // initial case
@@ -1061,6 +1073,8 @@ extension FlightFilterViewController{
                         vc.selectedCurrency = self.selectedCurrency
                         vc.fromCity = self.fromCityLabel.text ?? ""
                         vc.toCity = self.toCityLabel.text ?? ""
+                        vc.fromCityCode = self.fromCityCode
+                        vc.toCityCode = self.toCityCode
                         vc.departureDate = self.departureDateTextField.text ?? ""
                         vc.returnDate = self.returnDateTextField.text ?? ""
                         vc.flightClass = self.departureCabinClassLabel.text ?? ""
@@ -1278,6 +1292,8 @@ extension FlightFilterViewController{
                         vc.selectedCurrency = self.selectedCurrency
                         vc.fromCity = self.fromCityLabel.text ?? ""
                         vc.toCity = self.toCityLabel.text ?? ""
+                        vc.fromCityCode = self.fromCityCode
+                        vc.toCityCode = self.toCityCode
                         vc.departureDate = self.departureDateTextField.text ?? ""
                         vc.returnDate = self.returnDateTextField.text ?? ""
                         vc.forwardFlightClass = self.departureCabinClassLabel.text ?? ""

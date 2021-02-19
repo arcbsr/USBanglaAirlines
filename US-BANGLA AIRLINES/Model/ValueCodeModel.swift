@@ -52,18 +52,47 @@ class ResponseInfo: Mappable {
     
 }
 
-class Code: Mappable {
-    
-    var code: String?
-    var label: String?
+class Code : Mappable {
+    var code : String?
+    var label : String?
+    var valueCodeProperties : [ValueCodeProperties]?
+    //    var extensions : String?
     
     required convenience init?(map: Map) {
         self.init()
     }
     
     func mapping(map: Map) {
+        
         code <- map["Code"]
         label <- map["Label"]
+        valueCodeProperties <- map["ValueCodeProperties"]
+        //        extensions <- map["Extensions"]
+    }
+    
+}
+
+
+class ValueCodeProperties : Mappable {
+    var name : String?
+    //    var booleanValue : String?
+    //    var numberValue : Double?
+    //    var dateTimeValue : String?
+    var stringValue : String?
+    //    var extensions : String?
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        
+        name <- map["Name"]
+        //        booleanValue <- map["BooleanValue"]
+        //        numberValue <- map["NumberValue"]
+        //        dateTimeValue <- map["DateTimeValue"]
+        stringValue <- map["StringValue"]
+        //        extensions <- map["Extensions"]
     }
     
 }

@@ -75,8 +75,8 @@ class ReturnFlightViewController: UIViewController {
     let SALES_OFFICE_SECTION = 7
     let CONTACT_US_SECTION = 8
     var searchData: FlightSearchModel?
-    var forwardCityCode = ""
-    var backwardCityCode = ""
+    var fromCityCode = ""
+    var toCityCode = ""
     var selectedCurrency = ""
     var fromCity = ""
     var toCity = ""
@@ -134,8 +134,8 @@ class ReturnFlightViewController: UIViewController {
             vc.offer = self.offer
             vc.fromCity = fromCityLabel.text ?? ""
             vc.toCity = toCityLabel.text ?? ""
-            //            vc.fromCityCode =
-            //            vc.toCityCode =
+            vc.fromCityCode = self.fromCityCode
+            vc.toCityCode = self.toCityCode
             vc.forwardFlightClass = forwardFlightClass
             vc.backwardFlightClass = backwardFlightClass
             vc.selectedCurrency = selectedCurrency

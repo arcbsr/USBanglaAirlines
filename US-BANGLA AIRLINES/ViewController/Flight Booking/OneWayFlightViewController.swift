@@ -75,8 +75,8 @@ class OneWayFlightViewController: UIViewController {
     var selectedCurrency = ""
     var fromCity = ""
     var toCity = ""
-    //    var fromCityCode = ""
-    //    var toCityCode = ""
+        var fromCityCode = ""
+        var toCityCode = ""
     var departureDate = ""
     var returnDate = ""
     var eTTicketFares = [ETTicketFare]()
@@ -396,6 +396,8 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
                     vc.fromCity = cell.fromLocationLabel.text ?? ""
                     vc.toCity = cell.toLocationLabel.text ?? ""
                 }
+                vc.fromCityCode = self.fromCityCode
+                vc.toCityCode = self.toCityCode
                 vc.flightClass = flightClass
                 vc.selectedCurrency = selectedCurrency
                 self.navigationController?.pushViewController(vc, animated: true)
