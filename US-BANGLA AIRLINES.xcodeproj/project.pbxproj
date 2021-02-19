@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,6 +48,8 @@
 		8E7E82092595B5A300530D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82072595B5A300530D14 /* LaunchScreen.storyboard */; };
 		8E7E82142595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E82132595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift */; };
 		8E7E821F2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E821E2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift */; };
+		8E892DE525E02C1A00BBD6FC /* SSLCommerzSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E892DE425E02C1A00BBD6FC /* SSLCommerzSDK.framework */; };
+		8E892DE625E02C1B00BBD6FC /* SSLCommerzSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E892DE425E02C1A00BBD6FC /* SSLCommerzSDK.framework */; platformFilter = ios; };
 		8EA45ABF259A313E000DA006 /* ReturnFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45ABE259A313E000DA006 /* ReturnFlightViewController.swift */; };
 		8EA45AC1259A3546000DA006 /* FlightSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45AC0259A3546000DA006 /* FlightSummaryViewController.swift */; };
 		8EA45AC3259A3567000DA006 /* InputPassengerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45AC2259A3567000DA006 /* InputPassengerInfoViewController.swift */; };
@@ -131,6 +133,7 @@
 		8E7E821A2595B5A400530D14 /* US-BANGLA AIRLINESUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "US-BANGLA AIRLINESUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7E821E2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = US_BANGLA_AIRLINESUITests.swift; sourceTree = "<group>"; };
 		8E7E82202595B5A400530D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E892DE425E02C1A00BBD6FC /* SSLCommerzSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SSLCommerzSDK.framework; sourceTree = "<group>"; };
 		8EA45ABE259A313E000DA006 /* ReturnFlightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnFlightViewController.swift; sourceTree = "<group>"; };
 		8EA45AC0259A3546000DA006 /* FlightSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSummaryViewController.swift; sourceTree = "<group>"; };
 		8EA45AC2259A3567000DA006 /* InputPassengerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPassengerInfoViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E892DE525E02C1A00BBD6FC /* SSLCommerzSDK.framework in Frameworks */,
 				CD34A2E2BB02F4EA58EBF87B /* Pods_US_BANGLA_AIRLINES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E892DE625E02C1B00BBD6FC /* SSLCommerzSDK.framework in Frameworks */,
 				EAD30A6896FD661F925845DE /* Pods_US_BANGLA_AIRLINESTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +192,7 @@
 		8AA5822655703803E5FF5136 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8E892DE425E02C1A00BBD6FC /* SSLCommerzSDK.framework */,
 				61675DB7FECFB7AD5DC810E0 /* Pods_US_BANGLA_AIRLINES.framework */,
 				DD42F0CA14557A84DBEE7641 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework */,
 				40505D258AE89E17E764406C /* Pods_US_BANGLA_AIRLINESTests.framework */,
@@ -822,10 +828,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30D148B7DA040121FEA407CD /* Pods-US-BANGLA AIRLINES.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = "";
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "US-BANGLA AIRLINES/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -838,6 +850,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Debug;
 		};
@@ -849,6 +862,10 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "US-BANGLA AIRLINES/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -861,6 +878,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Release;
 		};
@@ -872,6 +890,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WA34LH76LK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "US-BANGLA AIRLINESTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -895,6 +917,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WA34LH76LK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "US-BANGLA AIRLINESTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
