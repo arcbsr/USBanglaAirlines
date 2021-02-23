@@ -790,7 +790,7 @@ extension InputPassengerInfoViewController{
                     "DateOfBirth": dob,
                     "Gender": gender,
                     "DocumentExpiryDate": expireDate,
-                    "DocumentIssuanceDate": expireDate, // not available
+                    "DocumentIssuanceDate": "", // not available
                     "Firstname": passenger.firstName,
                     "Surname": passenger.lastName,
                     "DocumentTypeCode": "PP",
