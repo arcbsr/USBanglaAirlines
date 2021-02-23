@@ -58,6 +58,7 @@
 		8EB9C779259CA3C60080125B /* LeadPassengerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9C778259CA3C60080125B /* LeadPassengerCell.swift */; };
 		8EC85DCC259A6BD200DD1EFC /* OneWayFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC85DCB259A6BD200DD1EFC /* OneWayFlightViewController.swift */; };
 		8EC85DCE259A716900DD1EFC /* FlightBookingPart2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EC85DCD259A716900DD1EFC /* FlightBookingPart2.storyboard */; };
+		8EE7850D25E53B8400995033 /* CreateBookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7850C25E53B8400995033 /* CreateBookingModel.swift */; };
 		CD34A2E2BB02F4EA58EBF87B /* Pods_US_BANGLA_AIRLINES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61675DB7FECFB7AD5DC810E0 /* Pods_US_BANGLA_AIRLINES.framework */; };
 		EAD30A6896FD661F925845DE /* Pods_US_BANGLA_AIRLINESTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40505D258AE89E17E764406C /* Pods_US_BANGLA_AIRLINESTests.framework */; };
 /* End PBXBuildFile section */
@@ -142,6 +143,7 @@
 		8EB9C778259CA3C60080125B /* LeadPassengerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadPassengerCell.swift; sourceTree = "<group>"; };
 		8EC85DCB259A6BD200DD1EFC /* OneWayFlightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWayFlightViewController.swift; sourceTree = "<group>"; };
 		8EC85DCD259A716900DD1EFC /* FlightBookingPart2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FlightBookingPart2.storyboard; sourceTree = "<group>"; };
+		8EE7850C25E53B8400995033 /* CreateBookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBookingModel.swift; sourceTree = "<group>"; };
 		A2BED1193631C8C0AB2308B7 /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DD42F0CA14557A84DBEE7641 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -294,6 +296,7 @@
 				8E7DF23525B09A9000283A71 /* CityPairModel.swift */,
 				8E7DF23725B0D03300283A71 /* FlightSearchModel.swift */,
 				8E644EA525CD6A9800EF61D8 /* OfferPlaceModel.swift */,
+				8EE7850C25E53B8400995033 /* CreateBookingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				8E4B431625960AF400B35133 /* Reachability.swift in Sources */,
 				8EC85DCC259A6BD200DD1EFC /* OneWayFlightViewController.swift in Sources */,
 				8E2BB8EB25D86B0A0023A425 /* OtherGlobalPassengerTableViewCell.swift in Sources */,
+				8EE7850D25E53B8400995033 /* CreateBookingModel.swift in Sources */,
 				8E3ADD8B2598D11E00B55C89 /* FlightFilterViewController.swift in Sources */,
 				8EA45AC3259A3567000DA006 /* InputPassengerInfoViewController.swift in Sources */,
 				8E4B431A25960B1400B35133 /* Validator.swift in Sources */,

@@ -97,7 +97,7 @@ class BookingConfirmationViewController: UIViewController {
     let SKY_STAR_SECTION = 6
     let SALES_OFFICE_SECTION = 7
     let CONTACT_US_SECTION = 8
-    
+    var pnrInfo: PnrInformation?
     
     override func viewDidLoad() {
         super.viewDidLoad()

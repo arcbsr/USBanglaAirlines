@@ -853,7 +853,7 @@ extension InputPassengerInfoViewController{
         
         SVProgressHUD.show()
         
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<CreateBookingModel>) in
             print("=== response = \(response)")
             if SVProgressHUD.isVisible(){
                 SVProgressHUD.dismiss()
@@ -869,6 +869,10 @@ extension InputPassengerInfoViewController{
             switch response.result {
             case .success:
                 print("")
+                let pnrInfo = response.result.value?.booking?.pnrInformation
+                if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
+                    vc.pnrInfo = pnrInfo
+                }
             case .failure(let error):
                 //                if SVProgressHUD.isVisible(){
                 //                    SVProgressHUD.dismiss()
