@@ -141,10 +141,20 @@ class FlightSummaryViewController: UIViewController {
         if let vc = UIStoryboard(name: "PassengerInfo", bundle: nil).instantiateViewController(withIdentifier: "InputPassengerInfoViewController") as? InputPassengerInfoViewController{
             vc.passengers = passengers
             vc.offer = self.offer
+            vc.eTTicketFares = self.eTTicketFares
             vc.oneWayflight = self.oneWayflight
             vc.returnFlight = self.returnFlight
+            vc.selectedItiRef = self.selectedItiRef
+            vc.fromTime = self.fromTime
+            vc.toTime = self.toTime
             vc.fromCityCode = self.fromCityCode
             vc.toCityCode = self.toCityCode
+            vc.fromCity = self.fromCity
+            vc.toCity = self.toCity
+            vc.forwardFlightClass = self.forwardFlightClass
+            vc.backwardFlightClass = self.backwardFlightClass
+            vc.selectedCurrency = self.selectedCurrency
+            vc.flightClass = self.flightClass
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

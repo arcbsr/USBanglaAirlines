@@ -76,7 +76,8 @@ class LeadPassengerCell: UITableViewCell {
     var tiltleArray = ["MR", "MRS", "MISS", "MS", "MSTR"]
     var days = [String]()
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-    var years = [String]()
+    var dobYears = [String]()
+    var expirationYears = [String]()
     
     var selectedDobDay: ((_ item: String)->())?
     var selectedDobMonth: ((_ item: String)->())?
@@ -105,7 +106,10 @@ class LeadPassengerCell: UITableViewCell {
         
         let y = Date().year
         for i in (1850 ... y).reversed() {
-            years.append("\(i)")
+            dobYears.append("\(i)")
+        }
+        for i in y ... 2100 {
+            expirationYears.append("\(i)")
         }
     }
     
@@ -140,7 +144,7 @@ class LeadPassengerCell: UITableViewCell {
     @IBAction func yearButtonTapped(_ sender: Any) {
         let dropDown = DropDown()
         dropDown.anchorView = dobYearButton
-        dropDown.dataSource = years
+        dropDown.dataSource = dobYears
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.dobYearButton.setTitle(item, for: .normal)
             self?.selectedDobYear?(item)
@@ -173,7 +177,7 @@ class LeadPassengerCell: UITableViewCell {
     @IBAction func expireYearButtonTapped(_ sender: Any) {
         let dropDown = DropDown()
         dropDown.anchorView = expireYearButton
-        dropDown.dataSource = years
+        dropDown.dataSource = expirationYears
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.expireYearButton.setTitle(item, for: .normal)
             self?.selectedExpireYear?(item)

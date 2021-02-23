@@ -7,15 +7,13 @@
 //
 
 import UIKit
-
+import Alamofire
+import SVProgressHUD
+import AlamofireObjectMapper
 
 
 class BookingConfirmationViewController: UIViewController {
-    @IBOutlet weak var customTitleLabel: UILabel!{
-        didSet{
-            customTitleLabel.text = "FLIGHT SUMMARY"
-        }
-    }
+    @IBOutlet weak var customTitleLabel: UILabel!
     @IBOutlet weak var fareAndBaggaeRulesView: UIView!{
         didSet{
             fareAndBaggaeRulesView.isHidden = true
@@ -34,25 +32,24 @@ class BookingConfirmationViewController: UIViewController {
     @IBOutlet weak var adultLabel: UILabel!
     @IBOutlet weak var adultFareLabel: UILabel!
     @IBOutlet weak var adultSeparatorView: UIView!
+    @IBOutlet weak var adultTaxLabel: UILabel!
     
     @IBOutlet weak var childrenLabel: UILabel!
     @IBOutlet weak var childrenFareLabel: UILabel!
     @IBOutlet weak var childrenSeparatorView: UIView!
+    @IBOutlet weak var childrenTaxLabel: UILabel!
     
     @IBOutlet weak var infantLabel: UILabel!
     @IBOutlet weak var infantFareLabel: UILabel!
     @IBOutlet weak var infantSeparatorView: UIView!
+    @IBOutlet weak var infantTaxLabel: UILabel!
     
     @IBOutlet weak var baseAmountLabel: UILabel!
     @IBOutlet weak var taxAmountLabel: UILabel!
     @IBOutlet weak var totalFareLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var amountPayableLabel: UILabel!
-    @IBOutlet weak var proceedButton: UIButton!{
-        didSet{
-            proceedButton.setTitle("PROCEED", for: .normal)
-        }
-    }
+    @IBOutlet weak var paymentButton: UIButton!
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
             notificationImageView.isUserInteractionEnabled = true
@@ -97,7 +94,23 @@ class BookingConfirmationViewController: UIViewController {
     let SKY_STAR_SECTION = 6
     let SALES_OFFICE_SECTION = 7
     let CONTACT_US_SECTION = 8
+    var eTTicketFares = [ETTicketFare]()
+    var passengers = [Passenger]()
+    var offer: Offer?
+    var oneWayflight: FlightInfo?
+    var returnFlight: SaleCurrencyAmount?
     var pnrInfo: PnrInformation?
+    var selectedItiRef = ""
+    var fromTime = ""
+    var toTime = ""
+    var fromCityCode = ""
+    var toCityCode = ""
+    var fromCity = ""
+    var toCity = ""
+    var forwardFlightClass = ""
+    var backwardFlightClass = ""
+    var flightClass = ""
+    var selectedCurrency = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,6 +126,9 @@ class BookingConfirmationViewController: UIViewController {
             }
         }
         sideBarSetup()
+        SVProgressHUD.show()
+        pnrLabel.text = "PNR: \(pnrInfo?.pnrCode ?? "")"
+        extractTicketInfo()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -130,11 +146,111 @@ class BookingConfirmationViewController: UIViewController {
     }
     
     @IBAction func makePaymentButtonTapped(_ sender: UIButton) {
-        // PROCEED tapped
-        if let vc = UIStoryboard(name: "PassengerInfo", bundle: nil).instantiateViewController(withIdentifier: "InputPassengerInfoViewController") as? InputPassengerInfoViewController{
-            //                vc.searchData = self.searchData
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+            vc.currentOption = .payment
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    func extractTicketInfo(){
+        if oneWayflight == nil{
+            selectedItiRef = returnFlight?.itineraryRef ?? ""
+            loadReturnData()
+        }else{
+            selectedItiRef = oneWayflight?.itineraryRef ?? ""
+            loadOneWayData()
+        }
+        print("selectedItiRef = \(selectedItiRef)")
+        for ticketFare in eTTicketFares{
+            if selectedItiRef == ticketFare.refItinerary{
+                for passenger in passengers{
+                    if passenger.ref == ticketFare.refPassenger{
+                        passenger.eTTicketFare = ticketFare
+                        break
+                    }
+                }
+            }
+        }
+        
+        for passenger in passengers{
+            if passenger.passengerTypeCode == "AD"{
+                let count = passenger.passengerQuantity ?? 0
+                adultLabel.text = "ADULT X \(count)"
+                let totalFare = (passenger.eTTicketFare?.saleCurrencyAmount?.baseAmount ?? 0.0) * Double(count)
+                adultFareLabel.text = "\(selectedCurrency) \(totalFare)"
+                let totalTax = (passenger.eTTicketFare?.saleCurrencyAmount?.taxAmount ?? 0.0) * Double(count)
+                adultTaxLabel.text = "\(selectedCurrency) \(totalTax)"
+            }else if passenger.passengerTypeCode == "CHD"{
+                let count = passenger.passengerQuantity ?? 0
+                childrenLabel.text = "CHILD X \(count)"
+                let totalFare = (passenger.eTTicketFare?.saleCurrencyAmount?.baseAmount ?? 0.0) * Double(count)
+                childrenFareLabel.text = "\(selectedCurrency) \(totalFare)"
+                let totalTax = (passenger.eTTicketFare?.saleCurrencyAmount?.taxAmount ?? 0.0) * Double(count)
+                childrenTaxLabel.text = "\(selectedCurrency) \(totalTax)"
+            }else{
+                let count = passenger.passengerQuantity ?? 0
+                infantLabel.text = "INFANT X \(count)"
+                let totalFare = (passenger.eTTicketFare?.saleCurrencyAmount?.baseAmount ?? 0.0) * Double(count)
+                infantFareLabel.text = "\(selectedCurrency) \(totalFare)"
+                let totalTax = (passenger.eTTicketFare?.saleCurrencyAmount?.taxAmount ?? 0.0) * Double(count)
+                infantTaxLabel.text = "\(selectedCurrency) \(totalTax)"
+            }
+        }
+        
+        SVProgressHUD.dismiss()
+    }
+    
+    func loadReturnData(){
+        flightIdLabel.text = "FLIGHT: \(returnFlight?.forwardflightInfo?.operatingAirlineDesignator ?? "") \(returnFlight?.forwardflightInfo?.operatingFlightNumber ?? ""))"
+        flightNameLabel.text = returnFlight?.forwardflightInfo?.equipmentText ?? ""
+        let duration = ((returnFlight?.forwardflightInfo?.durationMinutes ?? 0) + (returnFlight?.backwardflightInfo?.durationMinutes ?? 0))
+        durationLabel.text = "\(duration) MIN"
+        
+        let startDate = returnFlight?.forwardflightInfo?.departureDate ?? ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+        if let date = dateFormatter.date(from: startDate) {
+            dateFormatter.dateFormat = "EEE, dd MMM, YYYY"
+            fromDateLabel.text = dateFormatter.string(from: date)
+        }
+        
+        let endDate = returnFlight?.forwardflightInfo?.arrivalDate ?? ""
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+        if let date = dateFormatter.date(from: endDate) {
+            dateFormatter.dateFormat = "EEE, dd MMM, YYYY"
+            toDateLabel.text = dateFormatter.string(from: date)
+        }
+        
+        fromTimeLabel.text = "\(fromTime) \(fromCityCode)"
+        toTimeLabel.text = "\(toTime) \(toCityCode)"
+        cabinClassLabel.text = forwardFlightClass
+        totalFareLabel.text = "\(selectedCurrency) \(returnFlight?.totalAmount ?? 0)"
+    }
+    
+    func loadOneWayData(){
+        flightIdLabel.text = "FLIGHT: \(oneWayflight?.operatingAirlineDesignator ?? "") \(oneWayflight?.operatingFlightNumber ?? "")"
+        flightNameLabel.text = oneWayflight?.equipmentText ?? ""
+        let duration = ((oneWayflight?.durationMinutes ?? 0) + (oneWayflight?.durationMinutes ?? 0))
+        durationLabel.text = "\(duration) MIN"
+        
+        let startDate = oneWayflight?.departureDate ?? ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+        if let date = dateFormatter.date(from: startDate) {
+            dateFormatter.dateFormat = "EEE, dd MMM, YYYY"
+            fromDateLabel.text = dateFormatter.string(from: date)
+        }
+        
+        let endDate = oneWayflight?.arrivalDate ?? ""
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+        if let date = dateFormatter.date(from: endDate) {
+            dateFormatter.dateFormat = "EEE, dd MMM, YYYY"
+            toDateLabel.text = dateFormatter.string(from: date)
+        }
+        fromTimeLabel.text = "\(fromTime) \(fromCityCode)"
+        toTimeLabel.text = "\(toTime) \(toCityCode)"
+        cabinClassLabel.text = flightClass
+        totalFareLabel.text = "\(selectedCurrency) \(oneWayflight?.saleCurrencyAmount?.totalAmount ?? 0)"
     }
     
     func toWebView(type: GivenOption){

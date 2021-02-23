@@ -86,8 +86,18 @@ class InputPassengerInfoViewController: UIViewController {
     var oneWayflight: FlightInfo?
     var returnFlight: SaleCurrencyAmount?
     var offer: Offer?
+    var eTTicketFares = [ETTicketFare]()
+    var selectedItiRef = ""
+    var fromTime = ""
+    var toTime = ""
     var fromCityCode = ""
     var toCityCode = ""
+    var fromCity = ""
+    var toCity = ""
+    var forwardFlightClass = ""
+    var backwardFlightClass = ""
+    var flightClass = ""
+    var selectedCurrency = ""
     var isLocalFlight = false
     var monthDictionary = ["JAN": "01", "FEB": "02", "MAR": "03", "APR": "04", "MAY": "05", "JUN": "06", "JUL": "07", "AUG": "08", "SEP": "09", "OCT": "10", "NOV": "11", "DEC": "12"]
     
@@ -872,6 +882,23 @@ extension InputPassengerInfoViewController{
                 let pnrInfo = response.result.value?.booking?.pnrInformation
                 if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
                     vc.pnrInfo = pnrInfo
+                    vc.passengers = self.passengers
+                    vc.offer = self.offer
+                    vc.eTTicketFares = self.eTTicketFares
+                    vc.oneWayflight = self.oneWayflight
+                    vc.returnFlight = self.returnFlight
+                    vc.selectedItiRef = self.selectedItiRef
+                    vc.fromTime = self.fromTime
+                    vc.toTime = self.toTime
+                    vc.fromCityCode = self.fromCityCode
+                    vc.toCityCode = self.toCityCode
+                    vc.fromCity = self.fromCity
+                    vc.toCity = self.toCity
+                    vc.forwardFlightClass = self.forwardFlightClass
+                    vc.backwardFlightClass = self.backwardFlightClass
+                    vc.selectedCurrency = self.selectedCurrency
+                    vc.flightClass = self.flightClass
+                    self.navigationController?.pushViewController(vc)
                 }
             case .failure(let error):
                 //                if SVProgressHUD.isVisible(){
