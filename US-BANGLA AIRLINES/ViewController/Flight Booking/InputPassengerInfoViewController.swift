@@ -128,7 +128,9 @@ class InputPassengerInfoViewController: UIViewController {
     }
     
     @IBAction func createBookingButtonTapped(_ sender: Any) {
+        view.endEditing(true)
         // check and validate inputs then call api
+        validateInput()
         createBooking()
     }
     
@@ -141,6 +143,10 @@ class InputPassengerInfoViewController: UIViewController {
     
     @IBAction func holdBookingTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func validateInput(){
+        
     }
     
     func constructPassengers(){
@@ -731,8 +737,8 @@ extension InputPassengerInfoViewController{
             
             let dobMonth = monthDictionary[passenger.dobMonth] ?? ""
             let expireMonth = monthDictionary[passenger.expireMonth] ?? ""
-            let dob = "\(passenger.dobYear)-\(dobMonth)-\(passenger.dobDay)'T'00:00:00"
-            let expireDate = "\(passenger.expireYear)-\(expireMonth)-\(passenger.expireDay)'T'00:00:00"
+            let dob = "\(passenger.dobYear)-\(dobMonth)-\(passenger.dobDay)T00:00:00"
+            let expireDate = "\(passenger.expireYear)-\(expireMonth)-\(passenger.expireDay)T00:00:00"
             var currentCode = ""
             if passenger.passengerTypeCode == "AD"{
                 currentCode = "EXT-ADOB"
@@ -762,34 +768,49 @@ extension InputPassengerInfoViewController{
             ]
             specialServicesParams.append(passportParams)
             
-            var gender = "F"
-            if passenger.title == "MR"{
-                gender = "M"
-            }
-            let documentsParams: Parameters = [
-                "IssueCountryCode": passenger.countryCode,
-                "NationalityCountryCode": passenger.countryCode,
-                "DateOfBirth": dob,
-                "Gender": gender,
-                "DocumentExpiryDate": expireDate,
-                "DocumentIssuanceDate": expireDate, // not available
-                "Firstname": passenger.firstName,
-                "Surname": passenger.lastName,
-                "DocumentTypeCode": "PP",
-                "DocumentNumber": passenger.passportNumber
-            ]
-            let docParam: Parameters = [
-                "Documents": documentsParams
-            ]
-            let docDataParam: Parameters = [
-                "Docs": docParam
-            ]
-            let docMainParams: Parameters = [
-                "Data": docDataParam,
+            let emailParams: Parameters = [
+                "Text": passenger.emailAddress,
                 "RefPassenger": passenger.ref ?? "",
-                "Code": "DOCS"
+                "Code": "CTCE"
             ]
-            specialServicesParams.append(docMainParams)
+            specialServicesParams.append(emailParams)
+            
+            if isLocalFlight == false{
+                var gender = "F"
+                if passenger.title == "MR"{
+                    gender = "M"
+                }
+                
+                var documentsPrams = [Parameters]()
+                let documentsParam: Parameters = [
+                    "IssueCountryCode": passenger.countryCode,
+                    "NationalityCountryCode": passenger.countryCode,
+                    "DocumentIssuingCountry": passenger.country,
+                    "Nationality": passenger.country,
+                    "DateOfBirth": dob,
+                    "Gender": gender,
+                    "DocumentExpiryDate": expireDate,
+                    "DocumentIssuanceDate": expireDate, // not available
+                    "Firstname": passenger.firstName,
+                    "Surname": passenger.lastName,
+                    "DocumentTypeCode": "PP",
+                    "DocumentNumber": passenger.passportNumber
+                ]
+                documentsPrams.append(documentsParam)
+                
+                let docParam: Parameters = [
+                    "Documents": documentsPrams
+                ]
+                let docDataParam: Parameters = [
+                    "Docs": docParam
+                ]
+                let docMainParams: Parameters = [
+                    "Data": docDataParam,
+                    "RefPassenger": passenger.ref ?? "",
+                    "Code": "DOCS"
+                ]
+                specialServicesParams.append(docMainParams)
+            }
         }
         
         var selectedItiRef = ""
