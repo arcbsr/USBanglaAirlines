@@ -9,7 +9,6 @@
 import UIKit
 import WebKit
 import SVProgressHUD
-import SSLCommerzSDK
 
 class CustomWebViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!{
@@ -33,9 +32,6 @@ class CustomWebViewController: UIViewController {
     var courseUid = "https://usbair.com/app/hotline.php"
     var verifyPurchase: ((_ transactionTag: String )->())?
     var currentOption: GivenOption = .skyStarSignUp
-    var sslCommerz: SSLCommerz?
-    private let storeId = "usbanglaairlinestest001"
-    private let storePassowrd = "usbanglaairlinestest001@ssl"
     
     
     override func viewDidLoad() {
@@ -43,11 +39,6 @@ class CustomWebViewController: UIViewController {
         
         var urlString = ""
         switch currentOption {
-        case .payment:
-            print("payment")
-            navigationItem.title = "Payment"
-            initializePayment()
-            return
         case .skyStarSignUp:
             urlString = skyStarSignupUrl
             navigationItem.title = "SKY STARS"
@@ -93,7 +84,6 @@ class CustomWebViewController: UIViewController {
         
         webView.addObserver(self, forKeyPath: "URL", options: .new, context: nil)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,33 +111,7 @@ class CustomWebViewController: UIViewController {
         guard let url = URLComponents(string: url) else { return nil }
         return url.queryItems?.first(where: { $0.name == param })?.value
     }
-    
-    func initializePayment(){
-        sslCommerz = SSLCommerz(integrationInformation: .init(storeID: storeId, storePassword: storePassowrd, totalAmount: 100, currency: "BDT", transactionId: "", productCategory: ""), emiInformation: nil, customerInformation: .init(customerName: "JUNG EUNBI", customerEmail: "shahed.cse12@gmail.com", customerAddressOne: "", customerCity: "Bogra", customerPostCode: "5800", customerCountry: "Bangladesh", customerPhone: "+8801679314677"), shipmentInformation: nil, productInformation: .init(productName: "", productCategory: "", productProfile: ProductProfile(productProfile: "", hoursTillDeparture: "", flightType: "", pnr: "", journeyFromTo: "", thirdPartyBooking: "false")), additionalInformation: nil)
-        
-        sslCommerz?.delegate = self
-        sslCommerz?.start(in: self, shouldRunInTestMode: true)
-        //        sslCommerz?.start(in: self, shouldRunInTestMode: false)
-    }
-    
 }
-
-
-extension CustomWebViewController: SSLCommerzDelegate{
-    func transactionCompleted(withTransactionData transactionData: TransactionDetails?) {
-        let status = transactionData?.status ?? ""
-        if status == "FAILED"{
-            self.showAlert(title: "Payment failed!", message: nil){ _ in
-                self.navigationController?.popViewController()
-            }
-        }else if status == "VALID" || status == "VALIDATED"{
-            self.showAlert(title: "Payment successful!", message: nil){ _ in
-                self.navigationController?.popViewController()
-            }
-        }
-    }
-}
-
 
 extension CustomWebViewController: WKNavigationDelegate{
     

@@ -145,8 +145,7 @@ class InputPassengerInfoViewController: UIViewController {
     }
     
     @IBAction func makePaymentTapped(_ sender: Any) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
-            vc.currentOption = .payment
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

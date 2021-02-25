@@ -146,8 +146,7 @@ class BookingConfirmationViewController: UIViewController {
     }
     
     @IBAction func makePaymentButtonTapped(_ sender: UIButton) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
-            vc.currentOption = .payment
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
