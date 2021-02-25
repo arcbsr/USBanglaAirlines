@@ -423,16 +423,75 @@ class FlightFilterViewController: UIViewController {
     
     @objc func searchFlightTapped(){
         if oneWayCheckbox.checkState == .checked{
-            searchOneWayFlight()
-            //            if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "OneWayFlightViewController") as? OneWayFlightViewController{
-            //                self.navigationController?.pushViewController(vc, animated: true)
-            //            }
+            if validateOneWayFlight(){
+                searchOneWayFlight()
+            }
         }else{
-            searchReturnFlight()
-            //                        if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "ReturnFlightViewController") as? ReturnFlightViewController{
-            //                            self.navigationController?.pushViewController(vc, animated: true)
-            //                        }
+            if validateReturnFlight(){
+                searchReturnFlight()
+            }
         }
+    }
+    
+    func validateOneWayFlight() -> Bool{
+        let fromCity = fromCityLabel.text ?? ""
+        if fromCity.isEmpty{
+            showAlert(title: "No departure selected.", message: nil, callback: nil)
+            return false
+        }
+        let toCity = toCityLabel.text ?? ""
+        if toCity.isEmpty{
+            showAlert(title: "No destination selected.", message: nil, callback: nil)
+            return false
+        }
+        let adultCount = adultCountLabel.text ?? "0"
+        if adultCount == "0"{
+            showAlert(title: "There must be at least one adult.", message: nil, callback: nil)
+            return false
+        }
+        if departureDate.isEmpty{
+            showAlert(title: "No departure date selected.", message: nil, callback: nil)
+            return false
+        }
+        let departureCabinClass = self.departureCabinClassLabel.text ?? ""
+        if departureCabinClass.isEmpty{
+            showAlert(title: "No departure cabin class selected.", message: nil, callback: nil)
+            return false
+        }
+        
+        return true
+    }
+    
+    func validateReturnFlight() -> Bool{
+        let fromCity = fromCityLabel.text ?? ""
+        if fromCity.isEmpty{
+            showAlert(title: "No departure selected.", message: nil, callback: nil)
+            return false
+        }
+        let toCity = toCityLabel.text ?? ""
+        if toCity.isEmpty{
+            showAlert(title: "No destination selected.", message: nil, callback: nil)
+            return false
+        }
+        let adultCount = adultCountLabel.text ?? "0"
+        if adultCount == "0"{
+            showAlert(title: "There must be at least one adult.", message: nil, callback: nil)
+            return false
+        }
+        if departureDate.isEmpty{
+            showAlert(title: "No departure date selected.", message: nil, callback: nil)
+            return false
+        }
+        if returnDate.isEmpty{
+            showAlert(title: "No return date selected.", message: nil, callback: nil)
+            return false
+        }
+        let returnCabinClass = self.departureCabinClassLabel.text ?? ""
+        if returnCabinClass.isEmpty{
+            showAlert(title: "No return cabin class selected.", message: nil, callback: nil)
+            return false
+        }
+        return true
     }
     
     @objc func notificationTapped(){
