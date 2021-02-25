@@ -453,12 +453,11 @@ class FlightFilterViewController: UIViewController {
             showAlert(title: "No departure date selected.", message: nil, callback: nil)
             return false
         }
-        let departureCabinClass = self.departureCabinClassLabel.text ?? ""
-        if departureCabinClass.isEmpty{
+        let departureCabinClass = self.departureCabinClassLabel.text ?? "CABIN CLASS"
+        if departureCabinClass == "CABIN CLASS"{
             showAlert(title: "No departure cabin class selected.", message: nil, callback: nil)
             return false
         }
-        
         return true
     }
     
@@ -486,8 +485,13 @@ class FlightFilterViewController: UIViewController {
             showAlert(title: "No return date selected.", message: nil, callback: nil)
             return false
         }
-        let returnCabinClass = self.departureCabinClassLabel.text ?? ""
-        if returnCabinClass.isEmpty{
+        let departureCabinClass = self.departureCabinClassLabel.text ?? "CABIN CLASS"
+        if departureCabinClass == "CABIN CLASS"{
+            showAlert(title: "No departure cabin class selected.", message: nil, callback: nil)
+            return false
+        }
+        let returnCabinClass = self.returnCabinClassLabel.text ?? "CABIN CLASS"
+        if returnCabinClass == "CABIN CLASS"{
             showAlert(title: "No return cabin class selected.", message: nil, callback: nil)
             return false
         }
