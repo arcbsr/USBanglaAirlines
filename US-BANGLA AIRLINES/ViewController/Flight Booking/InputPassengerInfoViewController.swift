@@ -139,9 +139,9 @@ class InputPassengerInfoViewController: UIViewController {
     
     @IBAction func createBookingButtonTapped(_ sender: Any) {
         view.endEditing(true)
-        // check and validate inputs then call api
-        validateInput()
-        createBooking()
+        if validateInput(){
+            createBooking()
+        }
     }
     
     @IBAction func makePaymentTapped(_ sender: Any) {
@@ -154,8 +154,56 @@ class InputPassengerInfoViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    func validateInput(){
-        
+    func validateInput() -> Bool{
+        for passenger in computedPassengers{
+            if passenger.firstName.isEmpty{
+                showAlert(title: "First Name is Empty.", message: nil, callback: nil)
+                return false
+            }
+            if passenger.lastName.isEmpty{
+                showAlert(title: "Last Name is Empty.", message: nil, callback: nil)
+                return false
+            }
+            if passenger.dobDay == "DATE"{
+                showAlert(title: "DOB date not selected.", message: nil, callback: nil)
+                return false
+            }
+            if passenger.dobMonth == "MONTH"{
+                showAlert(title: "DOB month not selected.", message: nil, callback: nil)
+                return false
+            }
+            if passenger.dobYear == "YEAR"{
+                showAlert(title: "DOB year not selected.", message: nil, callback: nil)
+                return false
+            }
+            if isLocalFlight == false{
+                if passenger.passportNumber.isEmpty{
+                    showAlert(title: "Passport number not added", message: nil, callback: nil)
+                    return false
+                }
+                if passenger.expireDay == "DATE"{
+                    showAlert(title: "Expire date not selected.", message: nil, callback: nil)
+                    return false
+                }
+                if passenger.expireMonth == "MONTH"{
+                    showAlert(title: "Expire month not selected.", message: nil, callback: nil)
+                    return false
+                }
+                if passenger.expireYear == "YEAR"{
+                    showAlert(title: "Expire year not selected.", message: nil, callback: nil)
+                    return false
+                }
+            }
+            if passenger.phoneNumberWithoutCountryCode.isEmpty{
+                showAlert(title: "Phone number not added.", message: nil, callback: nil)
+                return false
+            }
+            if passenger.emailAddress.isEmpty{
+                showAlert(title: "Email not added.", message: nil, callback: nil)
+                return false
+            }
+        }
+        return true
     }
     
     func constructPassengers(){
