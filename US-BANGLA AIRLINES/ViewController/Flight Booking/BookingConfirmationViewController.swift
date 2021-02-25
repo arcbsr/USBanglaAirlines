@@ -418,14 +418,14 @@ class BookingConfirmationViewController: UIViewController {
         sideBarTableView.separatorStyle = .singleLine
         sideBarTableView.separatorColor = .white
         let footerView = UIView()
-        footerView.frame.size.height = 16
+        footerView.frame.size.height = 32
         footerView.backgroundColor = .clear
         sideBarTableView.tableFooterView = footerView
         sideBarTableView.dataSource = self
         sideBarTableView.delegate = self
         sideBarTableView.showsVerticalScrollIndicator = false
         sideBarTableView.alwaysBounceVertical = false
-        sideBarTableView.isScrollEnabled = false
+        sideBarTableView.isScrollEnabled = true
         sideBarTableView.register(UINib.init(nibName: "SideBarTableViewCell", bundle: nil), forCellReuseIdentifier: "SideBarTableViewCell")
     }
     

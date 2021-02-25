@@ -48,8 +48,9 @@
 		8E7E82092595B5A300530D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7E82072595B5A300530D14 /* LaunchScreen.storyboard */; };
 		8E7E82142595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E82132595B5A400530D14 /* US_BANGLA_AIRLINESTests.swift */; };
 		8E7E821F2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E821E2595B5A400530D14 /* US_BANGLA_AIRLINESUITests.swift */; };
-		8E892DE525E02C1A00BBD6FC /* SSLCommerzSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E892DE425E02C1A00BBD6FC /* SSLCommerzSDK.framework */; };
 		8E892DE625E02C1B00BBD6FC /* SSLCommerzSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E892DE425E02C1A00BBD6FC /* SSLCommerzSDK.framework */; platformFilter = ios; };
+		8E96D06025E7C42600E0D94B /* SSLCommerzSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E892DE425E02C1A00BBD6FC /* SSLCommerzSDK.framework */; };
+		8E96D06125E7C42600E0D94B /* SSLCommerzSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E892DE425E02C1A00BBD6FC /* SSLCommerzSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8EA45ABF259A313E000DA006 /* ReturnFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45ABE259A313E000DA006 /* ReturnFlightViewController.swift */; };
 		8EA45AC1259A3546000DA006 /* FlightSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45AC0259A3546000DA006 /* FlightSummaryViewController.swift */; };
 		8EA45AC3259A3567000DA006 /* InputPassengerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45AC2259A3567000DA006 /* InputPassengerInfoViewController.swift */; };
@@ -79,6 +80,20 @@
 			remoteInfo = "US-BANGLA AIRLINES";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8E96D06225E7C42600E0D94B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8E96D06125E7C42600E0D94B /* SSLCommerzSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		07EC9F359B33A85FC80FE066 /* Pods-US-BANGLA AIRLINESTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINESTests.release.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINESTests/Pods-US-BANGLA AIRLINESTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,7 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E892DE525E02C1A00BBD6FC /* SSLCommerzSDK.framework in Frameworks */,
+				8E96D06025E7C42600E0D94B /* SSLCommerzSDK.framework in Frameworks */,
 				CD34A2E2BB02F4EA58EBF87B /* Pods_US_BANGLA_AIRLINES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +404,7 @@
 				8E7E81F62595B5A100530D14 /* Frameworks */,
 				8E7E81F72595B5A100530D14 /* Resources */,
 				3BCAA514D75B622206F863DD /* [CP] Embed Pods Frameworks */,
+				8E96D06225E7C42600E0D94B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -834,9 +850,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZSM3DPQH58;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -849,7 +866,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tarique.stsolutions.usbanglaairlines;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usbashahed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -863,9 +880,10 @@
 			baseConfigurationReference = 776259862741068A30210A40 /* Pods-US-BANGLA AIRLINES.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZSM3DPQH58;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -877,7 +895,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tarique.stsolutions.usbanglaairlines;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usbashahed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
