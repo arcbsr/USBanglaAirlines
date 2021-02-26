@@ -181,7 +181,7 @@ class FlightFilterViewController: UIViewController {
     
     var passengers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var cabinClasses = ["ECONOMY", "BUSINESS"]
-    var ecomomyClassCodes = [String()]
+    var ECONOMYClassCodes = [String()]
     var fromCities = [String]()
     var toCities = [String]()
     var currencyArray = [String]()
@@ -882,12 +882,12 @@ extension FlightFilterViewController{
                     return
                 }
                 GlobalItems.businessClassCodes.removeAll()
-                self.ecomomyClassCodes.removeAll()
+                self.ECONOMYClassCodes.removeAll()
                 for code in codes{
                     if (code.label?.contains("Business") ?? false){
                         GlobalItems.businessClassCodes.append(code.code ?? "")
                     }else{
-                        self.ecomomyClassCodes.append(code.code ?? "")
+                        self.ECONOMYClassCodes.append(code.code ?? "")
                     }
                 }
             case .failure(let error):
@@ -1311,15 +1311,15 @@ extension FlightFilterViewController{
                                 if forwardIsBusiness && backwardIsBusiness{
                                     self.returnFlights.append(saleCurrencyAmount)
                                 }
-                            }else if forwardType == "BUSINESS" && backwardType == "ECOMOMY"{
+                            }else if forwardType == "BUSINESS" && backwardType == "ECONOMY"{
                                 if forwardIsBusiness && backwardIsBusiness == false{
                                     self.returnFlights.append(saleCurrencyAmount)
                                 }
-                            }else if forwardType == "ECOMOMY" && backwardType == "BUSINESS"{
+                            }else if forwardType == "ECONOMY" && backwardType == "BUSINESS"{
                                 if forwardIsBusiness == false && backwardIsBusiness{
                                     self.returnFlights.append(saleCurrencyAmount)
                                 }
-                            }else if forwardType == "ECOMOMY" && backwardType == "ECOMOMY"{
+                            }else if forwardType == "ECONOMY" && backwardType == "ECONOMY"{
                                 if forwardIsBusiness == false && backwardIsBusiness == false{
                                     self.returnFlights.append(saleCurrencyAmount)
                                 }
