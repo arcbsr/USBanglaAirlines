@@ -948,9 +948,9 @@ extension FlightFilterViewController{
     
     func searchOneWayFlight() {
         
-        //            let headers: HTTPHeaders = [
-        //                "Authorization": "token \(UserInfo.token)"
-        //            ]
+        let headers: HTTPHeaders = [
+            "Accept-Encoding": "gzip"
+        ]
         
         var passengers = [Parameters]()
         var child: Parameters?
@@ -1040,7 +1040,7 @@ extension FlightFilterViewController{
         
         SVProgressHUD.show()
         
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
             print("=== response = \(response)")
             //            if SVProgressHUD.isVisible(){
             //                SVProgressHUD.dismiss()
@@ -1162,9 +1162,9 @@ extension FlightFilterViewController{
     
     func searchReturnFlight() {
         
-        //            let headers: HTTPHeaders = [
-        //                "Authorization": "token \(UserInfo.token)"
-        //            ]
+        let headers: HTTPHeaders = [
+            "Accept-Encoding": "gzip"
+        ]
         
         var passengers = [Parameters]()
         var child: Parameters?
@@ -1260,7 +1260,7 @@ extension FlightFilterViewController{
         
         SVProgressHUD.show()
         
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
             print("=== response = \(response)")
             //            if SVProgressHUD.isVisible(){
             //                SVProgressHUD.dismiss()
