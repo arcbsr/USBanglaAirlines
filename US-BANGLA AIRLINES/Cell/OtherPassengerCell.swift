@@ -39,14 +39,14 @@ class OtherPassengerCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var expireDateButton: UIButton!
-    @IBOutlet weak var expireMonthButton: UIButton!
-    @IBOutlet weak var expireYearButton: UIButton!
-    @IBOutlet weak var passportNumberTextField: UITextField!{
-        didSet{
-            passportNumberTextField.delegate = self
-        }
-    }
+//    @IBOutlet weak var expireDateButton: UIButton!
+//    @IBOutlet weak var expireMonthButton: UIButton!
+//    @IBOutlet weak var expireYearButton: UIButton!
+//    @IBOutlet weak var passportNumberTextField: UITextField!{
+//        didSet{
+//            passportNumberTextField.delegate = self
+//        }
+//    }
     
     var tiltleArray = ["MR", "MRS", "MISS", "MS", "MSTR"]
     var days = [String]()
@@ -127,38 +127,38 @@ class OtherPassengerCell: UITableViewCell {
         dropDown.show()
     }
     
-    @IBAction func expireDayButtonTapped(_ sender: Any) {
-        let dropDown = DropDown()
-        dropDown.anchorView = expireDateButton
-        dropDown.dataSource = days
-        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
-            self?.expireDateButton.setTitle(item, for: .normal)
-            self?.selectedExpireDay?(item)
-        }
-        dropDown.show()
-    }
-    
-    @IBAction func expireMonthButtonTapped(_ sender: Any) {
-        let dropDown = DropDown()
-        dropDown.anchorView = expireMonthButton
-        dropDown.dataSource = months
-        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
-            self?.expireMonthButton.setTitle(item, for: .normal)
-            self?.selectedExpireMonth?(item)
-        }
-        dropDown.show()
-    }
-    
-    @IBAction func expireYearButtonTapped(_ sender: Any) {
-        let dropDown = DropDown()
-        dropDown.anchorView = expireYearButton
-        dropDown.dataSource = expirationYears
-        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
-            self?.expireYearButton.setTitle(item, for: .normal)
-            self?.selectedExpireYear?(item)
-        }
-        dropDown.show()
-    }
+//    @IBAction func expireDayButtonTapped(_ sender: Any) {
+//        let dropDown = DropDown()
+//        dropDown.anchorView = expireDateButton
+//        dropDown.dataSource = days
+//        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+//            self?.expireDateButton.setTitle(item, for: .normal)
+//            self?.selectedExpireDay?(item)
+//        }
+//        dropDown.show()
+//    }
+//
+//    @IBAction func expireMonthButtonTapped(_ sender: Any) {
+//        let dropDown = DropDown()
+//        dropDown.anchorView = expireMonthButton
+//        dropDown.dataSource = months
+//        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+//            self?.expireMonthButton.setTitle(item, for: .normal)
+//            self?.selectedExpireMonth?(item)
+//        }
+//        dropDown.show()
+//    }
+//
+//    @IBAction func expireYearButtonTapped(_ sender: Any) {
+//        let dropDown = DropDown()
+//        dropDown.anchorView = expireYearButton
+//        dropDown.dataSource = expirationYears
+//        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+//            self?.expireYearButton.setTitle(item, for: .normal)
+//            self?.selectedExpireYear?(item)
+//        }
+//        dropDown.show()
+//    }
     
     @objc func titleViewTapped(){
         let dropDown = DropDown()
@@ -184,8 +184,8 @@ extension OtherPassengerCell: UITextFieldDelegate{
             selectedFirstName?(text)
         case lastNameTextField:
             selectedLastName?(text)
-        case passportNumberTextField:
-            selectedPassportNumer?(text)
+//        case passportNumberTextField:
+//            selectedPassportNumer?(text)
         case ffpNumberTextField:
             selectedFFPNumber?(text)
         default:

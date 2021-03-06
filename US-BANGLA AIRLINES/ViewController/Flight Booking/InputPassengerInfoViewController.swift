@@ -154,6 +154,33 @@ class InputPassengerInfoViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func constructPassengers(){
+        computedPassengers = [Passenger]()
+        for passenger in passengers{
+            let count = passenger.passengerQuantity ?? 0
+            for i in 0 ..< count{
+                if i == 0{
+                    passenger.title = UserDefaults.standard.string(forKey: "title") ?? "MR"
+                    passenger.dobDay = UserDefaults.standard.string(forKey: "dobDay") ?? "DATE"
+                    passenger.dobMonth = UserDefaults.standard.string(forKey: "dobMonth") ?? "MONTH"
+                    passenger.dobYear = UserDefaults.standard.string(forKey: "dobYear") ?? "YEAR"
+                    passenger.country = UserDefaults.standard.string(forKey: "country") ?? "Bangladesh"
+                    passenger.phoneCode = UserDefaults.standard.string(forKey: "phoneCode") ?? "+880"
+                    passenger.phoneNumberWithoutCountryCode = UserDefaults.standard.string(forKey: "phoneNumberWithoutCountryCode") ?? ""
+                    passenger.emailAddress = UserDefaults.standard.string(forKey: "emailAddress") ?? ""
+                    passenger.ffpNumber = UserDefaults.standard.string(forKey: "ffpNumber") ?? ""
+                    passenger.passportNumber = UserDefaults.standard.string(forKey: "passportNumber") ?? ""
+                    passenger.firstName = UserDefaults.standard.string(forKey: "firstName") ?? ""
+                    passenger.lastName = UserDefaults.standard.string(forKey: "lastName") ?? ""
+                }else{
+                    
+                }
+                computedPassengers.append(passenger)
+            }
+        }
+        tableView.reloadData()
+    }
+    
     func validateInput() -> Bool{
         for passenger in computedPassengers{
             if passenger.firstName.isEmpty{
@@ -204,17 +231,6 @@ class InputPassengerInfoViewController: UIViewController {
             }
         }
         return true
-    }
-    
-    func constructPassengers(){
-        computedPassengers = [Passenger]()
-        for passenger in passengers{
-            let count = passenger.passengerQuantity ?? 0
-            for _ in 0 ..< count{
-                computedPassengers.append(passenger)
-            }
-        }
-        tableView.reloadData()
     }
     
     func toWebView(type: GivenOption){
@@ -456,15 +472,19 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     
                     cell.selectedTitle = { item in
                         self.computedPassengers[indexPath.row].title = item
+                        UserDefaults.standard.setValue(item, forKey: "title")
                     }
                     cell.selectedDobDay = { item in
                         self.computedPassengers[indexPath.row].dobDay = item
+                        UserDefaults.standard.setValue(item, forKey: "dobDay")
                     }
                     cell.selectedDobMonth = { item in
                         self.computedPassengers[indexPath.row].dobMonth = item
+                        UserDefaults.standard.setValue(item, forKey: "dobMonth")
                     }
                     cell.selectedDobYear = { item in
                         self.computedPassengers[indexPath.row].dobYear = item
+                        UserDefaults.standard.setValue(item, forKey: "dobYear")
                     }
                     //                    cell.selectedExpireDay = { item in
                     //                        self.computedPassengers[indexPath.row].expireDay = item
@@ -480,25 +500,32 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     //                    }
                     cell.selectedPhoneCode = { item in
                         self.computedPassengers[indexPath.row].phoneCode = item
+                        UserDefaults.standard.setValue(item, forKey: "phoneCode")
                     }
                     cell.selectedPhoneNumber = { item in
                         self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
+                        UserDefaults.standard.setValue(item, forKey: "phoneNumberWithoutCountryCode")
                     }
                     cell.selectedCountry = { item, code in
                         self.computedPassengers[indexPath.row].country = item
                         self.computedPassengers[indexPath.row].countryCode = code
+                        UserDefaults.standard.setValue(item, forKey: "country")
                     }
                     cell.selectedFirstName = { item in
                         self.computedPassengers[indexPath.row].firstName = item
+                        UserDefaults.standard.setValue(item, forKey: "firstName")
                     }
                     cell.selectedLastName = { item in
                         self.computedPassengers[indexPath.row].lastName = item
+                        UserDefaults.standard.setValue(item, forKey: "lastName")
                     }
                     cell.selectedFFPNumber = { item in
                         self.computedPassengers[indexPath.row].ffpNumber = item
+                        UserDefaults.standard.setValue(item, forKey: "ffpNumber")
                     }
                     cell.selectedEmailAdress = { item in
                         self.computedPassengers[indexPath.row].emailAddress = item
+                        UserDefaults.standard.setValue(item, forKey: "emailAddress")
                     }
                     
                     return cell
@@ -525,49 +552,64 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     
                     cell.selectedTitle = { item in
                         self.computedPassengers[indexPath.row].title = item
+                        UserDefaults.standard.setValue(item, forKey: "title")
                     }
                     cell.selectedDobDay = { item in
                         self.computedPassengers[indexPath.row].dobDay = item
+                        UserDefaults.standard.setValue(item, forKey: "dobDay")
                     }
                     cell.selectedDobMonth = { item in
                         self.computedPassengers[indexPath.row].dobMonth = item
+                        UserDefaults.standard.setValue(item, forKey: "dobMonth")
                     }
                     cell.selectedDobYear = { item in
                         self.computedPassengers[indexPath.row].dobYear = item
+                        UserDefaults.standard.setValue(item, forKey: "dobYear")
                     }
                     cell.selectedExpireDay = { item in
                         self.computedPassengers[indexPath.row].expireDay = item
+                        UserDefaults.standard.setValue(item, forKey: "expireDay")
                     }
                     cell.selectedExpireMonth = { item in
                         self.computedPassengers[indexPath.row].expireMonth = item
+                        UserDefaults.standard.setValue(item, forKey: "expireMonth")
                     }
                     cell.selectedExpireYear = { item in
                         self.computedPassengers[indexPath.row].expireYear = item
+                        UserDefaults.standard.setValue(item, forKey: "expireYear")
                     }
                     cell.selectedPassportNumer = { item in
                         self.computedPassengers[indexPath.row].passportNumber = item
+                        UserDefaults.standard.setValue(item, forKey: "passportNumber")
                     }
                     cell.selectedPhoneCode = { item in
                         self.computedPassengers[indexPath.row].phoneCode = item
+                        UserDefaults.standard.setValue(item, forKey: "phoneCode")
                     }
                     cell.selectedPhoneNumber = { item in
                         self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
+                        UserDefaults.standard.setValue(item, forKey: "phoneNumberWithoutCountryCode")
                     }
                     cell.selectedCountry = { item, code in
                         self.computedPassengers[indexPath.row].country = item
                         self.computedPassengers[indexPath.row].countryCode = code
+                        UserDefaults.standard.setValue(item, forKey: "country")
                     }
                     cell.selectedFirstName = { item in
                         self.computedPassengers[indexPath.row].firstName = item
+                        UserDefaults.standard.setValue(item, forKey: "firstName")
                     }
                     cell.selectedLastName = { item in
                         self.computedPassengers[indexPath.row].lastName = item
+                        UserDefaults.standard.setValue(item, forKey: "lastName")
                     }
                     cell.selectedFFPNumber = { item in
                         self.computedPassengers[indexPath.row].ffpNumber = item
+                        UserDefaults.standard.setValue(item, forKey: "ffpNumber")
                     }
                     cell.selectedEmailAdress = { item in
                         self.computedPassengers[indexPath.row].emailAddress = item
+                        UserDefaults.standard.setValue(item, forKey: "emailAddress")
                     }
                     
                     return cell
@@ -591,10 +633,10 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.dobDateButton.setTitle(computedPassengers[indexPath.row].dobDay, for: .normal)
                     cell.dobMonthButton.setTitle(computedPassengers[indexPath.row].dobMonth, for: .normal)
                     cell.dobYearButton.setTitle(computedPassengers[indexPath.row].dobYear, for: .normal)
-                    cell.expireDateButton.setTitle(computedPassengers[indexPath.row].expireDay, for: .normal)
-                    cell.expireMonthButton.setTitle(computedPassengers[indexPath.row].expireMonth, for: .normal)
-                    cell.expireYearButton.setTitle(computedPassengers[indexPath.row].expireYear, for: .normal)
-                    cell.passportNumberTextField.text = computedPassengers[indexPath.row].passportNumber
+                    //                    cell.expireDateButton.setTitle(computedPassengers[indexPath.row].expireDay, for: .normal)
+                    //                    cell.expireMonthButton.setTitle(computedPassengers[indexPath.row].expireMonth, for: .normal)
+                    //                    cell.expireYearButton.setTitle(computedPassengers[indexPath.row].expireYear, for: .normal)
+                    //                    cell.passportNumberTextField.text = computedPassengers[indexPath.row].passportNumber
                     //                    cell.countryLabel.text = computedPassengers[indexPath.row].country
                     //                    cell.phoneCodeLabel.text = computedPassengers[indexPath.row].countryCode
                     //                    cell.phoneNumberTextField.text = computedPassengers[indexPath.row].phoneNumberWithoutCountryCode
