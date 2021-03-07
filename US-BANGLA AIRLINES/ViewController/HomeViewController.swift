@@ -474,7 +474,7 @@ extension HomeViewController{
             print("statusCode = \(statusCode)")
             switch response.result {
             case .success:
-                self.offerplaces = response.result.value?.offerplace ?? [Offerplace]()
+                self.offerplaces = response.result.value?.item?.offerplace ?? [Offerplace]()
                 self.offerCollectionView.reloadData()
             case .failure(let error):
                 print("error = \(error)")
