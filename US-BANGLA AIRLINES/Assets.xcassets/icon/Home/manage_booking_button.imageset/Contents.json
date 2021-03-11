@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "manage_booking_button.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -37,36 +37,49 @@ class HomeViewController: UIViewController {
             flightBookingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flightBookingTapped)))
         }
     }
+    @IBOutlet weak var flightBookingImageView: UIImageView!
     @IBOutlet weak var skyStarView: UIView!{
         didSet{
             skyStarView.isUserInteractionEnabled = true
             skyStarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(skyStarTapped)))
         }
     }
+    @IBOutlet weak var skyStarImageView: UIImageView!
     @IBOutlet weak var hotlineView: UIView!{
         didSet{
             hotlineView.isUserInteractionEnabled = true
             hotlineView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hotlineTapped)))
         }
     }
+    @IBOutlet weak var hotlineImageView: UIImageView!
     @IBOutlet weak var manageBookingView: UIView!{
         didSet{
             manageBookingView.isUserInteractionEnabled = true
             manageBookingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(manageBookingTapped)))
         }
     }
+    @IBOutlet weak var manageBookingImageView: UIImageView!
     @IBOutlet weak var holidayView: UIView!{
         didSet{
             holidayView.isUserInteractionEnabled = true
             holidayView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(holidayTapped)))
         }
     }
+    @IBOutlet weak var holidayImageView: UIImageView!
     @IBOutlet weak var flightScheduleView: UIView!{
         didSet{
             flightScheduleView.isUserInteractionEnabled = true
             flightScheduleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flightScheduleTapped)))
         }
     }
+    @IBOutlet weak var flightScheduleImageView: UIImageView!
+    @IBOutlet weak var webCheckInView: UIView!{
+        didSet{
+            webCheckInView.isUserInteractionEnabled = true
+            webCheckInView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(webCheckInTapped)))
+        }
+    }
+    @IBOutlet weak var webCheckInImageView: UIImageView!
     var visualEffectView: UIVisualEffectView!
     var sideBarView: UIView!
     var sideBarTableView: UITableView!
@@ -145,13 +158,13 @@ class HomeViewController: UIViewController {
     }
     
     func toWebView(type: GivenOption){
-//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
-//            vc.currentOption = type
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+            vc.currentOption = type
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        //        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
+        //            self.navigationController?.pushViewController(vc, animated: true)
+        //        }
     }
     
     @objc func skyStarTapped(){
@@ -178,6 +191,10 @@ class HomeViewController: UIViewController {
     
     @objc func flightScheduleTapped(){
         toWebView(type: .flightSchedule)
+    }
+    
+    @objc func webCheckInTapped(){
+        toWebView(type: .webCheckIn)
     }
     
     @objc func notificationTapped(){
@@ -474,6 +491,36 @@ extension HomeViewController{
             print("statusCode = \(statusCode)")
             switch response.result {
             case .success:
+                if let home = response.result.value?.item?.home{
+                    var placeHolderImage = UIImage(named: "book_flight_button")
+                    if let url = URL(string: home.book_flight ?? ""){
+                        self.flightBookingImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                    }
+                    placeHolderImage = UIImage(named: "skystar_button")
+                    if let url = URL(string: home.book_flight ?? ""){
+                        self.skyStarImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                    }
+                    placeHolderImage = UIImage(named: "manage_booking_button")
+                    if let url = URL(string: home.book_flight ?? ""){
+                        self.manageBookingImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                    }
+                    placeHolderImage = UIImage(named: "web_check_in_button")
+                    if let url = URL(string: home.book_flight ?? ""){
+                        self.webCheckInImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                    }
+                    placeHolderImage = UIImage(named: "flight_schedule_button")
+                    if let url = URL(string: home.book_flight ?? ""){
+                        self.flightScheduleImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                    }
+                    placeHolderImage = UIImage(named: "holiday_button")
+                    if let url = URL(string: home.book_flight ?? ""){
+                        self.holidayImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                    }
+                    placeHolderImage = UIImage(named: "hotline_button")
+                    if let url = URL(string: home.book_flight ?? ""){
+                        self.hotlineImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                    }
+                }
                 self.offerplaces = response.result.value?.item?.offerplace ?? [Offerplace]()
                 self.offerCollectionView.reloadData()
             case .failure(let error):
