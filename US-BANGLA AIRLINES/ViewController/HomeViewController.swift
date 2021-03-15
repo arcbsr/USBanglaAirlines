@@ -527,6 +527,10 @@ extension HomeViewController{
                 print("error = \(error)")
             }
         })
+        .responseJSON { (json) in
+            print(json)
+            print("")
+        }
     }
     
 }
