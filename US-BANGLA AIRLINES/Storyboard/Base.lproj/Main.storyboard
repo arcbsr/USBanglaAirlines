@@ -287,15 +287,22 @@
                     <navigationItem key="navigationItem" title="Title" id="CZV-99-Mkg"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="flightBookingImageView" destination="f7W-ok-Hbb" id="a0R-zu-UvS"/>
                         <outlet property="flightBookingView" destination="2Bg-Xr-OHa" id="Jfi-hu-Iae"/>
+                        <outlet property="flightScheduleImageView" destination="HY5-SZ-jAq" id="uKh-h4-ugc"/>
                         <outlet property="flightScheduleView" destination="22E-yJ-Kgv" id="M82-vZ-jdi"/>
+                        <outlet property="holidayImageView" destination="wcx-49-4kb" id="Pj2-oo-vSz"/>
                         <outlet property="holidayView" destination="b5A-aT-gEb" id="NqJ-JM-5Fd"/>
+                        <outlet property="hotlineImageView" destination="fxB-rr-lg0" id="rTp-tq-3ug"/>
                         <outlet property="hotlineView" destination="XGS-um-1th" id="DAw-g0-cao"/>
+                        <outlet property="manageBookingImageView" destination="J1d-0x-RiF" id="sve-4G-Mck"/>
                         <outlet property="manageBookingView" destination="nj8-EE-VsR" id="m2y-S5-MM5"/>
                         <outlet property="menuImageView" destination="rew-sL-hsM" id="iHW-s6-e41"/>
                         <outlet property="notificationImageView" destination="QPK-kj-uC3" id="6dF-3S-8Oa"/>
                         <outlet property="offerCollectionView" destination="Ogf-c1-GMP" id="BYv-cZ-KLA"/>
+                        <outlet property="skyStarImageView" destination="2qc-B5-dfW" id="Bn3-6C-JLi"/>
                         <outlet property="skyStarView" destination="Oge-3w-3bR" id="0oF-ym-0KB"/>
+                        <outlet property="webCheckInImageView" destination="wAd-TB-r6d" id="vFX-tK-5Y1"/>
                         <outlet property="webCheckInView" destination="MNj-h6-NXS" id="BdO-vV-CbL"/>
                     </connections>
                 </viewController>

@@ -139,9 +139,9 @@ class InputPassengerInfoViewController: UIViewController {
     
     @IBAction func createBookingButtonTapped(_ sender: Any) {
         view.endEditing(true)
-        if validateInput(){
-            createBooking()
-        }
+//        if validateInput(){
+//            createBooking()
+//        }
     }
     
     @IBAction func makePaymentTapped(_ sender: Any) {
@@ -944,7 +944,7 @@ extension InputPassengerInfoViewController{
             "request": requestParams
         ]
         
-        guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/CreateBooking?DateFormatHandling=IsoDateFormat") else{
+        guard let url = URL(string: "\(GlobalItems.getBaseUrl())/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/CreateBooking?DateFormatHandling=IsoDateFormat") else{
             return
         }
         

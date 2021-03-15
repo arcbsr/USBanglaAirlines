@@ -480,7 +480,7 @@ extension HomeViewController{
         print("offer url:\(url)")
         SVProgressHUD.show()
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<OfferPlaceModel>) in
+        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<OfferPlaceModel>) in
             if SVProgressHUD.isVisible(){
                 SVProgressHUD.dismiss()
             }

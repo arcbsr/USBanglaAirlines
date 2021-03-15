@@ -760,7 +760,7 @@ extension FlightFilterViewController{
             "request": request
         ]
         
-        guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
+        guard let url = URL(string: "\(GlobalItems.getBaseUrl())/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
             return
         }
         
@@ -825,7 +825,7 @@ extension FlightFilterViewController{
             "request": request
         ]
         
-        guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
+        guard let url = URL(string: "\(GlobalItems.getBaseUrl())/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
             return
         }
         
@@ -880,7 +880,7 @@ extension FlightFilterViewController{
             "request": request
         ]
         
-        guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
+        guard let url = URL(string: "\(GlobalItems.getBaseUrl())/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
             return
         }
         
@@ -940,7 +940,7 @@ extension FlightFilterViewController{
             "request": request
         ]
         
-        guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
+        guard let url = URL(string: "\(GlobalItems.getBaseUrl())/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/GetValueCodes") else{
             return
         }
         
@@ -1057,7 +1057,7 @@ extension FlightFilterViewController{
             "request": request
         ]
         
-        guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights?DateFormatHandling=IsoDateFormat") else{
+        guard let url = URL(string: "\(GlobalItems.getBaseUrl())/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights?DateFormatHandling=IsoDateFormat") else{
             return
         }
         
@@ -1282,7 +1282,7 @@ extension FlightFilterViewController{
             "request": request
         ]
         
-        guard let url = URL(string: "https://tstws2.ttinteractive.com/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights?DateFormatHandling=IsoDateFormat") else{
+        guard let url = URL(string: "\(GlobalItems.getBaseUrl())/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/SearchFlights?DateFormatHandling=IsoDateFormat") else{
             return
         }
         

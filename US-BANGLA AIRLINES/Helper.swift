@@ -24,11 +24,19 @@ struct GlobalItems{
     static func getAuthKey() -> String{
         let testAuthKey = "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U"
         let prodAuthKey = "_JEAAAABWU_EYtV0PDQ5AefVBXqTISe7_EqErTgeZryEzUyElkoBqCSdJh8UQdKZLhbSW62OVwi7Ix58ZnGrS9CBDxSnz7g_U"
-        if GlobalItems.isTestBuild{
+        if isTestBuild{
             return testAuthKey
         }else{
             return prodAuthKey
         }
+    }
+    static func getBaseUrl() -> String{
+        let testUrl = "https://tstws2.ttinteractive.com"
+        let prodUrl = "https://wsapi-asia.ttinteractive.com"
+        if isTestBuild{
+            return testUrl
+        }
+        return prodUrl
     }
 }
 
