@@ -91,7 +91,6 @@ class FlightFilterViewController: UIViewController {
             departureDateTextField.tintColor = .clear
             departureDateTextField.attributedPlaceholder = NSAttributedString(string: "DEPARTURE DATE",
                                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-            datePicker.datePickerMode = .date
             departureDateTextField.inputView = datePicker
             departureDateTextField.addToolbarButton(with: self,
                                                     selector: #selector(departureDateTapped),
@@ -105,7 +104,6 @@ class FlightFilterViewController: UIViewController {
             returnDateTextField.tintColor = .clear
             returnDateTextField.attributedPlaceholder = NSAttributedString(string: "RETURN DATE",
                                                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-            datePicker.datePickerMode = .date
             returnDateTextField.inputView = datePicker
             returnDateTextField.addToolbarButton(with: self,
                                                  selector: #selector(returnDateTapped),
@@ -217,6 +215,7 @@ class FlightFilterViewController: UIViewController {
         returnCabinClassView.isHidden = true
         returnDateView.isHidden = true
         
+        datePicker.datePickerMode = .date
         if #available(iOS 14.0, *) {
             datePicker.preferredDatePickerStyle = .wheels
         } else {
@@ -422,6 +421,9 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func searchFlightTapped(){
+        //        if let vc = UIStoryboard(name: "PassengerInfo", bundle: nil).instantiateViewController(withIdentifier: "InputPassengerInfoViewController") as? InputPassengerInfoViewController{
+        //            self.navigationController?.pushViewController(vc, animated: true)
+        //        }
         if oneWayCheckbox.checkState == .checked{
             if validateOneWayFlight(){
                 searchOneWayFlight()
@@ -739,8 +741,13 @@ extension FlightFilterViewController{
         //            ]
         
         
+        //        let requestInfo: Parameters = [
+        //            //            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+        //                        "AuthenticationKey": "_JEAAAABWU_EYtV0PDQ5AefVBXqTISe7_EqErTgeZryEzUyElkoBqCSdJh8UQdKZLhbSW62OVwi7Ix58ZnGrS9CBDxSnz7g_U",
+        //                        "CultureName": "en-GB"
+        //        ]
         let requestInfo: Parameters = [
-            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "AuthenticationKey": GlobalItems.getAuthKey(),
             "CultureName": "en-GB"
         ]
         
@@ -799,8 +806,13 @@ extension FlightFilterViewController{
         //                "Authorization": "token \(UserInfo.token)"
         //            ]
         
+        //        let requestInfo: Parameters = [
+        //            //            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+        //                        "AuthenticationKey": "_JEAAAABWU_EYtV0PDQ5AefVBXqTISe7_EqErTgeZryEzUyElkoBqCSdJh8UQdKZLhbSW62OVwi7Ix58ZnGrS9CBDxSnz7g_U",
+        //                        "CultureName": "en-GB"
+        //        ]
         let requestInfo: Parameters = [
-            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "AuthenticationKey": GlobalItems.getAuthKey(),
             "CultureName": "en-GB"
         ]
         
@@ -849,8 +861,13 @@ extension FlightFilterViewController{
         //            ]
         
         
+        //        let requestInfo: Parameters = [
+        //            //            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+        //                        "AuthenticationKey": "_JEAAAABWU_EYtV0PDQ5AefVBXqTISe7_EqErTgeZryEzUyElkoBqCSdJh8UQdKZLhbSW62OVwi7Ix58ZnGrS9CBDxSnz7g_U",
+        //                        "CultureName": "en-GB"
+        //        ]
         let requestInfo: Parameters = [
-            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "AuthenticationKey": GlobalItems.getAuthKey(),
             "CultureName": "en-GB"
         ]
         
@@ -904,8 +921,13 @@ extension FlightFilterViewController{
         //            ]
         
         
+        //        let requestInfo: Parameters = [
+        //            //            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+        //                        "AuthenticationKey": "_JEAAAABWU_EYtV0PDQ5AefVBXqTISe7_EqErTgeZryEzUyElkoBqCSdJh8UQdKZLhbSW62OVwi7Ix58ZnGrS9CBDxSnz7g_U",
+        //                        "CultureName": "en-GB"
+        //        ]
         let requestInfo: Parameters = [
-            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "AuthenticationKey": GlobalItems.getAuthKey(),
             "CultureName": "en-GB"
         ]
         
@@ -1012,8 +1034,13 @@ extension FlightFilterViewController{
             "MaxConnectionCount": "8",
         ]
         
+        //        let requestInfo: Parameters = [
+        //            //            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+        //                        "AuthenticationKey": "_JEAAAABWU_EYtV0PDQ5AefVBXqTISe7_EqErTgeZryEzUyElkoBqCSdJh8UQdKZLhbSW62OVwi7Ix58ZnGrS9CBDxSnz7g_U",
+        //                        "CultureName": "en-GB"
+        //        ]
         let requestInfo: Parameters = [
-            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "AuthenticationKey": GlobalItems.getAuthKey(),
             "CultureName": "en-GB"
         ]
         
@@ -1232,8 +1259,13 @@ extension FlightFilterViewController{
             "MaxConnectionCount": "8",
         ]
         
+        //        let requestInfo: Parameters = [
+        //            //            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+        //                        "AuthenticationKey": "_JEAAAABWU_EYtV0PDQ5AefVBXqTISe7_EqErTgeZryEzUyElkoBqCSdJh8UQdKZLhbSW62OVwi7Ix58ZnGrS9CBDxSnz7g_U",
+        //                        "CultureName": "en-GB"
+        //        ]
         let requestInfo: Parameters = [
-            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "AuthenticationKey": GlobalItems.getAuthKey(),
             "CultureName": "en-GB"
         ]
         

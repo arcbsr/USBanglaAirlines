@@ -77,32 +77,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o4u-mI-u1d">
                                 <rect key="frame" x="0.0" y="98" width="414" height="2868"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="lew-3J-8G1">
-                                    <rect key="frame" x="0.0" y="2631" width="414" height="58"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Li0-9I-nS6">
-                                            <rect key="frame" x="248" y="13" width="166" height="32"/>
-                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="32" id="fET-oV-NMu"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="36" maxY="0.0"/>
-                                            <state key="normal" title="CREATE BOOKING">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="createBookingButtonTapped:" destination="nDy-6p-5xZ" eventType="touchUpInside" id="cOb-HV-8sq"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="Li0-9I-nS6" firstAttribute="centerY" secondItem="lew-3J-8G1" secondAttribute="centerY" id="OI4-3N-nru"/>
-                                        <constraint firstAttribute="trailing" secondItem="Li0-9I-nS6" secondAttribute="trailing" id="QWQ-mg-GzL"/>
-                                    </constraints>
-                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="447" id="p8H-y8-kI1">
                                         <rect key="frame" x="0.0" y="28" width="414" height="447"/>
@@ -2034,6 +2008,21 @@
                                     <action selector="holdBookingTapped:" destination="nDy-6p-5xZ" eventType="touchUpInside" id="UtO-In-XHP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Li0-9I-nS6">
+                                <rect key="frame" x="248" y="2926" width="166" height="32"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="fET-oV-NMu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="36" maxY="0.0"/>
+                                <state key="normal" title="CREATE BOOKING">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="createBookingButtonTapped:" destination="nDy-6p-5xZ" eventType="touchUpInside" id="cOb-HV-8sq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="osd-Fi-MZd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2044,7 +2033,10 @@
                             <constraint firstItem="osd-Fi-MZd" firstAttribute="bottom" secondItem="o4u-mI-u1d" secondAttribute="bottom" id="86B-sF-BCJ"/>
                             <constraint firstItem="h4Y-Ka-U2H" firstAttribute="trailing" secondItem="osd-Fi-MZd" secondAttribute="trailing" id="8U2-5f-4HS"/>
                             <constraint firstItem="o4u-mI-u1d" firstAttribute="top" secondItem="h4Y-Ka-U2H" secondAttribute="bottom" id="N65-BE-eaf"/>
+                            <constraint firstAttribute="trailing" secondItem="Li0-9I-nS6" secondAttribute="trailing" id="Ovk-5G-Riz"/>
                             <constraint firstItem="osd-Fi-MZd" firstAttribute="bottom" secondItem="7jH-8t-jXS" secondAttribute="bottom" constant="100" id="Pb1-yG-yzQ"/>
+                            <constraint firstItem="Li0-9I-nS6" firstAttribute="trailing" secondItem="osd-Fi-MZd" secondAttribute="trailing" id="VTt-Ue-hL2"/>
+                            <constraint firstItem="osd-Fi-MZd" firstAttribute="bottom" secondItem="Li0-9I-nS6" secondAttribute="bottom" constant="8" id="aBK-ds-1lQ"/>
                             <constraint firstItem="o4u-mI-u1d" firstAttribute="leading" secondItem="osd-Fi-MZd" secondAttribute="leading" id="ctI-UD-8sw"/>
                             <constraint firstItem="osd-Fi-MZd" firstAttribute="trailing" secondItem="o4u-mI-u1d" secondAttribute="trailing" id="fvR-fN-N5I"/>
                             <constraint firstItem="h4Y-Ka-U2H" firstAttribute="leading" secondItem="osd-Fi-MZd" secondAttribute="leading" id="r6p-ip-R4N"/>

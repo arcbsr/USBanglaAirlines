@@ -31,10 +31,10 @@ class InputPassengerInfoViewController: UIViewController {
             tableView.separatorStyle = .none
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableView.automaticDimension
-            //            let footerView = UIView()
-            //            footerView.frame.size.height = 16
-            //            footerView.backgroundColor = .clear
-            //            tableView.tableFooterView = footerView
+            let footerView = UIView()
+            footerView.frame.size.height = 40
+            footerView.backgroundColor = .clear
+            tableView.tableFooterView = footerView
         }
     }
     @IBOutlet weak var notificationImageView: UIImageView!{
@@ -926,9 +926,9 @@ extension InputPassengerInfoViewController{
         let emdTicketFares: Parameters = [
             "EMDTicketFares": []
         ]
-        
+       
         let requestInfo: Parameters = [
-            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+            "AuthenticationKey": GlobalItems.getAuthKey(),
             "CultureName": "en-GB"
         ]
         
