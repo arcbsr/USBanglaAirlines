@@ -20,7 +20,9 @@ struct GlobalItems{
     static var segmentRefInfoDictinary = [String: FlightInfo]()
     static var businessClassCodes = [String()] //["C", "D", "J", ...]
     static var bdAirportCodes = [String]()
+    
     static var isTestBuild = true
+    
     static func getAuthKey() -> String{
         let testAuthKey = "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U"
         let prodAuthKey = "_JEAAAABWU_EYtV0PDQ5AefVBXqTISe7_EqErTgeZryEzUyElkoBqCSdJh8UQdKZLhbSW62OVwi7Ix58ZnGrS9CBDxSnz7g_U"

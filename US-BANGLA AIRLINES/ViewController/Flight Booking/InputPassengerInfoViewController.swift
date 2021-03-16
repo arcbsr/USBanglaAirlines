@@ -139,9 +139,9 @@ class InputPassengerInfoViewController: UIViewController {
     
     @IBAction func createBookingButtonTapped(_ sender: Any) {
         view.endEditing(true)
-//        if validateInput(){
-//            createBooking()
-//        }
+        //        if validateInput(){
+        //            createBooking()
+        //        }
     }
     
     @IBAction func makePaymentTapped(_ sender: Any) {
@@ -156,10 +156,24 @@ class InputPassengerInfoViewController: UIViewController {
     
     func constructPassengers(){
         computedPassengers = [Passenger]()
-        for passenger in passengers{
-            let count = passenger.passengerQuantity ?? 0
-            for i in 0 ..< count{
-                if i == 0{
+        //        for passenger in passengers{
+        for i in 0 ..< passengers.count{
+            // MARK: Uncommenting the following line will cause issue (class type; all adult data will be changed)
+            //            let passenger = passengers[i]
+            //            let count = passenger.passengerQuantity ?? 0
+            
+            let count = passengers[i].passengerQuantity ?? 0
+            for j in 0 ..< count{
+                let passenger = Passenger()
+                passenger.eTTicketFare = passengers[i].eTTicketFare
+                passenger.extensions = passengers[i].extensions
+                passenger.nameElement = passengers[i].nameElement
+                passenger.passengerQuantity = passengers[i].passengerQuantity
+                passenger.passengerTypeCode = passengers[i].passengerTypeCode
+                passenger.ref = passengers[i].ref
+                passenger.refClient = passengers[i].refClient
+                
+                if i == 0 && j == 0{ //MARK: Lead passenger's data save
                     passenger.title = UserDefaults.standard.string(forKey: "title") ?? "MR"
                     passenger.dobDay = UserDefaults.standard.string(forKey: "dobDay") ?? "DATE"
                     passenger.dobMonth = UserDefaults.standard.string(forKey: "dobMonth") ?? "MONTH"
@@ -173,12 +187,28 @@ class InputPassengerInfoViewController: UIViewController {
                     passenger.firstName = UserDefaults.standard.string(forKey: "firstName") ?? ""
                     passenger.lastName = UserDefaults.standard.string(forKey: "lastName") ?? ""
                 }else{
-                    
+                    passenger.title = "MR"
+                    passenger.dobDay = "DATE"
+                    passenger.dobMonth = "MONTH"
+                    passenger.dobYear = "YEAR"
+                    passenger.country = "Bangladesh"
+                    passenger.phoneCode = "+880"
+                    passenger.phoneNumberWithoutCountryCode = ""
+                    passenger.emailAddress = ""
+                    passenger.ffpNumber = ""
+                    passenger.passportNumber = ""
+                    passenger.firstName = ""
+                    passenger.lastName = ""
                 }
                 computedPassengers.append(passenger)
             }
         }
         tableView.reloadData()
+        //        for passenger in computedPassengers{
+        //            print(passenger)
+        //            print("first name = \(passenger.firstName)")
+        //            print("")
+        //        }
     }
     
     func validateInput() -> Bool{
@@ -926,7 +956,7 @@ extension InputPassengerInfoViewController{
         let emdTicketFares: Parameters = [
             "EMDTicketFares": []
         ]
-       
+        
         let requestInfo: Parameters = [
             "AuthenticationKey": GlobalItems.getAuthKey(),
             "CultureName": "en-GB"
