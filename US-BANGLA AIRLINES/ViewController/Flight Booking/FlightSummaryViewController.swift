@@ -231,7 +231,12 @@ class FlightSummaryViewController: UIViewController {
         fromTimeLabel.text = "\(fromTime) \(fromCityCode)"
         toTimeLabel.text = "\(toTime) \(toCityCode)"
         cabinClassLabel.text = forwardFlightClass
-        totalFareLabel.text = "\(selectedCurrency) \(returnFlight?.totalAmount ?? 0)"
+        
+        let discount = returnFlight?.discountAmount ?? 0
+        let totalWithoutDiscount = returnFlight?.totalAmount ?? 0
+        let total = totalWithoutDiscount - discount
+        discountLabel.text = "\(selectedCurrency) \(discount)"
+        totalFareLabel.text = "\(selectedCurrency) \(total)"
     }
     
     func loadOneWayData(){
@@ -257,7 +262,12 @@ class FlightSummaryViewController: UIViewController {
         fromTimeLabel.text = "\(fromTime) \(fromCityCode)"
         toTimeLabel.text = "\(toTime) \(toCityCode)"
         cabinClassLabel.text = flightClass
-        totalFareLabel.text = "\(selectedCurrency) \(oneWayflight?.saleCurrencyAmount?.totalAmount ?? 0)"
+        
+        let discount = oneWayflight?.saleCurrencyAmount?.discountAmount ?? 0
+        let totalWithoutDiscount = oneWayflight?.saleCurrencyAmount?.totalAmount ?? 0
+        let total = totalWithoutDiscount - discount
+        discountLabel.text = "\(selectedCurrency) \(discount)"
+        totalFareLabel.text = "\(selectedCurrency) \(total)"
     }
     
     func toWebView(type: GivenOption){

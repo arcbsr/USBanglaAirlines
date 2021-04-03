@@ -365,7 +365,22 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
                 cell.forwardDurationLabel.text = "\(returnFlights[indexPath.row].forwardflightInfo?.durationMinutes ?? 0) MIN"
                 cell.backwardDurationLabel.text = "\(returnFlights[indexPath.row].backwardflightInfo?.durationMinutes ?? 0) MIN"
                 cell.rankingLabel.text = "\(indexPath.row + 1)"
-                cell.priceLabel.text = " \(selectedCurrency) \(returnFlights[indexPath.row].totalAmount ?? 0) "
+                
+                //                cell.priceLabel.text = " \(selectedCurrency) \(returnFlights[indexPath.row].totalAmount ?? 0) "
+                let discount = returnFlights[indexPath.row].discountAmount ?? 0
+                let totalWithoutDiscount = returnFlights[indexPath.row].totalAmount ?? 0
+                let total = totalWithoutDiscount - discount
+                if discount > 0{
+                    let attributedString = NSAttributedString(string: " \(selectedCurrency) \(totalWithoutDiscount) ", attributes:
+                                                                [.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.strikethroughColor: UIColor.red])
+                    cell.priceLabel.attributedText = attributedString
+                    cell.totalPriceLabel.text = "\(selectedCurrency) \(total)"
+                    cell.totalPriceLabel.isHidden = false
+                }else{
+                    cell.priceLabel.text = " \(selectedCurrency) \(totalWithoutDiscount) "
+                    cell.totalPriceLabel.isHidden = true
+                }
+                
                 cell.forwardfromLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
                 cell.forwardtoLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
                 cell.backwardfromLocationLabel.text = returnFlights[indexPath.row].backwardflightInfo?.originCode ?? ""
@@ -412,7 +427,21 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             cell.selectionStyle = .none
             
             cell.rankingLabel.text = "\(indexPath.row + 1)"
-            cell.priceLabel.text = " \(selectedCurrency) \(returnFlights[indexPath.row].totalAmount ?? 0) "
+            
+            let discount = returnFlights[indexPath.row].discountAmount ?? 0
+            let totalWithoutDiscount = returnFlights[indexPath.row].totalAmount ?? 0
+            let total = totalWithoutDiscount - discount
+            if discount > 0{
+                let attributedString = NSAttributedString(string: " \(selectedCurrency) \(totalWithoutDiscount) ", attributes:
+                                                            [.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.strikethroughColor: UIColor.red])
+                cell.priceLabel.attributedText = attributedString
+                cell.totalPriceLabel.text = "\(selectedCurrency) \(total)"
+                cell.totalPriceLabel.isHidden = false
+            }else{
+                cell.priceLabel.text = " \(selectedCurrency) \(totalWithoutDiscount) "
+                cell.totalPriceLabel.isHidden = true
+            }
+            
             cell.forwardfromLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
             cell.forwardtoLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
             

@@ -17,6 +17,7 @@ class ReturnFlightCell: UITableViewCell {
     @IBOutlet weak var forwardtoTimeLabel: UILabel!
 //    @IBOutlet weak var forwardDurationLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
     
     var downArrowTapped: (()->())?
     

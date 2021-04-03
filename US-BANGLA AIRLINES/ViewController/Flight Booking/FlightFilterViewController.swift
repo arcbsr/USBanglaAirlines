@@ -1027,7 +1027,8 @@ extension FlightFilterViewController{
             "SaleCurrencyCode": currencyLabel.text ?? "",
             "FarebasisCodes": [],
             "WebClassesCodes": [],
-            "ShowWebClasses": true
+            "ShowWebClasses": true,
+            "PromoCode": promoCodeTextField.text ?? ""
         ]
         
         let availabilitySettings: Parameters = [
@@ -1185,6 +1186,9 @@ extension FlightFilterViewController{
                 print("error = \(error)")
             }
         })
+//        .responseJSON { (response) in
+//            print("json = \(response.result.value)")
+//        }
     }
     
     func searchReturnFlight() {
@@ -1252,7 +1256,8 @@ extension FlightFilterViewController{
             "SaleCurrencyCode": currencyLabel.text ?? "",
             "FarebasisCodes": [],
             "WebClassesCodes": [],
-            "ShowWebClasses": true
+            "ShowWebClasses": true,
+            "PromoCode": promoCodeTextField.text ?? ""
         ]
         
         let availabilitySettings: Parameters = [

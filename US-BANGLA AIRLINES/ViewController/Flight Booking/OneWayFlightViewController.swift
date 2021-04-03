@@ -75,8 +75,8 @@ class OneWayFlightViewController: UIViewController {
     var selectedCurrency = ""
     var fromCity = ""
     var toCity = ""
-        var fromCityCode = ""
-        var toCityCode = ""
+    var fromCityCode = ""
+    var toCityCode = ""
     var departureDate = ""
     var returnDate = ""
     var eTTicketFares = [ETTicketFare]()
@@ -333,7 +333,21 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
             cell.selectionStyle = .none
             cell.durationLabel.text = "\(flights[indexPath.row].durationMinutes ?? 0) MIN"
             cell.rankingLabel.text = "\(indexPath.row + 1)"
-            cell.priceLabel.text = " \(selectedCurrency) \(flights[indexPath.row].saleCurrencyAmount?.totalAmount ?? 0) "
+            
+            let discount = flights[indexPath.row].saleCurrencyAmount?.discountAmount ?? 0
+            let totalWithoutDiscount = flights[indexPath.row].saleCurrencyAmount?.totalAmount ?? 0
+            let total = totalWithoutDiscount - discount
+            if discount > 0{
+                let attributedString = NSAttributedString(string: " \(selectedCurrency) \(totalWithoutDiscount) ", attributes:
+                                                            [.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.strikethroughColor: UIColor.red])
+                cell.priceLabel.attributedText = attributedString
+                cell.totalPriceLabel.text = "\(selectedCurrency) \(total)"
+                cell.totalPriceLabel.isHidden = false
+            }else{
+                cell.priceLabel.text = " \(selectedCurrency) \(totalWithoutDiscount) "
+                cell.totalPriceLabel.isHidden = true
+            }
+            
             cell.fromLocationLabel.text = flights[indexPath.row].originCode
             cell.toLocationLabel.text = flights[indexPath.row].destinationCode
             cell.flightDetailsLabel.text = "FLIGHT: \(flights[indexPath.row].operatingAirlineDesignator ?? "") \(flights[indexPath.row].operatingFlightNumber ?? "")\n\(flights[indexPath.row].equipmentText ?? "")"

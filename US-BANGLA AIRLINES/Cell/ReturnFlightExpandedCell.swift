@@ -24,6 +24,7 @@ class ReturnFlightExpandedCell: UITableViewCell {
     @IBOutlet weak var forwardDurationLabel: UILabel!
     @IBOutlet weak var backwardDurationLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var selectButton: UIButton!{
         didSet{
             selectButton.layer.cornerRadius = selectButton.frame.size.height/2

@@ -17,6 +17,7 @@ class OneWayFlightCell: UITableViewCell {
     @IBOutlet weak var toTimeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
