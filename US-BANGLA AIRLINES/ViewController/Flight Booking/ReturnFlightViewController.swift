@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-
+import DropDown
+import SVProgressHUD
 
 class ReturnFlightViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!{
@@ -55,6 +55,22 @@ class ReturnFlightViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var departureShiftLabel: UILabel!
+    @IBOutlet weak var returnShiftLabel: UILabel!
+    @IBOutlet weak var departureShiftView: UIView!{
+        didSet{
+            departureShiftView.isUserInteractionEnabled = true
+            departureShiftView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(departureShiftTapped)))
+        }
+    }
+    @IBOutlet weak var returnShiftView: UIView!{
+        didSet{
+            returnShiftView.isUserInteractionEnabled = true
+            returnShiftView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnShiftTapped)))
+        }
+    }
+    
+    
     var visualEffectView: UIVisualEffectView!
     var sideBarView: UIView!
     var sideBarTableView: UITableView!
@@ -62,7 +78,7 @@ class ReturnFlightViewController: UIViewController {
     var logoImgView: UIImageView?
     // for iPhone
     var shiftX: CGFloat = -400
-    
+    var shiftType = ["MORNING", "DAY", "EVENING"]
     var sideMenutitleArray: NSArray = ["BOOK A FLIGHT", "MY BOOKING" ,"WEB CHECK-IN" ,"MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "SALES OFFICE", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "Flight")!, UIImage(named: "Manage-Booking")!, UIImage(named: "Manage-Booking")!,  UIImage(named: "Manage-Booking")!, UIImage(named: "Holiday_Tree")!, UIImage(named: "clock")!, UIImage(named: "Sky-Star")!, UIImage(named: "Sales-Office")!, UIImage(named: "Contact")!]
     let BOOK_FLIGHT_SECTION = 0
@@ -83,6 +99,7 @@ class ReturnFlightViewController: UIViewController {
     var departureDate = ""
     var returnDate = ""
     var returnFlights = [SaleCurrencyAmount]()
+    var filteredFlights = [SaleCurrencyAmount]()
     var eTTicketFares = [ETTicketFare]()
     var passengers = [Passenger]()
     var offer: Offer?
@@ -109,6 +126,9 @@ class ReturnFlightViewController: UIViewController {
         toCityLabel.text = toCity
         fromDateLabel.text = departureDate
         toDateLabel.text = returnDate
+        
+        filteredFlights = returnFlights
+        tableView.reloadData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -125,10 +145,95 @@ class ReturnFlightViewController: UIViewController {
         sideBarSetup(willChangeState: true)
     }
     
+    @objc func departureShiftTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = departureShiftView
+        dropDown.dataSource = shiftType
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.departureShiftLabel.text = item
+            switch index {
+            case 0:
+                // MORNING 3am-12pm
+                self?.filterByShift(start: 3, end: 12, isForward: true)
+                print("")
+            case 1:
+                // DAY 12pm-6pm
+                self?.filterByShift(start: 12, end: 18, isForward: true)
+                print("")
+            case 2:
+                // EVENING 6pm-3am
+                self?.filterByShift(start: 18, end: 24, isForward: true, offset: 3)
+                print("")
+            default:
+                break
+            }
+        }
+        dropDown.show()
+    }
+    
+    @objc func returnShiftTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = returnShiftView
+        dropDown.dataSource = shiftType
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.returnShiftLabel.text = item
+            switch index {
+            case 0:
+                // MORNING 3am-12pm
+                self?.filterByShift(start: 3, end: 12, isForward: false)
+                print("")
+            case 1:
+                // DAY 12pm-6pm
+                self?.filterByShift(start: 12, end: 18, isForward: false)
+                print("")
+            case 2:
+                // EVENING 6pm-3am
+                self?.filterByShift(start: 18, end: 24, isForward: false, offset: 3)
+                print("")
+            default:
+                break
+            }
+        }
+        dropDown.show()
+    }
+    
+    func filterByShift(start: Int, end: Int, isForward: Bool, offset: Int = 0){
+        //        SVProgressHUD.show()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+        var processedFlights = [SaleCurrencyAmount]()
+        for flight in returnFlights{
+            if isForward{
+                let startDate = flight.forwardflightInfo?.departureDate ?? ""
+                if let date = dateFormatter.date(from: startDate) {
+                    //                cell.forwardfromTimeLabel.text = "\(date.hour):\(date.minute)"
+                    if date.hour >= start && date.hour <= end{
+                        processedFlights.append(flight)
+                    }
+                }
+            }else{
+                let endDate =  flight.backwardflightInfo?.departureDate ?? ""
+                if let date = dateFormatter.date(from: endDate) {
+                    //                cell.forwardtoTimeLabel.text = "\(date.hour):\(date.minute)"
+                    if date.hour >= start && date.hour <= end{
+                        processedFlights.append(flight)
+                    }else if offset > 0{
+                        if date.hour >= 1 && date.hour <= offset{
+                            processedFlights.append(flight)
+                        }
+                    }
+                }
+            }
+        }
+        filteredFlights = processedFlights
+        tableView.reloadData()
+        //        SVProgressHUD.dismiss()
+    }
+    
     func moveToNextVC(row: Int, fromTime: String, toTime: String){
         if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "FlightSummaryViewController") as? FlightSummaryViewController{
             //                vc.searchData = self.searchData
-            vc.returnFlight = returnFlights[row]
+            vc.returnFlight = filteredFlights[row]
             vc.eTTicketFares = eTTicketFares
             vc.passengers = passengers
             vc.offer = self.offer
@@ -338,7 +443,7 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
         if tableView == sideBarTableView{
             return sideMenutitleArray.count
         }else{
-            return returnFlights.count
+            return filteredFlights.count
             //            return 6
         }
     }
@@ -357,18 +462,18 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             return cell
             
         }else{
-            if returnFlights[indexPath.row].isExpand{
+            if filteredFlights[indexPath.row].isExpand{
                 // expanded cell
                 let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReturnFlightExpandedCell.self)) as! ReturnFlightExpandedCell
                 cell.selectionStyle = .none
                 
-                cell.forwardDurationLabel.text = "\(returnFlights[indexPath.row].forwardflightInfo?.durationMinutes ?? 0) MIN"
-                cell.backwardDurationLabel.text = "\(returnFlights[indexPath.row].backwardflightInfo?.durationMinutes ?? 0) MIN"
+                cell.forwardDurationLabel.text = "\(filteredFlights[indexPath.row].forwardflightInfo?.durationMinutes ?? 0) MIN"
+                cell.backwardDurationLabel.text = "\(filteredFlights[indexPath.row].backwardflightInfo?.durationMinutes ?? 0) MIN"
                 cell.rankingLabel.text = "\(indexPath.row + 1)"
                 
-                //                cell.priceLabel.text = " \(selectedCurrency) \(returnFlights[indexPath.row].totalAmount ?? 0) "
-                let discount = returnFlights[indexPath.row].discountAmount ?? 0
-                let totalWithoutDiscount = returnFlights[indexPath.row].totalAmount ?? 0
+                //                cell.priceLabel.text = " \(selectedCurrency) \(filteredFlights[indexPath.row].totalAmount ?? 0) "
+                let discount = filteredFlights[indexPath.row].discountAmount ?? 0
+                let totalWithoutDiscount = filteredFlights[indexPath.row].totalAmount ?? 0
                 let total = totalWithoutDiscount - discount
                 if discount > 0{
                     let attributedString = NSAttributedString(string: " \(selectedCurrency) \(totalWithoutDiscount) ", attributes:
@@ -381,37 +486,37 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
                     cell.totalPriceLabel.isHidden = true
                 }
                 
-                cell.forwardfromLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
-                cell.forwardtoLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
-                cell.backwardfromLocationLabel.text = returnFlights[indexPath.row].backwardflightInfo?.originCode ?? ""
-                cell.backwardtoLocationLabel.text = returnFlights[indexPath.row].backwardflightInfo?.destinationCode ?? ""
-                cell.forwardFlightDetailsLabel.text = "FLIGHT: \(returnFlights[indexPath.row].forwardflightInfo?.operatingAirlineDesignator ?? "") \(returnFlights[indexPath.row].forwardflightInfo?.operatingFlightNumber ?? "")\n\(returnFlights[indexPath.row].forwardflightInfo?.equipmentText ?? "")"
-                cell.backwardFlightDetailsLabel.text = "FLIGHT: \(returnFlights[indexPath.row].backwardflightInfo?.operatingAirlineDesignator ?? "") \(returnFlights[indexPath.row].backwardflightInfo?.operatingFlightNumber ?? "")\n\(returnFlights[indexPath.row].backwardflightInfo?.equipmentText ?? "")"
+                cell.forwardfromLocationLabel.text = filteredFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
+                cell.forwardtoLocationLabel.text = filteredFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
+                cell.backwardfromLocationLabel.text = filteredFlights[indexPath.row].backwardflightInfo?.originCode ?? ""
+                cell.backwardtoLocationLabel.text = filteredFlights[indexPath.row].backwardflightInfo?.destinationCode ?? ""
+                cell.forwardFlightDetailsLabel.text = "FLIGHT: \(filteredFlights[indexPath.row].forwardflightInfo?.operatingAirlineDesignator ?? "") \(filteredFlights[indexPath.row].forwardflightInfo?.operatingFlightNumber ?? "")\n\(filteredFlights[indexPath.row].forwardflightInfo?.equipmentText ?? "")"
+                cell.backwardFlightDetailsLabel.text = "FLIGHT: \(filteredFlights[indexPath.row].backwardflightInfo?.operatingAirlineDesignator ?? "") \(filteredFlights[indexPath.row].backwardflightInfo?.operatingFlightNumber ?? "")\n\(filteredFlights[indexPath.row].backwardflightInfo?.equipmentText ?? "")"
                 
-                let startDate = returnFlights[indexPath.row].forwardflightInfo?.departureDate ?? ""
+                let startDate = filteredFlights[indexPath.row].forwardflightInfo?.departureDate ?? ""
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
                 if let date = dateFormatter.date(from: startDate) {
                     cell.forwardfromTimeLabel.text = "\(date.hour):\(date.minute)"
                 }
                 
-                let endDate =  returnFlights[indexPath.row].forwardflightInfo?.arrivalDate ?? ""
+                let endDate =  filteredFlights[indexPath.row].forwardflightInfo?.arrivalDate ?? ""
                 if let date = dateFormatter.date(from: endDate) {
                     cell.forwardtoTimeLabel.text = "\(date.hour):\(date.minute)"
                 }
                 
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
-                if let date = dateFormatter.date(from: returnFlights[indexPath.row].backwardflightInfo?.departureDate ?? "") {
+                if let date = dateFormatter.date(from: filteredFlights[indexPath.row].backwardflightInfo?.departureDate ?? "") {
                     cell.backwardfromTimeLabel.text = "\(date.hour):\(date.minute)"
                 }
                 
-                if let date = dateFormatter.date(from: returnFlights[indexPath.row].backwardflightInfo?.arrivalDate ?? "") {
+                if let date = dateFormatter.date(from: filteredFlights[indexPath.row].backwardflightInfo?.arrivalDate ?? "") {
                     cell.backwardtoTimeLabel.text = "\(date.hour):\(date.minute)"
                 }
                 
                 cell.upArrowTapped = {
                     // set false in ietm related to datasource row and reload current row
-                    self.returnFlights[indexPath.row].isExpand = false
+                    self.filteredFlights[indexPath.row].isExpand = false
                     self.tableView.reloadData()
                 }
                 
@@ -428,8 +533,8 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             
             cell.rankingLabel.text = "\(indexPath.row + 1)"
             
-            let discount = returnFlights[indexPath.row].discountAmount ?? 0
-            let totalWithoutDiscount = returnFlights[indexPath.row].totalAmount ?? 0
+            let discount = filteredFlights[indexPath.row].discountAmount ?? 0
+            let totalWithoutDiscount = filteredFlights[indexPath.row].totalAmount ?? 0
             let total = totalWithoutDiscount - discount
             if discount > 0{
                 let attributedString = NSAttributedString(string: " \(selectedCurrency) \(totalWithoutDiscount) ", attributes:
@@ -442,24 +547,24 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
                 cell.totalPriceLabel.isHidden = true
             }
             
-            cell.forwardfromLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
-            cell.forwardtoLocationLabel.text = returnFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
+            cell.forwardfromLocationLabel.text = filteredFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
+            cell.forwardtoLocationLabel.text = filteredFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
             
-            let startDate = returnFlights[indexPath.row].forwardflightInfo?.departureDate ?? ""
+            let startDate = filteredFlights[indexPath.row].forwardflightInfo?.departureDate ?? ""
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
             if let date = dateFormatter.date(from: startDate) {
                 cell.forwardfromTimeLabel.text = "\(date.hour):\(date.minute)"
             }
             
-            let endDate =  returnFlights[indexPath.row].forwardflightInfo?.arrivalDate ?? ""
+            let endDate =  filteredFlights[indexPath.row].forwardflightInfo?.arrivalDate ?? ""
             if let date = dateFormatter.date(from: endDate) {
                 cell.forwardtoTimeLabel.text = "\(date.hour):\(date.minute)"
             }
             
             cell.downArrowTapped = {
                 // set true in ietm related to datasource row and relaod current row
-                self.returnFlights[indexPath.row].isExpand = true
+                self.filteredFlights[indexPath.row].isExpand = true
                 self.tableView.reloadData()
             }
             

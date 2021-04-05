@@ -8,6 +8,8 @@
 
 import UIKit
 import SwifterSwift
+import DropDown
+import SVProgressHUD
 
 
 class OneWayFlightViewController: UIViewController {
@@ -51,6 +53,22 @@ class OneWayFlightViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var departureShiftLabel: UILabel!
+    @IBOutlet weak var returnShiftLabel: UILabel!
+    @IBOutlet weak var departureShiftView: UIView!{
+        didSet{
+            departureShiftView.isUserInteractionEnabled = true
+            departureShiftView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(departureShiftTapped)))
+        }
+    }
+    @IBOutlet weak var returnShiftView: UIView!{
+        didSet{
+            returnShiftView.isHidden = true
+            //            returnShiftView.isUserInteractionEnabled = true
+            //            returnShiftView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnShiftTapped)))
+        }
+    }
+    
     var visualEffectView: UIVisualEffectView!
     var sideBarView: UIView!
     var sideBarTableView: UITableView!
@@ -58,7 +76,7 @@ class OneWayFlightViewController: UIViewController {
     var logoImgView: UIImageView?
     // for iPhone
     var shiftX: CGFloat = -400
-    
+    var shiftType = ["MORNING", "DAY", "EVENING"]
     var sideMenutitleArray: NSArray = ["BOOK A FLIGHT", "MY BOOKING" ,"WEB CHECK-IN" ,"MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "SALES OFFICE", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "Flight")!, UIImage(named: "Manage-Booking")!, UIImage(named: "Manage-Booking")!,  UIImage(named: "Manage-Booking")!, UIImage(named: "Holiday_Tree")!, UIImage(named: "clock")!, UIImage(named: "Sky-Star")!, UIImage(named: "Sales-Office")!, UIImage(named: "Contact")!]
     let BOOK_FLIGHT_SECTION = 0
@@ -72,6 +90,7 @@ class OneWayFlightViewController: UIViewController {
     let CONTACT_US_SECTION = 8
     var searchData: FlightSearchModel?
     var flights = [FlightInfo]()
+    var filteredFlights = [FlightInfo]()
     var selectedCurrency = ""
     var fromCity = ""
     var toCity = ""
@@ -102,6 +121,9 @@ class OneWayFlightViewController: UIViewController {
         
         dateLabel.text = departureDate
         fromToCityLabel.text = "\(fromCity) - \(toCity)"
+        
+        filteredFlights = flights
+        tableView.reloadData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -116,6 +138,65 @@ class OneWayFlightViewController: UIViewController {
         }
         hideMenu()
         sideBarSetup(willChangeState: true)
+    }
+    
+    @objc func departureShiftTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = departureShiftView
+        dropDown.dataSource = shiftType
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.departureShiftLabel.text = item
+            switch index {
+            case 0:
+                // MORNING 3am-12pm
+                self?.filterByShift(start: 3, end: 12)
+                print("")
+            case 1:
+                // DAY 12pm-6pm
+                self?.filterByShift(start: 12, end: 18)
+                print("")
+            case 2:
+                // EVENING 6pm-3am
+                self?.filterByShift(start: 18, end: 24, offset: 3)
+                print("")
+            default:
+                break
+            }
+        }
+        dropDown.show()
+    }
+    
+    //    @objc func returnShiftTapped(){
+    //        let dropDown = DropDown()
+    //        dropDown.anchorView = returnShiftView
+    //        dropDown.dataSource = shiftType
+    //        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+    //            self?.returnShiftLabel.text = item
+    //        }
+    //        dropDown.show()
+    //    }
+    
+    func filterByShift(start: Int, end: Int, offset: Int = 0){
+        //        SVProgressHUD.show()
+        var processedFlights = [FlightInfo]()
+        for flight in flights{
+            let startDate = flight.departureDate ?? ""
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
+            if let date = dateFormatter.date(from: startDate) {
+                //                cell.forwardfromTimeLabel.text = "\(date.hour):\(date.minute)"
+                if date.hour >= start && date.hour <= end{
+                    processedFlights.append(flight)
+                }else if offset > 0{
+                    if date.hour >= 1 && date.hour <= offset{
+                        processedFlights.append(flight)
+                    }
+                }
+            }
+        }
+        filteredFlights = processedFlights
+        tableView.reloadData()
+        //        SVProgressHUD.dismiss()
     }
     
     func toWebView(type: GivenOption){
@@ -310,7 +391,7 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
         if tableView == sideBarTableView{
             return sideMenutitleArray.count
         }else{
-            return flights.count
+            return filteredFlights.count
             //            return 8
         }
     }
@@ -331,11 +412,11 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OneWayFlightCell.self)) as! OneWayFlightCell
             cell.selectionStyle = .none
-            cell.durationLabel.text = "\(flights[indexPath.row].durationMinutes ?? 0) MIN"
+            cell.durationLabel.text = "\(filteredFlights[indexPath.row].durationMinutes ?? 0) MIN"
             cell.rankingLabel.text = "\(indexPath.row + 1)"
             
-            let discount = flights[indexPath.row].saleCurrencyAmount?.discountAmount ?? 0
-            let totalWithoutDiscount = flights[indexPath.row].saleCurrencyAmount?.totalAmount ?? 0
+            let discount = filteredFlights[indexPath.row].saleCurrencyAmount?.discountAmount ?? 0
+            let totalWithoutDiscount = filteredFlights[indexPath.row].saleCurrencyAmount?.totalAmount ?? 0
             let total = totalWithoutDiscount - discount
             if discount > 0{
                 let attributedString = NSAttributedString(string: " \(selectedCurrency) \(totalWithoutDiscount) ", attributes:
@@ -348,18 +429,18 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
                 cell.totalPriceLabel.isHidden = true
             }
             
-            cell.fromLocationLabel.text = flights[indexPath.row].originCode
-            cell.toLocationLabel.text = flights[indexPath.row].destinationCode
-            cell.flightDetailsLabel.text = "FLIGHT: \(flights[indexPath.row].operatingAirlineDesignator ?? "") \(flights[indexPath.row].operatingFlightNumber ?? "")\n\(flights[indexPath.row].equipmentText ?? "")"
+            cell.fromLocationLabel.text = filteredFlights[indexPath.row].originCode
+            cell.toLocationLabel.text = filteredFlights[indexPath.row].destinationCode
+            cell.flightDetailsLabel.text = "FLIGHT: \(filteredFlights[indexPath.row].operatingAirlineDesignator ?? "") \(filteredFlights[indexPath.row].operatingFlightNumber ?? "")\n\(filteredFlights[indexPath.row].equipmentText ?? "")"
             
-            let startDate = flights[indexPath.row].departureDate ?? ""
+            let startDate = filteredFlights[indexPath.row].departureDate ?? ""
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
             if let date = dateFormatter.date(from: startDate) {
                 cell.fromTimeLabel.text = "\(date.hour):\(date.minute)"
             }
             
-            let endDate = flights[indexPath.row].arrivalDate ?? ""
+            let endDate = filteredFlights[indexPath.row].arrivalDate ?? ""
             if let date = dateFormatter.date(from: endDate) {
                 cell.toTimeLabel.text = "\(date.hour):\(date.minute)"
             }
@@ -399,7 +480,7 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
         }else{
             if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "FlightSummaryViewController") as? FlightSummaryViewController{
                 //                vc.searchData = self.searchData
-                vc.oneWayflight = flights[indexPath.row]
+                vc.oneWayflight = filteredFlights[indexPath.row]
                 vc.eTTicketFares = self.eTTicketFares
                 vc.passengers = self.passengers
                 vc.offer = self.offer
