@@ -450,6 +450,28 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
                 cell.toTimeLabel.text = "\(date.hour):\(date.minute)"
             }
             
+            cell.selectTapped = {
+                if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "FlightSummaryViewController") as? FlightSummaryViewController{
+                    //                vc.searchData = self.searchData
+                    vc.oneWayflight = self.filteredFlights[indexPath.row]
+                    vc.eTTicketFares = self.eTTicketFares
+                    vc.passengers = self.passengers
+                    vc.offer = self.offer
+                    
+                    if let cell = tableView.cellForRow(at: indexPath) as? OneWayFlightCell{
+                        vc.fromTime = cell.fromTimeLabel.text ?? ""
+                        vc.toTime = cell.toTimeLabel.text ?? ""
+                        vc.fromCity = cell.fromLocationLabel.text ?? ""
+                        vc.toCity = cell.toLocationLabel.text ?? ""
+                    }
+                    vc.fromCityCode = self.fromCityCode
+                    vc.toCityCode = self.toCityCode
+                    vc.flightClass = self.flightClass
+                    vc.selectedCurrency = self.selectedCurrency
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
             return cell
         }
     }

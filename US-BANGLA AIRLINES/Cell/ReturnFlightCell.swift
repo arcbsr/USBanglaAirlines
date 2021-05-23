@@ -15,11 +15,21 @@ class ReturnFlightCell: UITableViewCell {
     @IBOutlet weak var forwardfromTimeLabel: UILabel!
     @IBOutlet weak var forwardtoLocationLabel: UILabel!
     @IBOutlet weak var forwardtoTimeLabel: UILabel!
-//    @IBOutlet weak var forwardDurationLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    //    @IBOutlet weak var forwardDurationLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!{
+        didSet{
+            priceLabel.backgroundColor = CustomColor.primaryColor
+        }
+    }
     @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var selectButton: UIButton!{
+        didSet{
+            selectButton.backgroundColor = CustomColor.secondaryColor
+        }
+    }
     
     var downArrowTapped: (()->())?
+    var selectTapped: (()->())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +40,10 @@ class ReturnFlightCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    @IBAction func selectButtonTapped(_ sender: Any) {
+        selectTapped?()
     }
     
     @IBAction func downArrowButtonTapped(_ sender: Any) {

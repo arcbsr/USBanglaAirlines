@@ -16,8 +16,18 @@ class OneWayFlightCell: UITableViewCell {
     @IBOutlet weak var toLocationLabel: UILabel!
     @IBOutlet weak var toTimeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!{
+        didSet{
+            priceLabel.backgroundColor = CustomColor.primaryColor
+        }
+    }
     @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var selectButton: UIButton!{
+        didSet{
+            selectButton.backgroundColor = CustomColor.secondaryColor
+        }
+    }
+    var selectTapped: (()->())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +38,10 @@ class OneWayFlightCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    @IBAction func selectButtonTapped(_ sender: Any) {
+        selectTapped?()
     }
     
 }

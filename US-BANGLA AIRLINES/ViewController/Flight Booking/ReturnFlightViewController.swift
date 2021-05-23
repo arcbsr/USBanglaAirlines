@@ -531,7 +531,7 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
                 }
                 
                 cell.selectTapped = {
-                    self.moveToNextVC(row: indexPath.row, fromTime: cell.forwardtoTimeLabel.text ?? "", toTime: cell.backwardtoTimeLabel.text ?? "")
+                    self.moveToNextVC(row: indexPath.row, fromTime: cell.forwardfromTimeLabel.text ?? "", toTime: cell.backwardtoTimeLabel.text ?? "")
                 }
                 
                 return cell
@@ -578,6 +578,10 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
                 self.tableView.reloadData()
             }
             
+            cell.selectTapped = {
+                self.moveToNextVC(row: indexPath.row, fromTime: cell.forwardfromTimeLabel.text ?? "", toTime: cell.forwardtoTimeLabel.text ?? "")
+            }
+            
             return cell
         }
     }
@@ -612,9 +616,9 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
             
         }else{
             if let cell = tableView.cellForRow(at: indexPath) as? ReturnFlightCell{
-                moveToNextVC(row: indexPath.row, fromTime: cell.forwardtoTimeLabel.text ?? "", toTime: cell.forwardtoTimeLabel.text ?? "")
+                moveToNextVC(row: indexPath.row, fromTime: cell.forwardfromTimeLabel.text ?? "", toTime: cell.forwardtoTimeLabel.text ?? "")
             }else if let cell = tableView.cellForRow(at: indexPath) as? ReturnFlightExpandedCell{
-                moveToNextVC(row: indexPath.row, fromTime: cell.forwardtoTimeLabel.text ?? "", toTime: cell.forwardtoTimeLabel.text ?? "")
+                moveToNextVC(row: indexPath.row, fromTime: cell.forwardfromTimeLabel.text ?? "", toTime: cell.backwardtoTimeLabel.text ?? "")
             }
         }
     }
