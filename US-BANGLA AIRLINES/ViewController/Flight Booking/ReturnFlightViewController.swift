@@ -496,10 +496,11 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
                     cell.totalPriceLabel.isHidden = true
                 }
                 
-                cell.forwardfromLocationLabel.text = filteredFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
-                cell.forwardtoLocationLabel.text = filteredFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
-                cell.backwardfromLocationLabel.text = filteredFlights[indexPath.row].backwardflightInfo?.originCode ?? ""
-                cell.backwardtoLocationLabel.text = filteredFlights[indexPath.row].backwardflightInfo?.destinationCode ?? ""
+                cell.forwardfromLocationLabel.text = fromCityCode //filteredFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
+                cell.forwardtoLocationLabel.text = toCityCode //filteredFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
+                cell.backwardfromLocationLabel.text = toCityCode //filteredFlights[indexPath.row].backwardflightInfo?.originCode ?? ""
+                cell.backwardtoLocationLabel.text = fromCityCode //filteredFlights[indexPath.row].backwardflightInfo?.destinationCode ?? ""
+                
                 cell.forwardFlightDetailsLabel.text = "FLIGHT: \(filteredFlights[indexPath.row].forwardflightInfo?.operatingAirlineDesignator ?? "") \(filteredFlights[indexPath.row].forwardflightInfo?.operatingFlightNumber ?? "")\n\(filteredFlights[indexPath.row].forwardflightInfo?.equipmentText ?? "")"
                 cell.backwardFlightDetailsLabel.text = "FLIGHT: \(filteredFlights[indexPath.row].backwardflightInfo?.operatingAirlineDesignator ?? "") \(filteredFlights[indexPath.row].backwardflightInfo?.operatingFlightNumber ?? "")\n\(filteredFlights[indexPath.row].backwardflightInfo?.equipmentText ?? "")"
                 
@@ -557,8 +558,8 @@ extension ReturnFlightViewController: UITableViewDelegate, UITableViewDataSource
                 cell.totalPriceLabel.isHidden = true
             }
             
-            cell.forwardfromLocationLabel.text = filteredFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
-            cell.forwardtoLocationLabel.text = filteredFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
+            cell.forwardfromLocationLabel.text = fromCityCode //filteredFlights[indexPath.row].forwardflightInfo?.originCode ?? ""
+            cell.forwardtoLocationLabel.text = toCityCode //filteredFlights[indexPath.row].forwardflightInfo?.destinationCode ?? ""
             
             let startDate = filteredFlights[indexPath.row].forwardflightInfo?.departureDate ?? ""
             let dateFormatter = DateFormatter()
