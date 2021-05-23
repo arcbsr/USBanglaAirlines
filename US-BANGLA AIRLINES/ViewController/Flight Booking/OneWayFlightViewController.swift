@@ -76,7 +76,7 @@ class OneWayFlightViewController: UIViewController {
     var logoImgView: UIImageView?
     // for iPhone
     var shiftX: CGFloat = -400
-    var shiftType = ["MORNING", "DAY", "EVENING"]
+    var shiftType = ["ALL FLIGHTS", "MORNING", "DAY", "EVENING"]
     var sideMenutitleArray: NSArray = ["BOOK A FLIGHT", "MY BOOKING" ,"WEB CHECK-IN" ,"MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "SALES OFFICE", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "Flight")!, UIImage(named: "Manage-Booking")!, UIImage(named: "Manage-Booking")!,  UIImage(named: "Manage-Booking")!, UIImage(named: "Holiday_Tree")!, UIImage(named: "clock")!, UIImage(named: "Sky-Star")!, UIImage(named: "Sales-Office")!, UIImage(named: "Contact")!]
     let BOOK_FLIGHT_SECTION = 0
@@ -144,18 +144,23 @@ class OneWayFlightViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = departureShiftView
         dropDown.dataSource = shiftType
+        dropDown.backgroundColor = CustomColor.primaryColor
+        dropDown.textColor = .white
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.departureShiftLabel.text = item
             switch index {
             case 0:
+                self?.filteredFlights = self?.flights ?? []
+                self?.tableView.reloadData()
+            case 1:
                 // MORNING 3am-12pm
                 self?.filterByShift(start: 3, end: 12)
                 print("")
-            case 1:
+            case 2:
                 // DAY 12pm-6pm
                 self?.filterByShift(start: 12, end: 18)
                 print("")
-            case 2:
+            case 3:
                 // EVENING 6pm-3am
                 self?.filterByShift(start: 18, end: 24, offset: 3)
                 print("")
