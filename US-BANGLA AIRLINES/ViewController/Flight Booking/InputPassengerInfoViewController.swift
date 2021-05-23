@@ -13,7 +13,11 @@ import AlamofireObjectMapper
 
 
 class InputPassengerInfoViewController: UIViewController {
-    @IBOutlet weak var createBookingButton: UIButton!
+    @IBOutlet weak var createBookingButton: UIButton!{
+        didSet{
+            createBookingButton.backgroundColor = CustomColor.secondaryColor
+        }
+    }
     @IBOutlet weak var makePaymentButton: UIButton!{
         didSet{
             makePaymentButton.isHidden = true

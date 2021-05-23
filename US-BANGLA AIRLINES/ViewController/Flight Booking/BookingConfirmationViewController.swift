@@ -49,7 +49,11 @@ class BookingConfirmationViewController: UIViewController {
     @IBOutlet weak var totalFareLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var amountPayableLabel: UILabel!
-    @IBOutlet weak var paymentButton: UIButton!
+    @IBOutlet weak var paymentButton: UIButton!{
+        didSet{
+            paymentButton.backgroundColor = CustomColor.secondaryColor
+        }
+    }
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
             notificationImageView.isUserInteractionEnabled = true

@@ -42,7 +42,11 @@ class FlightSummaryViewController: UIViewController {
     @IBOutlet weak var totalFareLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var amountPayableLabel: UILabel!
-    @IBOutlet weak var proceedButton: UIButton!
+    @IBOutlet weak var proceedButton: UIButton!{
+        didSet{
+            proceedButton.backgroundColor = CustomColor.secondaryColor
+        }
+    }
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
             notificationImageView.isUserInteractionEnabled = true
