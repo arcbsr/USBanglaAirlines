@@ -13,7 +13,8 @@ import UIKit
 //import NVActivityIndicatorView
 
 struct CustomColor{
-    static let primaryColor = UIColor(red: 81/255, green: 76/255, blue: 152/255, alpha: 1.0)
+    static let primaryColor = UIColor.systemBlue //UIColor(red: 81/255, green: 76/255, blue: 152/255, alpha: 1.0)
+    static let secondaryColor = UIColor.systemRed //UIColor(red: 81/255, green: 76/255, blue: 152/255, alpha: 1.0)
 }
 
 struct GlobalItems{

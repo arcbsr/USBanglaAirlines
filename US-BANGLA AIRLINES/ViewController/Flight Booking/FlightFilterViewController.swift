@@ -34,6 +34,7 @@ class FlightFilterViewController: UIViewController {
         didSet{
             fromCityView.isUserInteractionEnabled = true
             fromCityView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fromCityTapped)))
+            fromCityView.backgroundColor = CustomColor.secondaryColor
         }
     }
     @IBOutlet weak var promoCodeTextField: UITextField!
@@ -43,6 +44,7 @@ class FlightFilterViewController: UIViewController {
         didSet{
             toCityView.isUserInteractionEnabled = true
             toCityView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toCityTapped)))
+            toCityView.backgroundColor = CustomColor.primaryColor
         }
     }
     @IBOutlet weak var flightDirectionImageView: UIImageView!
@@ -76,12 +78,14 @@ class FlightFilterViewController: UIViewController {
     }
     @IBOutlet weak var departureDateView: UIView!{
         didSet{
+            departureDateView.backgroundColor = CustomColor.secondaryColor
             //            departureDateView.isUserInteractionEnabled = true
             //            departureDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(departureDateTapped)))
         }
     }
     @IBOutlet weak var returnDateView: UIView!{
         didSet{
+            returnDateView.backgroundColor = CustomColor.secondaryColor
             //            returnDateView.isUserInteractionEnabled = true
             //            returnDateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnDateTapped)))
         }
@@ -117,18 +121,21 @@ class FlightFilterViewController: UIViewController {
         didSet{
             departureCabinClassView.isUserInteractionEnabled = true
             departureCabinClassView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(departureCabinClassTapped)))
+            departureCabinClassView.backgroundColor = CustomColor.primaryColor
         }
     }
     @IBOutlet weak var returnCabinClassView: UIView!{
         didSet{
             returnCabinClassView.isUserInteractionEnabled = true
             returnCabinClassView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnCabinClassTapped)))
+            returnCabinClassView.backgroundColor = CustomColor.primaryColor
         }
     }
     @IBOutlet weak var searchView: UIView!{
         didSet{
             searchView.isUserInteractionEnabled = true
             searchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchFlightTapped)))
+            searchView.backgroundColor = CustomColor.secondaryColor
         }
     }
     
@@ -305,6 +312,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = fromCityView
         dropDown.dataSource = fromCities
+        dropDown.textFont = UIFont.systemFont(ofSize: 15.0)
+        dropDown.textColor = .systemGreen
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             guard let _self = self else{
                 return
@@ -332,6 +341,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = toCityView
         dropDown.dataSource = toCities
+        dropDown.textFont = UIFont.systemFont(ofSize: 15.0)
+        dropDown.textColor = .systemGreen
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.toCityLabel.text = item
             self?.toCityCode = self?.aiportReverseDictionary[item] ?? ""
@@ -343,6 +354,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = adultView
         dropDown.dataSource = passengers
+        dropDown.textFont = UIFont.systemFont(ofSize: 16, weight: .bold)
+        dropDown.textColor = .systemGreen
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.adultCountLabel.text = item
         }
@@ -353,6 +366,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = childView
         dropDown.dataSource = passengers
+        dropDown.textFont = UIFont.systemFont(ofSize: 16, weight: .bold)
+        dropDown.textColor = .systemGreen
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.childCountLabel.text = item
         }
@@ -363,6 +378,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = infantView
         dropDown.dataSource = passengers
+        dropDown.textFont = UIFont.systemFont(ofSize: 16, weight: .bold)
+        dropDown.textColor = .systemGreen
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.infantCountLabel.text = item
         }
@@ -373,6 +390,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = currencyView
         dropDown.dataSource = currencyArray
+        dropDown.textFont = UIFont.systemFont(ofSize: 15, weight: .regular)
+        dropDown.textColor = .systemGreen
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.currencyLabel.text = item
             self?.selectedCurrency = item
@@ -384,6 +403,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = departureCabinClassView
         dropDown.dataSource = cabinClasses
+        dropDown.textFont = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        dropDown.textColor = .systemGreen
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.departureCabinClassLabel.text = item
         }
