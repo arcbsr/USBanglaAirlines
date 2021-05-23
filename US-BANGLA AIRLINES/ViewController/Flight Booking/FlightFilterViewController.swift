@@ -415,6 +415,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = returnCabinClassView
         dropDown.dataSource = cabinClasses
+        dropDown.textFont = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        dropDown.textColor = .systemGreen
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.returnCabinClassLabel.text = item
         }
