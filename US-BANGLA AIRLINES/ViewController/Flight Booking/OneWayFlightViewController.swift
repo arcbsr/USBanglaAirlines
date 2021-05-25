@@ -63,7 +63,7 @@ class OneWayFlightViewController: UIViewController {
     }
     @IBOutlet weak var returnShiftView: UIView!{
         didSet{
-            returnShiftView.isHidden = true
+            //            returnShiftView.isHidden = true
             //            returnShiftView.isUserInteractionEnabled = true
             //            returnShiftView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnShiftTapped)))
         }
@@ -427,7 +427,7 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
                 let attributedString = NSAttributedString(string: " \(selectedCurrency) \(totalWithoutDiscount) ", attributes:
                                                             [.strikethroughStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.strikethroughColor: UIColor.red])
                 cell.priceLabel.attributedText = attributedString
-                cell.totalPriceLabel.text = "\(selectedCurrency) \(total)"
+                cell.totalPriceLabel.text = "\(selectedCurrency) \(total) "
                 cell.totalPriceLabel.isHidden = false
             }else{
                 cell.priceLabel.text = " \(selectedCurrency) \(totalWithoutDiscount) "

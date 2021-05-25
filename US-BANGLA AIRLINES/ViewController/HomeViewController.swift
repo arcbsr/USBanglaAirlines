@@ -528,8 +528,7 @@ extension HomeViewController{
             }
         })
         .responseJSON { (json) in
-            print(json)
-            print("")
+            print("json = \(json)")
         }
     }
     
