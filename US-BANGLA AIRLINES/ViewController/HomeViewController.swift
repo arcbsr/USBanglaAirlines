@@ -402,7 +402,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let placeholderImage = UIImage(named: "placeholder")
         if let urlStr = offerplaces[indexPath.row].image{
-            cell.offerImageView.kf.setImage(with: URL(string: urlStr), placeholder: placeholderImage)
+            //            cell.offerImageView.kf.setImage(with: URL(string: urlStr), placeholder: placeholderImage)
+            let downloader = ImageDownloader.default
+            if let url = URL(string: urlStr){
+                downloader.downloadImage(with: url, options: nil, progressBlock: nil) { (result) in
+                    switch result {
+                    case .success(let value):
+                        cell.offerImageView.image = value.image // without cache
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
         }else{
             cell.offerImageView.image = placeholderImage
         }
@@ -497,33 +508,96 @@ extension HomeViewController{
             switch response.result {
             case .success:
                 if let home = response.result.value?.item?.home{
-                    var placeHolderImage = UIImage(named: "book_flight_button")
+                    //                    var placeHolderImage = UIImage(named: "book_flight_button")
                     if let url = URL(string: home.book_flight ?? ""){
-                        self.flightBookingImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        //                        self.flightBookingImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        let downloader = ImageDownloader.default
+                        downloader.downloadImage(with: url, options: nil, progressBlock: nil) { (result) in
+                            switch result {
+                            case .success(let value):
+                                self.flightBookingImageView.image = value.image // without cache
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
                     }
-                    placeHolderImage = UIImage(named: "skystar_button")
+                    //                    placeHolderImage = UIImage(named: "skystar_button")
                     if let url = URL(string: home.book_flight ?? ""){
-                        self.skyStarImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        //                        self.skyStarImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        let downloader = ImageDownloader.default
+                        downloader.downloadImage(with: url, options: nil, progressBlock: nil) { (result) in
+                            switch result {
+                            case .success(let value):
+                                self.skyStarImageView.image = value.image // without cache
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
                     }
-                    placeHolderImage = UIImage(named: "manage_booking_button")
+                    //                    placeHolderImage = UIImage(named: "manage_booking_button")
                     if let url = URL(string: home.book_flight ?? ""){
-                        self.manageBookingImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        //                        self.manageBookingImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        let downloader = ImageDownloader.default
+                        downloader.downloadImage(with: url, options: nil, progressBlock: nil) { (result) in
+                            switch result {
+                            case .success(let value):
+                                self.manageBookingImageView.image = value.image // without cache
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
                     }
-                    placeHolderImage = UIImage(named: "web_check_in_button")
+                    //                    placeHolderImage = UIImage(named: "web_check_in_button")
                     if let url = URL(string: home.book_flight ?? ""){
-                        self.webCheckInImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        //                        self.webCheckInImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        let downloader = ImageDownloader.default
+                        downloader.downloadImage(with: url, options: nil, progressBlock: nil) { (result) in
+                            switch result {
+                            case .success(let value):
+                                self.webCheckInImageView.image = value.image // without cache
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
                     }
-                    placeHolderImage = UIImage(named: "flight_schedule_button")
+                    //                    placeHolderImage = UIImage(named: "flight_schedule_button")
                     if let url = URL(string: home.book_flight ?? ""){
-                        self.flightScheduleImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        //                        self.flightScheduleImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        let downloader = ImageDownloader.default
+                        downloader.downloadImage(with: url, options: nil, progressBlock: nil) { (result) in
+                            switch result {
+                            case .success(let value):
+                                self.flightScheduleImageView.image = value.image // without cache
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
                     }
-                    placeHolderImage = UIImage(named: "holiday_button")
+                    //                    placeHolderImage = UIImage(named: "holiday_button")
                     if let url = URL(string: home.book_flight ?? ""){
-                        self.holidayImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        //                        self.holidayImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        let downloader = ImageDownloader.default
+                        downloader.downloadImage(with: url, options: nil, progressBlock: nil) { (result) in
+                            switch result {
+                            case .success(let value):
+                                self.holidayImageView.image = value.image // without cache
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
                     }
-                    placeHolderImage = UIImage(named: "hotline_button")
+                    //                    placeHolderImage = UIImage(named: "hotline_button")
                     if let url = URL(string: home.book_flight ?? ""){
-                        self.hotlineImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        //                        self.hotlineImageView.kf.setImage(with: url, placeholder: placeHolderImage)
+                        let downloader = ImageDownloader.default
+                        downloader.downloadImage(with: url, options: nil, progressBlock: nil) { (result) in
+                            switch result {
+                            case .success(let value):
+                                self.hotlineImageView.image = value.image // without cache
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
                     }
                 }
                 self.offerplaces = response.result.value?.item?.offerplace ?? [Offerplace]()
