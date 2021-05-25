@@ -19,6 +19,11 @@ class HomeViewController: UIViewController {
             offerCollectionView.delegate = self
         }
     }
+    @IBOutlet weak var welcomeLabel: UILabel!{
+        didSet{
+            welcomeLabel.textColor = CustomColor.primaryColor
+        }
+    }
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
             notificationImageView.isUserInteractionEnabled = true

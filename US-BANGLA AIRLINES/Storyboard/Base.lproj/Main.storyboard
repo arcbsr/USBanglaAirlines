@@ -304,6 +304,7 @@
                         <outlet property="skyStarView" destination="Oge-3w-3bR" id="0oF-ym-0KB"/>
                         <outlet property="webCheckInImageView" destination="wAd-TB-r6d" id="vFX-tK-5Y1"/>
                         <outlet property="webCheckInView" destination="MNj-h6-NXS" id="BdO-vV-CbL"/>
+                        <outlet property="welcomeLabel" destination="y1U-Vc-N98" id="6PV-Vg-J6J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
