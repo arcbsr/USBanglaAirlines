@@ -78,7 +78,7 @@ class ReturnFlightViewController: UIViewController {
     var logoImgView: UIImageView?
     // for iPhone
     var shiftX: CGFloat = -400
-    var shiftType = ["ALL FLIGHTS", "MORNING", "DAY", "EVENING"]
+    var shiftType = ["ALL FLIGHTS", "MORNING", "AFTERNOON", "EVENING"]
     var sideMenutitleArray: NSArray = ["BOOK A FLIGHT", "MY BOOKING" ,"WEB CHECK-IN" ,"MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "SALES OFFICE", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "Flight")!, UIImage(named: "Manage-Booking")!, UIImage(named: "Manage-Booking")!,  UIImage(named: "Manage-Booking")!, UIImage(named: "Holiday_Tree")!, UIImage(named: "clock")!, UIImage(named: "Sky-Star")!, UIImage(named: "Sales-Office")!, UIImage(named: "Contact")!]
     let BOOK_FLIGHT_SECTION = 0
@@ -105,6 +105,10 @@ class ReturnFlightViewController: UIViewController {
     var offer: Offer?
     var forwardFlightClass = ""
     var backwardFlightClass = ""
+    var forwardFilterAll = true
+    var backwardFilterAll = true
+    var processedForwardFlights = [SaleCurrencyAmount]()
+    var processedBackwardFlights = [SaleCurrencyAmount]()
     
     
     override func viewDidLoad() {
@@ -149,7 +153,7 @@ class ReturnFlightViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = departureShiftView
         dropDown.dataSource = shiftType
-        dropDown.backgroundColor = CustomColor.secondaryColor
+        dropDown.backgroundColor = CustomColor.primaryColor
         dropDown.textColor = .white
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.departureShiftLabel.text = item
@@ -157,18 +161,21 @@ class ReturnFlightViewController: UIViewController {
             case 0:
                 self?.filteredFlights = self?.returnFlights ?? []
                 self?.tableView.reloadData()
+                self?.forwardFilterAll = true
             case 1:
-                // MORNING 3am-12pm
-                self?.filterByShift(start: 3, end: 12, isForward: true)
-                print("")
+                // 12:01 AM - 11:59 AM
+                self?.filterByShift(start: 0, end: 11, isForward: true, zeroMinHour: nil)
+                self?.forwardFilterAll = false
             case 2:
-                // DAY 12pm-6pm
-                self?.filterByShift(start: 12, end: 18, isForward: true)
-                print("")
+                // DAY 12pm-6pm 12:00 PM - 06:00 PM
+                self?.filterByShift(start: 12, end: 17, isForward: true, zeroMinHour: 18)
+                self?.forwardFilterAll = false
             case 3:
-                // EVENING 6pm-3am
-                self?.filterByShift(start: 18, end: 24, isForward: true, offset: 3)
-                print("")
+                //                // EVENING 6pm-3am
+                //                self?.filterByShift(start: 18, end: 24, offset: 3)
+                // 06:01 PM - 12:00 PM
+                self?.filterByShift(start: 18, end: 23, isForward: true, offset: 0, zeroMinHour: 0)
+                self?.forwardFilterAll = false
             default:
                 break
             }
@@ -188,18 +195,20 @@ class ReturnFlightViewController: UIViewController {
             case 0:
                 self?.filteredFlights = self?.returnFlights ?? []
                 self?.tableView.reloadData()
+                self?.backwardFilterAll = true
             case 1:
-                // MORNING 3am-12pm
-                self?.filterByShift(start: 3, end: 12, isForward: false)
-                print("")
+                // 12:01 AM - 11:59 AM
+                self?.filterByShift(start: 0, end: 11, isForward: false, zeroMinHour: nil)
+                self?.backwardFilterAll = false
             case 2:
-                // DAY 12pm-6pm
-                self?.filterByShift(start: 12, end: 18, isForward: false)
-                print("")
+                // DAY 12pm-6pm 12:00 PM - 06:00 PM
+                self?.backwardFilterAll = false
             case 3:
-                // EVENING 6pm-3am
-                self?.filterByShift(start: 18, end: 24, isForward: false, offset: 3)
-                print("")
+                //                // EVENING 6pm-3am
+                //                self?.filterByShift(start: 18, end: 24, offset: 3)
+                // 06:01 PM - 12:00 PM
+                self?.filterByShift(start: 18, end: 23, isForward: false, offset: 0, zeroMinHour: 0)
+                self?.backwardFilterAll = false
             default:
                 break
             }
@@ -207,35 +216,84 @@ class ReturnFlightViewController: UIViewController {
         dropDown.show()
     }
     
-    func filterByShift(start: Int, end: Int, isForward: Bool, offset: Int = 0){
+    func filterByShift(start: Int, end: Int, isForward: Bool, offset: Int = 0, zeroMinHour: Int?){
         //        SVProgressHUD.show()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
-        var processedFlights = [SaleCurrencyAmount]()
-        for flight in returnFlights{
+        //        var processedForwardFlights = [SaleCurrencyAmount]()
+        //        var processedBackwardFlights = [SaleCurrencyAmount]()
+        var iteratableFlights = [SaleCurrencyAmount]()
+        
+        if backwardFilterAll == false && isForward == true{
+            if forwardFilterAll{
+                iteratableFlights = returnFlights
+            }else{
+                iteratableFlights = processedBackwardFlights
+            }
+        }else if backwardFilterAll == false && isForward == false{
+            if forwardFilterAll{
+                iteratableFlights = returnFlights
+            }else{
+                iteratableFlights = processedForwardFlights
+            }
+        }else{
+            iteratableFlights = returnFlights
+        }
+        
+        if isForward{
+            processedForwardFlights.removeAll()
+        }else{
+            processedBackwardFlights.removeAll()
+        }
+        
+        //        for flight in returnFlights{
+        for flight in iteratableFlights{
             if isForward{
                 let startDate = flight.forwardflightInfo?.departureDate ?? ""
                 if let date = dateFormatter.date(from: startDate) {
                     //                cell.forwardfromTimeLabel.text = "\(date.hour):\(date.minute)"
+                    if let zeroMinHr = zeroMinHour{
+                        let zeroMin = 0
+                        if zeroMinHr == date.hour && zeroMin == date.minute{
+                            processedForwardFlights.append(flight)
+                            continue
+                        }
+                    }
                     if date.hour >= start && date.hour <= end{
-                        processedFlights.append(flight)
+                        processedForwardFlights.append(flight)
+                    }else if offset > 0{
+                        if date.hour >= 1 && date.hour <= offset{
+                            processedForwardFlights.append(flight)
+                        }
                     }
                 }
             }else{
                 let endDate =  flight.backwardflightInfo?.departureDate ?? ""
                 if let date = dateFormatter.date(from: endDate) {
                     //                cell.forwardtoTimeLabel.text = "\(date.hour):\(date.minute)"
+                    if let zeroMinHr = zeroMinHour{
+                        let zeroMin = 0
+                        if zeroMinHr == date.hour && zeroMin == date.minute{
+                            processedBackwardFlights.append(flight)
+                            continue
+                        }
+                    }
                     if date.hour >= start && date.hour <= end{
-                        processedFlights.append(flight)
+                        processedBackwardFlights.append(flight)
                     }else if offset > 0{
                         if date.hour >= 1 && date.hour <= offset{
-                            processedFlights.append(flight)
+                            processedBackwardFlights.append(flight)
                         }
                     }
                 }
             }
         }
-        filteredFlights = processedFlights
+        if isForward{
+            filteredFlights = processedForwardFlights
+        }else{
+            filteredFlights = processedBackwardFlights
+        }
+        //        filteredFlights = processedFlights
         tableView.reloadData()
         //        SVProgressHUD.dismiss()
     }
