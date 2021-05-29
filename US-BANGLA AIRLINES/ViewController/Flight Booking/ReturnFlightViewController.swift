@@ -159,23 +159,27 @@ class ReturnFlightViewController: UIViewController {
             self?.departureShiftLabel.text = item
             switch index {
             case 0:
-                self?.filteredFlights = self?.returnFlights ?? []
-                self?.tableView.reloadData()
                 self?.forwardFilterAll = true
+                if self?.forwardFilterAll != self?.backwardFilterAll{
+                    print("no change")
+                }else{
+                    self?.filteredFlights = self?.returnFlights ?? []
+                }
+                self?.tableView.reloadData()
             case 1:
                 // 12:01 AM - 11:59 AM
-                self?.filterByShift(start: 0, end: 11, isForward: true, zeroMinHour: nil)
                 self?.forwardFilterAll = false
+                self?.filterByShift(start: 0, end: 11, isForward: true, zeroMinHour: nil)
             case 2:
                 // DAY 12pm-6pm 12:00 PM - 06:00 PM
-                self?.filterByShift(start: 12, end: 17, isForward: true, zeroMinHour: 18)
                 self?.forwardFilterAll = false
+                self?.filterByShift(start: 12, end: 17, isForward: true, zeroMinHour: 18)
             case 3:
                 //                // EVENING 6pm-3am
                 //                self?.filterByShift(start: 18, end: 24, offset: 3)
-                // 06:01 PM - 12:00 PM
-                self?.filterByShift(start: 18, end: 23, isForward: true, offset: 0, zeroMinHour: 0)
+                // EVENING 06:01 PM - 12:00 PM
                 self?.forwardFilterAll = false
+                self?.filterByShift(start: 18, end: 23, isForward: true, offset: 0, zeroMinHour: 0)
             default:
                 break
             }
@@ -193,22 +197,27 @@ class ReturnFlightViewController: UIViewController {
             self?.returnShiftLabel.text = item
             switch index {
             case 0:
-                self?.filteredFlights = self?.returnFlights ?? []
-                self?.tableView.reloadData()
                 self?.backwardFilterAll = true
+                if self?.forwardFilterAll != self?.backwardFilterAll{
+                    print("no change")
+                }else{
+                    self?.filteredFlights = self?.returnFlights ?? []
+                }
+                self?.tableView.reloadData()
             case 1:
                 // 12:01 AM - 11:59 AM
-                self?.filterByShift(start: 0, end: 11, isForward: false, zeroMinHour: nil)
                 self?.backwardFilterAll = false
+                self?.filterByShift(start: 0, end: 11, isForward: false, zeroMinHour: nil)
             case 2:
                 // DAY 12pm-6pm 12:00 PM - 06:00 PM
                 self?.backwardFilterAll = false
+                self?.filterByShift(start: 12, end: 17, isForward: false, zeroMinHour: 18)
             case 3:
                 //                // EVENING 6pm-3am
                 //                self?.filterByShift(start: 18, end: 24, offset: 3)
-                // 06:01 PM - 12:00 PM
-                self?.filterByShift(start: 18, end: 23, isForward: false, offset: 0, zeroMinHour: 0)
+                //EVENING 06:01 PM - 12:00 PM
                 self?.backwardFilterAll = false
+                self?.filterByShift(start: 18, end: 23, isForward: false, offset: 0, zeroMinHour: 0)
             default:
                 break
             }
@@ -225,7 +234,7 @@ class ReturnFlightViewController: UIViewController {
         var iteratableFlights = [SaleCurrencyAmount]()
         
         if backwardFilterAll == false && isForward == true{
-            if forwardFilterAll{
+            if backwardFilterAll{
                 iteratableFlights = returnFlights
             }else{
                 iteratableFlights = processedBackwardFlights

@@ -517,6 +517,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.flightBookingImageView.image = value.image // without cache
                             case .failure(let error):
+                                self.flightBookingImageView.image = UIImage(named: "book_flight_button")
                                 print(error)
                             }
                         }
@@ -530,6 +531,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.skyStarImageView.image = value.image // without cache
                             case .failure(let error):
+                                self.skyStarImageView.image = UIImage(named: "skystar_button")
                                 print(error)
                             }
                         }
@@ -543,6 +545,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.manageBookingImageView.image = value.image // without cache
                             case .failure(let error):
+                                self.manageBookingImageView.image = UIImage(named: "manage_booking_button")
                                 print(error)
                             }
                         }
@@ -556,6 +559,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.webCheckInImageView.image = value.image // without cache
                             case .failure(let error):
+                                self.webCheckInImageView.image = UIImage(named: "web_check_in_button")
                                 print(error)
                             }
                         }
@@ -569,6 +573,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.flightScheduleImageView.image = value.image // without cache
                             case .failure(let error):
+                                self.flightScheduleImageView.image = UIImage(named: "flight_schedule_button")
                                 print(error)
                             }
                         }
@@ -582,6 +587,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.holidayImageView.image = value.image // without cache
                             case .failure(let error):
+                                self.holidayImageView.image = UIImage(named: "holiday_button")
                                 print(error)
                             }
                         }
@@ -595,6 +601,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.hotlineImageView.image = value.image // without cache
                             case .failure(let error):
+                                self.hotlineImageView.image = UIImage(named: "hotline_button")
                                 print(error)
                             }
                         }
