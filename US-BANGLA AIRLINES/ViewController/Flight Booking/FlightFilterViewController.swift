@@ -1338,6 +1338,7 @@ extension FlightFilterViewController{
                 self.searchData = response.result.value
                 if self.searchData != nil{
                     self.returnFlights = [SaleCurrencyAmount]()
+                    self.returnFlightDictionary.removeAll()
                     //                    self.economyDictionary = [String: FlightInfo]()
                     //                    self.businessDictionary = [String: FlightInfo]()
                     let forwardType = self.departureCabinClassLabel.text ?? ""

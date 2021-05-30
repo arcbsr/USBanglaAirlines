@@ -105,10 +105,10 @@ class ReturnFlightViewController: UIViewController {
     var offer: Offer?
     var forwardFlightClass = ""
     var backwardFlightClass = ""
-    var forwardFilterAll = true
-    var backwardFilterAll = true
     var processedForwardFlights = [SaleCurrencyAmount]()
     var processedBackwardFlights = [SaleCurrencyAmount]()
+    var forwardIndex = 0
+    var backwardIndex = 0
     
     
     override func viewDidLoad() {
@@ -157,34 +157,63 @@ class ReturnFlightViewController: UIViewController {
         dropDown.textColor = .white
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.departureShiftLabel.text = item
-            switch index {
-            case 0:
-                self?.forwardFilterAll = true
-                if self?.forwardFilterAll != self?.backwardFilterAll{
-                    print("no change")
-                }else{
-                    self?.filteredFlights = self?.returnFlights ?? []
-                }
-                self?.tableView.reloadData()
-            case 1:
-                // 12:01 AM - 11:59 AM
-                self?.forwardFilterAll = false
-                self?.filterByShift(start: 0, end: 11, isForward: true, zeroMinHour: nil)
-            case 2:
-                // DAY 12pm-6pm 12:00 PM - 06:00 PM
-                self?.forwardFilterAll = false
-                self?.filterByShift(start: 12, end: 17, isForward: true, zeroMinHour: 18)
-            case 3:
-                //                // EVENING 6pm-3am
-                //                self?.filterByShift(start: 18, end: 24, offset: 3)
-                // EVENING 06:01 PM - 12:00 PM
-                self?.forwardFilterAll = false
-                self?.filterByShift(start: 18, end: 23, isForward: true, offset: 0, zeroMinHour: 0)
-            default:
-                break
-            }
+            self?.forwardIndex = index
+            self?.forwardProcessing(index: index, willCallBackward: true)
         }
         dropDown.show()
+    }
+    
+    func forwardProcessing(index: Int, willCallBackward: Bool){
+        switch index {
+        case 0:
+            //                self.filteredFlights = self.returnFlights
+            //            backwardProcessing(index: backwardIndex, isUserFilteredData: false)
+            //            if forwardIndex == backwardIndex{
+            //                filteredFlights = returnFlights
+            //                self.tableView.reloadData()
+            //            }
+            if willCallBackward{
+                backwardProcessing(index: backwardIndex, willCallForward: false)
+                tableView.reloadData()
+            }else{
+                filteredFlights = returnFlights
+                self.tableView.reloadData()
+            }
+        case 1:
+            // 12:01 AM - 11:59 AM
+            if willCallBackward{
+                backwardProcessing(index: backwardIndex, willCallForward: false)
+                self.filterByShift(start: 0, end: 11, isForward: true, zeroMinHour: nil, iteratableFlights: filteredFlights)
+                tableView.reloadData()
+            }else{
+                self.filterByShift(start: 0, end: 11, isForward: true, zeroMinHour: nil, iteratableFlights: returnFlights)
+                tableView.reloadData()
+            }
+        case 2:
+            // DAY 12pm-6pm 12:00 PM - 06:00 PM
+            if willCallBackward{
+                backwardProcessing(index: backwardIndex, willCallForward: false)
+                self.filterByShift(start: 12, end: 17, isForward: true, zeroMinHour: 18, iteratableFlights: filteredFlights)
+                tableView.reloadData()
+            }else{
+                self.filterByShift(start: 12, end: 17, isForward: true, zeroMinHour: 18, iteratableFlights: returnFlights)
+                tableView.reloadData()
+            }
+        case 3:
+            //                // EVENING 6pm-3am
+            //                self?.filterByShift(start: 18, end: 24, offset: 3)
+            // EVENING 06:01 PM - 12:00 PM
+            if willCallBackward{
+                backwardProcessing(index: backwardIndex, willCallForward: false)
+                self.filterByShift(start: 18, end: 23, isForward: true, offset: 0, zeroMinHour: 0, iteratableFlights: filteredFlights)
+                tableView.reloadData()
+            }else{
+                self.filterByShift(start: 18, end: 23, isForward: true, offset: 0, zeroMinHour: 0, iteratableFlights: returnFlights)
+                tableView.reloadData()
+            }
+        default:
+            break
+        }
     }
     
     @objc func returnShiftTapped(){
@@ -195,59 +224,88 @@ class ReturnFlightViewController: UIViewController {
         dropDown.textColor = .white
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.returnShiftLabel.text = item
-            switch index {
-            case 0:
-                self?.backwardFilterAll = true
-                if self?.forwardFilterAll != self?.backwardFilterAll{
-                    print("no change")
-                }else{
-                    self?.filteredFlights = self?.returnFlights ?? []
-                }
-                self?.tableView.reloadData()
-            case 1:
-                // 12:01 AM - 11:59 AM
-                self?.backwardFilterAll = false
-                self?.filterByShift(start: 0, end: 11, isForward: false, zeroMinHour: nil)
-            case 2:
-                // DAY 12pm-6pm 12:00 PM - 06:00 PM
-                self?.backwardFilterAll = false
-                self?.filterByShift(start: 12, end: 17, isForward: false, zeroMinHour: 18)
-            case 3:
-                //                // EVENING 6pm-3am
-                //                self?.filterByShift(start: 18, end: 24, offset: 3)
-                //EVENING 06:01 PM - 12:00 PM
-                self?.backwardFilterAll = false
-                self?.filterByShift(start: 18, end: 23, isForward: false, offset: 0, zeroMinHour: 0)
-            default:
-                break
-            }
+            self?.backwardIndex = index
+            self?.backwardProcessing(index: index, willCallForward: true)
         }
         dropDown.show()
     }
     
-    func filterByShift(start: Int, end: Int, isForward: Bool, offset: Int = 0, zeroMinHour: Int?){
+    func backwardProcessing(index: Int, willCallForward: Bool){
+        switch index {
+        case 0:
+            //                self.filteredFlights = self.returnFlights
+            //            forwardProcessing(index: forwardIndex, isUserFilteredData: <#Bool#>)
+            //            if forwardIndex == backwardIndex{
+            //                filteredFlights = returnFlights
+            //                self.tableView.reloadData()
+            //            }
+            if willCallForward{
+                forwardProcessing(index: forwardIndex, willCallBackward: false)
+                self.tableView.reloadData()
+            }else{
+                filteredFlights = returnFlights
+                self.tableView.reloadData()
+            }
+        case 1:
+            // 12:01 AM - 11:59 AM
+            if willCallForward{
+                forwardProcessing(index: forwardIndex, willCallBackward: false)
+                self.filterByShift(start: 0, end: 11, isForward: false, zeroMinHour: nil, iteratableFlights: filteredFlights)
+                tableView.reloadData()
+            }else{
+                self.filterByShift(start: 0, end: 11, isForward: false, zeroMinHour: nil, iteratableFlights: returnFlights)
+                tableView.reloadData()
+            }
+        case 2:
+            // DAY 12pm-6pm 12:00 PM - 06:00 PM
+            if willCallForward{
+                forwardProcessing(index: forwardIndex, willCallBackward: false)
+                self.filterByShift(start: 12, end: 17, isForward: false, zeroMinHour: 18, iteratableFlights: filteredFlights)
+                tableView.reloadData()
+            }else{
+                self.filterByShift(start: 12, end: 17, isForward: false, zeroMinHour: 18, iteratableFlights: returnFlights)
+                tableView.reloadData()
+            }
+        case 3:
+            //                // EVENING 6pm-3am
+            //                self?.filterByShift(start: 18, end: 24, offset: 3)
+            //EVENING 06:01 PM - 12:00 PM
+            if willCallForward{
+                forwardProcessing(index: forwardIndex, willCallBackward: false)
+                self.filterByShift(start: 18, end: 23, isForward: false, offset: 0, zeroMinHour: 0, iteratableFlights: filteredFlights)
+                tableView.reloadData()
+            }else{
+                self.filterByShift(start: 18, end: 23, isForward: false, offset: 0, zeroMinHour: 0, iteratableFlights: returnFlights)
+                tableView.reloadData()
+            }
+        default:
+            break
+        }
+    }
+    
+    func filterByShift(start: Int, end: Int, isForward: Bool, offset: Int = 0, zeroMinHour: Int?, iteratableFlights: [SaleCurrencyAmount]){
         //        SVProgressHUD.show()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //2021-02-27T11:25:00
         //        var processedForwardFlights = [SaleCurrencyAmount]()
         //        var processedBackwardFlights = [SaleCurrencyAmount]()
-        var iteratableFlights = [SaleCurrencyAmount]()
+        //        var iteratableFlights = [SaleCurrencyAmount]()
         
-        if backwardFilterAll == false && isForward == true{
-            if backwardFilterAll{
-                iteratableFlights = returnFlights
-            }else{
-                iteratableFlights = processedBackwardFlights
-            }
-        }else if backwardFilterAll == false && isForward == false{
-            if forwardFilterAll{
-                iteratableFlights = returnFlights
-            }else{
-                iteratableFlights = processedForwardFlights
-            }
-        }else{
-            iteratableFlights = returnFlights
-        }
+        //        if backwardFilterAll == false && isForward == true{
+        //            if backwardFilterAll{
+        //                iteratableFlights = returnFlights
+        //            }else{
+        //                iteratableFlights = processedBackwardFlights
+        //            }
+        //        }else if backwardFilterAll == false && isForward == false{
+        //            if forwardFilterAll{
+        //                iteratableFlights = returnFlights
+        //            }else{
+        //                iteratableFlights = processedForwardFlights
+        //            }
+        //        }else{
+        //            iteratableFlights = returnFlights
+        //        }
         
         if isForward{
             processedForwardFlights.removeAll()
@@ -303,7 +361,7 @@ class ReturnFlightViewController: UIViewController {
             filteredFlights = processedBackwardFlights
         }
         //        filteredFlights = processedFlights
-        tableView.reloadData()
+        //        tableView.reloadData()
         //        SVProgressHUD.dismiss()
     }
     
