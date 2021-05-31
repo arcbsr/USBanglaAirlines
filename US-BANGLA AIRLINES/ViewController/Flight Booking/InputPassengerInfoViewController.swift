@@ -910,7 +910,7 @@ extension InputPassengerInfoViewController{
             
             if isLocalFlight == false{
                 var gender = "F"
-                if passenger.title == "MR"{
+                if passenger.title == "MR" || passenger.title == "MSTR"{
                     gender = "M"
                 }
                 
