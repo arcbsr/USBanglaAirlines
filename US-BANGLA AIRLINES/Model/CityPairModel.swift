@@ -52,3 +52,17 @@ class CityPairCode: Mappable {
     }
     
 }
+
+class PaymentValidatorModel : Mappable {
+    var status : String?
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        
+        status <- map["status"]
+    }
+    
+}

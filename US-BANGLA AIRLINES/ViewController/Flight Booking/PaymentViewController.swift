@@ -8,6 +8,10 @@
 
 import UIKit
 import SSLCommerzSDK
+import Alamofire
+import SVProgressHUD
+import AlamofireObjectMapper
+
 
 class PaymentViewController: UIViewController {
     var sslCommerz: SSLCommerz?
@@ -32,6 +36,7 @@ class PaymentViewController: UIViewController {
     var journyFromTo = "from"
     var thirdPartyBooking = ""
     var isLocalFlight = false
+    var leadPassengerLastName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,9 +83,68 @@ extension PaymentViewController: SSLCommerzDelegate{
                 self.navigationController?.popViewController()
             }
         }else if status == "VALID" || status == "VALIDATED"{
-            self.showAlert(title: "Payment successful!", message: nil){ _ in
-                self.navigationController?.popViewController()
-            }
+//            self.showAlert(title: "Payment successful!", message: nil){ _ in
+                //                self.navigationController?.popViewController()
+//            }
+            validatePayment()
         }
+    }
+}
+
+// MARK: API CALL
+extension PaymentViewController{
+    
+    func validatePayment() {
+        
+        //            let headers: HTTPHeaders = [
+        //                "Authorization": "token \(UserInfo.token)"
+        //            ]
+        
+        //        let requestInfo: Parameters = [
+        //            //            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+        //                        "AuthenticationKey": "_JEAAAABWU_EYtV0PDQ5AefVBXqTISe7_EqErTgeZryEzUyElkoBqCSdJh8UQdKZLhbSW62OVwi7Ix58ZnGrS9CBDxSnz7g_U",
+        //                        "CultureName": "en-GB"
+        //        ]
+        
+//        let requestInfo: Parameters = [
+//            "AuthenticationKey": GlobalItems.getAuthKey(),
+//            "CultureName": "en-GB"
+//        ]
+        
+        let params: Parameters = [
+            "t_id": "ssl-comrx-val-id",
+            "pnr": pnr, // "pnr received on booking creation",
+            "amount": "3400.00", // must take from sslcommerz transation model received on success callback method
+            "currency": "BDT",  // Take also from sslcommerz transation model
+            "PassengerName": leadPassengerLastName //"lead-passenger-last-name"
+        ]
+        
+        var urlStr = "https://usbair.com/app2/bs_mobiapp_payment_validator/create_ticket_stage.php"
+        if GlobalItems.isTestBuild == false{
+            urlStr = "https://usbair.com/app2/bs_mobiapp_payment_validator/create_ticket.php"
+        }
+        guard let url = URL(string: urlStr) else{
+            return
+        }
+        
+        print("url: \(url) params \(params)")
+        
+        SVProgressHUD.show()
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<PaymentValidatorModel>) in
+            print("=== response = \(response)")
+            SVProgressHUD.dismiss()
+            
+            guard let statusCode = response.response?.statusCode else{
+                return
+            }
+            print("statusCode = \(statusCode)")
+            switch response.result {
+            case .success:
+                print("\(String(describing: response.result.value))")
+            case .failure(let error):
+                print("error = \(error)")
+            }
+        })
     }
 }

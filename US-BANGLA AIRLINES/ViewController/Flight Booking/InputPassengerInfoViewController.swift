@@ -143,9 +143,9 @@ class InputPassengerInfoViewController: UIViewController {
     
     @IBAction func createBookingButtonTapped(_ sender: Any) {
         view.endEditing(true)
-        //        if validateInput(){
-        //            createBooking()
-        //        }
+        if validateInput(){
+            createBooking()
+        }
     }
     
     @IBAction func makePaymentTapped(_ sender: Any) {
