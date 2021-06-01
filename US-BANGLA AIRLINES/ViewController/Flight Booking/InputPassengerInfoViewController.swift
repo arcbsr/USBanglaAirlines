@@ -150,6 +150,7 @@ class InputPassengerInfoViewController: UIViewController {
     
     @IBAction func makePaymentTapped(_ sender: Any) {
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
+            vc.isLocalFlight = isLocalFlight
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

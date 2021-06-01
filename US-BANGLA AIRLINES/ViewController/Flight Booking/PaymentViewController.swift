@@ -35,7 +35,7 @@ class PaymentViewController: UIViewController {
     var flightType = "domestic"
     var journyFromTo = "from"
     var thirdPartyBooking = ""
-    var isLocalFlight = false
+    var isLocalFlight = true
     var leadPassengerLastName = ""
     
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class PaymentViewController: UIViewController {
         
         sslCommerz?.delegate = self
         sslCommerz?.start(in: self, shouldRunInTestMode: true)
-        //        sslCommerz?.start(in: self, shouldRunInTestMode: false)
+//                sslCommerz?.start(in: self, shouldRunInTestMode: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
