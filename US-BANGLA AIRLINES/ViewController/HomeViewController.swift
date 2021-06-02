@@ -163,13 +163,13 @@ class HomeViewController: UIViewController {
     }
     
     func toWebView(type: GivenOption){
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
-            vc.currentOption = type
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        //        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
-        //            self.navigationController?.pushViewController(vc, animated: true)
-        //        }
+//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+//            vc.currentOption = type
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
     }
     
     @objc func skyStarTapped(){

@@ -1005,6 +1005,7 @@ extension InputPassengerInfoViewController{
                 print("")
                 let pnrInfo = response.result.value?.booking?.pnrInformation
                 if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
+                    vc.isLocalFlight = self.isLocalFlight
                     vc.pnrInfo = pnrInfo
                     vc.passengers = self.passengers
                     vc.offer = self.offer

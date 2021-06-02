@@ -55,6 +55,8 @@ class PaymentViewController: UIViewController {
     func initializePayment(){
         sslCommerz = SSLCommerz(integrationInformation: .init(storeID: storeId, storePassword: storePassowrd, totalAmount: totalAmount, currency: currencyCode, transactionId: transactionId, productCategory: productCategory), emiInformation: nil, customerInformation: .init(customerName: name, customerEmail: email, customerAddressOne: address, customerCity: city, customerPostCode: postCode, customerCountry: country, customerPhone: phoneNumber), shipmentInformation: nil, productInformation: .init(productName: productName, productCategory: productCategory, productProfile: ProductProfile(productProfile: productProfile, hoursTillDeparture: hoursTillDeparture, flightType: flightType, pnr: pnr, journeyFromTo: journyFromTo, thirdPartyBooking: thirdPartyBooking)), additionalInformation: nil)
         
+//        sslCommerz = SSLCommerz(integrationInformation: .init(storeID: "abc", storePassword: "123456", totalAmount: 20, currency: "BDT", transactionId: transactionId, productCategory: "airline-ticket"), emiInformation: nil, customerInformation: nil, shipmentInformation: nil, productInformation: nil, additionalInformation: nil)
+                
         sslCommerz?.delegate = self
         sslCommerz?.start(in: self, shouldRunInTestMode: true)
 //                sslCommerz?.start(in: self, shouldRunInTestMode: false)

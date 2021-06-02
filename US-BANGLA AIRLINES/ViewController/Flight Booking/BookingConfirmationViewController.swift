@@ -115,6 +115,8 @@ class BookingConfirmationViewController: UIViewController {
     var backwardFlightClass = ""
     var flightClass = ""
     var selectedCurrency = ""
+    var isLocalFlight = true
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,6 +153,8 @@ class BookingConfirmationViewController: UIViewController {
     
     @IBAction func makePaymentButtonTapped(_ sender: UIButton) {
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
+            vc.isLocalFlight = isLocalFlight
+            vc.pnr = pnrInfo?.pnrCode ?? ""
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
