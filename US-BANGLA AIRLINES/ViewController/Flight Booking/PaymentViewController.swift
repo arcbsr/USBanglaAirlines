@@ -15,8 +15,8 @@ import AlamofireObjectMapper
 
 class PaymentViewController: UIViewController {
     var sslCommerz: SSLCommerz?
-    private let storeId = "usbanglaairlinestest001"
-    private let storePassowrd = "usbanglaairlinestest001@ssl"
+    private let storeId = "usbanglaairlinestest001@ssl"
+    private let storePassowrd = "usbanglaairlinestest001"
     var totalAmount = 0.0
     var currencyCode = "BDT"
     var transactionId = ""
@@ -53,16 +53,16 @@ class PaymentViewController: UIViewController {
     }
     
     func initializePayment(){
-//        sslCommerz = SSLCommerz(integrationInformation: .init(storeID: storeId, storePassword: storePassowrd, totalAmount: totalAmount, currency: currencyCode, transactionId: transactionId, productCategory: productCategory), emiInformation: nil, customerInformation: .init(customerName: name, customerEmail: email, customerAddressOne: address, customerCity: city, customerPostCode: postCode, customerCountry: country, customerPhone: phoneNumber), shipmentInformation: nil, productInformation: .init(productName: productName, productCategory: productCategory, productProfile: ProductProfile(productProfile: productProfile, hoursTillDeparture: hoursTillDeparture, flightType: flightType, pnr: pnr, journeyFromTo: journyFromTo, thirdPartyBooking: thirdPartyBooking)), additionalInformation: nil)
+        sslCommerz = SSLCommerz(integrationInformation: .init(storeID: storeId, storePassword: storePassowrd, totalAmount: totalAmount, currency: currencyCode, transactionId: transactionId, productCategory: productCategory), emiInformation: nil, customerInformation: .init(customerName: name, customerEmail: email, customerAddressOne: address, customerCity: city, customerPostCode: postCode, customerCountry: country, customerPhone: phoneNumber), shipmentInformation: nil, productInformation: .init(productName: productName, productCategory: productCategory, productProfile: ProductProfile(productProfile: productProfile, hoursTillDeparture: hoursTillDeparture, flightType: flightType, pnr: pnr, journeyFromTo: journyFromTo, thirdPartyBooking: thirdPartyBooking)), additionalInformation: nil)
         
 //        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: "abc", storePassword: "123", totalAmount: 10.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: nil, shipmentInformation: nil, productInformation: nil, additionalInformation: nil)
   
-        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: "abc", storePassword: "123", totalAmount: 10.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: CustomerInformation.init(customerName: "john", customerEmail: "ssl@ssl.com", customerAddressOne: "address1", customerCity: "city", customerPostCode: "123", customerCountry: "Bangaldesh", customerPhone: "12434"), shipmentInformation: nil, productInformation: ProductInformation.init(productName: "product", productCategory: "category", productProfile: ProductProfile(productProfile: "Airline Ticket", hoursTillDeparture: "3", flightType: "", pnr: pnr, journeyFromTo: "34", thirdPartyBooking: "34")),  additionalInformation: nil)
+//        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: "abc", storePassword: "123", totalAmount: 10.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: CustomerInformation.init(customerName: "john", customerEmail: "ssl@ssl.com", customerAddressOne: "address1", customerCity: "city", customerPostCode: "123", customerCountry: "Bangaldesh", customerPhone: "12434"), shipmentInformation: nil, productInformation: ProductInformation.init(productName: "product", productCategory: "category", productProfile: ProductProfile(productProfile: "Airline Ticket", hoursTillDeparture: "3", flightType: "", pnr: pnr, journeyFromTo: "34", thirdPartyBooking: "34")),  additionalInformation: nil)
 
                 
         sslCommerz?.delegate = self
         sslCommerz?.start(in: self, shouldRunInTestMode: true)
-//                sslCommerz?.start(in: self, shouldRunInTestMode: false)
+//        sslCommerz?.start(in: self, shouldRunInTestMode: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
