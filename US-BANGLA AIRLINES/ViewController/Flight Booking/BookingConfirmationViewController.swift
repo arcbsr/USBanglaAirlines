@@ -116,7 +116,8 @@ class BookingConfirmationViewController: UIViewController {
     var flightClass = ""
     var selectedCurrency = ""
     var isLocalFlight = true
-
+    var totalAmount = 0.0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,8 +154,19 @@ class BookingConfirmationViewController: UIViewController {
     
     @IBAction func makePaymentButtonTapped(_ sender: UIButton) {
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
+            vc.currencyCode = selectedCurrency
+            vc.totalAmount = totalAmount
             vc.isLocalFlight = isLocalFlight
             vc.pnr = pnrInfo?.pnrCode ?? ""
+            vc.name = "\(self.passengers.first?.title ?? "") \(self.passengers.first?.firstName ?? "") \(self.passengers.first?.lastName ?? "")"
+            vc.leadPassengerLastName = passengers.first?.lastName ?? "Not Available"
+            vc.journyFromTo = "\(fromCityCode)-\(toCityCode)"
+            vc.country = passengers.first?.country ?? ""
+            //            vc.city = passengers.first?.city ?? "N/A"
+            //            vc.postCode = passengers.first?.postCode ?? ""
+            vc.phoneNumber = passengers.first?.phoneNumberWithoutCountryCode ?? ""
+            vc.email = passengers.first?.emailAddress ?? ""
+            //            vc.address = passengers.first.
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -232,11 +244,11 @@ class BookingConfirmationViewController: UIViewController {
         toTimeLabel.text = "\(toTime) \(toCityCode)"
         cabinClassLabel.text = forwardFlightClass
         
-        let discount = returnFlight?.discountAmount ?? 0
-        let totalWithoutDiscount = returnFlight?.totalAmount ?? 0
-        let total = totalWithoutDiscount - discount
+        let discount = returnFlight?.discountAmount ?? 0.0
+        let totalWithoutDiscount = returnFlight?.totalAmount ?? 0.0
+        totalAmount = totalWithoutDiscount - discount
         discountLabel.text = "\(selectedCurrency) \(discount)"
-        totalFareLabel.text = "\(selectedCurrency) \(total)"
+        totalFareLabel.text = "\(selectedCurrency) \(totalAmount)"
     }
     
     func loadOneWayData(){
@@ -265,9 +277,9 @@ class BookingConfirmationViewController: UIViewController {
         
         let discount = oneWayflight?.saleCurrencyAmount?.discountAmount ?? 0
         let totalWithoutDiscount = oneWayflight?.saleCurrencyAmount?.totalAmount ?? 0
-        let total = totalWithoutDiscount - discount
+        totalAmount = totalWithoutDiscount - discount
         discountLabel.text = "\(selectedCurrency) \(discount)"
-        totalFareLabel.text = "\(selectedCurrency) \(total)"
+        totalFareLabel.text = "\(selectedCurrency) \(totalAmount)"
     }
     
     func toWebView(type: GivenOption){

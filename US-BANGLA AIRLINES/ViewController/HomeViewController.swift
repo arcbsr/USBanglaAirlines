@@ -163,13 +163,13 @@ class HomeViewController: UIViewController {
     }
     
     func toWebView(type: GivenOption){
-//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
-//            vc.currentOption = type
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+            vc.currentOption = type
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        //                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
+        //                    self.navigationController?.pushViewController(vc, animated: true)
+        //                }
     }
     
     @objc func skyStarTapped(){
@@ -505,6 +505,7 @@ extension HomeViewController{
                 return
             }
             print("statusCode = \(statusCode)")
+//            return
             switch response.result {
             case .success:
                 if let home = response.result.value?.item?.home{
@@ -517,7 +518,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.flightBookingImageView.image = value.image // without cache
                             case .failure(let error):
-                                self.flightBookingImageView.image = UIImage(named: "book_flight_button")
+//                                self.flightBookingImageView.image = UIImage(named: "book_flight_button")
                                 print(error)
                             }
                         }
@@ -531,7 +532,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.skyStarImageView.image = value.image // without cache
                             case .failure(let error):
-                                self.skyStarImageView.image = UIImage(named: "skystar_button")
+//                                self.skyStarImageView.image = UIImage(named: "skystar_button")
                                 print(error)
                             }
                         }
@@ -545,7 +546,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.manageBookingImageView.image = value.image // without cache
                             case .failure(let error):
-                                self.manageBookingImageView.image = UIImage(named: "manage_booking_button")
+//                                self.manageBookingImageView.image = UIImage(named: "manage_booking_button")
                                 print(error)
                             }
                         }
@@ -559,7 +560,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.webCheckInImageView.image = value.image // without cache
                             case .failure(let error):
-                                self.webCheckInImageView.image = UIImage(named: "web_check_in_button")
+//                                self.webCheckInImageView.image = UIImage(named: "web_check_in_button")
                                 print(error)
                             }
                         }
@@ -573,7 +574,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.flightScheduleImageView.image = value.image // without cache
                             case .failure(let error):
-                                self.flightScheduleImageView.image = UIImage(named: "flight_schedule_button")
+//                                self.flightScheduleImageView.image = UIImage(named: "flight_schedule_button")
                                 print(error)
                             }
                         }
@@ -587,7 +588,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.holidayImageView.image = value.image // without cache
                             case .failure(let error):
-                                self.holidayImageView.image = UIImage(named: "holiday_button")
+//                                self.holidayImageView.image = UIImage(named: "holiday_button")
                                 print(error)
                             }
                         }
@@ -601,7 +602,7 @@ extension HomeViewController{
                             case .success(let value):
                                 self.hotlineImageView.image = value.image // without cache
                             case .failure(let error):
-                                self.hotlineImageView.image = UIImage(named: "hotline_button")
+//                                self.hotlineImageView.image = UIImage(named: "hotline_button")
                                 print(error)
                             }
                         }

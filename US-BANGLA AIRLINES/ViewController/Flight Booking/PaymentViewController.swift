@@ -17,10 +17,9 @@ class PaymentViewController: UIViewController {
     var sslCommerz: SSLCommerz?
     private let storePassowrd = "usbanglaairlinestest001@ssl"
     private let storeId = "usbanglaairlinestest001"
-    var totalAmount = 100.0
+    var totalAmount = 0.0
     var currencyCode = "BDT"
     var transactionId = ""
-    var productCategory = "Airline Ticket"
     var name = ""
     var email = ""
     var address = ""
@@ -29,12 +28,13 @@ class PaymentViewController: UIViewController {
     var country = ""
     var phoneNumber = ""
     var pnr = ""
-    var productName = "US-Bangla Air Ticket"
-    var productProfile = ""
+    var productName = "US-Bangla Airline" //"US-Bangla Air Ticket"
+    var productCategory = "airline-ticket"
+    var productProfile = "US-Bangla Airline"
     var hoursTillDeparture = ""
     var flightType = "domestic"
-    var journyFromTo = "from"
-    var thirdPartyBooking = ""
+    var journyFromTo = "" // Dhk-Syl
+    var thirdPartyBooking = "N/A"
     var isLocalFlight = true
     var leadPassengerLastName = ""
     
@@ -53,24 +53,30 @@ class PaymentViewController: UIViewController {
     }
     
     func initializePayment(){
+        
+        if totalAmount <= 0.0{
+            showAlert(title: "Warning! Amount must be greater than zero", message: nil)
+            return
+        }
+        
         sslCommerz = SSLCommerz(integrationInformation: .init(storeID: storeId, storePassword: storePassowrd, totalAmount: totalAmount, currency: currencyCode, transactionId: transactionId, productCategory: productCategory), emiInformation: nil, customerInformation: .init(customerName: name, customerEmail: email, customerAddressOne: address, customerCity: city, customerPostCode: postCode, customerCountry: country, customerPhone: phoneNumber), shipmentInformation: nil, productInformation: .init(productName: productName, productCategory: productCategory, productProfile: ProductProfile(productProfile: productProfile, hoursTillDeparture: hoursTillDeparture, flightType: flightType, pnr: pnr, journeyFromTo: journyFromTo, thirdPartyBooking: thirdPartyBooking)), additionalInformation: nil)
         
-//        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: storeId, storePassword: storePassowrd, totalAmount: 1000.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: nil, shipmentInformation: nil, productInformation: nil, additionalInformation: nil)
+        //        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: storeId, storePassword: storePassowrd, totalAmount: 1000.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: nil, shipmentInformation: nil, productInformation: nil, additionalInformation: nil)
         
-//        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: "abc", storePassword: "123", totalAmount: 1000.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: nil, shipmentInformation: nil, productInformation: nil, additionalInformation: nil)
-
-  
-//        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: "abc", storePassword: "123", totalAmount: 10.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: CustomerInformation.init(customerName: "john", customerEmail: "ssl@ssl.com", customerAddressOne: "address1", customerCity: "city", customerPostCode: "123", customerCountry: "Bangaldesh", customerPhone: "12434"), shipmentInformation: nil, productInformation: ProductInformation.init(productName: "product", productCategory: "category", productProfile: ProductProfile(productProfile: "Airline Ticket", hoursTillDeparture: "3", flightType: "", pnr: pnr, journeyFromTo: "34", thirdPartyBooking: "34")),  additionalInformation: nil)
+        //        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: "abc", storePassword: "123", totalAmount: 1000.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: nil, shipmentInformation: nil, productInformation: nil, additionalInformation: nil)
         
-//        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: storeId, storePassword: storePassowrd, totalAmount: 10.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: CustomerInformation.init(customerName: "john", customerEmail: "ssl@ssl.com", customerAddressOne: "address1", customerCity: "city", customerPostCode: "123", customerCountry: "Bangaldesh", customerPhone: "12434"), shipmentInformation: nil, productInformation: ProductInformation.init(productName: "product", productCategory: "category", productProfile: ProductProfile(productProfile: "Airline Ticket", hoursTillDeparture: "3", flightType: "", pnr: pnr, journeyFromTo: "34", thirdPartyBooking: "34")),  additionalInformation: nil)
         
-//        sslCommerz = SSLCommerz.init(integrationInformation: .init(storeID: storeId, storePassword: storePassowrd, totalAmount: 1000.0, currency: "BDT", transactionId: "2343", productCategory: "asd"), emiInformation: nil, customerInformation: .init(customerName: "doe", customerEmail: "ss@ss.com", customerAddressOne: "one", customerCity: "two", customerPostCode: "111", customerCountry: "BD", customerPhone: "00000"), shipmentInformation: nil, productInformation: nil, additionalInformation: nil)
-
-                
+        //        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: "abc", storePassword: "123", totalAmount: 10.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: CustomerInformation.init(customerName: "john", customerEmail: "ssl@ssl.com", customerAddressOne: "address1", customerCity: "city", customerPostCode: "123", customerCountry: "Bangaldesh", customerPhone: "12434"), shipmentInformation: nil, productInformation: ProductInformation.init(productName: "product", productCategory: "category", productProfile: ProductProfile(productProfile: "Airline Ticket", hoursTillDeparture: "3", flightType: "", pnr: pnr, journeyFromTo: "34", thirdPartyBooking: "34")),  additionalInformation: nil)
+        
+        //        sslCommerz = SSLCommerz(integrationInformation: IntegrationInformation.init(storeID: storeId, storePassword: storePassowrd, totalAmount: 10.00, currency: "BDT", transactionId: "123id", productCategory: "product"), emiInformation: nil, customerInformation: CustomerInformation.init(customerName: "john", customerEmail: "ssl@ssl.com", customerAddressOne: "address1", customerCity: "city", customerPostCode: "123", customerCountry: "Bangaldesh", customerPhone: "12434"), shipmentInformation: nil, productInformation: ProductInformation.init(productName: "product", productCategory: "category", productProfile: ProductProfile(productProfile: "Airline Ticket", hoursTillDeparture: "3", flightType: "", pnr: pnr, journeyFromTo: "34", thirdPartyBooking: "34")),  additionalInformation: nil)
+        
+        //        sslCommerz = SSLCommerz.init(integrationInformation: .init(storeID: storeId, storePassword: storePassowrd, totalAmount: 1000.0, currency: "BDT", transactionId: "2343", productCategory: "asd"), emiInformation: nil, customerInformation: .init(customerName: "doe", customerEmail: "ss@ss.com", customerAddressOne: "one", customerCity: "two", customerPostCode: "111", customerCountry: "BD", customerPhone: "00000"), shipmentInformation: nil, productInformation: nil, additionalInformation: nil)
+        
+        
         sslCommerz?.delegate = self
         sslCommerz?.start(in: self, shouldRunInTestMode: GlobalItems.isTestBuild)
-//        sslCommerz?.start(in: self, shouldRunInTestMode: true)
-//        sslCommerz?.start(in: self, shouldRunInTestMode: false)
+        //        sslCommerz?.start(in: self, shouldRunInTestMode: true)
+        //        sslCommerz?.start(in: self, shouldRunInTestMode: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,10 +102,10 @@ extension PaymentViewController: SSLCommerzDelegate{
                 self.navigationController?.popViewController()
             }
         }else if status == "VALID" || status == "VALIDATED"{
-//            self.showAlert(title: "Payment successful!", message: nil){ _ in
-                //                self.navigationController?.popViewController()
-//            }
-            validatePayment()
+            //            self.showAlert(title: "Payment successful!", message: nil){ _ in
+            //                self.navigationController?.popViewController()
+            //            }
+            validatePayment(t_id: transactionData?.tran_id ?? "", amount: transactionData?.amount ?? "", currency: transactionData?.currency_type ?? "")
         }
     }
 }
@@ -107,7 +113,7 @@ extension PaymentViewController: SSLCommerzDelegate{
 // MARK: API CALL
 extension PaymentViewController{
     
-    func validatePayment() {
+    func validatePayment(t_id: String, amount: String, currency: String) {
         
         //            let headers: HTTPHeaders = [
         //                "Authorization": "token \(UserInfo.token)"
@@ -119,16 +125,16 @@ extension PaymentViewController{
         //                        "CultureName": "en-GB"
         //        ]
         
-//        let requestInfo: Parameters = [
-//            "AuthenticationKey": GlobalItems.getAuthKey(),
-//            "CultureName": "en-GB"
-//        ]
+        //        let requestInfo: Parameters = [
+        //            "AuthenticationKey": GlobalItems.getAuthKey(),
+        //            "CultureName": "en-GB"
+        //        ]
         
         let params: Parameters = [
-            "t_id": "ssl-comrx-val-id",
+            "t_id": t_id, // "ssl-comrx-val-id",
             "pnr": pnr, // "pnr received on booking creation",
-            "amount": "3400.00", // must take from sslcommerz transation model received on success callback method
-            "currency": "BDT",  // Take also from sslcommerz transation model
+            "amount": totalAmount, // must take from sslcommerz transation model received on success callback method
+            "currency": currencyCode,  // Take also from sslcommerz transation model
             "PassengerName": leadPassengerLastName //"lead-passenger-last-name"
         ]
         
@@ -140,7 +146,7 @@ extension PaymentViewController{
             return
         }
         
-        print("url: \(url) params \(params)")
+        print("validate payment url: \(url) params \(params)")
         
         SVProgressHUD.show()
         

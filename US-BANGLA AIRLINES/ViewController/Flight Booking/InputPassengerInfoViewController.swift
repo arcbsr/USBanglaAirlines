@@ -149,10 +149,11 @@ class InputPassengerInfoViewController: UIViewController {
     }
     
     @IBAction func makePaymentTapped(_ sender: Any) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
-            vc.isLocalFlight = isLocalFlight
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
+//            vc.isLocalFlight = isLocalFlight
+//            vc.isLocalFlight = self.isLocalFlight
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
     }
     
     @IBAction func holdBookingTapped(_ sender: Any) {
@@ -1007,7 +1008,7 @@ extension InputPassengerInfoViewController{
                 if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
                     vc.isLocalFlight = self.isLocalFlight
                     vc.pnrInfo = pnrInfo
-                    vc.passengers = self.passengers
+                    vc.passengers = self.computedPassengers
                     vc.offer = self.offer
                     vc.eTTicketFares = self.eTTicketFares
                     vc.oneWayflight = self.oneWayflight
