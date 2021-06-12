@@ -218,7 +218,8 @@ class InputPassengerInfoViewController: UIViewController {
     }
     
     func validateInput() -> Bool{
-        for passenger in computedPassengers{
+//        for passenger in computedPassengers{
+        let passenger = computedPassengers.first ?? Passenger()
             if passenger.firstName.isEmpty{
                 showAlert(title: "First Name is Empty.", message: nil, callback: nil)
                 return false
@@ -265,7 +266,7 @@ class InputPassengerInfoViewController: UIViewController {
                 showAlert(title: "Email not added.", message: nil, callback: nil)
                 return false
             }
-        }
+//        }
         return true
     }
     
