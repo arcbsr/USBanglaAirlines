@@ -14,10 +14,11 @@ import AlamofireObjectMapper
 
 class InputPassengerInfoViewController: UIViewController {
     @IBOutlet weak var createBookingButton: UIButton!{
-        didSet{
+        didSet{ //square
             createBookingButton.backgroundColor = CustomColor.secondaryColor
         }
     }
+    @IBOutlet weak var termsAndConditionsButton: UIButton!
     @IBOutlet weak var makePaymentButton: UIButton!{
         didSet{
             makePaymentButton.isHidden = true
@@ -36,7 +37,7 @@ class InputPassengerInfoViewController: UIViewController {
             tableView.estimatedRowHeight = 200
             tableView.rowHeight = UITableView.automaticDimension
             let footerView = UIView()
-            footerView.frame.size.height = 40
+            footerView.frame.size.height = 80 // 40
             footerView.backgroundColor = .clear
             tableView.tableFooterView = footerView
         }
@@ -102,6 +103,7 @@ class InputPassengerInfoViewController: UIViewController {
     var backwardFlightClass = ""
     var flightClass = ""
     var selectedCurrency = ""
+    var isTermsAndConditionSelected = false
     var isLocalFlight = false
     var monthDictionary = ["JAN": "01", "FEB": "02", "MAR": "03", "APR": "04", "MAY": "05", "JUN": "06", "JUL": "07", "AUG": "08", "SEP": "09", "OCT": "10", "NOV": "11", "DEC": "12"]
     
@@ -142,6 +144,10 @@ class InputPassengerInfoViewController: UIViewController {
     }
     
     @IBAction func createBookingButtonTapped(_ sender: Any) {
+        if isTermsAndConditionSelected == false{
+            showAlert(title: "Please accept Terms and Conditions", message: nil)
+            return
+        }
         view.endEditing(true)
         if validateInput(){
             createBooking()
@@ -149,11 +155,20 @@ class InputPassengerInfoViewController: UIViewController {
     }
     
     @IBAction func makePaymentTapped(_ sender: Any) {
-//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
-//            vc.isLocalFlight = isLocalFlight
-//            vc.isLocalFlight = self.isLocalFlight
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
+        //        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController{
+        //            vc.isLocalFlight = isLocalFlight
+        //            vc.isLocalFlight = self.isLocalFlight
+        //            self.navigationController?.pushViewController(vc, animated: true)
+        //        }
+    }
+    
+    @IBAction func termsAndConditionsButtonTapped(_ sender: Any) {
+        isTermsAndConditionSelected = !isTermsAndConditionSelected
+        if isTermsAndConditionSelected{
+            termsAndConditionsButton.setImage(UIImage.init(systemName: "checkmark.square.fill"), for: .normal) // square/checkmark.square.fill
+        }else{
+            termsAndConditionsButton.setImage(UIImage.init(systemName: "square"), for: .normal) // square/checkmark.square.fill
+        }
     }
     
     @IBAction func holdBookingTapped(_ sender: Any) {
@@ -218,55 +233,55 @@ class InputPassengerInfoViewController: UIViewController {
     }
     
     func validateInput() -> Bool{
-//        for passenger in computedPassengers{
+        //        for passenger in computedPassengers{
         let passenger = computedPassengers.first ?? Passenger()
-            if passenger.firstName.isEmpty{
-                showAlert(title: "First Name is Empty.", message: nil, callback: nil)
+        if passenger.firstName.isEmpty{
+            showAlert(title: "First Name is Empty.", message: nil, callback: nil)
+            return false
+        }
+        if passenger.lastName.isEmpty{
+            showAlert(title: "Last Name is Empty.", message: nil, callback: nil)
+            return false
+        }
+        if passenger.dobDay == "DATE"{
+            showAlert(title: "DOB date not selected.", message: nil, callback: nil)
+            return false
+        }
+        if passenger.dobMonth == "MONTH"{
+            showAlert(title: "DOB month not selected.", message: nil, callback: nil)
+            return false
+        }
+        if passenger.dobYear == "YEAR"{
+            showAlert(title: "DOB year not selected.", message: nil, callback: nil)
+            return false
+        }
+        if isLocalFlight == false{
+            if passenger.passportNumber.isEmpty{
+                showAlert(title: "Passport number not added", message: nil, callback: nil)
                 return false
             }
-            if passenger.lastName.isEmpty{
-                showAlert(title: "Last Name is Empty.", message: nil, callback: nil)
+            if passenger.expireDay == "DATE"{
+                showAlert(title: "Expire date not selected.", message: nil, callback: nil)
                 return false
             }
-            if passenger.dobDay == "DATE"{
-                showAlert(title: "DOB date not selected.", message: nil, callback: nil)
+            if passenger.expireMonth == "MONTH"{
+                showAlert(title: "Expire month not selected.", message: nil, callback: nil)
                 return false
             }
-            if passenger.dobMonth == "MONTH"{
-                showAlert(title: "DOB month not selected.", message: nil, callback: nil)
+            if passenger.expireYear == "YEAR"{
+                showAlert(title: "Expire year not selected.", message: nil, callback: nil)
                 return false
             }
-            if passenger.dobYear == "YEAR"{
-                showAlert(title: "DOB year not selected.", message: nil, callback: nil)
-                return false
-            }
-            if isLocalFlight == false{
-                if passenger.passportNumber.isEmpty{
-                    showAlert(title: "Passport number not added", message: nil, callback: nil)
-                    return false
-                }
-                if passenger.expireDay == "DATE"{
-                    showAlert(title: "Expire date not selected.", message: nil, callback: nil)
-                    return false
-                }
-                if passenger.expireMonth == "MONTH"{
-                    showAlert(title: "Expire month not selected.", message: nil, callback: nil)
-                    return false
-                }
-                if passenger.expireYear == "YEAR"{
-                    showAlert(title: "Expire year not selected.", message: nil, callback: nil)
-                    return false
-                }
-            }
-            if passenger.phoneNumberWithoutCountryCode.isEmpty{
-                showAlert(title: "Phone number not added.", message: nil, callback: nil)
-                return false
-            }
-            if passenger.emailAddress.isEmpty{
-                showAlert(title: "Email not added.", message: nil, callback: nil)
-                return false
-            }
-//        }
+        }
+        if passenger.phoneNumberWithoutCountryCode.isEmpty{
+            showAlert(title: "Phone number not added.", message: nil, callback: nil)
+            return false
+        }
+        if passenger.emailAddress.isEmpty{
+            showAlert(title: "Email not added.", message: nil, callback: nil)
+            return false
+        }
+        //        }
         return true
     }
     

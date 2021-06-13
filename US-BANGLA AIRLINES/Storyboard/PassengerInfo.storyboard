@@ -1990,6 +1990,17 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvV-pG-gN9">
+                                <rect key="frame" x="241.5" y="2891.5" width="164.5" height="18.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title=" Terms and Conditions" image="square" catalog="system">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="termsAndConditionsButtonTapped:" destination="nDy-6p-5xZ" eventType="touchUpInside" id="okT-1F-dOg"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ad-o9-Cdy">
                                 <rect key="frame" x="0.0" y="2834" width="133" height="32"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
@@ -2006,13 +2017,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Li0-9I-nS6">
-                                <rect key="frame" x="248" y="2926" width="166" height="32"/>
+                                <rect key="frame" x="232" y="2926" width="182" height="32"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="fET-oV-NMu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="36" maxY="0.0"/>
+                                <inset key="contentEdgeInsets" minX="14" minY="0.0" maxX="48" maxY="0.0"/>
                                 <state key="normal" title="CREATE BOOKING">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2029,9 +2040,11 @@
                             <constraint firstItem="3Ad-o9-Cdy" firstAttribute="centerY" secondItem="7jH-8t-jXS" secondAttribute="centerY" id="7TM-CV-QaQ"/>
                             <constraint firstItem="osd-Fi-MZd" firstAttribute="bottom" secondItem="o4u-mI-u1d" secondAttribute="bottom" id="86B-sF-BCJ"/>
                             <constraint firstItem="h4Y-Ka-U2H" firstAttribute="trailing" secondItem="osd-Fi-MZd" secondAttribute="trailing" id="8U2-5f-4HS"/>
+                            <constraint firstItem="Li0-9I-nS6" firstAttribute="top" secondItem="fvV-pG-gN9" secondAttribute="bottom" constant="16" id="J4H-JW-14I"/>
                             <constraint firstItem="o4u-mI-u1d" firstAttribute="top" secondItem="h4Y-Ka-U2H" secondAttribute="bottom" id="N65-BE-eaf"/>
                             <constraint firstAttribute="trailing" secondItem="Li0-9I-nS6" secondAttribute="trailing" id="Ovk-5G-Riz"/>
                             <constraint firstItem="osd-Fi-MZd" firstAttribute="bottom" secondItem="7jH-8t-jXS" secondAttribute="bottom" constant="100" id="Pb1-yG-yzQ"/>
+                            <constraint firstItem="osd-Fi-MZd" firstAttribute="trailing" secondItem="fvV-pG-gN9" secondAttribute="trailing" constant="8" id="Qow-4v-DQ5"/>
                             <constraint firstItem="Li0-9I-nS6" firstAttribute="trailing" secondItem="osd-Fi-MZd" secondAttribute="trailing" id="VTt-Ue-hL2"/>
                             <constraint firstItem="osd-Fi-MZd" firstAttribute="bottom" secondItem="Li0-9I-nS6" secondAttribute="bottom" constant="8" id="aBK-ds-1lQ"/>
                             <constraint firstItem="o4u-mI-u1d" firstAttribute="leading" secondItem="osd-Fi-MZd" secondAttribute="leading" id="ctI-UD-8sw"/>
@@ -2050,6 +2063,7 @@
                         <outlet property="menuImageView" destination="r5o-9e-zM9" id="5cD-tq-oWN"/>
                         <outlet property="notificationImageView" destination="GRz-FY-gfa" id="aJe-d9-WCz"/>
                         <outlet property="tableView" destination="o4u-mI-u1d" id="eX6-Gm-L6b"/>
+                        <outlet property="termsAndConditionsButton" destination="fvV-pG-gN9" id="tVt-zC-dQW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0e-TN-EtT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2063,6 +2077,7 @@
         <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
+        <image name="square" catalog="system" width="128" height="114"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
