@@ -400,22 +400,22 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OfferPlaceCollectionViewCell", for: indexPath) as! OfferPlaceCollectionViewCell
         
-        let placeholderImage = UIImage(named: "placeholder")
+        //        let placeholderImage = UIImage(named: "placeholder")
         if let urlStr = offerplaces[indexPath.row].image{
-            //            cell.offerImageView.kf.setImage(with: URL(string: urlStr), placeholder: placeholderImage)
-            let downloader = ImageDownloader.default
-            if let url = URL(string: urlStr){
-                downloader.downloadImage(with: url, options: nil, progressBlock: nil) { (result) in
-                    switch result {
-                    case .success(let value):
-                        cell.offerImageView.image = value.image // without cache
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
-            }
+            cell.offerImageView.kf.setImage(with: URL(string: urlStr), placeholder: nil)
+            //            let downloader = ImageDownloader.default
+            //            if let url = URL(string: urlStr){
+            //                downloader.downloadImage(with: url, options: nil, progressBlock: nil) { (result) in
+            //                    switch result {
+            //                    case .success(let value):
+            //                        cell.offerImageView.image = value.image // without cache
+            //                    case .failure(let error):
+            //                        print(error)
+            //                    }
+            //                }
+            //            }
         }else{
-            cell.offerImageView.image = placeholderImage
+            //            cell.offerImageView.image = placeholderImage
         }
         
         
@@ -443,11 +443,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "FlightFilterViewController") as? FlightFilterViewController{
-            vc.offerPlaceOriginCode = offerplaces[indexPath.row].originCode ?? ""
-            vc.offerPlaceDestinationCode = offerplaces[indexPath.row].destinationCode ?? ""
-            vc.fromOffer = true
-            self.navigationController?.pushViewController(vc, animated: true)
+        if ((offerplaces[indexPath.row].hasDestination ?? "") == "true"){
+            if let vc = UIStoryboard(name: "FlightBooking", bundle: nil).instantiateViewController(withIdentifier: "FlightFilterViewController") as? FlightFilterViewController{
+                vc.offerPlaceOriginCode = offerplaces[indexPath.row].originCode ?? ""
+                vc.offerPlaceDestinationCode = offerplaces[indexPath.row].destinationCode ?? ""
+                vc.fromOffer = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }else{
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
+                vc.currentOption = .discountNotification
+                vc.discountNotificationUrl = offerplaces[indexPath.row].link ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     

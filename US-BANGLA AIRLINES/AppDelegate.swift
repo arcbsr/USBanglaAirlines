@@ -9,6 +9,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 import DropDown
+import Kingfisher
 
 
 @UIApplicationMain
@@ -25,8 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barStyle = UIBarStyle.default
         DropDown.startListeningToKeyboard()
         
+        clearKingfisherCachedImages()
+        
         return true
     }
 
+    func clearKingfisherCachedImages(){
+        ImageCache.default.clearCache()
+    }
+    
 }
 

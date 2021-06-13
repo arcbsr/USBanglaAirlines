@@ -102,9 +102,6 @@ extension PaymentViewController: SSLCommerzDelegate{
                 self.navigationController?.popViewController()
             }
         }else if status == "VALID" || status == "VALIDATED"{
-            //            self.showAlert(title: "Payment successful!", message: nil){ _ in
-            //                self.navigationController?.popViewController()
-            //            }
             validatePayment(t_id: transactionData?.val_id ?? "")
         }
     }
@@ -154,22 +151,37 @@ extension PaymentViewController{
             print("=== response = \(response)")
             SVProgressHUD.dismiss()
             
-            guard let statusCode = response.response?.statusCode else{
-                return
-            }
-            print("statusCode = \(statusCode)")
-            switch response.result {
-            case .success:
-                print("\(String(describing: response.result.value))")
-                let status = response.result.value?.status ?? ""
-                if status == "Success"{
-                    
-                }else{
+            let status = response.result.value?.status ?? ""
+            if status == "Success"{
+                self.showAlert(title: "", message: nil) { _ in
                     
                 }
-            case .failure(let error):
-                print("error = \(error)")
+            }else{
+                self.showAlert(title: "", message: nil) { _ in
+                    
+                }
             }
+            
+            //            guard let statusCode = response.response?.statusCode else{
+            //
+            //                return
+            //            }
+            //            print("statusCode = \(statusCode)")
+            //
+            //            if statusCode >= 400 && statusCode < 500{
+            //                self.showAlert(title: <#T##String?#>, message: <#T##String?#>)
+            //            }else if statusCode >= 500{
+            //                self.showAlert(title: "Something went wrong!", message: nil)
+            //            }
+            //
+            //            switch response.result {
+            //            case .success:
+            //                print("\(String(describing: response.result.value))")
+            //
+            //            case .failure(let error):
+            //                print("error = \(error)")
+            //            }
+            
         })
     }
 }

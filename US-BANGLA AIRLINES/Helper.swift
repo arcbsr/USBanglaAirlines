@@ -53,7 +53,7 @@ struct Platform {
 }
 
 public enum GivenOption {
-    case bookingFlight, skyStarSignUp, skyStarLogin, hotline, manageBooking, holiday, flightSchedule, webCheckIn, liveFlightSearch, myBooking, salesOffice
+    case bookingFlight, skyStarSignUp, skyStarLogin, hotline, manageBooking, holiday, flightSchedule, webCheckIn, liveFlightSearch, myBooking, salesOffice, discountNotification
 }
 
 var navController: UINavigationController!

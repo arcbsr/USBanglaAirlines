@@ -47,6 +47,8 @@ class Offerplace : Mappable {
     var originCode : String?
     var destinationCode : String?
     var image : String?
+    var link: String?
+    var hasDestination: String?
     
     required convenience init?(map: Map) {
         self.init()
@@ -57,6 +59,8 @@ class Offerplace : Mappable {
         originCode <- map["OriginCode"]
         destinationCode <- map["DestinationCode"]
         image <- map["image"]
+        link <- map["link"]
+        hasDestination <- map["hasDestination"]
     }
     
 }

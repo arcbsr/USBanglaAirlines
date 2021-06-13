@@ -31,6 +31,8 @@ class CustomWebViewController: UIViewController {
     var redirectURL = "https://google.com"
     var courseUid = "https://usbair.com/app/hotline.php"
     var verifyPurchase: ((_ transactionTag: String )->())?
+    
+    var discountNotificationUrl = ""
     var currentOption: GivenOption = .skyStarSignUp
     
     
@@ -69,6 +71,9 @@ class CustomWebViewController: UIViewController {
         case .salesOffice:
             urlString = salesOffice
             navigationItem.title = "SALES OFFICE"
+        case .discountNotification:
+            urlString = discountNotificationUrl
+            navigationItem.title = "NOTIFICATION"
         default:
             break
         }
