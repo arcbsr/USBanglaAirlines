@@ -105,7 +105,7 @@ extension PaymentViewController: SSLCommerzDelegate{
             //            self.showAlert(title: "Payment successful!", message: nil){ _ in
             //                self.navigationController?.popViewController()
             //            }
-            validatePayment(t_id: transactionData?.tran_id ?? "", amount: transactionData?.amount ?? "", currency: transactionData?.currency_type ?? "")
+            validatePayment(t_id: transactionData?.val_id ?? "")
         }
     }
 }
@@ -113,7 +113,7 @@ extension PaymentViewController: SSLCommerzDelegate{
 // MARK: API CALL
 extension PaymentViewController{
     
-    func validatePayment(t_id: String, amount: String, currency: String) {
+    func validatePayment(t_id: String) {
         
         //            let headers: HTTPHeaders = [
         //                "Authorization": "token \(UserInfo.token)"
@@ -133,8 +133,8 @@ extension PaymentViewController{
         let params: Parameters = [
             "t_id": t_id, // "ssl-comrx-val-id",
             "pnr": pnr, // "pnr received on booking creation",
-            "amount": totalAmount, // must take from sslcommerz transation model received on success callback method
-            "currency": currencyCode,  // Take also from sslcommerz transation model
+            "amount": totalAmount,
+            "currency": currencyCode,
             "PassengerName": leadPassengerLastName //"lead-passenger-last-name"
         ]
         
@@ -161,6 +161,12 @@ extension PaymentViewController{
             switch response.result {
             case .success:
                 print("\(String(describing: response.result.value))")
+                let status = response.result.value?.status ?? ""
+                if status == "Success"{
+                    
+                }else{
+                    
+                }
             case .failure(let error):
                 print("error = \(error)")
             }
