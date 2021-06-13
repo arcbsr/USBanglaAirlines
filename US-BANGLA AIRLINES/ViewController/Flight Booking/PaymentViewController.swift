@@ -37,6 +37,9 @@ class PaymentViewController: UIViewController {
     var thirdPartyBooking = "N/A"
     var isLocalFlight = true
     var leadPassengerLastName = ""
+    let successMessage = ""
+    let errorMessage = "Sorry! Your ticket is not confirmed. Something went wrong.\nPlease immediately contact our reservation hotline number with this Reference PNR 8.\nThank you."
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,12 +156,12 @@ extension PaymentViewController{
             
             let status = response.result.value?.status ?? ""
             if status == "Success"{
-                self.showAlert(title: "", message: nil) { _ in
+                self.showAlert(title: self.successMessage, message: nil) { _ in
                     
                 }
             }else{
-                self.showAlert(title: "", message: nil) { _ in
-                    
+                self.showAlert(title: self.errorMessage, message: nil) { _ in
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             }
             
