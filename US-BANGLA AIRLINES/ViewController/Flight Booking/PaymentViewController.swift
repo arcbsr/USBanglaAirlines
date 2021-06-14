@@ -15,8 +15,13 @@ import AlamofireObjectMapper
 
 class PaymentViewController: UIViewController {
     var sslCommerz: SSLCommerz?
-    private let storePassowrd = "usbanglaairlinestest001@ssl"
-    private let storeId = "usbanglaairlinestest001"
+    
+    private let productionStorePassowrd = ""
+    private let productionStoreId = ""
+    
+    var storePassowrd = "usbanglaairlinestest001@ssl"
+    var storeId = "usbanglaairlinestest001"
+    
     var totalAmount = 0.0
     var currencyCode = "BDT"
     var transactionId = ""
@@ -45,6 +50,11 @@ class PaymentViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Payment"
+        
+        if GlobalItems.isTestBuild == false{
+            storePassowrd = productionStorePassowrd
+            storeId = productionStoreId
+        }
         
         errorMessage = "Sorry!\nYour ticket is not confirmed. Something went wrong.\nPlease immediately contact our reservation hotline number with this Reference PNR \(pnr).\nThank you."
         if isLocalFlight{
