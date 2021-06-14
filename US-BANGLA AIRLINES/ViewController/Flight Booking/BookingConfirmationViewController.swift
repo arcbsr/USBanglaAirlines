@@ -13,6 +13,18 @@ import AlamofireObjectMapper
 
 
 class BookingConfirmationViewController: UIViewController {
+    @IBOutlet weak var referenceAndSummeryLabel: UILabel!{
+        didSet{
+            referenceAndSummeryLabel.textColor = CustomColor.secondaryColor
+        }
+    }
+    @IBOutlet weak var payNowButton: UIButton!{
+        didSet{
+            payNowButton.setTitleColor(CustomColor.primaryColor, for: .normal)
+            let attributedText = NSAttributedString(string: "PAY NOW!", attributes: [.font: UIFont.systemFont(ofSize: 15, weight: .semibold), .underlineStyle: NSUnderlineStyle.single.rawValue])
+            payNowButton.setAttributedTitle(attributedText, for: .normal)
+        }
+    }
     @IBOutlet weak var customTitleLabel: UILabel!
     @IBOutlet weak var fareAndBaggaeRulesView: UIView!{
         didSet{

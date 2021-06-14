@@ -13,6 +13,13 @@ import AlamofireObjectMapper
 
 
 class FlightSummaryViewController: UIViewController {
+    @IBOutlet weak var bookNowButton: UIButton!{
+        didSet{
+            bookNowButton.setTitleColor(CustomColor.primaryColor, for: .normal)
+            let attributedText = NSAttributedString(string: "BOOK NOW!", attributes: [.font: UIFont.systemFont(ofSize: 15, weight: .semibold), .underlineStyle: NSUnderlineStyle.single.rawValue])
+            bookNowButton.setAttributedTitle(attributedText, for: .normal)
+        }
+    }
     @IBOutlet weak var flightIdLabel: UILabel!
     @IBOutlet weak var flightNameLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
