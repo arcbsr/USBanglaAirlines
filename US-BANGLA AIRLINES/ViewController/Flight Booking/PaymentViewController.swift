@@ -37,8 +37,8 @@ class PaymentViewController: UIViewController {
     var thirdPartyBooking = "N/A"
     var isLocalFlight = true
     var leadPassengerLastName = ""
-    let successMessage = "Congratulation!\nYour payment has been successful. E-ticket will be sent you shortly in your email.\nThank you for being with US-Bangla Airline."
-    let errorMessage = "Sorry!\nYour ticket is not confirmed. Something went wrong.\nPlease immediately contact our reservation hotline number with this Reference PNR 8.\nThank you."
+    let successMessage = "Congratulation!\nYour payment has been successful. E-ticket will be sent to you shortly in your email.\nThank you for being with US-Bangla Airline."
+    var errorMessage = ""
     
     
     override func viewDidLoad() {
@@ -46,6 +46,7 @@ class PaymentViewController: UIViewController {
         
         navigationItem.title = "Payment"
         
+        errorMessage = "Sorry!\nYour ticket is not confirmed. Something went wrong.\nPlease immediately contact our reservation hotline number with this Reference PNR \(pnr).\nThank you."
         if isLocalFlight{
             flightType = "domestic"
         }else{

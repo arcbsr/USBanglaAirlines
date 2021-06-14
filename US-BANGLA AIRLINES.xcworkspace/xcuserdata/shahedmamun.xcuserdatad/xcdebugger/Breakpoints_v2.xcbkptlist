@@ -64,7 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "236"
             endingLineNumber = "236"
-            landmarkName = "constructPassengers()"
+            landmarkName = "validateInput()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -120,7 +120,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E5AA3F88-1DB2-4802-BE61-87CDFF4E3BAD"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "US-BANGLA AIRLINES/ViewController/Flight Booking/InputPassengerInfoViewController.swift"
@@ -144,8 +144,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "168"
             endingLineNumber = "168"
-            landmarkName = "InputPassengerInfoViewController"
-            landmarkType = "3">
+            landmarkName = "termsAndConditionsButtonTapped(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
