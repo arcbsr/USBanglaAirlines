@@ -171,9 +171,17 @@
                                                             <constraint firstAttribute="width" constant="1" id="bks-aK-OsM"/>
                                                         </constraints>
                                                     </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNN-ec-dY1">
+                                                        <rect key="frame" x="360" y="12" width="46" height="30"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="proceedButtonTapped:" destination="NPJ-fs-Ne0" eventType="touchUpInside" id="GuJ-Tk-Aub"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
+                                                    <constraint firstItem="hNN-ec-dY1" firstAttribute="top" secondItem="DW0-bi-lCa" secondAttribute="top" id="75n-ap-D8Y"/>
                                                     <constraint firstItem="Uob-RU-7Xb" firstAttribute="leading" secondItem="HQM-gk-Fpn" secondAttribute="trailing" constant="8" id="9kF-bP-teJ"/>
                                                     <constraint firstItem="ux1-VY-okq" firstAttribute="top" secondItem="SiC-p0-BAe" secondAttribute="bottom" constant="8" id="BIY-bC-fb5"/>
                                                     <constraint firstItem="HQM-gk-Fpn" firstAttribute="top" secondItem="SiC-p0-BAe" secondAttribute="bottom" id="Jlc-fc-NH0"/>
@@ -185,6 +193,7 @@
                                                     <constraint firstItem="eJO-dq-BaR" firstAttribute="top" secondItem="JNR-BN-7F6" secondAttribute="top" constant="12" id="dGd-8n-dCN"/>
                                                     <constraint firstItem="HQM-gk-Fpn" firstAttribute="centerX" secondItem="JNR-BN-7F6" secondAttribute="centerX" id="f32-3x-3CN"/>
                                                     <constraint firstItem="SiC-p0-BAe" firstAttribute="top" secondItem="eJO-dq-BaR" secondAttribute="bottom" constant="12" id="iE6-q1-EYx"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hNN-ec-dY1" secondAttribute="trailing" constant="8" id="lG5-fm-3GQ"/>
                                                     <constraint firstAttribute="height" constant="145" id="o7n-mM-Wtl"/>
                                                     <constraint firstItem="eJO-dq-BaR" firstAttribute="leading" secondItem="JNR-BN-7F6" secondAttribute="leading" constant="8" id="vJr-0a-jfC"/>
                                                     <constraint firstItem="ux1-VY-okq" firstAttribute="leading" secondItem="eJO-dq-BaR" secondAttribute="leading" id="w6N-lF-wC0"/>
@@ -626,6 +635,7 @@
                         <outlet property="amountPayableLabel" destination="q60-mN-yYv" id="YHa-5q-lEa"/>
                         <outlet property="backImageView" destination="dyu-Hg-teo" id="C8L-7N-gAX"/>
                         <outlet property="baseAmountLabel" destination="60L-jf-TfO" id="c2R-4Z-YOm"/>
+                        <outlet property="bookNowButton" destination="hNN-ec-dY1" id="Aqo-R3-eJA"/>
                         <outlet property="cabinClassLabel" destination="NMJ-HP-vND" id="T2R-QN-dTr"/>
                         <outlet property="childrenFareLabel" destination="cT5-DH-b13" id="ke5-ZZ-Ggi"/>
                         <outlet property="childrenLabel" destination="YPr-qe-IZw" id="wX3-wD-o8E"/>
