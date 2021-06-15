@@ -1406,14 +1406,23 @@
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTZ-TF-hI5">
+                                                        <rect key="frame" x="360" y="6" width="46" height="30"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="makePaymentButtonTapped:" destination="4xw-mw-ziB" eventType="touchUpInside" id="lP5-uD-hvF"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="145" id="4cG-Vn-bWn"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iTZ-TF-hI5" secondAttribute="trailing" constant="8" id="8AI-oy-XSo"/>
                                                     <constraint firstItem="G1L-xs-hcC" firstAttribute="top" secondItem="3a2-BY-0zJ" secondAttribute="top" constant="12" id="Axh-Jj-CwL"/>
                                                     <constraint firstItem="V57-q3-ykH" firstAttribute="top" secondItem="ewY-YW-ciV" secondAttribute="bottom" constant="8" id="CBB-GF-q2o"/>
                                                     <constraint firstItem="ewY-YW-ciV" firstAttribute="top" secondItem="L92-MR-dca" secondAttribute="bottom" constant="12" id="JIP-fq-uDa"/>
                                                     <constraint firstItem="ewY-YW-ciV" firstAttribute="leading" secondItem="3a2-BY-0zJ" secondAttribute="leading" id="LCB-M3-2E4"/>
+                                                    <constraint firstItem="iTZ-TF-hI5" firstAttribute="centerY" secondItem="G1L-xs-hcC" secondAttribute="centerY" id="NWJ-IC-Rsu"/>
                                                     <constraint firstAttribute="trailing" secondItem="ewY-YW-ciV" secondAttribute="trailing" id="U29-be-Ugg"/>
                                                     <constraint firstItem="Tut-5z-kF7" firstAttribute="top" secondItem="ewY-YW-ciV" secondAttribute="bottom" constant="8" id="WE1-tS-yXU"/>
                                                     <constraint firstAttribute="bottom" secondItem="Tut-5z-kF7" secondAttribute="bottom" constant="8" id="Xnp-nP-eVS"/>
@@ -1883,6 +1892,7 @@
                         <outlet property="infantTaxLabel" destination="a4T-Wk-AYR" id="vdD-6i-LgN"/>
                         <outlet property="menuImageView" destination="nqN-yA-y7v" id="FA3-lF-1Uy"/>
                         <outlet property="notificationImageView" destination="4ZH-ON-X2u" id="sk7-sp-xdA"/>
+                        <outlet property="payNowButton" destination="iTZ-TF-hI5" id="QuF-1t-7kD"/>
                         <outlet property="paymentButton" destination="57R-rj-QHj" id="YJg-dB-miC"/>
                         <outlet property="pnrLabel" destination="G1L-xs-hcC" id="3ER-Fk-IAT"/>
                         <outlet property="taxAmountLabel" destination="YNL-LH-kee" id="ENk-FX-rzv"/>
