@@ -815,6 +815,7 @@ extension FlightFilterViewController{
                         GlobalItems.bdAirportCodes.append(airport.code ?? "")
                     }
                 }
+                self.fromCities.sort()
                 self.toCities = self.fromCities // initial case
                 self.laodOffer()
             case .failure(let error):
