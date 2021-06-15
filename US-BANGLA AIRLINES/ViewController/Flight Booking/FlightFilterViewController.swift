@@ -333,6 +333,7 @@ class FlightFilterViewController: UIViewController {
                     }
                 }
             }
+            _self.toCities.sort()
         }
         dropDown.show()
     }
