@@ -277,10 +277,12 @@ class FlightFilterViewController: UIViewController {
     
     func laodOffer(){
         if fromOffer{
-            fromCityLabel.text = aiportDictionary[offerPlaceOriginCode]
-            toCityLabel.text = aiportDictionary[offerPlaceDestinationCode]
+            fromCityUpperLabel.text = aiportDictionary[offerPlaceOriginCode]
+            toCityUpperLabel.text = aiportDictionary[offerPlaceDestinationCode]
             fromCityCode = offerPlaceOriginCode
             toCityCode = offerPlaceDestinationCode
+            fromCityLabel.text = "\(fromCityUpperLabel.text ?? "") (\(fromCityCode)"
+            toCityLabel.text = "\(toCityUpperLabel.text ?? "") (\(toCityCode))"
             returnOptionTapped()
             let forwardDate = Date().tomorrow
             let backwardDate = forwardDate.tomorrow
@@ -321,7 +323,7 @@ class FlightFilterViewController: UIViewController {
                 return
             }
             self?.fromCityCode = self?.aiportReverseDictionary[item] ?? ""
-            self?.fromCityLabel.text = "\(item)" //" (\(self?.fromCityCode ?? ""))"
+            self?.fromCityLabel.text = "\(item) (\(self?.fromCityCode ?? ""))"
             self?.fromCityUpperLabel.text = item
             guard let airportCodes = _self.airportModel?.codes, let cityPairCodes = _self.cityPairModel?.codes else{
                 return
@@ -349,7 +351,7 @@ class FlightFilterViewController: UIViewController {
         dropDown.textColor = .systemGreen
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.toCityCode = self?.aiportReverseDictionary[item] ?? ""
-            self?.toCityLabel.text = "\(item)" //" (\(self?.toCityCode ?? ""))"
+            self?.toCityLabel.text = "\(item) (\(self?.toCityCode ?? ""))"
             self?.toCityUpperLabel.text = item
         }
         dropDown.show()
@@ -823,8 +825,8 @@ extension FlightFilterViewController{
                 self.fromCities.sort()
                 self.toCities = self.fromCities // initial case
                 
-                self.fromCityLabel.text = "Dhaka" //(DAC)"
-                self.toCityLabel.text = "Chittagong" //(CGP)"
+                self.fromCityLabel.text = "Dhaka (DAC)"
+                self.toCityLabel.text = "Chittagong (CGP)"
                 self.fromCityUpperLabel.text = "Dhaka"
                 self.toCityUpperLabel.text = "Chittagong"
                 self.fromCityCode = "DAC"
@@ -1072,8 +1074,8 @@ extension FlightFilterViewController{
         var originDestinations = [Parameters]()
         let forwardFlight: Parameters = [
             "TargetDate": departureDate,
-            "OriginCode": aiportReverseDictionary[fromCityLabel.text ?? ""] ?? "",
-            "DestinationCode": aiportReverseDictionary[toCityLabel.text ?? ""] ?? ""
+            "OriginCode": aiportReverseDictionary[fromCityUpperLabel.text ?? ""] ?? "",
+            "DestinationCode": aiportReverseDictionary[toCityUpperLabel.text ?? ""] ?? ""
         ]
         originDestinations.append(forwardFlight)
         
@@ -1240,9 +1242,9 @@ extension FlightFilterViewController{
                 print("error = \(error)")
             }
         })
-//        .responseJSON { (response) in
-//            print("json = \(response.result.value)")
-//        }
+        //        .responseJSON { (response) in
+        //            print("json = \(response.result.value)")
+        //        }
     }
     
     func searchReturnFlight() {
@@ -1295,13 +1297,13 @@ extension FlightFilterViewController{
         var originDestinations = [Parameters]()
         let frowardFlight: Parameters = [
             "TargetDate": departureDate,
-            "OriginCode": aiportReverseDictionary[fromCityLabel.text ?? ""] ?? "",
-            "DestinationCode": aiportReverseDictionary[toCityLabel.text ?? ""] ?? ""
+            "OriginCode": aiportReverseDictionary[fromCityUpperLabel.text ?? ""] ?? "",
+            "DestinationCode": aiportReverseDictionary[toCityUpperLabel.text ?? ""] ?? ""
         ]
         let backwardFlight: Parameters = [
             "TargetDate": returnDate,
-            "OriginCode": aiportReverseDictionary[toCityLabel.text ?? ""] ?? "",
-            "DestinationCode": aiportReverseDictionary[fromCityLabel.text ?? ""] ?? ""
+            "OriginCode": aiportReverseDictionary[toCityUpperLabel.text ?? ""] ?? "",
+            "DestinationCode": aiportReverseDictionary[fromCityUpperLabel.text ?? ""] ?? ""
         ]
         originDestinations.append(frowardFlight)
         originDestinations.append(backwardFlight)
