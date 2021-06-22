@@ -38,6 +38,8 @@ class FlightFilterViewController: UIViewController {
         }
     }
     @IBOutlet weak var promoCodeTextField: UITextField!
+    @IBOutlet weak var fromCityUpperLabel: UILabel!
+    @IBOutlet weak var toCityUpperLabel: UILabel!
     @IBOutlet weak var fromCityLabel: UILabel!
     @IBOutlet weak var toCityLabel: UILabel!
     @IBOutlet weak var toCityView: UIView!{
@@ -318,8 +320,9 @@ class FlightFilterViewController: UIViewController {
             guard let _self = self else{
                 return
             }
-            self?.fromCityLabel.text = item
             self?.fromCityCode = self?.aiportReverseDictionary[item] ?? ""
+            self?.fromCityLabel.text = "\(item)" //" (\(self?.fromCityCode ?? ""))"
+            self?.fromCityUpperLabel.text = item
             guard let airportCodes = _self.airportModel?.codes, let cityPairCodes = _self.cityPairModel?.codes else{
                 return
             }
@@ -345,8 +348,9 @@ class FlightFilterViewController: UIViewController {
         dropDown.textFont = UIFont.systemFont(ofSize: 15.0)
         dropDown.textColor = .systemGreen
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
-            self?.toCityLabel.text = item
             self?.toCityCode = self?.aiportReverseDictionary[item] ?? ""
+            self?.toCityLabel.text = "\(item)" //" (\(self?.toCityCode ?? ""))"
+            self?.toCityUpperLabel.text = item
         }
         dropDown.show()
     }
@@ -818,6 +822,31 @@ extension FlightFilterViewController{
                 }
                 self.fromCities.sort()
                 self.toCities = self.fromCities // initial case
+                
+                self.fromCityLabel.text = "Dhaka" //(DAC)"
+                self.toCityLabel.text = "Chittagong" //(CGP)"
+                self.fromCityUpperLabel.text = "Dhaka"
+                self.toCityUpperLabel.text = "Chittagong"
+                self.fromCityCode = "DAC"
+                self.toCityCode = "CGP"
+                self.adultCountLabel.text = "1"
+                self.departureDateTextField.text = ""
+                self.currencyLabel.text = "BDT"
+                self.selectedCurrency = "BDT"
+                self.departureCabinClassLabel.text = "ECONOMY"
+                self.returnCabinClassLabel.text = "ECONOMY"
+                let forwardDate = Date()
+                let backwardDate = forwardDate
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                self.departureDate = formatter.string(from: forwardDate)
+                self.returnDate = formatter.string(from: backwardDate)
+                formatter.dateFormat = "EEE, dd MMM, YYYY"
+                self.departureDateTextField.text = ""
+                self.departureDateTextField.text = formatter.string(from: forwardDate)
+                self.returnDateTextField.text = ""
+                self.returnDateTextField.text = formatter.string(from: backwardDate)
+                
                 self.laodOffer()
             case .failure(let error):
                 print("error = \(error)")

@@ -651,6 +651,7 @@
                         <outlet property="departureDateView" destination="Ph6-dL-mqw" id="j2H-Bi-wO5"/>
                         <outlet property="flightDirectionImageView" destination="Rny-Ev-VSQ" id="tjT-OO-7q1"/>
                         <outlet property="fromCityLabel" destination="Wsi-Zc-JHg" id="QFW-Rp-66B"/>
+                        <outlet property="fromCityUpperLabel" destination="xJs-oI-I3y" id="xTd-tB-2ie"/>
                         <outlet property="fromCityView" destination="uqd-qx-hIs" id="viH-9h-Voz"/>
                         <outlet property="infantCountLabel" destination="IPj-Vt-97T" id="4Q5-8p-FkG"/>
                         <outlet property="infantView" destination="Qec-ff-Wsu" id="2tl-Zo-Sxa"/>
@@ -665,6 +666,7 @@
                         <outlet property="returnDateView" destination="a23-aT-zB2" id="O4n-fm-EcC"/>
                         <outlet property="searchView" destination="px5-ga-7py" id="UmK-os-MiY"/>
                         <outlet property="toCityLabel" destination="kVR-Ol-2J9" id="pRZ-5X-m2D"/>
+                        <outlet property="toCityUpperLabel" destination="AKv-wc-cwh" id="yZX-Fr-esd"/>
                         <outlet property="toCityView" destination="Rx1-7s-0Xx" id="wYZ-Uf-BEI"/>
                     </connections>
                 </viewController>
