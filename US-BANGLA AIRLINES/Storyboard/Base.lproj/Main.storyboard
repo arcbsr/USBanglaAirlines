@@ -360,6 +360,41 @@
             </objects>
             <point key="canvasLocation" x="1787" y="832"/>
         </scene>
+        <!--Launch Animation View Controller-->
+        <scene sceneID="ZcW-PV-WHG">
+            <objects>
+                <viewController storyboardIdentifier="LaunchAnimationViewController" id="8jY-F8-VyX" customClass="LaunchAnimationViewController" customModule="US_BANGLA_AIRLINES" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mEH-CN-WIU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash02" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-rD-UR3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="kcj-mk-gv3">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8qz-w9-CLQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kcj-mk-gv3" firstAttribute="centerY" secondItem="mEH-CN-WIU" secondAttribute="centerY" id="LTq-ph-9me"/>
+                            <constraint firstItem="eoT-rD-UR3" firstAttribute="top" secondItem="mEH-CN-WIU" secondAttribute="top" id="N0n-Pl-zXP"/>
+                            <constraint firstAttribute="bottom" secondItem="eoT-rD-UR3" secondAttribute="bottom" id="Trj-RU-cCY"/>
+                            <constraint firstItem="eoT-rD-UR3" firstAttribute="leading" secondItem="mEH-CN-WIU" secondAttribute="leading" id="VEG-iH-Gf0"/>
+                            <constraint firstAttribute="trailing" secondItem="eoT-rD-UR3" secondAttribute="trailing" id="fIq-Xh-bpK"/>
+                            <constraint firstItem="kcj-mk-gv3" firstAttribute="centerX" secondItem="mEH-CN-WIU" secondAttribute="centerX" id="jSR-JH-64X"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="kcj-mk-gv3" id="48n-Pq-jZ2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ulc-Zt-xo8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-678.26086956521749" y="125.89285714285714"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tz6-iQ-P7q">
             <objects>
@@ -1106,6 +1141,7 @@
         <image name="manage_booking_button" width="535" height="147"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
         <image name="skystar_button" width="535" height="215"/>
+        <image name="splash02" width="1080" height="1920"/>
         <image name="web_check_in_button" width="533" height="147"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

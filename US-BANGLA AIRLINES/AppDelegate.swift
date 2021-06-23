@@ -28,6 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         clearKingfisherCachedImages()
         
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LaunchAnimationViewController") as? LaunchAnimationViewController{
+            window?.rootViewController = vc
+            window?.makeKeyAndVisible()
+        }
+        
         return true
     }
 
