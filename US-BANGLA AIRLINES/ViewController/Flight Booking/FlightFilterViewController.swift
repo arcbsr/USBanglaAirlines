@@ -450,10 +450,38 @@ class FlightFilterViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    func verfiyInput() -> Bool{
+        let adultCount = Int(adultCountLabel.text ?? "0") ?? 0
+        let childCount = Int(childCountLabel.text ?? "0") ?? 0
+        let infantCount = Int(infantCountLabel.text ?? "0") ?? 0
+        let total = adultCount + childCount + infantCount
+        if total > 9{
+            showAlert(title: "You cannot select more than 9 passengers. Please try again", message: nil)
+            return false
+        }
+        
+        if adultCount < 1{
+            showAlert(title: "Children or Infant must be accompanied by an adult. Please try again", message: nil)
+            return false
+        }
+        
+        if infantCount > adultCount{
+            showAlert(title: "There can't be more infants than adults. Please try again", message: nil)
+            return false
+        }
+        
+        return true
+    }
+    
     @objc func searchFlightTapped(){
         //        if let vc = UIStoryboard(name: "PassengerInfo", bundle: nil).instantiateViewController(withIdentifier: "InputPassengerInfoViewController") as? InputPassengerInfoViewController{
         //            self.navigationController?.pushViewController(vc, animated: true)
         //        }
+        
+        if verfiyInput() == false{
+            return
+        }
+        
         if oneWayCheckbox.checkState == .checked{
             if validateOneWayFlight(){
                 searchOneWayFlight()
