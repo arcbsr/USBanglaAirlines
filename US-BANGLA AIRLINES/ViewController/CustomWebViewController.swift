@@ -17,13 +17,13 @@ class CustomWebViewController: UIViewController {
         }
     }
     
-    let skyStarLoginUrl = "https://fo-asia.ttinteractive.com/Zenith/FrontOffice/usbangla/en-GB/Customer/Login"
-    let skyStarSignupUrl = "http://fo-asia.ttinteractive.com/Zenith/FrontOffice/usbangla/en-GB/Customer/CreateFFP"
-    let manageBookingUrl = "http://fo-asia.ttinteractive.com/Zenith/FrontOffice/usbangla/Home/FindBooking"
+    let skyStarLoginUrl = "https://usbair.com/app/skystar.php"
+    let skyStarSignupUrl = "https://usbair.com/app/skystar.php"
+    let manageBookingUrl = "https://usbair.com/app/managebooking.php"
     let holidayUrl = "https://usbair.com/app/tourpackage.php"
     let hotlineUrl = "https://usbair.com/app/hotline.php"
-    let flightScheduleUrl = "https://usbair.com/app/flightschedule.php"
-    let webCheckInUrl = "https://fo-asia.ttinteractive.com/Zenith/FrontOffice/USbangla/en-GB/Home/FindBooking?findbookingmode=WebCheckin"
+    let flightScheduleUrl = "https://usbair.com/app/flightstatus.php"
+    let webCheckInUrl = "https://usbair.com/app/webcheckin.php"
     let liveFlightSearch = "https://fo-asia.ttinteractive.com/Zenith/FrontOffice/USBangla/en-GB/FlightStatusSearch/FlightStatus"
     let myBooking = "http://fo-asia.ttinteractive.com/Zenith/FrontOffice/usbangla/Home/FindBooking"
     let salesOffice = "https://usbair.com/app/hotline.php"
@@ -61,7 +61,7 @@ class CustomWebViewController: UIViewController {
             navigationItem.title = "MANAGE BOOKING"
         case .flightSchedule:
             urlString = flightScheduleUrl
-            navigationItem.title = "FLIGHT SCHEDULES"
+            navigationItem.title = "FLIGHT STATUS"
         case .webCheckIn:
             urlString = webCheckInUrl
             navigationItem.title = "WEB CHECK-IN"
