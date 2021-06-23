@@ -99,7 +99,7 @@ class BookingConfirmationViewController: UIViewController {
     // for iPhone
     var shiftX: CGFloat = -400
     
-    var sideMenutitleArray: NSArray = ["BOOK A FLIGHT", "MY BOOKING" ,"WEB CHECK-IN" ,"MANAGE BOOKING", "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "SALES OFFICE", "CONTACT US"]
+    var sideMenutitleArray: NSArray = ["BOOK A FLIGHT", "MANAGE BOOKING", "MY BOOKING" ,"WEB CHECK-IN" , "HOLIDAYS", "FLIGHT SCHEDULE", "SKY STAR", "SALES OFFICE", "CONTACT US"]
     var sideMenuImgArray = [UIImage(named: "Flight")!, UIImage(named: "Manage-Booking")!, UIImage(named: "Manage-Booking")!,  UIImage(named: "Manage-Booking")!, UIImage(named: "Holiday_Tree")!, UIImage(named: "clock")!, UIImage(named: "Sky-Star")!, UIImage(named: "Sales-Office")!, UIImage(named: "Contact")!]
     let BOOK_FLIGHT_SECTION = 0
     let MY_BOOKING_SECTION = 1
