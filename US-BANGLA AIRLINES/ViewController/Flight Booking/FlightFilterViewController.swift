@@ -299,6 +299,7 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func returnOptionTapped(){
+        flightDirectionImageView.image = UIImage(named: "ic_return")
         oneWayCheckbox.checkState = .unchecked
         returnCheckbox.setCheckState(.checked, animated: true)
         returnCabinClassView.isHidden = false
@@ -306,6 +307,7 @@ class FlightFilterViewController: UIViewController {
     }
     
     @objc func oneWayOptionTapped(){
+        flightDirectionImageView.image = UIImage(named: "ic_one_way")
         returnCheckbox.checkState = .unchecked
         oneWayCheckbox.setCheckState(.checked, animated: true)
         returnCabinClassView.isHidden = true
