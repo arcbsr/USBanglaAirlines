@@ -1418,7 +1418,7 @@ extension FlightFilterViewController{
                     
                     for itinerary in itineraries{
                         let forwardSegRef = itinerary.airOriginDestinations?.first?.airCoupons?.first?.refSegment ?? ""
-                        let backwardSegRef = itinerary.airOriginDestinations?.first?.airCoupons?.last?.refSegment ?? ""
+                        let backwardSegRef = itinerary.airOriginDestinations?.last?.airCoupons?.first?.refSegment ?? ""
                         
                         if let forwardFlightInfo = GlobalItems.segmentRefInfoDictinary[forwardSegRef], let backwardFlightInfo = GlobalItems.segmentRefInfoDictinary[backwardSegRef], let saleCurrencyAmount = itinerary.saleCurrencyAmount {
                             
@@ -1429,7 +1429,7 @@ extension FlightFilterViewController{
                             saleCurrencyAmount.itineraryRef = itinerary.ref ?? ""
                             
                             let forwardIsBusiness = itinerary.airOriginDestinations?.first?.airCoupons?.first?.isBusiness ?? false
-                            let backwardIsBusiness = itinerary.airOriginDestinations?.first?.airCoupons?.last?.isBusiness ?? false
+                            let backwardIsBusiness = itinerary.airOriginDestinations?.last?.airCoupons?.first?.isBusiness ?? false
                             
                             if forwardType == "BUSINESS" && backwardType == "BUSINESS"{
                                 if forwardIsBusiness && backwardIsBusiness{
@@ -1500,6 +1500,10 @@ extension FlightFilterViewController{
                 self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
                 print("error = \(error)")
             }
-        })
+        }).responseJSON { (response) in
+            print("\n\n---------------")
+            print(response)
+            print("\n\n---------------")
+        }
     }
 }
