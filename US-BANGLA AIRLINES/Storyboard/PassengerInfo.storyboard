@@ -1990,11 +1990,23 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvV-pG-gN9">
-                                <rect key="frame" x="241.5" y="2891.5" width="164.5" height="18.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n25-4Y-oeI">
+                                <rect key="frame" x="274" y="2886" width="132" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title=" Terms and Conditions" image="square" catalog="system">
+                                <state key="normal" title="general terms of sell">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="TermsLinkButtonTapped:" destination="nDy-6p-5xZ" eventType="touchUpInside" id="w2Z-tc-Air"/>
+                                    <action selector="termsAndConditionsButtonTapped:" destination="nDy-6p-5xZ" eventType="touchUpInside" id="Edc-8Y-NNA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvV-pG-gN9">
+                                <rect key="frame" x="170.5" y="2891.5" width="99.5" height="18.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title=" I accept the" image="square" catalog="system">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
@@ -2044,13 +2056,16 @@
                             <constraint firstItem="o4u-mI-u1d" firstAttribute="top" secondItem="h4Y-Ka-U2H" secondAttribute="bottom" id="N65-BE-eaf"/>
                             <constraint firstAttribute="trailing" secondItem="Li0-9I-nS6" secondAttribute="trailing" id="Ovk-5G-Riz"/>
                             <constraint firstItem="osd-Fi-MZd" firstAttribute="bottom" secondItem="7jH-8t-jXS" secondAttribute="bottom" constant="100" id="Pb1-yG-yzQ"/>
-                            <constraint firstItem="osd-Fi-MZd" firstAttribute="trailing" secondItem="fvV-pG-gN9" secondAttribute="trailing" constant="8" id="Qow-4v-DQ5"/>
                             <constraint firstItem="Li0-9I-nS6" firstAttribute="trailing" secondItem="osd-Fi-MZd" secondAttribute="trailing" id="VTt-Ue-hL2"/>
                             <constraint firstItem="osd-Fi-MZd" firstAttribute="bottom" secondItem="Li0-9I-nS6" secondAttribute="bottom" constant="8" id="aBK-ds-1lQ"/>
                             <constraint firstItem="o4u-mI-u1d" firstAttribute="leading" secondItem="osd-Fi-MZd" secondAttribute="leading" id="ctI-UD-8sw"/>
+                            <constraint firstItem="n25-4Y-oeI" firstAttribute="centerY" secondItem="fvV-pG-gN9" secondAttribute="centerY" id="eZ6-C4-Sfv"/>
                             <constraint firstItem="osd-Fi-MZd" firstAttribute="trailing" secondItem="o4u-mI-u1d" secondAttribute="trailing" id="fvR-fN-N5I"/>
+                            <constraint firstItem="Li0-9I-nS6" firstAttribute="leading" secondItem="7ct-FO-rUP" secondAttribute="trailing" constant="-182" id="gEf-bU-Z6H"/>
                             <constraint firstItem="h4Y-Ka-U2H" firstAttribute="leading" secondItem="osd-Fi-MZd" secondAttribute="leading" id="r6p-ip-R4N"/>
                             <constraint firstItem="h4Y-Ka-U2H" firstAttribute="top" secondItem="osd-Fi-MZd" secondAttribute="top" id="sLt-2t-YLK"/>
+                            <constraint firstItem="osd-Fi-MZd" firstAttribute="trailing" secondItem="n25-4Y-oeI" secondAttribute="trailing" constant="8" id="skS-Xh-GyW"/>
+                            <constraint firstItem="n25-4Y-oeI" firstAttribute="leading" secondItem="fvV-pG-gN9" secondAttribute="trailing" constant="4" id="xAJ-bd-09c"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="3000"/>
@@ -2064,6 +2079,7 @@
                         <outlet property="notificationImageView" destination="GRz-FY-gfa" id="aJe-d9-WCz"/>
                         <outlet property="tableView" destination="o4u-mI-u1d" id="eX6-Gm-L6b"/>
                         <outlet property="termsAndConditionsButton" destination="fvV-pG-gN9" id="tVt-zC-dQW"/>
+                        <outlet property="termsLinkButton" destination="n25-4Y-oeI" id="lNj-A4-LXW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0e-TN-EtT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

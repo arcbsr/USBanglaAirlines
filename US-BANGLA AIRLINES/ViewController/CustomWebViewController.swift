@@ -27,6 +27,8 @@ class CustomWebViewController: UIViewController {
     let liveFlightSearch = "https://fo-asia.ttinteractive.com/Zenith/FrontOffice/USBangla/en-GB/FlightStatusSearch/FlightStatus"
     let myBooking = "http://fo-asia.ttinteractive.com/Zenith/FrontOffice/usbangla/Home/FindBooking"
     let salesOffice = "https://usbair.com/app/hotline.php"
+
+    let termsAndConditionUrl = "https://usbair.com/assets/frontend/img/travel_info/USBA_Ticketing_Terms_And_Condition.pdf"
     
     var redirectURL = "https://google.com"
     var courseUid = "https://usbair.com/app/hotline.php"
@@ -74,6 +76,9 @@ class CustomWebViewController: UIViewController {
         case .discountNotification:
             urlString = discountNotificationUrl
             navigationItem.title = "NOTIFICATION"
+        case .termsAndCondition:
+            urlString = termsAndConditionUrl
+            navigationItem.title = "TERMS AND CONDITIONS"
         default:
             break
         }

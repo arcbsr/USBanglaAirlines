@@ -18,6 +18,13 @@ class InputPassengerInfoViewController: UIViewController {
             createBookingButton.backgroundColor = CustomColor.secondaryColor
         }
     }
+    @IBOutlet weak var termsLinkButton: UIButton!{
+        didSet{
+            termsLinkButton.setTitleColor(CustomColor.primaryColor, for: .normal)
+            let attributedText = NSAttributedString(string: "general terms of sell", attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular), .underlineStyle: NSUnderlineStyle.single.rawValue])
+            termsLinkButton.setAttributedTitle(attributedText, for: .normal)
+        }
+    }
     @IBOutlet weak var termsAndConditionsButton: UIButton!
     @IBOutlet weak var makePaymentButton: UIButton!{
         didSet{
@@ -106,6 +113,7 @@ class InputPassengerInfoViewController: UIViewController {
     var isTermsAndConditionSelected = false
     var isLocalFlight = false
     var monthDictionary = ["JAN": "01", "FEB": "02", "MAR": "03", "APR": "04", "MAY": "05", "JUN": "06", "JUL": "07", "AUG": "08", "SEP": "09", "OCT": "10", "NOV": "11", "DEC": "12"]
+    var termsAndCondtionLink = "https://usbair.com/assets/frontend/img/travel_info/USBA_Ticketing_Terms_And_Condition.pdf"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,6 +177,10 @@ class InputPassengerInfoViewController: UIViewController {
         }else{
             termsAndConditionsButton.setImage(UIImage.init(systemName: "square"), for: .normal) // square/checkmark.square.fill
         }
+    }
+    
+    @IBAction func TermsLinkButtonTapped(_ sender: Any) {
+        toWebView(type: .termsAndCondition)
     }
     
     @IBAction func holdBookingTapped(_ sender: Any) {
