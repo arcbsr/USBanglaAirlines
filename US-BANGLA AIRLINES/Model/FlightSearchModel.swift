@@ -166,7 +166,7 @@ class Passenger: Mappable {
     var phoneCode = "+880"
     var countryCode = "BD"
     var phoneNumberWithoutCountryCode = ""
-//    var phoneNumber = ""
+    //    var phoneNumber = ""
     var passportNumber = ""
     var emailAddress = ""
     var country = "Bangladesh"
@@ -217,7 +217,7 @@ class FareInfo: Mappable {
     
     var eTTicketFares: [ETTicketFare]?
     var extensions: String?
-    //    var fareRules: [FareRule]?
+    var fareRules: [FareRule]?
     var itineraries: [Itinerary]?
     var saleCurrencyCode: String?
     
@@ -228,7 +228,7 @@ class FareInfo: Mappable {
     func mapping(map: Map) {
         eTTicketFares <- map["ETTicketFares"]
         extensions <- map["Extensions"]
-        //        fareRules <- map["FareRules"]
+        fareRules <- map["FareRules"]
         itineraries <- map["Itineraries"]
         saleCurrencyCode <- map["SaleCurrencyCode"]
     }
@@ -350,29 +350,29 @@ class AirCoupon: Mappable {
 }
 
 
-class FareRule: Mappable {
-    
-    var details: String?
-    var extensions: String?
-    var fareConditionText: String?
-    var ref: String?
-    var voluntaryChangeCode: String?
-    var voluntaryRefundCode: String?
-    
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
-    func mapping(map: Map) {
-        details <- map["Details"]
-        extensions <- map["Extensions"]
-        fareConditionText <- map["FareConditionText"]
-        ref <- map["Ref"]
-        voluntaryChangeCode <- map["VoluntaryChangeCode"]
-        voluntaryRefundCode <- map["VoluntaryRefundCode"]
-    }
-    
-}
+//class FareRule: Mappable {
+//
+//    var details: String?
+//    var extensions: String?
+//    var fareConditionText: String?
+//    var ref: String?
+//    var voluntaryChangeCode: String?
+//    var voluntaryRefundCode: String?
+//
+//    required convenience init?(map: Map) {
+//        self.init()
+//    }
+//
+//    func mapping(map: Map) {
+//        details <- map["Details"]
+//        extensions <- map["Extensions"]
+//        fareConditionText <- map["FareConditionText"]
+//        ref <- map["Ref"]
+//        voluntaryChangeCode <- map["VoluntaryChangeCode"]
+//        voluntaryRefundCode <- map["VoluntaryRefundCode"]
+//    }
+//
+//}
 
 
 class ETTicketFare: Mappable {

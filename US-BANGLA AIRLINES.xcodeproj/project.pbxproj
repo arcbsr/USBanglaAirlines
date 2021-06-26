@@ -54,6 +54,7 @@
 		8EA45AC5259A357E000DA006 /* BookingConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA45AC4259A357E000DA006 /* BookingConfirmationViewController.swift */; };
 		8EAD21282675177200592DD1 /* SSLCommerzSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAD21262675175900592DD1 /* SSLCommerzSDK.framework */; };
 		8EAD21292675177200592DD1 /* SSLCommerzSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAD21262675175900592DD1 /* SSLCommerzSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8EAFAAA226874B900049742D /* PrepareFlightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAFAAA126874B900049742D /* PrepareFlightModel.swift */; };
 		8EB9C777259CA3B20080125B /* OtherPassengerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9C776259CA3B20080125B /* OtherPassengerCell.swift */; };
 		8EB9C779259CA3C60080125B /* LeadPassengerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9C778259CA3C60080125B /* LeadPassengerCell.swift */; };
 		8EC85DCC259A6BD200DD1EFC /* OneWayFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC85DCB259A6BD200DD1EFC /* OneWayFlightViewController.swift */; };
@@ -155,6 +156,7 @@
 		8EA45AC2259A3567000DA006 /* InputPassengerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPassengerInfoViewController.swift; sourceTree = "<group>"; };
 		8EA45AC4259A357E000DA006 /* BookingConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingConfirmationViewController.swift; sourceTree = "<group>"; };
 		8EAD21262675175900592DD1 /* SSLCommerzSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SSLCommerzSDK.framework; sourceTree = "<group>"; };
+		8EAFAAA126874B900049742D /* PrepareFlightModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareFlightModel.swift; sourceTree = "<group>"; };
 		8EB9C776259CA3B20080125B /* OtherPassengerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherPassengerCell.swift; sourceTree = "<group>"; };
 		8EB9C778259CA3C60080125B /* LeadPassengerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadPassengerCell.swift; sourceTree = "<group>"; };
 		8EC85DCB259A6BD200DD1EFC /* OneWayFlightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWayFlightViewController.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				8E7DF23725B0D03300283A71 /* FlightSearchModel.swift */,
 				8E644EA525CD6A9800EF61D8 /* OfferPlaceModel.swift */,
 				8EE7850C25E53B8400995033 /* CreateBookingModel.swift */,
+				8EAFAAA126874B900049742D /* PrepareFlightModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				8E4B43122596091700B35133 /* HomeViewController.swift in Sources */,
 				8EA45AC5259A357E000DA006 /* BookingConfirmationViewController.swift in Sources */,
 				8E4B431825960B0B00B35133 /* Helper.swift in Sources */,
+				8EAFAAA226874B900049742D /* PrepareFlightModel.swift in Sources */,
 				8E2BB8DE25D8447E0023A425 /* Locale+Extensions.swift in Sources */,
 				8E470740259BB0B900BFF8A2 /* ReturnFlightCell.swift in Sources */,
 				8E2BB8D525D8447E0023A425 /* LocaleStore.swift in Sources */,

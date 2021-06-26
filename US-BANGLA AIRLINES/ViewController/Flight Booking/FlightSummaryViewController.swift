@@ -20,6 +20,12 @@ class FlightSummaryViewController: UIViewController {
             bookNowButton.setAttributedTitle(attributedText, for: .normal)
         }
     }
+    @IBOutlet weak var fareAndBaggageRulesView: UIView!{
+        didSet{
+            fareAndBaggageRulesView.isUserInteractionEnabled = true
+            fareAndBaggageRulesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fareAndBaggageRulesTapped)))
+        }
+    }
     @IBOutlet weak var flightIdLabel: UILabel!
     @IBOutlet weak var flightNameLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
@@ -114,6 +120,7 @@ class FlightSummaryViewController: UIViewController {
     var backwardFlightClass = ""
     var flightClass = ""
     var selectedCurrency = ""
+    var prepareFlightInfo: PrepareFlight?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,6 +155,12 @@ class FlightSummaryViewController: UIViewController {
         sideBarSetup(willChangeState: true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        prepareFlight()
+    }
+    
     @IBAction func proceedButtonTapped(_ sender: UIButton) {
         if let vc = UIStoryboard(name: "PassengerInfo", bundle: nil).instantiateViewController(withIdentifier: "InputPassengerInfoViewController") as? InputPassengerInfoViewController{
             vc.passengers = passengers
@@ -168,6 +181,10 @@ class FlightSummaryViewController: UIViewController {
             vc.flightClass = self.flightClass
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @objc func fareAndBaggageRulesTapped(){
+        
     }
     
     func extractTicketInfo(){
@@ -508,6 +525,72 @@ extension FlightSummaryViewController: UITableViewDelegate, UITableViewDataSourc
         default:
             break
         }
+    }
+    
+}
+
+
+// MARK: API CALL
+extension FlightSummaryViewController{
+    
+    func prepareFlight() {
+        
+        //            let headers: HTTPHeaders = [
+        //                "Authorization": "token \(UserInfo.token)"
+        //            ]
+        
+        //        let requestInfo: Parameters = [
+        //            //            "AuthenticationKey": "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U",
+        //                        "AuthenticationKey": "_JEAAAABWU_EYtV0PDQ5AefVBXqTISe7_EqErTgeZryEzUyElkoBqCSdJh8UQdKZLhbSW62OVwi7Ix58ZnGrS9CBDxSnz7g_U",
+        //                        "CultureName": "en-GB"
+        //        ]
+        
+        let requestInfo: Parameters = [
+            "AuthenticationKey": GlobalItems.getAuthKey(),
+            "CultureName": "en-GB"
+        ]
+        
+        let offerParams: Parameters = [
+            "RefItinerary": selectedItiRef,
+            "Ref": offer?.ref ?? ""
+        ]
+        
+        let request: Parameters = [
+            "RequestInfo": requestInfo,
+            "Offer": offerParams
+        ]
+        
+        let params: Parameters = [
+            "request": request
+        ]
+        
+        guard let url = URL(string: "\(GlobalItems.getBaseUrl())/Zenith/TTI.PublicApi.Services/JsonSaleEngineService.svc/PrepareFlights") else{
+            return
+        }
+        
+        print("url: \(url) params \(params)")
+        
+        SVProgressHUD.show()
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<PrepareFlight>) in
+            print("=== response = \(response)")
+            
+            if SVProgressHUD.isVisible(){
+                SVProgressHUD.dismiss()
+            }
+            
+            guard let statusCode = response.response?.statusCode else{
+                return
+            }
+            print("statusCode = \(statusCode)")
+            switch response.result {
+            case .success:
+                self.prepareFlightInfo = response.result.value
+                print("")
+            case .failure(let error):
+                print("error = \(error)")
+            }
+        })
     }
     
 }
