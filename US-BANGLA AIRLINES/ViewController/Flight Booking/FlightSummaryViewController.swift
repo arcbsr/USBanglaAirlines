@@ -121,6 +121,8 @@ class FlightSummaryViewController: UIViewController {
     var flightClass = ""
     var selectedCurrency = ""
     var prepareFlightInfo: PrepareFlight?
+    var fareAndBaggageRules = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,7 +186,27 @@ class FlightSummaryViewController: UIViewController {
     }
     
     @objc func fareAndBaggageRulesTapped(){
+//        showAlert(title: "Fare and Baggage Rules", message: fareAndBaggageRules)
         
+        let alertController = UIAlertController(title: "Fare and Baggage Rules", message: "Terms and Condition", preferredStyle: .alert)
+           let OKAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+               alertController.dismiss(animated: true, completion: nil)
+           }
+           alertController.addAction(OKAction)
+
+           let paragraphStyle = NSMutableParagraphStyle()
+           paragraphStyle.alignment = NSTextAlignment.left
+
+           let messageText = NSMutableAttributedString(
+               string: fareAndBaggageRules,
+               attributes: [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13.0)
+               ]
+           )
+
+           alertController.setValue(messageText, forKey: "attributedMessage")
+           self.present(alertController, animated: true, completion: nil)
     }
     
     func extractTicketInfo(){
@@ -296,6 +318,22 @@ class FlightSummaryViewController: UIViewController {
         let total = totalWithoutDiscount - discount
         discountLabel.text = "\(selectedCurrency) \(discount)"
         totalFareLabel.text = "\(selectedCurrency) \(total)"
+    }
+    
+    func readyFareAndBaggageRules(){
+        let fareConditionText = prepareFlightInfo?.fareInfo?.fareRules?.first?.fareConditionText
+        fareAndBaggageRules = "\(fareConditionText?.text ?? "") : \(fareConditionText?.value ?? "")"
+        guard let children = fareConditionText?.children else{
+            return
+        }
+        for child in children{
+            fareAndBaggageRules +=  "\n- \(child.text ?? "") : \(child.value ?? "")"
+            if let subChildren = child.children{
+                for subchild in subChildren{
+                    fareAndBaggageRules +=  "\n  • \(subchild.text ?? "") : \(subchild.value ?? "")" // ୦
+                }
+            }
+        }
     }
     
     func toWebView(type: GivenOption){
@@ -586,7 +624,7 @@ extension FlightSummaryViewController{
             switch response.result {
             case .success:
                 self.prepareFlightInfo = response.result.value
-                print("")
+                self.readyFareAndBaggageRules()
             case .failure(let error):
                 print("error = \(error)")
             }

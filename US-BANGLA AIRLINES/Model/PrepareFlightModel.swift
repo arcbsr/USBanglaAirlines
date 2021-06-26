@@ -114,7 +114,7 @@ class FareConditionText : Mappable {
 class Children : Mappable {
     var text : String?
     var value : String?
-    var children : [String]?
+    var children : [Children]?
     var extensions : String?
     
     required convenience init?(map: Map) {
