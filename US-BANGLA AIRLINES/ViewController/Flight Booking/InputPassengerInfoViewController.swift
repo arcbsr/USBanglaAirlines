@@ -848,6 +848,12 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.selectedExpireYear = { item in
                         self.computedPassengers[indexPath.row].expireYear = item
                     }
+                    cell.selectedDocumentType = { (key, val) in
+                        self.computedPassengers[indexPath.row].documentTypeKey = key
+                        self.computedPassengers[indexPath.row].documentTypeValue = val
+                        UserDefaults.standard.setValue(key, forKey: "documentTypeKey")
+                        UserDefaults.standard.setValue(val, forKey: "documentTypeValue")
+                    }
                     cell.selectedDocumentNumer = { item in
                         self.computedPassengers[indexPath.row].documentNumber = item
                     }
@@ -1103,13 +1109,13 @@ extension InputPassengerInfoViewController{
                         self.navigationController?.pushViewController(vc)
                     }
                 }else{
-                    self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
+                    self.showAlert(title: "Something went wrong! Please provide accurate information", message: nil, callback: nil)
                 }
             case .failure(let error):
                 //                if SVProgressHUD.isVisible(){
                 //                    SVProgressHUD.dismiss()
                 //                }
-                self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
+                self.showAlert(title: "Something went wrong! Please provide accurate information", message: nil, callback: nil)
                 print("error = \(error)")
             }
         }).responseJSON { (json) in
