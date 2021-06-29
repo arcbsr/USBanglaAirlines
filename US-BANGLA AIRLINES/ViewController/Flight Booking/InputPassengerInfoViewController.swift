@@ -996,7 +996,7 @@ extension InputPassengerInfoViewController{
                 let documentsParam: Parameters = [
                     "IssueCountryCode": passenger.countryCode,
                     "NationalityCountryCode": passenger.countryCode,
-                    "DocumentIssuingCountry": passenger.country,
+                    "DocumentIssuingCountry": passenger.documentIssuanceCountry,
                     "Nationality": passenger.country,
                     "DateOfBirth": dob,
                     "Gender": gender,
@@ -1080,27 +1080,30 @@ extension InputPassengerInfoViewController{
             switch response.result {
             case .success:
                 print("")
-                let pnrInfo = response.result.value?.booking?.pnrInformation
-                if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
-                    vc.isLocalFlight = self.isLocalFlight
-                    vc.pnrInfo = pnrInfo
-                    vc.passengers = self.computedPassengers
-                    vc.offer = self.offer
-                    vc.eTTicketFares = self.eTTicketFares
-                    vc.oneWayflight = self.oneWayflight
-                    vc.returnFlight = self.returnFlight
-                    vc.selectedItiRef = self.selectedItiRef
-                    vc.fromTime = self.fromTime
-                    vc.toTime = self.toTime
-                    vc.fromCityCode = self.fromCityCode
-                    vc.toCityCode = self.toCityCode
-                    vc.fromCity = self.fromCity
-                    vc.toCity = self.toCity
-                    vc.forwardFlightClass = self.forwardFlightClass
-                    vc.backwardFlightClass = self.backwardFlightClass
-                    vc.selectedCurrency = self.selectedCurrency
-                    vc.flightClass = self.flightClass
-                    self.navigationController?.pushViewController(vc)
+                if let pnrInfo = response.result.value?.booking?.pnrInformation{
+                    if let vc = UIStoryboard(name: "FlightBookingPart2", bundle: nil).instantiateViewController(withIdentifier: "BookingConfirmationViewController") as? BookingConfirmationViewController{
+                        vc.isLocalFlight = self.isLocalFlight
+                        vc.pnrInfo = pnrInfo
+                        vc.passengers = self.computedPassengers
+                        vc.offer = self.offer
+                        vc.eTTicketFares = self.eTTicketFares
+                        vc.oneWayflight = self.oneWayflight
+                        vc.returnFlight = self.returnFlight
+                        vc.selectedItiRef = self.selectedItiRef
+                        vc.fromTime = self.fromTime
+                        vc.toTime = self.toTime
+                        vc.fromCityCode = self.fromCityCode
+                        vc.toCityCode = self.toCityCode
+                        vc.fromCity = self.fromCity
+                        vc.toCity = self.toCity
+                        vc.forwardFlightClass = self.forwardFlightClass
+                        vc.backwardFlightClass = self.backwardFlightClass
+                        vc.selectedCurrency = self.selectedCurrency
+                        vc.flightClass = self.flightClass
+                        self.navigationController?.pushViewController(vc)
+                    }
+                }else{
+                    self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
                 }
             case .failure(let error):
                 //                if SVProgressHUD.isVisible(){
