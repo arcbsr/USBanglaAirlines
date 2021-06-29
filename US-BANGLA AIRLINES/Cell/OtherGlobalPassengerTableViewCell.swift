@@ -11,6 +11,7 @@ import DropDown
 
 
 class OtherGlobalPassengerTableViewCell: UITableViewCell {
+    @IBOutlet weak var documentDetailsTitleLabel: UILabel!
     @IBOutlet weak var passengerTypeLabel: UILabel!
     @IBOutlet weak var titleSelectionView: UIView!{
         didSet{
@@ -18,6 +19,13 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
             titleSelectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(titleViewTapped)))
         }
     }
+    @IBOutlet weak var documentTypeSelectionView: UIView!{
+        didSet{
+            documentTypeSelectionView.isUserInteractionEnabled = true
+            documentTypeSelectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(documentTypeViewTapped)))
+        }
+    }
+    @IBOutlet weak var documentTypeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var firstNameTextField: UITextField!{
         didSet{
@@ -39,15 +47,39 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var expireDateButton: UIButton!
-    @IBOutlet weak var expireMonthButton: UIButton!
-    @IBOutlet weak var expireYearButton: UIButton!
-    @IBOutlet weak var passportNumberTextField: UITextField!{
+    @IBOutlet weak var nationalityLabel: UILabel!
+    @IBOutlet weak var nationalitySelectionView: UIView!{
         didSet{
-            passportNumberTextField.delegate = self
+            nationalitySelectionView.isUserInteractionEnabled = true
+            nationalitySelectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nationalitySelectionViewTapped)))
+        }
+    }
+    @IBOutlet weak var birthplaceLabel: UILabel!
+    @IBOutlet weak var birthplaceSelectionView: UIView!{
+        didSet{
+            birthplaceSelectionView.isUserInteractionEnabled = true
+            birthplaceSelectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(birthpalceSelectionViewTapped)))
+        }
+    }
+    @IBOutlet weak var documentIssuanceCountryLabel: UILabel!
+    @IBOutlet weak var documentIssunaceCountrySelectionView: UIView!{
+        didSet{
+            documentIssunaceCountrySelectionView.isUserInteractionEnabled = true
+            documentIssunaceCountrySelectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(documentIssuanceCountrySelectionViewTapped)))
         }
     }
     
+    @IBOutlet weak var expireDateButton: UIButton!
+    @IBOutlet weak var expireMonthButton: UIButton!
+    @IBOutlet weak var expireYearButton: UIButton!
+    @IBOutlet weak var documentNumberTextField: UITextField!{
+        didSet{
+            documentNumberTextField.delegate = self
+        }
+    }
+    
+    var documentTypeArray = ["Passport", "Driving license", "ID Card", "Visa"]
+    var documentTypeKeys = ["PP", "DL", "ID", "VISA"]
     var tiltleArray = ["MR", "MRS", "MISS", "MS", "MSTR"]
     var days = [String]()
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
@@ -61,14 +93,18 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
     var selectedExpireMonth: ((_ item: String)->())?
     var selectedExpireYear:((_ item: String)->())?
     var selectedTitle: ((_ item: String)->())?
+    var selectedDocumentType:  ((_ key: String, _ val: String)->())?
     var selectedPhoneCode: ((_ item: String)->())?
     var selectedPhoneNumber: ((_ item: String)->())?
-    var selectedPassportNumer: ((_ item: String)->())?
+    var selectedDocumentNumer: ((_ item: String)->())?
     var selectedFirstName: ((_ item: String)->())?
     var selectedLastName: ((_ item: String)->())?
     var selectedCountry: ((_ name: String, _ code: String)->())?
     var selectedFFPNumber: ((_ item: String)->())?
     var selectedEmailAdress: ((_ item: String)->())?
+    var selectedNationality: ((_ name: String, _ code: String)->())?
+    var selectedBirthplace: ((_ name: String, _ code: String)->())?
+    var selectedDocumentIssuanceCountry: ((_ name: String, _ code: String)->())?
     
     
     override func awakeFromNib() {
@@ -171,6 +207,50 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
         dropDown.show()
     }
     
+    @objc func documentTypeViewTapped(){
+        let dropDown = DropDown()
+        dropDown.anchorView = documentTypeSelectionView
+        dropDown.dataSource = documentTypeArray
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            self?.documentTypeLabel.text = item
+            self?.selectedDocumentType?(self?.documentTypeKeys[index] ?? "", item)
+        }
+        dropDown.show()
+    }
+    
+    @objc func nationalitySelectionViewTapped(){
+        let alert = UIAlertController(style: .actionSheet, title: "Country")
+        alert.addLocalePicker(type: .country) { info in
+            self.nationalityLabel.text = info?.country ?? ""
+            self.selectedNationality?(info?.country ?? "", info?.code ?? "")
+        }
+        alert.addAction(title: "Cancel", style: .cancel)
+        let topVC = UIApplication.topViewController()
+        topVC?.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func birthpalceSelectionViewTapped(){
+        let alert = UIAlertController(style: .actionSheet, title: "Country")
+        alert.addLocalePicker(type: .country) { info in
+            self.birthplaceLabel.text = info?.country ?? ""
+            self.selectedBirthplace?(info?.country ?? "", info?.code ?? "")
+        }
+        alert.addAction(title: "Cancel", style: .cancel)
+        let topVC = UIApplication.topViewController()
+        topVC?.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func documentIssuanceCountrySelectionViewTapped(){
+        let alert = UIAlertController(style: .actionSheet, title: "Country")
+        alert.addLocalePicker(type: .country) { info in
+            self.documentIssuanceCountryLabel.text = info?.country ?? ""
+            self.selectedDocumentIssuanceCountry?(info?.country ?? "", info?.code ?? "")
+        }
+        alert.addAction(title: "Cancel", style: .cancel)
+        let topVC = UIApplication.topViewController()
+        topVC?.present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 
@@ -184,8 +264,8 @@ extension OtherGlobalPassengerTableViewCell: UITextFieldDelegate{
             selectedFirstName?(text)
         case lastNameTextField:
             selectedLastName?(text)
-        case passportNumberTextField:
-            selectedPassportNumer?(text)
+        case documentNumberTextField:
+            selectedDocumentNumer?(text)
         case ffpNumberTextField:
             selectedFFPNumber?(text)
         default:

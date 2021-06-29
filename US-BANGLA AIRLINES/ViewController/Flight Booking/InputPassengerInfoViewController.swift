@@ -212,11 +212,15 @@ class InputPassengerInfoViewController: UIViewController {
                     passenger.dobMonth = UserDefaults.standard.string(forKey: "dobMonth") ?? "MONTH"
                     passenger.dobYear = UserDefaults.standard.string(forKey: "dobYear") ?? "YEAR"
                     passenger.country = UserDefaults.standard.string(forKey: "country") ?? "Bangladesh"
+                    passenger.birthplace = UserDefaults.standard.string(forKey: "birthplace") ?? "Bangladesh"
+                    passenger.documentIssuanceCountry = UserDefaults.standard.string(forKey: "documentIssuanceCountry") ?? "Bangladesh"
                     passenger.phoneCode = UserDefaults.standard.string(forKey: "phoneCode") ?? "+880"
                     passenger.phoneNumberWithoutCountryCode = UserDefaults.standard.string(forKey: "phoneNumberWithoutCountryCode") ?? ""
                     passenger.emailAddress = UserDefaults.standard.string(forKey: "emailAddress") ?? ""
                     passenger.ffpNumber = UserDefaults.standard.string(forKey: "ffpNumber") ?? ""
-                    passenger.passportNumber = UserDefaults.standard.string(forKey: "passportNumber") ?? ""
+                    passenger.documentNumber = UserDefaults.standard.string(forKey: "documentNumber") ?? ""
+                    passenger.documentTypeValue = UserDefaults.standard.string(forKey: "documentTypeValue") ?? "Passport"
+                    passenger.documentTypeKey = UserDefaults.standard.string(forKey: "documentTypeKey") ?? "PP"
                     passenger.firstName = UserDefaults.standard.string(forKey: "firstName") ?? ""
                     passenger.lastName = UserDefaults.standard.string(forKey: "lastName") ?? ""
                 }else{
@@ -225,11 +229,15 @@ class InputPassengerInfoViewController: UIViewController {
                     passenger.dobMonth = "MONTH"
                     passenger.dobYear = "YEAR"
                     passenger.country = "Bangladesh"
+                    passenger.birthplace = "Bangladesh"
+                    passenger.documentIssuanceCountry = "Bangladesh"
                     passenger.phoneCode = "+880"
                     passenger.phoneNumberWithoutCountryCode = ""
+                    passenger.documentTypeKey = "PP"
+                    passenger.documentTypeValue = "Passport"
                     passenger.emailAddress = ""
                     passenger.ffpNumber = ""
-                    passenger.passportNumber = ""
+                    passenger.documentNumber = ""
                     passenger.firstName = ""
                     passenger.lastName = ""
                 }
@@ -268,8 +276,16 @@ class InputPassengerInfoViewController: UIViewController {
             return false
         }
         if isLocalFlight == false{
-            if passenger.passportNumber.isEmpty{
-                showAlert(title: "Passport number not added", message: nil, callback: nil)
+            if passenger.documentTypeValue.isEmpty{
+                showAlert(title: "Document type not selected", message: nil, callback: nil)
+                return false
+            }
+            if passenger.documentNumber.isEmpty{
+                showAlert(title: "Document number not added", message: nil, callback: nil)
+                return false
+            }
+            if passenger.documentIssuanceCountry.isEmpty{
+                showAlert(title: "Document issuance country not selected", message: nil, callback: nil)
                 return false
             }
             if passenger.expireDay == "DATE"{
@@ -516,7 +532,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                 if isLocalFlight{
                     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadPassengerCell.self)) as! LeadPassengerCell
                     cell.selectionStyle = .none
-                    cell.passengerTypeLabel.text = "PASSENGER 1-ADULT (LEAD)"
+                    cell.passengerTypeLabel.text = "ADULT - 1 (LEAD)"
                     
                     cell.titleLabel.text = computedPassengers[indexPath.row].title
                     cell.dobDateButton.setTitle(computedPassengers[indexPath.row].dobDay, for: .normal)
@@ -596,7 +612,8 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                 }else{
                     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadGlobalPassengerCell.self)) as! LeadGlobalPassengerCell
                     cell.selectionStyle = .none
-                    cell.passengerTypeLabel.text = "PASSENGER 1-ADULT (LEAD)"
+                    cell.passengerTypeLabel.text = "ADULT - 1 (LEAD)"
+                    cell.documentDetailsTitleLabel.text = "ADULT - 1 : DOCUMENT DETAILS"
                     
                     cell.titleLabel.text = computedPassengers[indexPath.row].title
                     cell.dobDateButton.setTitle(computedPassengers[indexPath.row].dobDay, for: .normal)
@@ -605,8 +622,11 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.expireDateButton.setTitle(computedPassengers[indexPath.row].expireDay, for: .normal)
                     cell.expireMonthButton.setTitle(computedPassengers[indexPath.row].expireMonth, for: .normal)
                     cell.expireYearButton.setTitle(computedPassengers[indexPath.row].expireYear, for: .normal)
-                    cell.passportNumberTextField.text = computedPassengers[indexPath.row].passportNumber
-                    cell.countryLabel.text = computedPassengers[indexPath.row].country
+                    cell.documentNumberTextField.text = computedPassengers[indexPath.row].documentNumber
+                    cell.nationalityLabel.text = computedPassengers[indexPath.row].country
+                    cell.birthplaceLabel.text = computedPassengers[indexPath.row].birthplace
+                    cell.documentIssuanceCountryLabel.text = computedPassengers[indexPath.row].documentIssuanceCountry
+                    cell.documentTypeLabel.text = computedPassengers[indexPath.row].documentTypeValue
                     cell.phoneCodeLabel.text = computedPassengers[indexPath.row].phoneCode
                     cell.phoneNumberTextField.text = computedPassengers[indexPath.row].phoneNumberWithoutCountryCode
                     cell.emailAddressTextField.text = computedPassengers[indexPath.row].emailAddress
@@ -642,9 +662,15 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                         self.computedPassengers[indexPath.row].expireYear = item
                         UserDefaults.standard.setValue(item, forKey: "expireYear")
                     }
-                    cell.selectedPassportNumer = { item in
-                        self.computedPassengers[indexPath.row].passportNumber = item
-                        UserDefaults.standard.setValue(item, forKey: "passportNumber")
+                    cell.selectedDocumentNumer = { item in
+                        self.computedPassengers[indexPath.row].documentNumber = item
+                        UserDefaults.standard.setValue(item, forKey: "documentNumber")
+                    }
+                    cell.selectedDocumentType = { (key, val) in
+                        self.computedPassengers[indexPath.row].documentTypeKey = key
+                        self.computedPassengers[indexPath.row].documentTypeValue = val
+                        UserDefaults.standard.setValue(key, forKey: "documentTypeKey")
+                        UserDefaults.standard.setValue(val, forKey: "documentTypeValue")
                     }
                     cell.selectedPhoneCode = { item in
                         self.computedPassengers[indexPath.row].phoneCode = item
@@ -654,10 +680,20 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                         self.computedPassengers[indexPath.row].phoneNumberWithoutCountryCode = item
                         UserDefaults.standard.setValue(item, forKey: "phoneNumberWithoutCountryCode")
                     }
-                    cell.selectedCountry = { item, code in
+                    cell.selectedNationality = { item, code in
                         self.computedPassengers[indexPath.row].country = item
                         self.computedPassengers[indexPath.row].countryCode = code
                         UserDefaults.standard.setValue(item, forKey: "country")
+                    }
+                    cell.selectedBirthplace = { item, code in
+                        self.computedPassengers[indexPath.row].birthplace = item
+                        //                        self.computedPassengers[indexPath.row].countryCode = code
+                        UserDefaults.standard.setValue(item, forKey: "birthplace")
+                    }
+                    cell.selectedDocumentIssuanceCountry = { item, code in
+                        self.computedPassengers[indexPath.row].documentIssuanceCountry = item
+                        //                        self.computedPassengers[indexPath.row].countryCode = code
+                        UserDefaults.standard.setValue(item, forKey: "documentIssuanceCountry")
                     }
                     cell.selectedFirstName = { item in
                         self.computedPassengers[indexPath.row].firstName = item
@@ -686,11 +722,11 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     let passenger = computedPassengers[indexPath.row]
                     
                     if passenger.passengerTypeCode == "AD"{
-                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-ADULT"
+                        cell.passengerTypeLabel.text = "ADULT - \(indexPath.row + 1)"
                     }else if passenger.passengerTypeCode == "CHD"{
-                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-CHILD"
+                        cell.passengerTypeLabel.text = "CHILD - \(indexPath.row + 1)"
                     }else{
-                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-INFANT"
+                        cell.passengerTypeLabel.text = "INFANT - \(indexPath.row + 1)"
                     }
                     
                     cell.titleLabel.text = computedPassengers[indexPath.row].title
@@ -764,11 +800,14 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     let passenger = computedPassengers[indexPath.row]
                     
                     if passenger.passengerTypeCode == "AD"{
-                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-ADULT"
+                        cell.passengerTypeLabel.text = "ADULT - \(indexPath.row + 1)"
+                        cell.documentDetailsTitleLabel.text = "ADULT - \(indexPath.row + 1) : DOCUMENT DETAILS"
                     }else if passenger.passengerTypeCode == "CHD"{
-                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-CHILD"
+                        cell.passengerTypeLabel.text = "CHILD - \(indexPath.row + 1)"
+                        cell.documentDetailsTitleLabel.text = "CHILD - \(indexPath.row + 1) : DOCUMENT DETAILS"
                     }else{
-                        cell.passengerTypeLabel.text = "PASSENGER \(indexPath.row + 1)-INFANT"
+                        cell.passengerTypeLabel.text = "INFANT - \(indexPath.row + 1)"
+                        cell.documentDetailsTitleLabel.text = "INFANT - \(indexPath.row + 1) : DOCUMENT DETAILS"
                     }
                     
                     cell.titleLabel.text = computedPassengers[indexPath.row].title
@@ -778,7 +817,8 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.expireDateButton.setTitle(computedPassengers[indexPath.row].expireDay, for: .normal)
                     cell.expireMonthButton.setTitle(computedPassengers[indexPath.row].expireMonth, for: .normal)
                     cell.expireYearButton.setTitle(computedPassengers[indexPath.row].expireYear, for: .normal)
-                    cell.passportNumberTextField.text = computedPassengers[indexPath.row].passportNumber
+                    cell.documentNumberTextField.text = computedPassengers[indexPath.row].documentNumber
+                    cell.documentTypeLabel.text = computedPassengers[indexPath.row].documentTypeValue
                     //                    cell.countryLabel.text = computedPassengers[indexPath.row].country
                     //                    cell.phoneCodeLabel.text = computedPassengers[indexPath.row].countryCode
                     //                    cell.phoneNumberTextField.text = computedPassengers[indexPath.row].phoneNumberWithoutCountryCode
@@ -808,8 +848,8 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.selectedExpireYear = { item in
                         self.computedPassengers[indexPath.row].expireYear = item
                     }
-                    cell.selectedPassportNumer = { item in
-                        self.computedPassengers[indexPath.row].passportNumber = item
+                    cell.selectedDocumentNumer = { item in
+                        self.computedPassengers[indexPath.row].documentNumber = item
                     }
                     cell.selectedPhoneCode = { item in
                         self.computedPassengers[indexPath.row].phoneCode = item
@@ -820,6 +860,14 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.selectedCountry = { item, code in
                         self.computedPassengers[indexPath.row].country = item
                         self.computedPassengers[indexPath.row].countryCode = code
+                    }
+                    cell.selectedBirthplace = { item, code in
+                        self.computedPassengers[indexPath.row].birthplace = item
+                        //                        self.computedPassengers[indexPath.row].countryCode = code
+                    }
+                    cell.selectedDocumentIssuanceCountry = { item, code in
+                        self.computedPassengers[indexPath.row].documentIssuanceCountry = item
+                        //                        self.computedPassengers[indexPath.row].countryCode = code
                     }
                     cell.selectedFirstName = { item in
                         self.computedPassengers[indexPath.row].firstName = item
@@ -956,8 +1004,8 @@ extension InputPassengerInfoViewController{
                     "DocumentIssuanceDate": "", // not available
                     "Firstname": passenger.firstName,
                     "Surname": passenger.lastName,
-                    "DocumentTypeCode": "PP",
-                    "DocumentNumber": passenger.passportNumber
+                    "DocumentTypeCode": passenger.documentTypeKey,  // "PP",
+                    "DocumentNumber": passenger.documentNumber
                 ]
                 documentsPrams.append(documentsParam)
                 

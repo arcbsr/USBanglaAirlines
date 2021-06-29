@@ -163,13 +163,17 @@ class Passenger: Mappable {
     var expireMonth = "MONTH"
     var expireYear = "YEAR"
     var ffpNumber = ""
-    var phoneCode = "+880"
     var countryCode = "BD"
-    var phoneNumberWithoutCountryCode = ""
-    //    var phoneNumber = ""
-    var passportNumber = ""
-    var emailAddress = ""
     var country = "Bangladesh"
+    var documentIssuanceCountry = "Bangladesh"
+    var birthplace = "Bangladesh"
+    //    var phoneNumber = ""
+    var phoneCode = "+880"
+    var phoneNumberWithoutCountryCode = ""
+    var documentNumber = ""
+    var documentTypeKey = "PP"
+    var documentTypeValue = "Passport"
+    var emailAddress = ""
     var eTTicketFare: ETTicketFare?
     var extensions: String?
     var nameElement: String?
