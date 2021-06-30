@@ -205,7 +205,7 @@ class InputPassengerInfoViewController: UIViewController {
                 passenger.passengerTypeCode = passengers[i].passengerTypeCode
                 passenger.ref = passengers[i].ref
                 passenger.refClient = passengers[i].refClient
-                
+                passenger.index = j + 1
                 var refPassenger = ""
                 if passenger.passengerTypeCode == "AD"{
                     refPassenger = "Traveler_Type_1_Index_\(j)"
@@ -732,11 +732,11 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     let passenger = computedPassengers[indexPath.row]
                     
                     if passenger.passengerTypeCode == "AD"{
-                        cell.passengerTypeLabel.text = "ADULT - \(indexPath.row + 1)"
+                        cell.passengerTypeLabel.text = "ADULT - \(passenger.index)"
                     }else if passenger.passengerTypeCode == "CHD"{
-                        cell.passengerTypeLabel.text = "CHILD - \(indexPath.row + 1)"
+                        cell.passengerTypeLabel.text = "CHILD - \(passenger.index)"
                     }else{
-                        cell.passengerTypeLabel.text = "INFANT - \(indexPath.row + 1)"
+                        cell.passengerTypeLabel.text = "INFANT - \(passenger.index)"
                     }
                     
                     cell.titleLabel.text = computedPassengers[indexPath.row].title
@@ -967,18 +967,22 @@ extension InputPassengerInfoViewController{
             let dob = "\(passenger.dobYear)-\(dobMonth)-\(passenger.dobDay)T00:00:00"
             let expireDate = "\(passenger.expireYear)-\(expireMonth)-\(passenger.expireDay)T00:00:00"
             var currentCode = ""
+            var dobParamKey = ""
             if passenger.passengerTypeCode == "AD"{
                 currentCode = "EXT-ADOB"
+                dobParamKey = "Adof"
             }else if passenger.passengerTypeCode == "CHD"{
                 currentCode = "CHLD"
+                dobParamKey = "Chld"
             }else{
                 currentCode = "INFT"
+                dobParamKey = "Inft"
             }
-            let adofParam: Parameters = [
+            let dobParam: Parameters = [
                 "DateOfBirth": dob
             ]
             let dobData: Parameters = [
-                "Adof": adofParam
+                dobParamKey: dobParam
             ]
             
             let dobParams: Parameters = [

@@ -151,6 +151,8 @@ class BookingClass: Mappable {
 
 class Passenger: Mappable {
     
+    var index = 1
+    var refPassenger = ""
     var title = "MR"
     var firstName = ""
     var lastName = ""
@@ -181,7 +183,6 @@ class Passenger: Mappable {
     var passengerTypeCode: String?
     var ref: String?
     var refClient: String?
-    var refPassenger = ""
     
     required convenience init?(map: Map) {
         self.init()
