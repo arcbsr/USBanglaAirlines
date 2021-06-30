@@ -181,6 +181,7 @@ class Passenger: Mappable {
     var passengerTypeCode: String?
     var ref: String?
     var refClient: String?
+    var refPassenger = ""
     
     required convenience init?(map: Map) {
         self.init()

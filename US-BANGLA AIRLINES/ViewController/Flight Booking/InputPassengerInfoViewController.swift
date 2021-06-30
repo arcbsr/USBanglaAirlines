@@ -206,6 +206,16 @@ class InputPassengerInfoViewController: UIViewController {
                 passenger.ref = passengers[i].ref
                 passenger.refClient = passengers[i].refClient
                 
+                var refPassenger = ""
+                if passenger.passengerTypeCode == "AD"{
+                    refPassenger = "Traveler_Type_1_Index_\(j)"
+                }else if passenger.passengerTypeCode == "CHD"{
+                    refPassenger = "Traveler_Type_2_Index_\(j)"
+                }else{
+                    refPassenger = "Traveler_Type_3_Index_\(j)"
+                }
+                passenger.refPassenger = refPassenger
+                
                 if i == 0 && j == 0{ //MARK: Lead passenger's data save
                     passenger.title = UserDefaults.standard.string(forKey: "title") ?? "MR"
                     passenger.dobDay = UserDefaults.standard.string(forKey: "dobDay") ?? "DATE"
@@ -943,8 +953,8 @@ extension InputPassengerInfoViewController{
                 "Surname": passenger.lastName
             ]
             let item: Parameters = [
-                "Ref": passenger.ref ?? "",
-                "RefClient": passenger.refClient ?? "",
+                "Ref":  passenger.refPassenger, // passenger.ref ?? "",
+                "RefClient": passenger.ref ?? "", // passenger.refClient ?? "",
                 "PassengerQuantity": 1,
                 "PassengerTypeCode": passenger.passengerTypeCode ?? "",
                 "NameElement": nameElement,
@@ -973,24 +983,26 @@ extension InputPassengerInfoViewController{
             
             let dobParams: Parameters = [
                 "Data": dobData,
-                "RefPassenger": passenger.ref ?? "",
+                "RefPassenger": passenger.refPassenger,
                 "Code": currentCode
             ]
             specialServicesParams.append(dobParams)
             
-            let passportParams: Parameters = [
-                "Text": "\(passenger.phoneCode)\(passenger.phoneNumberWithoutCountryCode)",
-                "RefPassenger": passenger.ref ?? "",
-                "Code": "CTCH"
-            ]
-            specialServicesParams.append(passportParams)
-            
-            let emailParams: Parameters = [
-                "Text": passenger.emailAddress,
-                "RefPassenger": passenger.ref ?? "",
-                "Code": "CTCE"
-            ]
-            specialServicesParams.append(emailParams)
+            if passenger.emailAddress.isEmpty == false{
+                let phoneParams: Parameters = [
+                    "Text": "\(passenger.phoneCode)\(passenger.phoneNumberWithoutCountryCode)",
+                    "RefPassenger": passenger.refPassenger,
+                    "Code": "CTCH"
+                ]
+                specialServicesParams.append(phoneParams)
+                
+                let emailParams: Parameters = [
+                    "Text": passenger.emailAddress,
+                    "RefPassenger": passenger.refPassenger,
+                    "Code": "CTCE"
+                ]
+                specialServicesParams.append(emailParams)
+            }
             
             if isLocalFlight == false{
                 var gender = "F"
@@ -1023,7 +1035,7 @@ extension InputPassengerInfoViewController{
                 ]
                 let docMainParams: Parameters = [
                     "Data": docDataParam,
-                    "RefPassenger": passenger.ref ?? "",
+                    "RefPassenger": passenger.refPassenger,
                     "Code": "DOCS"
                 ]
                 specialServicesParams.append(docMainParams)
