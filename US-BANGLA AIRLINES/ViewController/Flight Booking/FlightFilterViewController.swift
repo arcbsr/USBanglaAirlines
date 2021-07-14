@@ -17,6 +17,26 @@ import AlamofireObjectMapper
 
 
 class FlightFilterViewController: UIViewController {
+    @IBOutlet weak var rightArrowImageView: UIImageView!{
+        didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                rightArrowImageView.image = UIImage(named: "")
+            }
+        }
+    }
+    @IBOutlet weak var downArrowImageView: UIImageView!
+    @IBOutlet weak var downArrowImageView2: UIImageView!
+    @IBOutlet weak var downArrowImageView3: UIImageView!
+    @IBOutlet weak var downArrowImageView4: UIImageView!
+    @IBOutlet weak var downArrowImageView5: UIImageView!
+    @IBOutlet weak var downArrowImageView6: UIImageView!
+    @IBOutlet weak var downArrowImageView7: UIImageView!
+    @IBOutlet weak var downArrowImageView8: UIImageView!
+    @IBOutlet weak var downArrowImageView9: UIImageView!
+    @IBOutlet weak var downArrowImageView10: UIImageView!
     @IBOutlet weak var returnCheckbox: M13Checkbox!{
         didSet{
             returnCheckbox.addTarget(self, action: #selector(returnOptionTapped), for: .valueChanged)
@@ -143,24 +163,48 @@ class FlightFilterViewController: UIViewController {
     
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                notificationImageView.image = UIImage(named: "")
+            }
             notificationImageView.isUserInteractionEnabled = true
             notificationImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
         }
     }
     @IBOutlet weak var menuImageView: UIImageView!{
         didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                menuImageView.image = UIImage(named: "")
+            }
             menuImageView.isUserInteractionEnabled = true
             menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuTapped)))
         }
     }
     @IBOutlet weak var backImageView: UIImageView!{
         didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                backImageView.image = UIImage(named: "")
+            }
             backImageView.isUserInteractionEnabled = true
             backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backTapped)))
         }
     }
     @IBOutlet weak var crossImageView: UIImageView!{
         didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                crossImageView.image = UIImage(named: "")
+            }
             crossImageView.isUserInteractionEnabled = true
             crossImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(crossTapped)))
         }

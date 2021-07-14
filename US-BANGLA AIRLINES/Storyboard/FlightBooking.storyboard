@@ -649,6 +649,16 @@
                         <outlet property="departureCabinClassView" destination="lKz-Tl-SyZ" id="bEs-sh-10G"/>
                         <outlet property="departureDateTextField" destination="LpS-gZ-l09" id="9rd-f4-CtW"/>
                         <outlet property="departureDateView" destination="Ph6-dL-mqw" id="j2H-Bi-wO5"/>
+                        <outlet property="downArrowImageView" destination="oTU-oh-wfv" id="dMA-BW-luz"/>
+                        <outlet property="downArrowImageView10" destination="LRu-2F-1Pw" id="ttb-ku-Sie"/>
+                        <outlet property="downArrowImageView2" destination="9dK-sU-ls1" id="dB3-eB-w9P"/>
+                        <outlet property="downArrowImageView3" destination="9xc-Ll-85A" id="gVt-IR-OHB"/>
+                        <outlet property="downArrowImageView4" destination="1zl-cW-qQR" id="GOJ-7h-ojV"/>
+                        <outlet property="downArrowImageView5" destination="wsn-Gb-zZ2" id="Vy9-yG-SgT"/>
+                        <outlet property="downArrowImageView6" destination="3Yq-OW-tLK" id="sI0-jg-Irz"/>
+                        <outlet property="downArrowImageView7" destination="Q0V-xx-325" id="AGn-dL-PVe"/>
+                        <outlet property="downArrowImageView8" destination="eix-h3-oEd" id="cMd-U1-2la"/>
+                        <outlet property="downArrowImageView9" destination="xUD-8K-iZZ" id="uaL-Y5-jMj"/>
                         <outlet property="flightDirectionImageView" destination="Rny-Ev-VSQ" id="tjT-OO-7q1"/>
                         <outlet property="fromCityLabel" destination="Wsi-Zc-JHg" id="QFW-Rp-66B"/>
                         <outlet property="fromCityUpperLabel" destination="xJs-oI-I3y" id="xTd-tB-2ie"/>
@@ -664,6 +674,7 @@
                         <outlet property="returnCheckbox" destination="w5U-Jr-eEK" id="ywx-fO-83d"/>
                         <outlet property="returnDateTextField" destination="ElL-AC-lEk" id="Mni-4f-Rh5"/>
                         <outlet property="returnDateView" destination="a23-aT-zB2" id="O4n-fm-EcC"/>
+                        <outlet property="rightArrowImageView" destination="kia-pQ-CPx" id="Tlh-VJ-cbS"/>
                         <outlet property="searchView" destination="px5-ga-7py" id="UmK-os-MiY"/>
                         <outlet property="toCityLabel" destination="kVR-Ol-2J9" id="pRZ-5X-m2D"/>
                         <outlet property="toCityUpperLabel" destination="AKv-wc-cwh" id="yZX-Fr-esd"/>
@@ -1290,6 +1301,8 @@
                         <outlet property="departureShiftLabel" destination="aua-9c-jki" id="IDj-G8-feI"/>
                         <outlet property="departureShiftView" destination="h7e-wb-BW4" id="Jf4-hq-nQE"/>
                         <outlet property="directionImageView" destination="Elk-e6-Jix" id="emt-K2-jnX"/>
+                        <outlet property="downImageView" destination="nrb-Rk-u3Y" id="JI1-ur-vSw"/>
+                        <outlet property="downImageView2" destination="iz5-ah-kPj" id="1Bd-CH-RhW"/>
                         <outlet property="fromCityLabel" destination="2Zm-DN-njF" id="WvZ-Xe-9Qq"/>
                         <outlet property="fromDateLabel" destination="UVa-el-biJ" id="M6I-Ip-biC"/>
                         <outlet property="menuImageView" destination="on3-KE-PgU" id="XJV-po-9E2"/>
@@ -1647,6 +1660,7 @@
                         <outlet property="dateLabel" destination="iNM-33-t7v" id="Kzx-xX-aed"/>
                         <outlet property="departureShiftLabel" destination="30y-G3-5rr" id="KZz-4k-QKF"/>
                         <outlet property="departureShiftView" destination="41O-9E-dAW" id="Ukh-HI-omE"/>
+                        <outlet property="downImageView" destination="R9G-MX-yo6" id="UUK-1f-EVh"/>
                         <outlet property="fromToCityLabel" destination="96O-xm-icB" id="DHe-wY-QYp"/>
                         <outlet property="menuImageView" destination="pfA-mp-at6" id="Z1U-7L-m9m"/>
                         <outlet property="notificationImageView" destination="3nG-hr-IRr" id="Hos-O9-hHC"/>

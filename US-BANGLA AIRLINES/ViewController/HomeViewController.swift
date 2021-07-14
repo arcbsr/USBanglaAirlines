@@ -26,12 +26,24 @@ class HomeViewController: UIViewController {
     }
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                notificationImageView.image = UIImage(named: "")
+            }
             notificationImageView.isUserInteractionEnabled = true
             notificationImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
         }
     }
     @IBOutlet weak var menuImageView: UIImageView!{
         didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                menuImageView.image = UIImage(named: "")
+            }
             menuImageView.isUserInteractionEnabled = true
             menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuTapped)))
         }

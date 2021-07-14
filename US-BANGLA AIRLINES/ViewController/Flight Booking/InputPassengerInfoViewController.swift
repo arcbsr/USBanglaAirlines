@@ -51,24 +51,48 @@ class InputPassengerInfoViewController: UIViewController {
     }
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                notificationImageView.image = UIImage(named: "")
+            }
             notificationImageView.isUserInteractionEnabled = true
             notificationImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
         }
     }
     @IBOutlet weak var menuImageView: UIImageView!{
         didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                menuImageView.image = UIImage(named: "")
+            }
             menuImageView.isUserInteractionEnabled = true
             menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuTapped)))
         }
     }
     @IBOutlet weak var backImageView: UIImageView!{
         didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                backImageView.image = UIImage(named: "")
+            }
             backImageView.isUserInteractionEnabled = true
             backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backTapped)))
         }
     }
     @IBOutlet weak var crossImageView: UIImageView!{
         didSet{
+            if #available(iOS 13.0, *) {
+                print("no change")
+            } else {
+                // Fallback on earlier versions
+                crossImageView.image = UIImage(named: "")
+            }
             crossImageView.isUserInteractionEnabled = true
             crossImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(crossTapped)))
         }
@@ -173,9 +197,19 @@ class InputPassengerInfoViewController: UIViewController {
     @IBAction func termsAndConditionsButtonTapped(_ sender: Any) {
         isTermsAndConditionSelected = !isTermsAndConditionSelected
         if isTermsAndConditionSelected{
-            termsAndConditionsButton.setImage(UIImage.init(systemName: "checkmark.square.fill"), for: .normal) // square/checkmark.square.fill
+            if #available(iOS 13.0, *) {
+                termsAndConditionsButton.setImage(UIImage.init(systemName: "checkmark.square.fill"), for: .normal)
+            } else {
+                // Fallback on earlier versions
+                termsAndConditionsButton.setImage(UIImage(named: ""), for: .normal)
+            }
         }else{
-            termsAndConditionsButton.setImage(UIImage.init(systemName: "square"), for: .normal) // square/checkmark.square.fill
+            if #available(iOS 13.0, *) {
+                termsAndConditionsButton.setImage(UIImage.init(systemName: "square"), for: .normal)
+            } else {
+                // Fallback on earlier versions
+                termsAndConditionsButton.setImage(UIImage(named: ""), for: .normal)
+            }
         }
     }
     
