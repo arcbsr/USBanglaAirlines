@@ -467,6 +467,9 @@
                                             <outlet property="dobDateButton" destination="y8h-YM-H6F" id="6u9-rn-YbP"/>
                                             <outlet property="dobMonthButton" destination="Qyb-Um-6Bl" id="snM-1s-Rn5"/>
                                             <outlet property="dobYearButton" destination="rAc-F3-bNt" id="ccy-68-w6Y"/>
+                                            <outlet property="downImageView" destination="Vfa-RD-EhY" id="ccX-cl-LAx"/>
+                                            <outlet property="downImageView2" destination="x6s-hS-C0v" id="Xgv-Ku-nP6"/>
+                                            <outlet property="downImageView3" destination="swO-Rg-aii" id="w8I-8O-D2a"/>
                                             <outlet property="emailAddressTextField" destination="Ycj-Sd-EUV" id="uJV-Dj-NJS"/>
                                             <outlet property="ffpNumberTextField" destination="2YW-9c-Yq9" id="VIK-94-wog"/>
                                             <outlet property="firstNameTextField" destination="XUU-mb-ezj" id="Sxd-oe-Oka"/>
@@ -703,6 +706,7 @@
                                             <outlet property="dobDateButton" destination="RXG-fF-Ril" id="f1c-UW-s4G"/>
                                             <outlet property="dobMonthButton" destination="heu-qm-joB" id="ZVy-f8-7gj"/>
                                             <outlet property="dobYearButton" destination="ZRm-IC-jde" id="8EC-kg-Ua7"/>
+                                            <outlet property="downImageView" destination="3Dm-Vx-ogm" id="zT0-Lt-KzX"/>
                                             <outlet property="ffpNumberTextField" destination="Tqr-j3-hzn" id="cco-24-tpR"/>
                                             <outlet property="firstNameTextField" destination="gCd-GI-r8u" id="Igq-9q-CxZ"/>
                                             <outlet property="lastNameTextField" destination="24d-uG-6xI" id="h5j-K3-SHn"/>
@@ -1409,6 +1413,12 @@
                                             <outlet property="documentNumberTextField" destination="2Jm-OR-TrN" id="wnR-ci-Fmt"/>
                                             <outlet property="documentTypeLabel" destination="R02-7X-6Bb" id="dh4-X5-lnv"/>
                                             <outlet property="documentTypeSelectionView" destination="rzO-hM-ZNS" id="iff-EX-iDT"/>
+                                            <outlet property="downImageView" destination="j8R-rB-AyJ" id="V7I-tq-q1Y"/>
+                                            <outlet property="downImageView2" destination="Xoc-gP-4zu" id="oWc-jg-q9w"/>
+                                            <outlet property="downImageView3" destination="Zop-z2-xrw" id="97g-IW-uJb"/>
+                                            <outlet property="downImageView4" destination="zlX-y2-aIy" id="fEN-Yj-A3s"/>
+                                            <outlet property="downImageView5" destination="Z0i-JQ-zbi" id="E4I-6I-fbs"/>
+                                            <outlet property="downImageView6" destination="be1-Eh-MqR" id="gtr-15-xiZ"/>
                                             <outlet property="emailAddressTextField" destination="3Sx-WB-ogm" id="uTW-JT-MBg"/>
                                             <outlet property="expireDateButton" destination="Rnc-R1-dW8" id="ffm-B7-ndH"/>
                                             <outlet property="expireMonthButton" destination="CxM-dl-Lja" id="BYb-ET-qoz"/>
@@ -2020,6 +2030,11 @@
                                             <outlet property="documentNumberTextField" destination="bAb-1x-cJ3" id="gzw-og-ihq"/>
                                             <outlet property="documentTypeLabel" destination="sak-VC-8H7" id="Qo2-Ji-KlO"/>
                                             <outlet property="documentTypeSelectionView" destination="aiE-YG-hls" id="Zzu-5V-CVq"/>
+                                            <outlet property="down2ImageView" destination="gId-Tk-0zT" id="Tts-t9-Pv2"/>
+                                            <outlet property="downImageView" destination="Vye-Mc-nVL" id="9Fr-ah-nkd"/>
+                                            <outlet property="downImageView3" destination="n5p-bo-d2w" id="Fox-Xm-A1a"/>
+                                            <outlet property="downImageView4" destination="MNF-h8-Lgm" id="jWB-it-58d"/>
+                                            <outlet property="downImageView5" destination="Hsl-W0-axN" id="5Ml-TW-q0V"/>
                                             <outlet property="expireDateButton" destination="KFh-KX-ISH" id="mBw-xh-wsp"/>
                                             <outlet property="expireMonthButton" destination="4Ou-Hd-rCw" id="vEw-Vm-kJ0"/>
                                             <outlet property="expireYearButton" destination="MjN-gg-hzi" id="lS4-8S-XhC"/>

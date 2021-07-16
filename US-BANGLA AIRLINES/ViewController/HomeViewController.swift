@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
                 print("no change")
             } else {
                 // Fallback on earlier versions
-                notificationImageView.image = UIImage(named: "")
+                notificationImageView.image = UIImage(named: "bell")
             }
             notificationImageView.isUserInteractionEnabled = true
             notificationImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
@@ -42,7 +42,7 @@ class HomeViewController: UIViewController {
                 print("no change")
             } else {
                 // Fallback on earlier versions
-                menuImageView.image = UIImage(named: "")
+                menuImageView.image = UIImage(named: "open-menu")
             }
             menuImageView.isUserInteractionEnabled = true
             menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuTapped)))

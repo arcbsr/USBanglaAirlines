@@ -66,7 +66,7 @@ class FlightSummaryViewController: UIViewController {
                 print("no change")
             } else {
                 // Fallback on earlier versions
-                notificationImageView.image = UIImage(named: "")
+                notificationImageView.image = UIImage(named: "bell")
             }
             notificationImageView.isUserInteractionEnabled = true
             notificationImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
@@ -78,7 +78,7 @@ class FlightSummaryViewController: UIViewController {
                 print("no change")
             } else {
                 // Fallback on earlier versions
-                menuImageView.image = UIImage(named: "")
+                menuImageView.image = UIImage(named: "open-menu")
             }
             menuImageView.isUserInteractionEnabled = true
             menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuTapped)))
@@ -90,7 +90,7 @@ class FlightSummaryViewController: UIViewController {
                 print("no change")
             } else {
                 // Fallback on earlier versions
-                backImageView.image = UIImage(named: "")
+                backImageView.image = UIImage(named: "left-arrow")
             }
             backImageView.isUserInteractionEnabled = true
             backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backTapped)))
@@ -102,7 +102,7 @@ class FlightSummaryViewController: UIViewController {
                 print("no change")
             } else {
                 // Fallback on earlier versions
-                crossImageView.image = UIImage(named: "")
+                crossImageView.image = UIImage(named: "cancel")
             }
             crossImageView.isUserInteractionEnabled = true
             crossImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(crossTapped)))

@@ -55,7 +55,7 @@ class InputPassengerInfoViewController: UIViewController {
                 print("no change")
             } else {
                 // Fallback on earlier versions
-                notificationImageView.image = UIImage(named: "")
+                notificationImageView.image = UIImage(named: "bell")
             }
             notificationImageView.isUserInteractionEnabled = true
             notificationImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
@@ -67,7 +67,7 @@ class InputPassengerInfoViewController: UIViewController {
                 print("no change")
             } else {
                 // Fallback on earlier versions
-                menuImageView.image = UIImage(named: "")
+                menuImageView.image = UIImage(named: "open-menu")
             }
             menuImageView.isUserInteractionEnabled = true
             menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuTapped)))
@@ -79,7 +79,7 @@ class InputPassengerInfoViewController: UIViewController {
                 print("no change")
             } else {
                 // Fallback on earlier versions
-                backImageView.image = UIImage(named: "")
+                backImageView.image = UIImage(named: "left-arrow")
             }
             backImageView.isUserInteractionEnabled = true
             backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backTapped)))
@@ -91,7 +91,7 @@ class InputPassengerInfoViewController: UIViewController {
                 print("no change")
             } else {
                 // Fallback on earlier versions
-                crossImageView.image = UIImage(named: "")
+                crossImageView.image = UIImage(named: "cancel")
             }
             crossImageView.isUserInteractionEnabled = true
             crossImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(crossTapped)))
@@ -201,14 +201,14 @@ class InputPassengerInfoViewController: UIViewController {
                 termsAndConditionsButton.setImage(UIImage.init(systemName: "checkmark.square.fill"), for: .normal)
             } else {
                 // Fallback on earlier versions
-                termsAndConditionsButton.setImage(UIImage(named: ""), for: .normal)
+                termsAndConditionsButton.setImage(UIImage(named: "checkbox"), for: .normal)
             }
         }else{
             if #available(iOS 13.0, *) {
                 termsAndConditionsButton.setImage(UIImage.init(systemName: "square"), for: .normal)
             } else {
                 // Fallback on earlier versions
-                termsAndConditionsButton.setImage(UIImage(named: ""), for: .normal)
+                termsAndConditionsButton.setImage(UIImage(named: "empty-checkbox"), for: .normal)
             }
         }
     }
