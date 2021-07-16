@@ -42,12 +42,12 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="multiply" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="r9v-R2-Mb8">
-                                        <rect key="frame" x="332" y="19" width="22" height="15.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close" translatesAutoresizingMaskIntoConstraints="NO" id="r9v-R2-Mb8">
+                                        <rect key="frame" x="340" y="20" width="14" height="14"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="r9v-R2-Mb8" secondAttribute="height" multiplier="1:1" id="oiD-Xt-L3R"/>
-                                            <constraint firstAttribute="height" constant="22" id="sLV-0Q-5a5"/>
+                                            <constraint firstAttribute="height" constant="14" id="sLV-0Q-5a5"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wQc-mh-weJ">
@@ -718,11 +718,11 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="multiply" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="H2c-UR-eGd">
-                                        <rect key="frame" x="332" y="19" width="22" height="15.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close" translatesAutoresizingMaskIntoConstraints="NO" id="H2c-UR-eGd">
+                                        <rect key="frame" x="340" y="20" width="14" height="14"/>
                                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="Bab-fn-5x5"/>
+                                            <constraint firstAttribute="height" constant="14" id="Bab-fn-5x5"/>
                                             <constraint firstAttribute="width" secondItem="H2c-UR-eGd" secondAttribute="height" multiplier="1:1" id="nQF-KF-c46"/>
                                         </constraints>
                                     </imageView>
@@ -1351,11 +1351,11 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="multiply" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8AG-m1-4tH">
-                                        <rect key="frame" x="332" y="19" width="22" height="15.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close" translatesAutoresizingMaskIntoConstraints="NO" id="8AG-m1-4tH">
+                                        <rect key="frame" x="340" y="20" width="14" height="14"/>
                                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="VO3-BI-PFL"/>
+                                            <constraint firstAttribute="height" constant="14" id="VO3-BI-PFL"/>
                                             <constraint firstAttribute="width" secondItem="8AG-m1-4tH" secondAttribute="height" multiplier="1:1" id="nGM-HH-iRq"/>
                                         </constraints>
                                     </imageView>
@@ -1679,13 +1679,13 @@
         <image name="bell" catalog="system" width="128" height="124"/>
         <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="close" width="128" height="128"/>
         <image name="double_down_arrow" width="128" height="128"/>
         <image name="double_up_arrow" width="128" height="128"/>
         <image name="ic_one_way" width="299" height="49"/>
         <image name="ic_return" width="299" height="81"/>
         <image name="ic_return_veritcal" width="81" height="299"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
-        <image name="multiply" catalog="system" width="128" height="111"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
