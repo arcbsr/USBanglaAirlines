@@ -208,27 +208,25 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZgY-TT-Bl6">
-                                                    <rect key="frame" x="4" y="126.5" width="40" height="40"/>
+                                                    <rect key="frame" x="4" y="137.5" width="18" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="IOk-sc-8tH"/>
+                                                        <constraint firstAttribute="height" constant="18" id="IOk-sc-8tH"/>
                                                         <constraint firstAttribute="width" secondItem="ZgY-TT-Bl6" secondAttribute="height" multiplier="1:1" id="alL-Sd-d7R"/>
-                                                        <constraint firstAttribute="width" constant="40" id="cPg-Jh-2iP"/>
                                                     </constraints>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="chevron.left" catalog="system"/>
+                                                    <state key="normal" image="angle-left"/>
                                                     <connections>
                                                         <action selector="leftButtonTapped:" destination="zDh-qq-xDp" eventType="touchUpInside" id="u0m-R7-H29"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="teU-Gq-AM4">
-                                                    <rect key="frame" x="321" y="126.5" width="40" height="40"/>
+                                                    <rect key="frame" x="343" y="137.5" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="teU-Gq-AM4" secondAttribute="height" multiplier="1:1" id="7a2-Ug-HAG"/>
-                                                        <constraint firstAttribute="width" constant="40" id="QDJ-x2-ZnN"/>
-                                                        <constraint firstAttribute="height" constant="40" id="oh0-Oi-mRI"/>
+                                                        <constraint firstAttribute="width" constant="18" id="QDJ-x2-ZnN"/>
                                                     </constraints>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="chevron.right" catalog="system"/>
+                                                    <state key="normal" image="right-arrow"/>
                                                     <connections>
                                                         <action selector="rightButtonTapped:" destination="zDh-qq-xDp" eventType="touchUpInside" id="7E8-HB-dNC"/>
                                                     </connections>
@@ -237,7 +235,6 @@
                                             <constraints>
                                                 <constraint firstItem="r5S-SC-j3C" firstAttribute="leading" secondItem="4Ad-x1-Utc" secondAttribute="leading" id="31l-8f-wXI"/>
                                                 <constraint firstItem="rGh-P2-aZy" firstAttribute="width" secondItem="rGh-P2-aZy" secondAttribute="height" multiplier="1:1" id="8d8-G7-cvo"/>
-                                                <constraint firstItem="teU-Gq-AM4" firstAttribute="width" secondItem="teU-Gq-AM4" secondAttribute="height" multiplier="1:1" id="8go-d9-YTS"/>
                                                 <constraint firstItem="rGh-P2-aZy" firstAttribute="top" secondItem="4Ad-x1-Utc" secondAttribute="top" id="Bi7-SL-rJg"/>
                                                 <constraint firstItem="rGh-P2-aZy" firstAttribute="width" secondItem="rGh-P2-aZy" secondAttribute="height" multiplier="1:1" id="CCg-hW-ELl"/>
                                                 <constraint firstItem="ZgY-TT-Bl6" firstAttribute="leading" secondItem="4Ad-x1-Utc" secondAttribute="leading" constant="4" id="GbX-AP-BE6"/>
@@ -1126,6 +1123,7 @@
         <image name="Manage-Booking-2" width="521" height="510"/>
         <image name="Sky-Star-2" width="616" height="404"/>
         <image name="airplane_vertical" width="127" height="132"/>
+        <image name="angle-left" width="128" height="128"/>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="bell" catalog="system" width="128" height="124"/>
         <image name="bell.fill" catalog="system" width="128" height="124"/>
@@ -1140,6 +1138,7 @@
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="manage_booking_button" width="535" height="147"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
+        <image name="right-arrow" width="128" height="128"/>
         <image name="skystar_button" width="535" height="215"/>
         <image name="splash02" width="1080" height="1920"/>
         <image name="web_check_in_button" width="533" height="147"/>
