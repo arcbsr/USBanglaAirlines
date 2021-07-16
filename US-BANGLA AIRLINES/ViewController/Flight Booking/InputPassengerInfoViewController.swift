@@ -25,7 +25,17 @@ class InputPassengerInfoViewController: UIViewController {
             termsLinkButton.setAttributedTitle(attributedText, for: .normal)
         }
     }
-    @IBOutlet weak var termsAndConditionsButton: UIButton!
+    @IBOutlet weak var termsAndConditionsButton: UIButton!{
+        didSet{
+            termsAndConditionsButton.imageView?.contentMode = .scaleAspectFit
+            if #available(iOS 13.0, *) {
+                termsAndConditionsButton.setImage(UIImage.init(systemName: "square"), for: .normal)
+            } else {
+                // Fallback on earlier versions
+                termsAndConditionsButton.setImage(UIImage(named: "empty-checkbox"), for: .normal)
+            }
+        }
+    }
     @IBOutlet weak var makePaymentButton: UIButton!{
         didSet{
             makePaymentButton.isHidden = true
@@ -969,7 +979,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
         }else{
             
         }
-    }    
+    }
 }
 
 
