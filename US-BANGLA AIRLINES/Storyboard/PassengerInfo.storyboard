@@ -2063,7 +2063,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n25-4Y-oeI">
-                                <rect key="frame" x="274" y="2886.5" width="132" height="29"/>
+                                <rect key="frame" x="274" y="2886" width="132" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="general terms of sell">
@@ -2075,7 +2075,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvV-pG-gN9">
-                                <rect key="frame" x="170.5" y="2891.5" width="99.5" height="18.5"/>
+                                <rect key="frame" x="170.5" y="2891" width="99.5" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="1Qd-Mn-Cge"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title=" I accept the" image="square" catalog="system">
