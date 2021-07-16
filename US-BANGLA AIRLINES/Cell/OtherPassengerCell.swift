@@ -13,12 +13,12 @@ import DropDown
 class OtherPassengerCell: UITableViewCell {
     @IBOutlet weak var downImageView: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 downImageView.image = UIImage(named: "down-arrow")
-            }
+//            }
         }
     }
     @IBOutlet weak var passengerTypeLabel: UILabel!

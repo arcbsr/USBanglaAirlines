@@ -15,12 +15,12 @@ import SVProgressHUD
 class OneWayFlightViewController: UIViewController {
     @IBOutlet weak var downImageView: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 downImageView.image = UIImage(named: "down-arrow")
-            }
+//            }
         }
     }
     @IBOutlet weak var tableView: UITableView!{
@@ -40,48 +40,48 @@ class OneWayFlightViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var notificationImageView: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 notificationImageView.image = UIImage(named: "bell")
-            }
+//            }
             notificationImageView.isUserInteractionEnabled = true
             notificationImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notificationTapped)))
         }
     }
     @IBOutlet weak var menuImageView: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 menuImageView.image = UIImage(named: "open-menu")
-            }
+//            }
             menuImageView.isUserInteractionEnabled = true
             menuImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(menuTapped)))
         }
     }
     @IBOutlet weak var backImageView: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 backImageView.image = UIImage(named: "left-arrow")
-            }
+//            }
             backImageView.isUserInteractionEnabled = true
             backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backTapped)))
         }
     }
     @IBOutlet weak var crossImageView: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 crossImageView.image = UIImage(named: "cancel")
-            }
+//            }
             crossImageView.isUserInteractionEnabled = true
             crossImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(crossTapped)))
         }

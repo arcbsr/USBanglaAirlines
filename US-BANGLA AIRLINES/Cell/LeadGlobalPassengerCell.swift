@@ -13,62 +13,62 @@ import DropDown
 class LeadGlobalPassengerCell: UITableViewCell {
     @IBOutlet weak var downImageView6: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 downImageView6.image = UIImage(named: "down-arrow")
-            }
+//            }
         }
     }
     @IBOutlet weak var downImageView5: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 downImageView5.image = UIImage(named: "down-arrow")
-            }
+//            }
         }
     }
     @IBOutlet weak var downImageView3: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 downImageView3.image = UIImage(named: "down-arrow")
-            }
+//            }
         }
     }
     @IBOutlet weak var downImageView2: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 downImageView2.image = UIImage(named: "down-arrow")
-            }
+//            }
         }
     }
     @IBOutlet weak var downImageView: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 downImageView.image = UIImage(named: "down-arrow")
-            }
+//            }
         }
     }
     @IBOutlet weak var downImageView4: UIImageView!{
         didSet{
-            if #available(iOS 13.0, *) {
-                print("no change")
-            } else {
+//            if #available(iOS 13.0, *) {
+//                print("no change")
+//            } else {
                 // Fallback on earlier versions
                 downImageView4.image = UIImage(named: "down-arrow")
-            }
+//            }
         }
     }
     @IBOutlet weak var documentDetailsTitleLabel: UILabel!
