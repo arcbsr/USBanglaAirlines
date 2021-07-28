@@ -42,7 +42,7 @@ class PaymentViewController: UIViewController {
     var thirdPartyBooking = "N/A"
     var isLocalFlight = true
     var leadPassengerLastName = ""
-    let successMessage = "Congratulation!\nYour payment has been successful. E-ticket will be sent to you shortly in your email.\nThank you for being with US-Bangla Airline."
+    let successMessage = "\nYour payment has been successful. E-ticket will be sent to you shortly in your email.\nThank you for being with US-Bangla Airline."
     var errorMessage = ""
     
     
@@ -103,6 +103,40 @@ class PaymentViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         navigationController?.navigationBar.isHidden = true
+    }
+    
+    func showSuccessMessage(){
+        let alertController = UIAlertController(title: "title", message: "message", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(OKAction)
+        
+        let attributedTitle = NSMutableAttributedString(
+            string: "Congratulation!",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold),
+                NSAttributedString.Key.foregroundColor: CustomColor.secondaryColor
+            ]
+        )
+        
+        //           let paragraphStyle = NSMutableParagraphStyle()
+        //           paragraphStyle.alignment = NSTextAlignment.left
+        let messageText = NSMutableAttributedString(
+            string: successMessage,
+            attributes: [
+                //                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .medium),
+            ]
+        )
+        
+        alertController.setValue(attributedTitle, forKey: "attributedTitle")
+        alertController.setValue(messageText, forKey: "attributedMessage")
+        
+        self.present(alertController, animated: true, completion: {
+            self.navigationController?.popToRootViewController(animated: true)
+        })
     }
     
 }
@@ -167,9 +201,10 @@ extension PaymentViewController{
             
             let status = response.result.value?.status ?? ""
             if status == "Success"{
-                self.showAlert(title: self.successMessage, message: nil) { _ in
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
+                //                self.showAlert(title: self.successMessage, message: nil) { _ in
+                //                    self.navigationController?.popToRootViewController(animated: true)
+                //                }
+                self.showSuccessMessage()
             }else{
                 self.showAlert(title: self.errorMessage, message: nil) { _ in
                     self.navigationController?.popToRootViewController(animated: true)
