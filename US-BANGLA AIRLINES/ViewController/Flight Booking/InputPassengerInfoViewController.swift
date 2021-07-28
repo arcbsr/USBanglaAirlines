@@ -1023,19 +1023,6 @@ extension InputPassengerInfoViewController{
                 currentCode = "INFT"
                 dobParamKey = "Inft"
             }
-            let dobParam: Parameters = [
-                "DateOfBirth": dob
-            ]
-            let dobData: Parameters = [
-                dobParamKey: dobParam
-            ]
-            
-            let dobParams: Parameters = [
-                "Data": dobData,
-                "RefPassenger": passenger.refPassenger,
-                "Code": currentCode
-            ]
-            specialServicesParams.append(dobParams)
             
             if passenger.emailAddress.isEmpty == false{
                 let phoneParams: Parameters = [
@@ -1054,6 +1041,20 @@ extension InputPassengerInfoViewController{
             }
             
             if isLocalFlight == false{
+                let dobParam: Parameters = [
+                    "DateOfBirth": dob
+                ]
+                let dobData: Parameters = [
+                    dobParamKey: dobParam
+                ]
+                
+                let dobParams: Parameters = [
+                    "Data": dobData,
+                    "RefPassenger": passenger.refPassenger,
+                    "Code": currentCode
+                ]
+                specialServicesParams.append(dobParams)
+                
                 var gender = "F"
                 if passenger.title == "MR" || passenger.title == "MSTR"{
                     gender = "M"
