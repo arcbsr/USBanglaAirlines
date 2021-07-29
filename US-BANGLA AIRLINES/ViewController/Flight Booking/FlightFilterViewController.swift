@@ -362,7 +362,7 @@ class FlightFilterViewController: UIViewController {
         dropDown.anchorView = fromCityView
         dropDown.dataSource = fromCities
         dropDown.textFont = UIFont.systemFont(ofSize: 15.0)
-        dropDown.textColor = .systemGreen
+        dropDown.textColor = CustomColor.primaryColor
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             guard let _self = self else{
                 return
@@ -393,7 +393,7 @@ class FlightFilterViewController: UIViewController {
         dropDown.anchorView = toCityView
         dropDown.dataSource = toCities
         dropDown.textFont = UIFont.systemFont(ofSize: 15.0)
-        dropDown.textColor = .systemGreen
+        dropDown.textColor = CustomColor.primaryColor
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.toCityCode = self?.aiportReverseDictionary[item] ?? ""
             self?.toCityLabel.text = "\(item) (\(self?.toCityCode ?? ""))"
@@ -406,8 +406,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = adultView
         dropDown.dataSource = passengers
-        dropDown.textFont = UIFont.systemFont(ofSize: 16, weight: .bold)
-        dropDown.textColor = .systemGreen
+        dropDown.textFont = UIFont.systemFont(ofSize: 16, weight: .regular)
+        dropDown.textColor = CustomColor.primaryColor
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.adultCountLabel.text = item
         }
@@ -418,8 +418,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = childView
         dropDown.dataSource = passengers
-        dropDown.textFont = UIFont.systemFont(ofSize: 16, weight: .bold)
-        dropDown.textColor = .systemGreen
+        dropDown.textFont = UIFont.systemFont(ofSize: 16, weight: .regular)
+        dropDown.textColor = CustomColor.primaryColor
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.childCountLabel.text = item
         }
@@ -430,8 +430,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = infantView
         dropDown.dataSource = passengers
-        dropDown.textFont = UIFont.systemFont(ofSize: 16, weight: .bold)
-        dropDown.textColor = .systemGreen
+        dropDown.textFont = UIFont.systemFont(ofSize: 16, weight: .regular)
+        dropDown.textColor = CustomColor.primaryColor
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.infantCountLabel.text = item
         }
@@ -443,7 +443,7 @@ class FlightFilterViewController: UIViewController {
         dropDown.anchorView = currencyView
         dropDown.dataSource = currencyArray
         dropDown.textFont = UIFont.systemFont(ofSize: 15, weight: .regular)
-        dropDown.textColor = .systemGreen
+        dropDown.textColor = CustomColor.primaryColor
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.currencyLabel.text = item
             self?.selectedCurrency = item
@@ -455,8 +455,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = departureCabinClassView
         dropDown.dataSource = cabinClasses
-        dropDown.textFont = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        dropDown.textColor = .systemGreen
+        dropDown.textFont = UIFont.systemFont(ofSize: 15, weight: .regular)
+        dropDown.textColor = CustomColor.primaryColor
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.departureCabinClassLabel.text = item
         }
@@ -467,8 +467,8 @@ class FlightFilterViewController: UIViewController {
         let dropDown = DropDown()
         dropDown.anchorView = returnCabinClassView
         dropDown.dataSource = cabinClasses
-        dropDown.textFont = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        dropDown.textColor = .systemGreen
+        dropDown.textFont = UIFont.systemFont(ofSize: 15, weight: .regular)
+        dropDown.textColor = CustomColor.primaryColor
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.returnCabinClassLabel.text = item
         }
