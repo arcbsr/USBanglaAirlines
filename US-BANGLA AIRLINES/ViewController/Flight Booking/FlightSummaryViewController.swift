@@ -210,27 +210,27 @@ class FlightSummaryViewController: UIViewController {
     }
     
     @objc func fareAndBaggageRulesTapped(){
-//        showAlert(title: "Fare and Baggage Rules", message: fareAndBaggageRules)
+        //        showAlert(title: "Fare and Baggage Rules", message: fareAndBaggageRules)
         
         let alertController = UIAlertController(title: "Fare and Baggage Rules", message: "Terms and Condition", preferredStyle: .alert)
-           let OKAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
-               alertController.dismiss(animated: true, completion: nil)
-           }
-           alertController.addAction(OKAction)
-
-           let paragraphStyle = NSMutableParagraphStyle()
-           paragraphStyle.alignment = NSTextAlignment.left
-
-           let messageText = NSMutableAttributedString(
-               string: fareAndBaggageRules,
-               attributes: [
+        let OKAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(OKAction)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.left
+        
+        let messageText = NSMutableAttributedString(
+            string: fareAndBaggageRules,
+            attributes: [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13.0)
-               ]
-           )
-
-           alertController.setValue(messageText, forKey: "attributedMessage")
-           self.present(alertController, animated: true, completion: nil)
+            ]
+        )
+        
+        alertController.setValue(messageText, forKey: "attributedMessage")
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func extractTicketInfo(){
@@ -351,6 +351,10 @@ class FlightSummaryViewController: UIViewController {
             return
         }
         for child in children{
+            if (child.text?.contains("Available seat", caseSensitive: false) ?? false){
+                print("skip avalilabe seat line")
+                continue
+            }
             fareAndBaggageRules +=  "\n- \(child.text ?? "") : \(child.value ?? "")"
             if let subChildren = child.children{
                 for subchild in subChildren{
