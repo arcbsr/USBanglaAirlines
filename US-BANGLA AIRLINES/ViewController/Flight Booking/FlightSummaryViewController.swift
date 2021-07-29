@@ -43,11 +43,13 @@ class FlightSummaryViewController: UIViewController {
     @IBOutlet weak var childrenLabel: UILabel!
     @IBOutlet weak var childrenFareLabel: UILabel!
     @IBOutlet weak var childrenSeparatorView: UIView!
+    @IBOutlet weak var childrenTaxTitleLabel: UILabel!
     @IBOutlet weak var childrenTaxLabel: UILabel!
     
     @IBOutlet weak var infantLabel: UILabel!
     @IBOutlet weak var infantFareLabel: UILabel!
     @IBOutlet weak var infantSeparatorView: UIView!
+    @IBOutlet weak var infantTaxTitleLabel: UILabel!
     @IBOutlet weak var infantTaxLabel: UILabel!
     
     @IBOutlet weak var baseAmountLabel: UILabel!
@@ -276,6 +278,22 @@ class FlightSummaryViewController: UIViewController {
                 let totalTax = (passenger.eTTicketFare?.saleCurrencyAmount?.taxAmount ?? 0.0) * Double(count)
                 infantTaxLabel.text = "\(selectedCurrency) \(totalTax)"
             }
+        }
+        
+        if childrenFareLabel.text == "0"{
+            childrenLabel.text = ""
+            childrenFareLabel.text = ""
+            childrenTaxLabel.text = ""
+            childrenTaxTitleLabel.text = ""
+            childrenSeparatorView.isHidden = true
+        }
+        
+        if infantFareLabel.text == "0"{
+            infantLabel.text = ""
+            infantFareLabel.text = ""
+            infantTaxLabel.text = ""
+            infantTaxTitleLabel.text = ""
+            infantSeparatorView.isHidden = true
         }
         
         SVProgressHUD.dismiss()
