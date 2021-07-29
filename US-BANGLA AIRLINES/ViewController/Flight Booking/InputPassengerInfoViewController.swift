@@ -1171,6 +1171,22 @@ extension InputPassengerInfoViewController{
                         self.navigationController?.pushViewController(vc)
                     }
                 }else{
+                    let specialServices = response.result.value?.invalidData?.specialServices ?? [SpecialServices]()
+                    if specialServices.isEmpty == false{
+                        let refPassenger = specialServices.first?.data?.refPassenger ?? ""
+                        let val1 = specialServices.first?.messages?.first ?? "Something went wrong! Please provide the accurate information"
+                        var message = ""
+                        if refPassenger.contains("Traveler_Type_1"){
+                            message = "Adult:\n "
+                        }else if refPassenger.contains("Traveler_Type_2"){
+                            message = "Child:\n"
+                        }else if refPassenger.contains("Traveler_Type_3"){
+                            message = "Infant:\n "
+                        }
+                        message += val1
+                        self.showAlert(title: message, message: nil, callback: nil)
+                        return
+                    }
                     self.showAlert(title: "Something went wrong! Please provide accurate information", message: nil, callback: nil)
                 }
             case .failure(let error):

@@ -11,7 +11,7 @@ import Foundation
 import ObjectMapper
 
 class CreateBookingModel : Mappable {
-    var invalidData : String?
+    var invalidData : InvalidData?
     var booking : Booking?
     var responseInfo : ResponseInfo?
     var extensions : String?
@@ -30,6 +30,71 @@ class CreateBookingModel : Mappable {
     
 }
 
+class InvalidData : Mappable {
+    //    var global : [String]?
+    //    var passengers : [String]?
+    var specialServices : [SpecialServices]?
+    //    var eMDTicketFares : [String]?
+    //    var extensions : String?
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        
+        //        global <- map["Global"]
+        //        passengers <- map["Passengers"]
+        specialServices <- map["SpecialServices"]
+        //        eMDTicketFares <- map["EMDTicketFares"]
+        //        extensions <- map["Extensions"]
+    }
+    
+}
+
+class SpecialServices : Mappable {
+    var data : SpecialServiceData?
+    var messages : [String]?
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        
+        data <- map["Data"]
+        messages <- map["Messages"]
+    }
+    
+}
+
+class SpecialServiceData : Mappable {
+    //    var text : String?
+    //    var data : Data?
+    //    var status : String?
+    var refPassenger : String?
+    //    var refSegment : String?
+    //    var code : String?
+    //    var technicalType : String?
+    //    var extensions : String?
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        
+        //        text <- map["Text"]
+        //        data <- map["Data"]
+        //        status <- map["Status"]
+        refPassenger <- map["RefPassenger"]
+        //        refSegment <- map["RefSegment"]
+        //        code <- map["Code"]
+        //        technicalType <- map["TechnicalType"]
+        //        extensions <- map["Extensions"]
+    }
+    
+}
 
 class Booking : Mappable {
     var fareInfo : FareInfo?
