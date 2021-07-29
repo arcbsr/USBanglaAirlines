@@ -109,6 +109,7 @@ class PaymentViewController: UIViewController {
         let alertController = UIAlertController(title: "title", message: "message", preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
             alertController.dismiss(animated: true, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
         }
         
         alertController.addAction(OKAction)
@@ -134,9 +135,7 @@ class PaymentViewController: UIViewController {
         alertController.setValue(attributedTitle, forKey: "attributedTitle")
         alertController.setValue(messageText, forKey: "attributedMessage")
         
-        self.present(alertController, animated: true, completion: {
-            self.navigationController?.popToRootViewController(animated: true)
-        })
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }
