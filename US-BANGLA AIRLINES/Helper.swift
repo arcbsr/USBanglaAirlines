@@ -22,7 +22,7 @@ struct GlobalItems{
     static var businessClassCodes = [String()] //["C", "D", "J", ...]
     static var bdAirportCodes = [String]()
     
-    static var isTestBuild = true
+    static var isTestBuild = false
     
     static func getAuthKey() -> String{
 //        let testAuthKeyOld = "_JEAAAAL436mpPsYP3m2lwfwBiLPdzcUQEHyecX5mtHR1RMK0DTHTEiyA_EYVUazFkn3rIGIGu6wxA8qa1gYyfs1uOib4E_U"
