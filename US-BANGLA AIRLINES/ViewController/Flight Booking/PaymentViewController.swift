@@ -16,8 +16,8 @@ import AlamofireObjectMapper
 class PaymentViewController: UIViewController {
     var sslCommerz: SSLCommerz?
     
-    private let productionStorePassowrd = ""
-    private let productionStoreId = ""
+    private let productionStorePassowrd = "5BA9EAE018E3B93558"
+    private let productionStoreId = "usbapplive"
     
     var storePassowrd = "usbanglaairlinestest001@ssl"
     var storeId = "usbanglaairlinestest001"
