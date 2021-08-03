@@ -317,7 +317,9 @@ class InputPassengerInfoViewController: UIViewController {
             showAlert(title: "Last Name is Empty.", message: nil, callback: nil)
             return false
         }
-        if isLocalFlight == false{
+        if isLocalFlight && passenger.passengerTypeCode == "AD"{
+            print("dob not required for lead passenger in case of local flight")
+        }else{
             if passenger.dobDay == "DATE"{
                 showAlert(title: "DOB date not selected.", message: nil, callback: nil)
                 return false
@@ -1040,7 +1042,9 @@ extension InputPassengerInfoViewController{
                 specialServicesParams.append(emailParams)
             }
             
-            if isLocalFlight == false{
+            if isLocalFlight && passenger.passengerTypeCode == "AD"{
+                print("dob not required for lead passenger in case of local flight")
+            }else{
                 let dobParam: Parameters = [
                     "DateOfBirth": dob
                 ]

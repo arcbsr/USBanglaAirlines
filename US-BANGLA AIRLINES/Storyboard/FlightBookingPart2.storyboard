@@ -1888,6 +1888,7 @@
                         <outlet property="childrenLabel" destination="mzQ-v1-qCI" id="RoP-LL-MmZ"/>
                         <outlet property="childrenSeparatorView" destination="GWZ-47-Dck" id="OBZ-ky-fgn"/>
                         <outlet property="childrenTaxLabel" destination="wIW-7w-Aee" id="BS1-UG-j5X"/>
+                        <outlet property="childrenTaxTitleLabel" destination="cMQ-rC-a0v" id="BEH-OI-Q9y"/>
                         <outlet property="crossImageView" destination="T7R-ak-dma" id="FEh-Ps-TSH"/>
                         <outlet property="customTitleLabel" destination="MCk-bM-nOR" id="UqN-W2-Pfi"/>
                         <outlet property="discountLabel" destination="2UV-AX-U9R" id="YrL-5d-9bK"/>
@@ -1901,6 +1902,7 @@
                         <outlet property="infantLabel" destination="NGe-sF-K2X" id="f5I-cg-4nC"/>
                         <outlet property="infantSeparatorView" destination="Ikk-pI-fph" id="518-dq-bKF"/>
                         <outlet property="infantTaxLabel" destination="a4T-Wk-AYR" id="vdD-6i-LgN"/>
+                        <outlet property="infantTaxTitleLabel" destination="b1w-xd-5Yi" id="U5R-ga-cUk"/>
                         <outlet property="menuImageView" destination="nqN-yA-y7v" id="FA3-lF-1Uy"/>
                         <outlet property="notificationImageView" destination="4ZH-ON-X2u" id="sk7-sp-xdA"/>
                         <outlet property="payNowButton" destination="iTZ-TF-hI5" id="QuF-1t-7kD"/>

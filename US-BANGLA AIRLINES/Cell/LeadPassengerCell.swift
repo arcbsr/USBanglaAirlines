@@ -105,7 +105,7 @@ class LeadPassengerCell: UITableViewCell {
     
     var tiltleArray = ["MR", "MRS", "MISS", "MS", "MSTR"]
     var days = [String]()
-    var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+    var months = ["MONTH","JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
     var dobYears = [String]()
     var expirationYears = [String]()
     
@@ -130,11 +130,13 @@ class LeadPassengerCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
+        days.append("DATE")
         for i in 1 ..< 32{
             days.append("\(i)")
         }
         
         let y = Date().year
+        dobYears.append("YEAR")
         for i in (1850 ... y).reversed() {
             dobYears.append("\(i)")
         }
