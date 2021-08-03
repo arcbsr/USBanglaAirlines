@@ -118,7 +118,7 @@ class PaymentViewController: UIViewController {
             string: "Congratulation!",
             attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold),
-                NSAttributedString.Key.foregroundColor: CustomColor.secondaryColor
+                NSAttributedString.Key.foregroundColor: CustomColor.primaryColor
             ]
         )
         

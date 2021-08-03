@@ -258,6 +258,7 @@ class FlightFilterViewController: UIViewController {
     var toCityCode = ""
     var fromOffer = false
     var isLocalFlight = false
+    let noDataMessage = "No flight found or sold out on selected search condition. Please try again."
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -1206,7 +1207,7 @@ extension FlightFilterViewController{
                 if SVProgressHUD.isVisible(){
                     SVProgressHUD.dismiss()
                 }
-                self.showAlert(title: "No data found", message: nil, callback: nil)
+                self.showAlert(title: "Something went wrong. Please try again.", message: nil, callback: nil)
                 return
             }
             print("statusCode = \(statusCode)")
@@ -1225,7 +1226,7 @@ extension FlightFilterViewController{
                         if SVProgressHUD.isVisible(){
                             SVProgressHUD.dismiss()
                         }
-                        self.showAlert(title: "No data found", message: nil, callback: nil)
+                        self.showAlert(title: self.noDataMessage, message: nil, callback: nil)
                         return
                     }
                     
@@ -1305,7 +1306,7 @@ extension FlightFilterViewController{
                     if SVProgressHUD.isVisible(){
                         SVProgressHUD.dismiss()
                     }
-                    self.showAlert(title: "No data found", message: nil, callback: nil)
+                    self.showAlert(title: self.noDataMessage, message: nil, callback: nil)
                 }
             case .failure(let error):
                 if SVProgressHUD.isVisible(){
@@ -1435,7 +1436,7 @@ extension FlightFilterViewController{
                 if SVProgressHUD.isVisible(){
                     SVProgressHUD.dismiss()
                 }
-                self.showAlert(title: "No data found", message: nil, callback: nil)
+                self.showAlert(title: "Something went wrong! Please try again", message: nil, callback: nil)
                 return
             }
             print("statusCode = \(statusCode)")
@@ -1455,7 +1456,7 @@ extension FlightFilterViewController{
                         if SVProgressHUD.isVisible(){
                             SVProgressHUD.dismiss()
                         }
-                        self.showAlert(title: "No data found", message: nil, callback: nil)
+                        self.showAlert(title: self.noDataMessage, message: nil, callback: nil)
                         return
                     }
                     
@@ -1534,7 +1535,7 @@ extension FlightFilterViewController{
                     if SVProgressHUD.isVisible(){
                         SVProgressHUD.dismiss()
                     }
-                    self.showAlert(title: "No data found", message: nil, callback: nil)
+                    self.showAlert(title: self.noDataMessage, message: nil, callback: nil)
                 }
             case .failure(let error):
                 if SVProgressHUD.isVisible(){
