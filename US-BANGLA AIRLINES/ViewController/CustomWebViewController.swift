@@ -27,7 +27,7 @@ class CustomWebViewController: UIViewController {
     let liveFlightSearch = "https://fo-asia.ttinteractive.com/Zenith/FrontOffice/USBangla/en-GB/FlightStatusSearch/FlightStatus"
     let myBooking = "http://fo-asia.ttinteractive.com/Zenith/FrontOffice/usbangla/Home/FindBooking"
     let salesOffice = "https://usbair.com/app/salesoffices.php"
-
+    
     let termsAndConditionUrl = "https://usbair.com/assets/frontend/img/travel_info/USBA_Ticketing_Terms_And_Condition.pdf"
     
     var redirectURL = "https://google.com"
@@ -138,7 +138,13 @@ extension CustomWebViewController: WKNavigationDelegate{
                 }
             }
             if SVProgressHUD.isVisible(){
-                SVProgressHUD.dismiss()
+                if currentOption == .flightSchedule{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        SVProgressHUD.dismiss()
+                    }
+                }else{
+                    SVProgressHUD.dismiss()
+                }
             }
         }
         
@@ -148,7 +154,13 @@ extension CustomWebViewController: WKNavigationDelegate{
             if (self.webView.estimatedProgress == 1) {
                 print("### EP:", webView.estimatedProgress)
                 if SVProgressHUD.isVisible(){
-                    SVProgressHUD.dismiss()
+                    if currentOption == .flightSchedule{
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            SVProgressHUD.dismiss()
+                        }
+                    }else{
+                        SVProgressHUD.dismiss()
+                    }
                 }
             }
         }
