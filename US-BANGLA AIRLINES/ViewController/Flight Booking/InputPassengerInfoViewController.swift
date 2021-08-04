@@ -307,69 +307,79 @@ class InputPassengerInfoViewController: UIViewController {
     }
     
     func validateInput() -> Bool{
-        //        for passenger in computedPassengers{
-        let passenger = computedPassengers.first ?? Passenger()
-        if passenger.firstName.isEmpty{
-            showAlert(title: "First Name is Empty.", message: nil, callback: nil)
-            return false
-        }
-        if passenger.lastName.isEmpty{
-            showAlert(title: "Last Name is Empty.", message: nil, callback: nil)
-            return false
-        }
-        if isLocalFlight && passenger.passengerTypeCode == "AD"{
-            print("dob not required for lead passenger in case of local flight")
-        }else{
-            if passenger.dobDay == "DATE"{
-                showAlert(title: "DOB date not selected.", message: nil, callback: nil)
+        for passenger in computedPassengers{
+            //        let passenger = computedPassengers.first ?? Passenger()
+            var type = ""
+            if passenger.passengerTypeCode == "AD"{
+                type = "Adult:\n "
+            }else if passenger.passengerTypeCode == "CHD"{
+                type = "Child:\n"
+            }else{
+                type = "Infant:\n "
+            }
+            if passenger.firstName.isEmpty{
+                showAlert(title: "\(type) First Name is Empty.", message: nil, callback: nil)
                 return false
             }
-            if passenger.dobMonth == "MONTH"{
-                showAlert(title: "DOB month not selected.", message: nil, callback: nil)
+            if passenger.lastName.isEmpty{
+                showAlert(title: "\(type) Last Name is Empty.", message: nil, callback: nil)
                 return false
             }
-            if passenger.dobYear == "YEAR"{
-                showAlert(title: "DOB year not selected.", message: nil, callback: nil)
-                return false
+            if isLocalFlight && passenger.passengerTypeCode == "AD"{
+                print("dob not required for lead passenger in case of local flight")
+            }else{
+                if passenger.dobDay == "DATE"{
+                    showAlert(title: "\(type) DOB date not selected.", message: nil, callback: nil)
+                    return false
+                }
+                if passenger.dobMonth == "MONTH"{
+                    showAlert(title: "\(type) DOB month not selected.", message: nil, callback: nil)
+                    return false
+                }
+                if passenger.dobYear == "YEAR"{
+                    showAlert(title: "\(type) DOB year not selected.", message: nil, callback: nil)
+                    return false
+                }
             }
+            
+            if isLocalFlight == false{
+                if passenger.documentTypeValue.isEmpty{
+                    showAlert(title: "\(type) Document type not selected", message: nil, callback: nil)
+                    return false
+                }
+                if passenger.documentNumber.isEmpty{
+                    showAlert(title: "\(type) Document number not added", message: nil, callback: nil)
+                    return false
+                }
+                if passenger.documentIssuanceCountry.isEmpty{
+                    showAlert(title: "\(type) Document issuance country not selected", message: nil, callback: nil)
+                    return false
+                }
+                if passenger.expireDay == "DATE"{
+                    showAlert(title: "\(type) Expire date not selected.", message: nil, callback: nil)
+                    return false
+                }
+                if passenger.expireMonth == "MONTH"{
+                    showAlert(title: "\(type) Expire month not selected.", message: nil, callback: nil)
+                    return false
+                }
+                if passenger.expireYear == "YEAR"{
+                    showAlert(title: "\(type) Expire year not selected.", message: nil, callback: nil)
+                    return false
+                }
+            }
+            
         }
         
-        if isLocalFlight == false{
-            if passenger.documentTypeValue.isEmpty{
-                showAlert(title: "Document type not selected", message: nil, callback: nil)
-                return false
-            }
-            if passenger.documentNumber.isEmpty{
-                showAlert(title: "Document number not added", message: nil, callback: nil)
-                return false
-            }
-            if passenger.documentIssuanceCountry.isEmpty{
-                showAlert(title: "Document issuance country not selected", message: nil, callback: nil)
-                return false
-            }
-            if passenger.expireDay == "DATE"{
-                showAlert(title: "Expire date not selected.", message: nil, callback: nil)
-                return false
-            }
-            if passenger.expireMonth == "MONTH"{
-                showAlert(title: "Expire month not selected.", message: nil, callback: nil)
-                return false
-            }
-            if passenger.expireYear == "YEAR"{
-                showAlert(title: "Expire year not selected.", message: nil, callback: nil)
-                return false
-            }
-        }
-        
-        if passenger.phoneNumberWithoutCountryCode.isEmpty{
-            showAlert(title: "Phone number not added.", message: nil, callback: nil)
+        let leadPassenger = computedPassengers.first ?? Passenger()
+        if leadPassenger.phoneNumberWithoutCountryCode.isEmpty{
+            showAlert(title: "ADULT (Lead):\n Phone number not added.", message: nil, callback: nil)
             return false
         }
-        if passenger.emailAddress.isEmpty{
-            showAlert(title: "Email not added.", message: nil, callback: nil)
+        if leadPassenger.emailAddress.isEmpty{
+            showAlert(title: "ADULT (Lead):\n Email not added.", message: nil, callback: nil)
             return false
         }
-        //        }
         return true
     }
     
