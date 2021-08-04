@@ -300,7 +300,7 @@ class FlightSummaryViewController: UIViewController {
     }
     
     func loadReturnData(){
-        flightIdLabel.text = "FLIGHT: \(returnFlight?.forwardflightInfo?.operatingAirlineDesignator ?? "") \(returnFlight?.forwardflightInfo?.operatingFlightNumber ?? ""))"
+        flightIdLabel.text = "FLIGHT: \(returnFlight?.forwardflightInfo?.operatingAirlineDesignator ?? "") \(returnFlight?.forwardflightInfo?.operatingFlightNumber ?? "")"
         flightNameLabel.text = returnFlight?.forwardflightInfo?.equipmentText ?? ""
         let duration = ((returnFlight?.forwardflightInfo?.durationMinutes ?? 0) + (returnFlight?.backwardflightInfo?.durationMinutes ?? 0))
         durationLabel.text = "\(duration) MIN"

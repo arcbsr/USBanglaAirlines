@@ -1544,10 +1544,11 @@ extension FlightFilterViewController{
                 self.showAlert(title: "Something went wrong! Status: \(statusCode)", message: nil, callback: nil)
                 print("error = \(error)")
             }
-        }).responseJSON { (response) in
-            print("\n\n---------------")
-            print(response)
-            print("\n\n---------------")
-        }
+        })
+//        .responseJSON { (response) in
+//            print("\n\n---------------")
+//            print(response)
+//            print("\n\n---------------")
+//        }
     }
 }
