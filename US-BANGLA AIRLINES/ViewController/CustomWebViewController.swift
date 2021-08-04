@@ -26,7 +26,7 @@ class CustomWebViewController: UIViewController {
     let webCheckInUrl = "https://usbair.com/app/webcheckin.php"
     let liveFlightSearch = "https://fo-asia.ttinteractive.com/Zenith/FrontOffice/USBangla/en-GB/FlightStatusSearch/FlightStatus"
     let myBooking = "http://fo-asia.ttinteractive.com/Zenith/FrontOffice/usbangla/Home/FindBooking"
-    let salesOffice = "https://usbair.com/app/hotline.php"
+    let salesOffice = "https://usbair.com/app/salesoffices.php"
 
     let termsAndConditionUrl = "https://usbair.com/assets/frontend/img/travel_info/USBA_Ticketing_Terms_And_Condition.pdf"
     
@@ -72,7 +72,7 @@ class CustomWebViewController: UIViewController {
             navigationItem.title = "MY BOOKING"
         case .salesOffice:
             urlString = salesOffice
-            navigationItem.title = "SALES OFFICE"
+            navigationItem.title = "SALES OFFICES"
         case .discountNotification:
             urlString = discountNotificationUrl
             navigationItem.title = "NOTIFICATION"
