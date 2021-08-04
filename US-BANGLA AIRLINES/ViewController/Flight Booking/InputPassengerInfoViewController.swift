@@ -332,7 +332,9 @@ class InputPassengerInfoViewController: UIViewController {
                 showAlert(title: "DOB year not selected.", message: nil, callback: nil)
                 return false
             }
-            
+        }
+        
+        if isLocalFlight == false{
             if passenger.documentTypeValue.isEmpty{
                 showAlert(title: "Document type not selected", message: nil, callback: nil)
                 return false
@@ -358,6 +360,7 @@ class InputPassengerInfoViewController: UIViewController {
                 return false
             }
         }
+        
         if passenger.phoneNumberWithoutCountryCode.isEmpty{
             showAlert(title: "Phone number not added.", message: nil, callback: nil)
             return false
