@@ -11,6 +11,12 @@ import DropDown
 import SVProgressHUD
 
 class ReturnFlightViewController: UIViewController {
+    @IBOutlet weak var noDataMessageLabel: UILabel!{
+        didSet{
+            noDataMessageLabel.isHidden = true
+            noDataMessageLabel.textColor = CustomColor.primaryColor
+        }
+    }
     @IBOutlet weak var downImageView: UIImageView!{
         didSet{
             if #available(iOS 13.0, *) {

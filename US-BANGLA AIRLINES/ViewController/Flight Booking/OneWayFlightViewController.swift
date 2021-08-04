@@ -13,6 +13,12 @@ import SVProgressHUD
 
 
 class OneWayFlightViewController: UIViewController {
+    @IBOutlet weak var noDataMessageLabel: UILabel!{
+        didSet{
+            noDataMessageLabel.isHidden = true
+            noDataMessageLabel.textColor = CustomColor.primaryColor
+        }
+    }
     @IBOutlet weak var downImageView: UIImageView!{
         didSet{
             if #available(iOS 13.0, *) {
@@ -188,15 +194,15 @@ class OneWayFlightViewController: UIViewController {
                 self?.tableView.reloadData()
             case 1:
                 // 12:01 AM - 11:59 AM
-                self?.filterByShift(start: 0, end: 11, zeroMinHour: nil)
+                self?.filterByShift(start: 0, end: 11, zeroMinHour: nil, type: "MORNING")
             case 2:
                 // DAY 12pm-6pm 12:00 PM - 06:00 PM
-                self?.filterByShift(start: 12, end: 17, zeroMinHour: 18)
+                self?.filterByShift(start: 12, end: 17, zeroMinHour: 18, type: "AFTER NOON")
             case 3:
                 //                // EVENING 6pm-3am
                 //                self?.filterByShift(start: 18, end: 24, offset: 3)
                 // 06:01 PM - 12:00 PM
-                self?.filterByShift(start: 18, end: 23, offset: 0, zeroMinHour: 0)
+                self?.filterByShift(start: 18, end: 23, offset: 0, zeroMinHour: 0, type: "EVENING")
             default:
                 break
             }
@@ -214,7 +220,7 @@ class OneWayFlightViewController: UIViewController {
     //        dropDown.show()
     //    }
     
-    func filterByShift(start: Int, end: Int, offset: Int = 0, zeroMinHour: Int?){
+    func filterByShift(start: Int, end: Int, offset: Int = 0, zeroMinHour: Int?, type: String){
         //        SVProgressHUD.show()
         var processedFlights = [FlightInfo]()
         for flight in flights{
@@ -240,7 +246,14 @@ class OneWayFlightViewController: UIViewController {
             }
         }
         filteredFlights = processedFlights
-        tableView.reloadData()
+        tableView.reloadData {
+            if self.tableView.numberOfRows() == 0{
+                self.noDataMessageLabel.text = "NO \(type) FLIGHT/SOLD OUT"
+                self.noDataMessageLabel.isHidden = false
+            }else{
+                self.noDataMessageLabel.isHidden = true
+            }
+        }
         //        SVProgressHUD.dismiss()
     }
     
