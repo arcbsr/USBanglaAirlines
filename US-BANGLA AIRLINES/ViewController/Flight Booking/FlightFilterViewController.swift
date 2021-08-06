@@ -259,6 +259,8 @@ class FlightFilterViewController: UIViewController {
     var fromOffer = false
     var isLocalFlight = false
     let noDataMessage = "No flight found or sold out. Please try again."
+    var flightYear = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -330,6 +332,8 @@ class FlightFilterViewController: UIViewController {
             returnOptionTapped()
             let forwardDate = Date().tomorrow
             let backwardDate = forwardDate.tomorrow
+            flightYear = forwardDate.year
+            UserDefaults.standard.setValue(flightYear, forKey: "flightYear")
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             departureDate = formatter.string(from: forwardDate)
@@ -480,6 +484,8 @@ class FlightFilterViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         departureDate = formatter.string(from: datePicker.date)
+        flightYear = datePicker.date.year
+        UserDefaults.standard.setValue(flightYear, forKey: "flightYear")
         formatter.dateFormat = "EEE, dd MMM, YYYY"
         self.departureDateTextField.text = ""
         self.departureDateTextField.text = formatter.string(from: datePicker.date)

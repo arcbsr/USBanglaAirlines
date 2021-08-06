@@ -133,8 +133,11 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
     var tiltleArray = ["MR", "MRS", "MISS", "MS", "MSTR"]
     var days = [String]()
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-    var dobYears = [String]()
+    var infantDobYears = [String]()
+    var childDobYears = [String]()
+    var adultDobYears = [String]()
     var expirationYears = [String]()
+    var passengerTypeCode = ""
     
     var selectedDobDay: ((_ item: String)->())?
     var selectedDobMonth: ((_ item: String)->())?
@@ -165,10 +168,23 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
             days.append("\(i)")
         }
         
-        let y = Date().year
-        for i in (1850 ... y).reversed() {
-            dobYears.append("\(i)")
+        let flightYear = UserDefaults.standard.integer(forKey: "flightYear")
+        let twelveYears = flightYear - 12
+        let twoYears = flightYear - 2
+        
+        for i in (1900 ... twelveYears).reversed() {
+            adultDobYears.append("\(i)")
         }
+        
+        for i in (twelveYears ... twoYears).reversed() {
+            childDobYears.append("\(i)")
+        }
+        
+        for i in (twoYears ... flightYear).reversed() {
+            infantDobYears.append("\(i)")
+        }
+        
+        let y = Date().year
         for i in y ... 2100 {
             expirationYears.append("\(i)")
         }
@@ -205,7 +221,14 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
     @IBAction func yearButtonTapped(_ sender: Any) {
         let dropDown = DropDown()
         dropDown.anchorView = dobYearButton
-        dropDown.dataSource = dobYears
+        if passengerTypeCode == "AD"{
+            dropDown.dataSource = adultDobYears
+        }else if passengerTypeCode == "CHD"{
+            dropDown.dataSource = childDobYears
+        }else{
+            dropDown.dataSource = infantDobYears
+        }
+        
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.dobYearButton.setTitle(item, for: .normal)
             self?.selectedDobYear?(item)

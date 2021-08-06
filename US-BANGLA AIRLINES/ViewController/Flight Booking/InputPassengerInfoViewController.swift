@@ -603,7 +603,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadPassengerCell.self)) as! LeadPassengerCell
                     cell.selectionStyle = .none
                     cell.passengerTypeLabel.text = "ADULT - 1 (LEAD)"
-                    
+
                     cell.titleLabel.text = computedPassengers[indexPath.row].title
                     cell.dobDateButton.setTitle(computedPassengers[indexPath.row].dobDay, for: .normal)
                     cell.dobMonthButton.setTitle(computedPassengers[indexPath.row].dobMonth, for: .normal)
@@ -790,13 +790,17 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.selectionStyle = .none
                     
                     let passenger = computedPassengers[indexPath.row]
-                    
+                    cell.passengerTypeCode = passenger.passengerTypeCode ?? ""
+
                     if passenger.passengerTypeCode == "AD"{
                         cell.passengerTypeLabel.text = "ADULT - \(passenger.index)"
+                        cell.isInfant = false
                     }else if passenger.passengerTypeCode == "CHD"{
                         cell.passengerTypeLabel.text = "CHILD - \(passenger.index)"
+                        cell.isInfant = false
                     }else{
                         cell.passengerTypeLabel.text = "INFANT - \(passenger.index)"
+                        cell.isInfant = true
                     }
                     
                     cell.titleLabel.text = computedPassengers[indexPath.row].title
@@ -868,7 +872,8 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     cell.selectionStyle = .none
                     
                     let passenger = computedPassengers[indexPath.row]
-                    
+                    cell.passengerTypeCode = passenger.passengerTypeCode ?? ""
+
                     if passenger.passengerTypeCode == "AD"{
                         cell.passengerTypeLabel.text = "ADULT - \(indexPath.row + 1)"
                         cell.documentDetailsTitleLabel.text = "ADULT - \(indexPath.row + 1) : DOCUMENT DETAILS"

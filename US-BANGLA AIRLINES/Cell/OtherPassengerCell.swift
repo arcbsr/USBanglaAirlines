@@ -49,20 +49,24 @@ class OtherPassengerCell: UITableViewCell {
         }
     }
     
-//    @IBOutlet weak var expireDateButton: UIButton!
-//    @IBOutlet weak var expireMonthButton: UIButton!
-//    @IBOutlet weak var expireYearButton: UIButton!
-//    @IBOutlet weak var passportNumberTextField: UITextField!{
-//        didSet{
-//            passportNumberTextField.delegate = self
-//        }
-//    }
+    //    @IBOutlet weak var expireDateButton: UIButton!
+    //    @IBOutlet weak var expireMonthButton: UIButton!
+    //    @IBOutlet weak var expireYearButton: UIButton!
+    //    @IBOutlet weak var passportNumberTextField: UITextField!{
+    //        didSet{
+    //            passportNumberTextField.delegate = self
+    //        }
+    //    }
     
     var tiltleArray = ["MR", "MRS", "MISS", "MS", "MSTR"]
     var days = [String]()
     var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-    var dobYears = [String]()
+    var infantDobYears = [String]()
+    var childDobYears = [String]()
+    var adultDobYears = [String]()
     var expirationYears = [String]()
+    var isInfant = false
+    var passengerTypeCode = ""
     
     var selectedDobDay: ((_ item: String)->())?
     var selectedDobMonth: ((_ item: String)->())?
@@ -89,10 +93,23 @@ class OtherPassengerCell: UITableViewCell {
             days.append("\(i)")
         }
         
-        let y = Date().year
-        for i in (1850 ... y).reversed() {
-            dobYears.append("\(i)")
+        let flightYear = UserDefaults.standard.integer(forKey: "flightYear")
+        let twelveYears = flightYear - 12
+        let twoYears = flightYear - 2
+        
+        for i in (1900 ... twelveYears).reversed() {
+            adultDobYears.append("\(i)")
         }
+        
+        for i in (twelveYears ... twoYears).reversed() {
+            childDobYears.append("\(i)")
+        }
+        
+        for i in (twoYears ... flightYear).reversed() {
+            infantDobYears.append("\(i)")
+        }
+        
+        let y = Date().year
         for i in y ... 2100 {
             expirationYears.append("\(i)")
         }
@@ -129,7 +146,14 @@ class OtherPassengerCell: UITableViewCell {
     @IBAction func yearButtonTapped(_ sender: Any) {
         let dropDown = DropDown()
         dropDown.anchorView = dobYearButton
-        dropDown.dataSource = dobYears
+        if passengerTypeCode == "AD"{
+            dropDown.dataSource = adultDobYears
+        }else if passengerTypeCode == "CHD"{
+            dropDown.dataSource = childDobYears
+        }else{
+            dropDown.dataSource = infantDobYears
+        }
+        
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             self?.dobYearButton.setTitle(item, for: .normal)
             self?.selectedDobYear?(item)
@@ -137,38 +161,38 @@ class OtherPassengerCell: UITableViewCell {
         dropDown.show()
     }
     
-//    @IBAction func expireDayButtonTapped(_ sender: Any) {
-//        let dropDown = DropDown()
-//        dropDown.anchorView = expireDateButton
-//        dropDown.dataSource = days
-//        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
-//            self?.expireDateButton.setTitle(item, for: .normal)
-//            self?.selectedExpireDay?(item)
-//        }
-//        dropDown.show()
-//    }
-//
-//    @IBAction func expireMonthButtonTapped(_ sender: Any) {
-//        let dropDown = DropDown()
-//        dropDown.anchorView = expireMonthButton
-//        dropDown.dataSource = months
-//        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
-//            self?.expireMonthButton.setTitle(item, for: .normal)
-//            self?.selectedExpireMonth?(item)
-//        }
-//        dropDown.show()
-//    }
-//
-//    @IBAction func expireYearButtonTapped(_ sender: Any) {
-//        let dropDown = DropDown()
-//        dropDown.anchorView = expireYearButton
-//        dropDown.dataSource = expirationYears
-//        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
-//            self?.expireYearButton.setTitle(item, for: .normal)
-//            self?.selectedExpireYear?(item)
-//        }
-//        dropDown.show()
-//    }
+    //    @IBAction func expireDayButtonTapped(_ sender: Any) {
+    //        let dropDown = DropDown()
+    //        dropDown.anchorView = expireDateButton
+    //        dropDown.dataSource = days
+    //        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+    //            self?.expireDateButton.setTitle(item, for: .normal)
+    //            self?.selectedExpireDay?(item)
+    //        }
+    //        dropDown.show()
+    //    }
+    //
+    //    @IBAction func expireMonthButtonTapped(_ sender: Any) {
+    //        let dropDown = DropDown()
+    //        dropDown.anchorView = expireMonthButton
+    //        dropDown.dataSource = months
+    //        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+    //            self?.expireMonthButton.setTitle(item, for: .normal)
+    //            self?.selectedExpireMonth?(item)
+    //        }
+    //        dropDown.show()
+    //    }
+    //
+    //    @IBAction func expireYearButtonTapped(_ sender: Any) {
+    //        let dropDown = DropDown()
+    //        dropDown.anchorView = expireYearButton
+    //        dropDown.dataSource = expirationYears
+    //        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+    //            self?.expireYearButton.setTitle(item, for: .normal)
+    //            self?.selectedExpireYear?(item)
+    //        }
+    //        dropDown.show()
+    //    }
     
     @objc func titleViewTapped(){
         let dropDown = DropDown()
@@ -194,8 +218,8 @@ extension OtherPassengerCell: UITextFieldDelegate{
             selectedFirstName?(text)
         case lastNameTextField:
             selectedLastName?(text)
-//        case passportNumberTextField:
-//            selectedPassportNumer?(text)
+        //        case passportNumberTextField:
+        //            selectedPassportNumer?(text)
         case ffpNumberTextField:
             selectedFFPNumber?(text)
         default:

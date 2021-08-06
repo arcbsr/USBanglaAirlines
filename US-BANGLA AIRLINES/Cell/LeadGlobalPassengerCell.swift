@@ -192,10 +192,13 @@ class LeadGlobalPassengerCell: UITableViewCell {
             days.append("\(i)")
         }
         
-        let y = Date().year
-        for i in (1850 ... y).reversed() {
+        var flightYear = UserDefaults.standard.integer(forKey: "flightYear")
+        flightYear -= 12
+        for i in (1900 ... flightYear).reversed() {
             dobYears.append("\(i)")
         }
+        
+        let y = Date().year
         for i in y ... 2100 {
             expirationYears.append("\(i)")
         }
