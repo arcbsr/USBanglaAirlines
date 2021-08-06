@@ -258,7 +258,7 @@ class FlightFilterViewController: UIViewController {
     var toCityCode = ""
     var fromOffer = false
     var isLocalFlight = false
-    let noDataMessage = "No flight found or sold out on selected search condition. Please try again."
+    let noDataMessage = "No flight found or sold out. Please try again."
     
     override func viewDidLoad() {
         super.viewDidLoad()
