@@ -113,8 +113,9 @@ final class LocalePickerViewController: UIViewController {
         
         view.addSubview(indicatorView)
         
-        searchView.addSubview(searchController.searchBar)
-        tableView.tableHeaderView = searchView
+        //MARK: HIDE SEARCH OTPTION
+//        searchView.addSubview(searchController.searchBar)
+//        tableView.tableHeaderView = searchView
         
         //extendedLayoutIncludesOpaqueBars = true
         //edgesForExtendedLayout = .bottom
