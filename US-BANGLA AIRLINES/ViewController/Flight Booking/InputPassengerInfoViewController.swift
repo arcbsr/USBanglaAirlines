@@ -1163,7 +1163,7 @@ extension InputPassengerInfoViewController{
                 //                if SVProgressHUD.isVisible(){
                 //                    SVProgressHUD.dismiss()
                 //                }
-                self.showAlert(title: "No data found", message: nil, callback: nil)
+                self.showAlert(title: "Something went wrong. Please try again.", message: nil, callback: nil)
                 return
             }
             print("statusCode = \(statusCode)")
