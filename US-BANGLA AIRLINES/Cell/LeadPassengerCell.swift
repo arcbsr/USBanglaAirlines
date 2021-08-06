@@ -131,6 +131,7 @@ class LeadPassengerCell: UITableViewCell {
         // Initialization code
         
         days.append("DATE")
+        dobYears.append("YEAR")
         for i in 1 ..< 32{
             days.append("\(i)")
         }
