@@ -1088,6 +1088,7 @@ extension InputPassengerInfoViewController{
                     "NationalityCountryCode": passenger.countryCode,
                     "DocumentIssuingCountry": passenger.documentIssuanceCountry,
                     "Nationality": passenger.country,
+                    "BirthPlace": passenger.birthplace,
                     "DateOfBirth": dob,
                     "Gender": gender,
                     "DocumentExpiryDate": expireDate,
