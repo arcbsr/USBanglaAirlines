@@ -329,6 +329,9 @@ class FlightFilterViewController: UIViewController {
             toCityCode = offerPlaceDestinationCode
             fromCityLabel.text = "\(fromCityUpperLabel.text ?? "") (\(fromCityCode)"
             toCityLabel.text = "\(toCityUpperLabel.text ?? "") (\(toCityCode))"
+            
+            calculateDestinationCities(selectedCode: fromCityCode)
+            
             returnOptionTapped()
             let forwardDate = Date().tomorrow
             let backwardDate = forwardDate.tomorrow
@@ -375,22 +378,27 @@ class FlightFilterViewController: UIViewController {
             self?.fromCityCode = self?.aiportReverseDictionary[item] ?? ""
             self?.fromCityLabel.text = "\(item) (\(self?.fromCityCode ?? ""))"
             self?.fromCityUpperLabel.text = item
-            guard let airportCodes = _self.airportModel?.codes, let cityPairCodes = _self.cityPairModel?.codes else{
+            
+            guard let airportCodes = _self.airportModel?.codes else{
                 return
             }
-            
-            if index < airportCodes.count{
-                _self.toCities.removeAll()
-                let selectedCode = airportCodes[index].code
-                for code in cityPairCodes{
-                    if code.start == selectedCode{
-                        _self.toCities.append(_self.aiportDictionary[code.end] ?? "")
-                    }
-                }
-            }
-            _self.toCities.sort()
+            self?.calculateDestinationCities(selectedCode: airportCodes[index].code ?? "")
         }
         dropDown.show()
+    }
+    
+    func calculateDestinationCities(selectedCode: String){
+        guard let cityPairCodes = cityPairModel?.codes else{
+            return
+        }
+        
+        toCities.removeAll()
+        for code in cityPairCodes{
+            if code.start == selectedCode{
+                toCities.append(aiportDictionary[code.end] ?? "")
+            }
+        }
+        toCities.sort()
     }
     
     @objc func toCityTapped(){
@@ -984,6 +992,7 @@ extension FlightFilterViewController{
             switch response.result {
             case .success:
                 self.cityPairModel = response.result.value
+                self.calculateDestinationCities(selectedCode: "DAC")
             case .failure(let error):
                 print("error = \(error)")
             }
@@ -1551,10 +1560,10 @@ extension FlightFilterViewController{
                 print("error = \(error)")
             }
         })
-//        .responseJSON { (response) in
-//            print("\n\n---------------")
-//            print(response)
-//            print("\n\n---------------")
-//        }
+        //        .responseJSON { (response) in
+        //            print("\n\n---------------")
+        //            print(response)
+        //            print("\n\n---------------")
+        //        }
     }
 }
