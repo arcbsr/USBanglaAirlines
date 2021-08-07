@@ -603,7 +603,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LeadPassengerCell.self)) as! LeadPassengerCell
                     cell.selectionStyle = .none
                     cell.passengerTypeLabel.text = "ADULT - 1 (LEAD)"
-
+                    
                     cell.titleLabel.text = computedPassengers[indexPath.row].title
                     cell.dobDateButton.setTitle(computedPassengers[indexPath.row].dobDay, for: .normal)
                     cell.dobMonthButton.setTitle(computedPassengers[indexPath.row].dobMonth, for: .normal)
@@ -791,7 +791,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     
                     let passenger = computedPassengers[indexPath.row]
                     cell.passengerTypeCode = passenger.passengerTypeCode ?? ""
-
+                    
                     if passenger.passengerTypeCode == "AD"{
                         cell.passengerTypeLabel.text = "ADULT - \(passenger.index)"
                         cell.isInfant = false
@@ -873,7 +873,7 @@ extension InputPassengerInfoViewController: UITableViewDelegate, UITableViewData
                     
                     let passenger = computedPassengers[indexPath.row]
                     cell.passengerTypeCode = passenger.passengerTypeCode ?? ""
-
+                    
                     if passenger.passengerTypeCode == "AD"{
                         cell.passengerTypeLabel.text = "ADULT - \(indexPath.row + 1)"
                         cell.documentDetailsTitleLabel.text = "ADULT - \(indexPath.row + 1) : DOCUMENT DETAILS"
@@ -1060,9 +1060,29 @@ extension InputPassengerInfoViewController{
                 specialServicesParams.append(emailParams)
             }
             
-            if isLocalFlight && passenger.passengerTypeCode == "AD"{
-                print("dob not required for lead passenger in case of local flight")
-            }else{
+            if passenger.ffpNumber.isEmpty == false{
+                let ffpParam: Parameters = [
+                    "AirlineDesignator": "BS",
+                    "FrequentFlyerNumber": passenger.ffpNumber
+                ]
+                let ffpData: Parameters = [
+                    "Fqtv": ffpParam
+                ]
+                
+                let ffpParams: Parameters = [
+                    "data": ffpData,
+                    "RefPassenger": passenger.refPassenger,
+                    "Code": "FQTV"
+                ]
+                specialServicesParams.append(ffpParams)
+            }
+            
+            
+            //            if isLocalFlight && passenger.passengerTypeCode == "AD"{
+            //                print("dob not required for lead passenger in case of local flight")
+            //            }else{
+            
+            if passenger.dobYear.isEmpty == false{
                 let dobParam: Parameters = [
                     "DateOfBirth": dob
                 ]
@@ -1210,6 +1230,12 @@ extension InputPassengerInfoViewController{
                         self.showAlert(title: message, message: nil, callback: nil)
                         return
                     }
+                    let errorMessage = response.result.value?.responseInfo?.error?.message ?? ""
+                    if errorMessage.isEmpty == false{
+                        self.showAlert(title: errorMessage, message: nil)
+                        return
+                    }
+                    
                     self.showAlert(title: "Something went wrong! Please provide accurate information", message: nil, callback: nil)
                 }
             case .failure(let error):

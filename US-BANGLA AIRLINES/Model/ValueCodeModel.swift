@@ -33,7 +33,7 @@ class ValueCodeModel: Mappable {
 class ResponseInfo: Mappable {
     
     var echoToken: String?
-    var error: String?
+    var error: Error?
     var extensions: String?
     var processingMs: Int?
     var warnings: String?
@@ -48,6 +48,24 @@ class ResponseInfo: Mappable {
         extensions <- map["Extensions"]
         processingMs <- map["ProcessingMs"]
         warnings <- map["Warnings"]
+    }
+    
+}
+
+
+class Error : Mappable {
+    var code : String?
+    var message : String?
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        
+        code <- map["Code"]
+        message <- map["Message"]
+     
     }
     
 }
