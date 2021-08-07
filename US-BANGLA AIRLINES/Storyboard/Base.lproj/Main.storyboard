@@ -1114,6 +1114,153 @@
             </objects>
             <point key="canvasLocation" x="1048" y="-552"/>
         </scene>
+        <!--My Booking View Controller-->
+        <scene sceneID="K17-lI-jVc">
+            <objects>
+                <viewController storyboardIdentifier="MyBookingViewController" id="rbc-yt-OGY" customClass="MyBookingViewController" customModule="US_BANGLA_AIRLINES" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="whp-2G-PsG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ww6-Uu-dKi">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="YlK-GP-ATx">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="42"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booking Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDY-Mo-bO7">
+                                            <rect key="frame" x="133" y="11" width="148.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="WDY-Mo-bO7" firstAttribute="top" secondItem="YlK-GP-ATx" secondAttribute="top" constant="11" id="QsH-HO-NjL"/>
+                                        <constraint firstItem="WDY-Mo-bO7" firstAttribute="centerX" secondItem="YlK-GP-ATx" secondAttribute="centerX" id="uvM-9z-Hmb"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyBookingCell" rowHeight="94" id="Gw6-2Y-3AX" customClass="MyBookingCell" customModule="US_BANGLA_AIRLINES" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="70" width="414" height="94"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gw6-2Y-3AX" id="CQk-YK-ohs">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xe3-zd-A87">
+                                                    <rect key="frame" x="8" y="8" width="398" height="86"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PNR: 459094D" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7nq-fR-zH5">
+                                                            <rect key="frame" x="8" y="8" width="107" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BOOKED" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="svc-eh-Jy5">
+                                                            <rect key="frame" x="291" y="38" width="55.5" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                            <color key="textColor" systemColor="systemRedColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DHAKA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9lI-w5-WUg">
+                                                            <rect key="frame" x="8" y="38" width="45" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AMOUNT: BDT 12993.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ggp-Hq-8TS">
+                                                            <rect key="frame" x="247.5" y="8" width="142.5" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHITTAGANG" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bT3-Y7-iWV">
+                                                            <rect key="frame" x="115" y="38" width="83.5" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATE: 30 Aug 2021" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fhf-Ly-YZT">
+                                                            <rect key="frame" x="8" y="62" width="116.5" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_one_way" translatesAutoresizingMaskIntoConstraints="NO" id="m0c-zl-2ry">
+                                                            <rect key="frame" x="61" y="32" width="46" height="28"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="m0c-zl-2ry" secondAttribute="height" multiplier="5:3" id="dd3-jj-fNE"/>
+                                                                <constraint firstAttribute="width" constant="46" id="eU8-Gp-b2h"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="m0c-zl-2ry" firstAttribute="leading" secondItem="9lI-w5-WUg" secondAttribute="trailing" constant="8" id="0KR-wF-kfN"/>
+                                                        <constraint firstItem="bT3-Y7-iWV" firstAttribute="leading" secondItem="m0c-zl-2ry" secondAttribute="trailing" constant="8" id="1JI-17-HOY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ggp-Hq-8TS" secondAttribute="trailing" constant="8" id="3Z5-7Q-MuK"/>
+                                                        <constraint firstAttribute="bottom" secondItem="fhf-Ly-YZT" secondAttribute="bottom" constant="8" id="3vk-S7-CAM"/>
+                                                        <constraint firstItem="7nq-fR-zH5" firstAttribute="leading" secondItem="xe3-zd-A87" secondAttribute="leading" constant="8" id="4D5-2M-7bm"/>
+                                                        <constraint firstItem="bT3-Y7-iWV" firstAttribute="centerY" secondItem="m0c-zl-2ry" secondAttribute="centerY" id="5Up-lY-gLt"/>
+                                                        <constraint firstItem="m0c-zl-2ry" firstAttribute="centerY" secondItem="9lI-w5-WUg" secondAttribute="centerY" id="6Mj-Ut-C3D"/>
+                                                        <constraint firstItem="fhf-Ly-YZT" firstAttribute="leading" secondItem="9lI-w5-WUg" secondAttribute="leading" id="GOk-Sl-t3z"/>
+                                                        <constraint firstItem="fhf-Ly-YZT" firstAttribute="top" secondItem="9lI-w5-WUg" secondAttribute="bottom" constant="8" id="MOQ-bw-rJB"/>
+                                                        <constraint firstItem="svc-eh-Jy5" firstAttribute="centerX" secondItem="ggp-Hq-8TS" secondAttribute="centerX" id="Nbi-8b-rOp"/>
+                                                        <constraint firstItem="7nq-fR-zH5" firstAttribute="top" secondItem="xe3-zd-A87" secondAttribute="top" constant="8" id="Ppd-yI-0I5"/>
+                                                        <constraint firstItem="ggp-Hq-8TS" firstAttribute="top" secondItem="xe3-zd-A87" secondAttribute="top" constant="8" id="ZpO-yg-riG"/>
+                                                        <constraint firstItem="9lI-w5-WUg" firstAttribute="leading" secondItem="7nq-fR-zH5" secondAttribute="leading" id="bD4-83-wH3"/>
+                                                        <constraint firstItem="svc-eh-Jy5" firstAttribute="centerY" secondItem="bT3-Y7-iWV" secondAttribute="centerY" id="eGU-Oj-yFe"/>
+                                                        <constraint firstItem="9lI-w5-WUg" firstAttribute="top" secondItem="7nq-fR-zH5" secondAttribute="bottom" constant="12" id="v0R-WM-tgT"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="xe3-zd-A87" secondAttribute="trailing" constant="8" id="4k0-ag-3aY"/>
+                                                <constraint firstItem="xe3-zd-A87" firstAttribute="top" secondItem="CQk-YK-ohs" secondAttribute="top" constant="8" id="BAy-ls-uWm"/>
+                                                <constraint firstItem="xe3-zd-A87" firstAttribute="leading" secondItem="CQk-YK-ohs" secondAttribute="leading" constant="8" id="FVB-09-AJB"/>
+                                                <constraint firstAttribute="bottom" secondItem="xe3-zd-A87" secondAttribute="bottom" id="Ptm-Yf-wS7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountLabel" destination="ggp-Hq-8TS" id="OBF-hX-KNh"/>
+                                            <outlet property="dateLabel" destination="fhf-Ly-YZT" id="sUp-u7-7az"/>
+                                            <outlet property="flightDirectionImageView" destination="m0c-zl-2ry" id="5j4-IR-81E"/>
+                                            <outlet property="fromCityLabel" destination="9lI-w5-WUg" id="wUW-mC-RxF"/>
+                                            <outlet property="pnrLabel" destination="7nq-fR-zH5" id="Ujw-sP-PCo"/>
+                                            <outlet property="roundView" destination="xe3-zd-A87" id="pQG-Aq-VmZ"/>
+                                            <outlet property="statusLabel" destination="svc-eh-Jy5" id="a5C-Pp-OsT"/>
+                                            <outlet property="toCityLabel" destination="bT3-Y7-iWV" id="1lj-EK-t2z"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No booking created" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvU-5q-VRE">
+                                <rect key="frame" x="16" y="438" width="382" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="t6A-Yg-LKo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="t6A-Yg-LKo" firstAttribute="trailing" secondItem="JvU-5q-VRE" secondAttribute="trailing" constant="16" id="EEQ-7R-kXU"/>
+                            <constraint firstItem="JvU-5q-VRE" firstAttribute="centerY" secondItem="whp-2G-PsG" secondAttribute="centerY" id="Fyu-dP-XBH"/>
+                            <constraint firstItem="t6A-Yg-LKo" firstAttribute="trailing" secondItem="ww6-Uu-dKi" secondAttribute="trailing" id="JmU-ZF-b2S"/>
+                            <constraint firstItem="t6A-Yg-LKo" firstAttribute="bottom" secondItem="ww6-Uu-dKi" secondAttribute="bottom" id="iCy-Ps-B0h"/>
+                            <constraint firstItem="ww6-Uu-dKi" firstAttribute="leading" secondItem="t6A-Yg-LKo" secondAttribute="leading" id="klD-Et-awh"/>
+                            <constraint firstItem="ww6-Uu-dKi" firstAttribute="top" secondItem="t6A-Yg-LKo" secondAttribute="top" id="xQY-Uq-T6y"/>
+                            <constraint firstItem="JvU-5q-VRE" firstAttribute="leading" secondItem="t6A-Yg-LKo" secondAttribute="leading" constant="16" id="yxK-uJ-FFU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="noDataMessageLabel" destination="JvU-5q-VRE" id="LJ7-jt-rb2"/>
+                        <outlet property="tableView" destination="ww6-Uu-dKi" id="dt4-hI-SOO"/>
+                        <outlet property="titleLabel" destination="WDY-Mo-bO7" id="UxK-tr-g6z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LLA-lk-C3h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1834.7826086956522" y="-546.42857142857144"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Contact-2" width="434" height="434"/>
@@ -1136,6 +1283,7 @@
         <image name="holiday_button" width="533" height="147"/>
         <image name="home_background" width="1080" height="1920"/>
         <image name="hotline_button" width="533" height="147"/>
+        <image name="ic_one_way" width="299" height="49"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="manage_booking_button" width="535" height="147"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
@@ -1163,6 +1311,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

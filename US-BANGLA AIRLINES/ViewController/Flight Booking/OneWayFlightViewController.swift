@@ -282,6 +282,12 @@ class OneWayFlightViewController: UIViewController {
         //        }
     }
     
+    @objc func toMyBooking(){
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyBookingViewController") as? MyBookingViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     @objc func holidayTapped(){
         toWebView(type: .holiday)
     }
@@ -536,7 +542,8 @@ extension OneWayFlightViewController: UITableViewDelegate, UITableViewDataSource
             case BOOK_FLIGHT_SECTION:
                 print("same page; do nothing")
             case MY_BOOKING_SECTION:
-                toWebView(type: .myBooking)
+//                toWebView(type: .myBooking)
+                toMyBooking()
             case WEB_CHECK_IN_SECTION:
                 toWebView(type: .webCheckIn)
             case MANAGE_BOOKING_SECTION:

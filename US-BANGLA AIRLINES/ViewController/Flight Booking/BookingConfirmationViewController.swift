@@ -51,14 +51,14 @@ class BookingConfirmationViewController: UIViewController {
     @IBOutlet weak var childrenSeparatorView: UIView!
     @IBOutlet weak var childrenTaxLabel: UILabel!
     @IBOutlet weak var childrenTaxTitleLabel: UILabel!
-
+    
     
     @IBOutlet weak var infantLabel: UILabel!
     @IBOutlet weak var infantFareLabel: UILabel!
     @IBOutlet weak var infantSeparatorView: UIView!
     @IBOutlet weak var infantTaxLabel: UILabel!
     @IBOutlet weak var infantTaxTitleLabel: UILabel!
-
+    
     
     @IBOutlet weak var baseAmountLabel: UILabel!
     @IBOutlet weak var taxAmountLabel: UILabel!
@@ -176,6 +176,7 @@ class BookingConfirmationViewController: UIViewController {
         SVProgressHUD.show()
         pnrLabel.text = "PNR: \(pnrInfo?.pnrCode ?? "")"
         extractTicketInfo()
+        saveBookingData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -338,6 +339,45 @@ class BookingConfirmationViewController: UIViewController {
         totalFareLabel.text = "\(selectedCurrency) \(totalAmount)"
     }
     
+    func saveBookingData(){
+        var pnrArray = UserDefaults.standard.object(forKey: "pnrArray") as? [String] ?? [String]()
+        var amountArray = UserDefaults.standard.object(forKey: "amountArray") as? [String] ?? [String]()
+        var statusArray = UserDefaults.standard.object(forKey: "statusArray") as? [String] ?? [String]()
+        var dateArray = UserDefaults.standard.object(forKey: "dateArray") as? [String] ?? [String]()
+        var fromCityArray = UserDefaults.standard.object(forKey: "fromCityArray") as? [String] ?? [String]()
+        var toCityArray = UserDefaults.standard.object(forKey: "toCityArray") as? [String] ?? [String]()
+        var isOneWayArray = UserDefaults.standard.object(forKey: "isOneWayArray") as? [Bool] ?? [Bool]()
+
+        let pnr = pnrInfo?.pnrCode ?? ""
+        pnrArray.append(pnr)
+        UserDefaults.standard.setValue(pnrArray, forKey: "pnrArray")
+        
+        let total = totalFareLabel.text ?? ""
+        amountArray.append(total)
+        UserDefaults.standard.setValue(amountArray, forKey: "amountArray")
+        
+        statusArray.append("BOOKED")
+        UserDefaults.standard.setValue(statusArray, forKey: "statusArray")
+        
+        let departureDate = fromDateLabel.text ?? ""
+        dateArray.append(departureDate)
+        UserDefaults.standard.setValue(dateArray, forKey: "dateArray")
+        
+        let from = UserDefaults.standard.string(forKey: "fromCity") ?? ""
+        let to = UserDefaults.standard.string(forKey: "toCity") ?? ""
+        fromCityArray.append(from)
+        UserDefaults.standard.setValue(fromCityArray, forKey: "fromCityArray")
+        toCityArray.append(to)
+        UserDefaults.standard.setValue(toCityArray, forKey: "toCityArray")
+        
+        var isOneWay = true
+        if oneWayflight == nil{
+            isOneWay = false
+        }
+        isOneWayArray.append(isOneWay)
+        UserDefaults.standard.setValue(isOneWayArray, forKey: "isOneWayArray")
+    }
+    
     func toWebView(type: GivenOption){
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomWebViewController") as? CustomWebViewController{
             vc.currentOption = type
@@ -361,6 +401,12 @@ class BookingConfirmationViewController: UIViewController {
         //        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ManageBookingViewController") as? ManageBookingViewController{
         //            self.navigationController?.pushViewController(vc, animated: true)
         //        }
+    }
+    
+    @objc func toMyBooking(){
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyBookingViewController") as? MyBookingViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func holidayTapped(){
@@ -545,7 +591,8 @@ extension BookingConfirmationViewController: UITableViewDelegate, UITableViewDat
         case BOOK_FLIGHT_SECTION:
             print("same page; do nothing")
         case MY_BOOKING_SECTION:
-            toWebView(type: .myBooking)
+            //            toWebView(type: .myBooking)
+            toMyBooking()
         case WEB_CHECK_IN_SECTION:
             toWebView(type: .webCheckIn)
         case MANAGE_BOOKING_SECTION:

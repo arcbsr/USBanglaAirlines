@@ -203,6 +203,14 @@ extension PaymentViewController{
                 //                self.showAlert(title: self.successMessage, message: nil) { _ in
                 //                    self.navigationController?.popToRootViewController(animated: true)
                 //                }
+                
+                var statusArray = UserDefaults.standard.object(forKey: "statusArray") as? [String] ?? [String]()
+                if statusArray.isEmpty == false{
+                    statusArray.removeLast()
+                }
+                statusArray.append("PURCHASED")
+                UserDefaults.standard.setValue(statusArray, forKey: "statusArray")
+                
                 self.showSuccessMessage()
             }else{
                 self.showAlert(title: self.errorMessage, message: nil) { _ in

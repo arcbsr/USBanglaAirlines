@@ -646,6 +646,12 @@ class FlightFilterViewController: UIViewController {
         //        }
     }
     
+    @objc func toMyBooking(){
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyBookingViewController") as? MyBookingViewController{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     @objc func holidayTapped(){
         toWebView(type: .holiday)
     }
@@ -825,7 +831,8 @@ extension FlightFilterViewController: UITableViewDelegate, UITableViewDataSource
         case BOOK_FLIGHT_SECTION:
             print("same page; do nothing")
         case MY_BOOKING_SECTION:
-            toWebView(type: .myBooking)
+//            toWebView(type: .myBooking)
+            toMyBooking()
         case WEB_CHECK_IN_SECTION:
             toWebView(type: .webCheckIn)
         case MANAGE_BOOKING_SECTION:
@@ -1309,6 +1316,8 @@ extension FlightFilterViewController{
                         vc.selectedCurrency = self.selectedCurrency
                         vc.fromCity = self.fromCityLabel.text ?? ""
                         vc.toCity = self.toCityLabel.text ?? ""
+                        UserDefaults.standard.setValue(self.fromCityUpperLabel.text ?? "", forKey: "fromCity")
+                        UserDefaults.standard.setValue(self.toCityUpperLabel.text ?? "", forKey: "toCity")
                         vc.fromCityCode = self.fromCityCode
                         vc.toCityCode = self.toCityCode
                         vc.departureDate = self.departureDateTextField.text ?? ""
@@ -1538,6 +1547,8 @@ extension FlightFilterViewController{
                         vc.selectedCurrency = self.selectedCurrency
                         vc.fromCity = self.fromCityLabel.text ?? ""
                         vc.toCity = self.toCityLabel.text ?? ""
+                        UserDefaults.standard.setValue(self.fromCityUpperLabel.text ?? "", forKey: "fromCity")
+                        UserDefaults.standard.setValue(self.toCityUpperLabel.text ?? "", forKey: "toCity")
                         vc.fromCityCode = self.fromCityCode
                         vc.toCityCode = self.toCityCode
                         vc.departureDate = self.departureDateTextField.text ?? ""

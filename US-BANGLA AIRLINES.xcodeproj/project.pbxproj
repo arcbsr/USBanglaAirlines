@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		603D9E242E1A83D8166142E2 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD42F0CA14557A84DBEE7641 /* Pods_US_BANGLA_AIRLINES_US_BANGLA_AIRLINESUITests.framework */; };
+		8E14D7FD26BEC6B500F24436 /* MyBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14D7FC26BEC6B500F24436 /* MyBookingViewController.swift */; };
+		8E14D80126BED6A600F24436 /* MyBookingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E14D80026BED6A600F24436 /* MyBookingCell.swift */; };
 		8E2BB8D325D8447E0023A425 /* Countries.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8E2BB8C425D8447E0023A425 /* Countries.bundle */; };
 		8E2BB8D425D8447E0023A425 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8C525D8447E0023A425 /* UIImage+Extensions.swift */; };
 		8E2BB8D525D8447E0023A425 /* LocaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2BB8C725D8447E0023A425 /* LocaleStore.swift */; };
@@ -105,6 +107,8 @@
 		61675DB7FECFB7AD5DC810E0 /* Pods_US_BANGLA_AIRLINES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_US_BANGLA_AIRLINES.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F060B4B850D8E77A7E27C3C /* Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests/Pods-US-BANGLA AIRLINES-US-BANGLA AIRLINESUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		776259862741068A30210A40 /* Pods-US-BANGLA AIRLINES.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US-BANGLA AIRLINES.release.xcconfig"; path = "Target Support Files/Pods-US-BANGLA AIRLINES/Pods-US-BANGLA AIRLINES.release.xcconfig"; sourceTree = "<group>"; };
+		8E14D7FC26BEC6B500F24436 /* MyBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingViewController.swift; sourceTree = "<group>"; };
+		8E14D80026BED6A600F24436 /* MyBookingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingCell.swift; sourceTree = "<group>"; };
 		8E2BB8C425D8447E0023A425 /* Countries.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Countries.bundle; sourceTree = "<group>"; };
 		8E2BB8C525D8447E0023A425 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		8E2BB8C725D8447E0023A425 /* LocaleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleStore.swift; sourceTree = "<group>"; };
@@ -302,6 +306,7 @@
 			children = (
 				8EF6B615268352E100A1F36E /* LaunchAnimationViewController.swift */,
 				8E4B43112596091700B35133 /* HomeViewController.swift */,
+				8E14D7FC26BEC6B500F24436 /* MyBookingViewController.swift */,
 				8E4B43132596093900B35133 /* CustomWebViewController.swift */,
 				8E3CD0A025D4556B00BAA3B2 /* ManageBookingViewController.swift */,
 				8E3CD0A525D4557B00BAA3B2 /* SkyStarViewController.swift */,
@@ -336,6 +341,7 @@
 				8EB9C778259CA3C60080125B /* LeadPassengerCell.swift */,
 				8E2BB8EA25D86B0A0023A425 /* OtherGlobalPassengerTableViewCell.swift */,
 				8E2BB8E525D86AFA0023A425 /* LeadGlobalPassengerCell.swift */,
+				8E14D80026BED6A600F24436 /* MyBookingCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -665,6 +671,7 @@
 				8E2BB8DA25D8447E0023A425 /* CountryCell.swift in Sources */,
 				8E7DF23625B09A9000283A71 /* CityPairModel.swift in Sources */,
 				8E4B431625960AF400B35133 /* Reachability.swift in Sources */,
+				8E14D7FD26BEC6B500F24436 /* MyBookingViewController.swift in Sources */,
 				8EC85DCC259A6BD200DD1EFC /* OneWayFlightViewController.swift in Sources */,
 				8E2BB8EB25D86B0A0023A425 /* OtherGlobalPassengerTableViewCell.swift in Sources */,
 				8EE7850D25E53B8400995033 /* CreateBookingModel.swift in Sources */,
@@ -684,6 +691,7 @@
 				8E3CD0A625D4557B00BAA3B2 /* SkyStarViewController.swift in Sources */,
 				8E2BB8D625D8447E0023A425 /* LocaleInfo.swift in Sources */,
 				8E4B43142596093900B35133 /* CustomWebViewController.swift in Sources */,
+				8E14D80126BED6A600F24436 /* MyBookingCell.swift in Sources */,
 				8E2BB8E625D86AFA0023A425 /* LeadGlobalPassengerCell.swift in Sources */,
 				8E3CD0A125D4556B00BAA3B2 /* ManageBookingViewController.swift in Sources */,
 			);
