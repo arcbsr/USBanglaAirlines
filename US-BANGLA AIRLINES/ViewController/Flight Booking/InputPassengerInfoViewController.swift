@@ -1084,6 +1084,23 @@ extension InputPassengerInfoViewController{
                 specialServicesParams.append(ffpParams)
             }
             
+            if isLocalFlight == false{
+                // international flight -> add birthpalce
+                let birthplaceParam: Parameters = [
+                    "PlaceOfBirth": passenger.birthplace
+                ]
+                let birthplaceData: Parameters = [
+                    "Doco": birthplaceParam
+                ]
+                
+                let birthplaceParams: Parameters = [
+                    "Data": birthplaceData,
+                    "RefPassenger": passenger.refPassenger,
+                    "Code": "DOCO"
+                ]
+                specialServicesParams.append(birthplaceParams)
+            }
+            
             
             //            if isLocalFlight && passenger.passengerTypeCode == "AD"{
             //                print("dob not required for lead passenger in case of local flight")
