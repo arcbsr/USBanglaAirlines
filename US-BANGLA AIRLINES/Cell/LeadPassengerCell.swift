@@ -51,12 +51,14 @@ class LeadPassengerCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var firstNameTextField: UITextField!{
         didSet{
+            firstNameTextField.autocapitalizationType = .allCharacters
             firstNameTextField.delegate = self
         }
     }
     @IBOutlet weak var lastNameTextField: UITextField!{
         didSet{
             lastNameTextField.delegate = self
+            lastNameTextField.autocapitalizationType = .allCharacters
         }
     }
     
@@ -244,8 +246,8 @@ class LeadPassengerCell: UITableViewCell {
     @objc func countrySelectionViewTapped(){
         let alert = UIAlertController(style: .actionSheet, title: "Country")
         alert.addLocalePicker(type: .country) { info in
-            self.countryLabel.text = info?.country ?? ""
-            self.selectedCountry?(info?.country ?? "", info?.code ?? "")
+            self.countryLabel.text = info?.country.uppercased() ?? ""
+            self.selectedCountry?(info?.country.uppercased() ?? "", info?.code ?? "")
         }
         alert.addAction(title: "Cancel", style: .cancel)
         let topVC = UIApplication.topViewController()
@@ -256,10 +258,20 @@ class LeadPassengerCell: UITableViewCell {
 
 
 extension LeadPassengerCell: UITextFieldDelegate{
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == firstNameTextField || textField == lastNameTextField{
+            textField.text = (textField.text! as NSString).replacingCharacters(in: range, with: string.uppercased())
+            return false
+        }
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else{
             return
         }
+        
         switch textField {
         case firstNameTextField:
             selectedFirstName?(text)
@@ -277,4 +289,5 @@ extension LeadPassengerCell: UITextFieldDelegate{
             break
         }
     }
+    
 }

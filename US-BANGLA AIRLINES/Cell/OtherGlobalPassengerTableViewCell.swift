@@ -80,11 +80,13 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
     @IBOutlet weak var firstNameTextField: UITextField!{
         didSet{
             firstNameTextField.delegate = self
+            firstNameTextField.autocapitalizationType = .allCharacters
         }
     }
     @IBOutlet weak var lastNameTextField: UITextField!{
         didSet{
             lastNameTextField.delegate = self
+            lastNameTextField.autocapitalizationType = .allCharacters
         }
     }
     
@@ -294,8 +296,8 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
     @objc func nationalitySelectionViewTapped(){
         let alert = UIAlertController(style: .actionSheet, title: "Country")
         alert.addLocalePicker(type: .country) { info in
-            self.nationalityLabel.text = info?.country ?? ""
-            self.selectedNationality?(info?.country ?? "", info?.code ?? "")
+            self.nationalityLabel.text = info?.country.uppercased() ?? ""
+            self.selectedNationality?(info?.country.uppercased() ?? "", info?.code ?? "")
         }
         alert.addAction(title: "Cancel", style: .cancel)
         let topVC = UIApplication.topViewController()
@@ -305,8 +307,8 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
     @objc func birthpalceSelectionViewTapped(){
         let alert = UIAlertController(style: .actionSheet, title: "Country")
         alert.addLocalePicker(type: .country) { info in
-            self.birthplaceLabel.text = info?.country ?? ""
-            self.selectedBirthplace?(info?.country ?? "", info?.code ?? "")
+            self.birthplaceLabel.text = info?.country.uppercased() ?? ""
+            self.selectedBirthplace?(info?.country.uppercased() ?? "", info?.code ?? "")
         }
         alert.addAction(title: "Cancel", style: .cancel)
         let topVC = UIApplication.topViewController()
@@ -316,8 +318,8 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
     @objc func documentIssuanceCountrySelectionViewTapped(){
         let alert = UIAlertController(style: .actionSheet, title: "Country")
         alert.addLocalePicker(type: .country) { info in
-            self.documentIssuanceCountryLabel.text = info?.country ?? ""
-            self.selectedDocumentIssuanceCountry?(info?.country ?? "", info?.code ?? "")
+            self.documentIssuanceCountryLabel.text = info?.country.uppercased() ?? ""
+            self.selectedDocumentIssuanceCountry?(info?.country.uppercased() ?? "", info?.code ?? "")
         }
         alert.addAction(title: "Cancel", style: .cancel)
         let topVC = UIApplication.topViewController()
@@ -328,6 +330,15 @@ class OtherGlobalPassengerTableViewCell: UITableViewCell {
 
 
 extension OtherGlobalPassengerTableViewCell: UITextFieldDelegate{
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == firstNameTextField || textField == lastNameTextField{
+            textField.text = (textField.text! as NSString).replacingCharacters(in: range, with: string.uppercased())
+            return false
+        }
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else{
             return
@@ -345,4 +356,5 @@ extension OtherGlobalPassengerTableViewCell: UITextFieldDelegate{
             break
         }
     }
+    
 }
