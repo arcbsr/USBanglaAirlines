@@ -66,13 +66,21 @@ class MyBookingViewController: UIViewController {
     }
     
     func loadData(){
+        // shwo recent item first (so reverse the arrays)
         pnrArray = UserDefaults.standard.object(forKey: "pnrArray") as? [String] ?? [String]()
+        pnrArray.reverse()
         amountArray = UserDefaults.standard.object(forKey: "amountArray") as? [String] ?? [String]()
+        amountArray.reverse()
         statusArray = UserDefaults.standard.object(forKey: "statusArray") as? [String] ?? [String]()
+        statusArray.reverse()
         dateArray = UserDefaults.standard.object(forKey: "dateArray") as? [String] ?? [String]()
+        dateArray.reverse()
         fromCityArray = UserDefaults.standard.object(forKey: "fromCityArray") as? [String] ?? [String]()
+        fromCityArray.reverse()
         toCityArray = UserDefaults.standard.object(forKey: "toCityArray") as? [String] ?? [String]()
+        toCityArray.reverse()
         isOneWayArray = UserDefaults.standard.object(forKey: "isOneWayArray") as? [Bool] ?? [Bool]()
+        isOneWayArray.reverse()
         
         if pnrArray.isEmpty{
             noDataMessageLabel.isHidden = false
