@@ -1055,9 +1055,16 @@ extension InputPassengerInfoViewController{
                 let phoneParams: Parameters = [
                     "Text": "\(passenger.phoneCode)\(passenger.phoneNumberWithoutCountryCode)",
                     "RefPassenger": passenger.refPassenger,
-                    "Code": "CTCH"
+                    "Code": "CTCM"
                 ]
                 specialServicesParams.append(phoneParams)
+                
+                let homePhoneParams: Parameters = [
+                    "Text": "\(passenger.phoneCode)\(passenger.phoneNumberWithoutCountryCode)",
+                    "RefPassenger": passenger.refPassenger,
+                    "Code": "CTCH"
+                ]
+                specialServicesParams.append(homePhoneParams)
                 
                 let emailParams: Parameters = [
                     "Text": passenger.emailAddress,

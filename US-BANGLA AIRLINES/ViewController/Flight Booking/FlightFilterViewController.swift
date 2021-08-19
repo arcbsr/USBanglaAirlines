@@ -941,6 +941,7 @@ extension FlightFilterViewController{
                 formatter.dateFormat = "EEE, dd MMM, YYYY"
                 self.departureDateTextField.text = ""
                 self.departureDateTextField.text = formatter.string(from: forwardDate)
+                UserDefaults.standard.setValue(forwardDate.year, forKey: "flightYear")
                 self.returnDateTextField.text = ""
                 self.returnDateTextField.text = formatter.string(from: backwardDate)
                 
