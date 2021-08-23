@@ -62,7 +62,7 @@ class PaymentViewController: UIViewController {
         }else{
             flightType = "global"
         }
-        transactionId = "T\(UUID().uuidString)_\(pnr)"
+        transactionId = "I\(UUID().uuidString)_\(pnr)"
         initializePayment()
     }
     
