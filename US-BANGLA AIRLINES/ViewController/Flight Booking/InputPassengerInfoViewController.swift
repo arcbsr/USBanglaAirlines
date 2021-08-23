@@ -1207,7 +1207,9 @@ extension InputPassengerInfoViewController{
         SVProgressHUD.show()
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<CreateBookingModel>) in
-            print("=== response = \(response)")
+//             if GlobalItems.isTestBuild{
+//                print("=== response = \(response)")
+//            }
             if SVProgressHUD.isVisible(){
                 SVProgressHUD.dismiss()
             }
@@ -1277,7 +1279,7 @@ extension InputPassengerInfoViewController{
                 print("error = \(error)")
             }
         }).responseJSON { (json) in
-            print("json = \(json)")
+//            print("json = \(json)")
         }
     }
     

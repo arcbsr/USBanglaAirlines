@@ -117,7 +117,9 @@ extension LaunchAnimationViewController{
             if SVProgressHUD.isVisible(){
                 SVProgressHUD.dismiss()
             }
-            print("=== response = \(response)")
+//             if GlobalItems.isTestBuild{
+//                print("=== response = \(response)")
+//            }
             //            guard let statusCode = response.response?.statusCode else{
             //                return
             //            }
@@ -144,7 +146,7 @@ extension LaunchAnimationViewController{
             
         })
         .responseJSON { (json) in
-            print("json = \(json)")
+//            print("json = \(json)")
         }
     }
     

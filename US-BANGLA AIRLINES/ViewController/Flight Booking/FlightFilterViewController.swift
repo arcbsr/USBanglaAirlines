@@ -892,7 +892,9 @@ extension FlightFilterViewController{
         print("url: \(url) params \(params)")
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
-            print("=== response = \(response)")
+             if GlobalItems.isTestBuild{
+                print("=== response = \(response)")
+            }
             guard let statusCode = response.response?.statusCode else{
                 return
             }
@@ -986,7 +988,9 @@ extension FlightFilterViewController{
         SVProgressHUD.show()
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<CityPairModel>) in
-            print("=== response = \(response)")
+             if GlobalItems.isTestBuild{
+                print("=== response = \(response)")
+            }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 if SVProgressHUD.isVisible(){
@@ -1040,7 +1044,9 @@ extension FlightFilterViewController{
         print("url: \(url) params \(params)")
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
-            print("=== response = \(response)")
+//             if GlobalItems.isTestBuild{
+//                print("=== response = \(response)")
+//            }
             guard let statusCode = response.response?.statusCode else{
                 return
             }
@@ -1100,7 +1106,9 @@ extension FlightFilterViewController{
         print("url: \(url) params \(params)")
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<ValueCodeModel>) in
-            print("=== response = \(response)")
+             if GlobalItems.isTestBuild{
+                print("=== response = \(response)")
+            }
             guard let statusCode = response.response?.statusCode else{
                 return
             }
@@ -1222,7 +1230,9 @@ extension FlightFilterViewController{
         SVProgressHUD.show()
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
-            print("=== response = \(response)")
+             if GlobalItems.isTestBuild{
+                print("=== response = \(response)")
+            }
             //            if SVProgressHUD.isVisible(){
             //                SVProgressHUD.dismiss()
             //            }
@@ -1453,7 +1463,9 @@ extension FlightFilterViewController{
         SVProgressHUD.show()
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseObject(completionHandler: { (response: DataResponse<FlightSearchModel>) in
-            print("=== response = \(response)")
+             if GlobalItems.isTestBuild{
+                print("=== response = \(response)")
+            }
             //            if SVProgressHUD.isVisible(){
             //                SVProgressHUD.dismiss()
             //            }

@@ -311,7 +311,7 @@ class BookingConfirmationViewController: UIViewController {
     func loadOneWayData(){
         flightIdLabel.text = "FLIGHT: \(oneWayflight?.operatingAirlineDesignator ?? "") \(oneWayflight?.operatingFlightNumber ?? "")"
         flightNameLabel.text = oneWayflight?.equipmentText ?? ""
-        let duration = ((oneWayflight?.durationMinutes ?? 0) + (oneWayflight?.durationMinutes ?? 0))
+        let duration = oneWayflight?.durationMinutes ?? 0
         durationLabel.text = "\(duration) MIN"
         
         let startDate = oneWayflight?.departureDate ?? ""

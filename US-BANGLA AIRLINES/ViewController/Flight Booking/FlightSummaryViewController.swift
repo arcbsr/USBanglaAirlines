@@ -334,7 +334,7 @@ class FlightSummaryViewController: UIViewController {
     func loadOneWayData(){
         flightIdLabel.text = "FLIGHT: \(oneWayflight?.operatingAirlineDesignator ?? "") \(oneWayflight?.operatingFlightNumber ?? "")"
         flightNameLabel.text = oneWayflight?.equipmentText ?? ""
-        let duration = ((oneWayflight?.durationMinutes ?? 0) + (oneWayflight?.durationMinutes ?? 0))
+        let duration = oneWayflight?.durationMinutes ?? 0
         durationLabel.text = "\(duration) MIN"
         
         let startDate = oneWayflight?.departureDate ?? ""
@@ -664,7 +664,9 @@ extension FlightSummaryViewController{
         SVProgressHUD.show()
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseObject(completionHandler: { (response: DataResponse<PrepareFlight>) in
-            print("=== response = \(response)")
+//             if GlobalItems.isTestBuild{
+//                print("=== response = \(response)")
+//            }
             
             if SVProgressHUD.isVisible(){
                 SVProgressHUD.dismiss()
